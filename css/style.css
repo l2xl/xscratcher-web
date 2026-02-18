@@ -1,0 +1,238 @@
+/* =========================================================
+   The Scratcher Project — Stylesheet
+   Mobile-first, plain CSS, no frameworks
+   ========================================================= */
+
+/* ----- Custom Properties ----- */
+:root {
+  --color-bg:        #0f0f0f;
+  --color-surface:   #1a1a1a;
+  --color-border:    #2a2a2a;
+  --color-text:      #e8e8e8;
+  --color-muted:     #888;
+  --color-accent:    #f0e040;   /* scratch-yellow */
+  --color-accent-dk: #c8bc20;
+  --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Fira Code', 'Cascadia Code', monospace;
+  --max-w: 860px;
+  --radius: 6px;
+  --transition: 0.2s ease;
+}
+
+/* ----- Reset ----- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--color-accent-dk);
+}
+
+/* ----- Utility ----- */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* ----- Header / Nav ----- */
+.site-header {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1rem;
+  gap: 1rem;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.nav-logo:hover {
+  color: var(--color-accent);
+}
+
+.nav-logo img {
+  flex-shrink: 0;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--color-text);
+}
+
+/* ----- Hero (landing) ----- */
+.hero {
+  padding-block: 5rem 4rem;
+}
+
+.hero-inner {
+  max-width: 640px;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--color-accent);
+}
+
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--color-muted);
+  max-width: 500px;
+  margin-bottom: 2rem;
+}
+
+/* ----- Buttons ----- */
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background var(--transition), color var(--transition);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: #0f0f0f;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-dk);
+  color: #0f0f0f;
+}
+
+/* ----- Page Hero (inner pages) ----- */
+.page-hero {
+  padding-block: 3rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-hero h1 {
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+/* ----- Content prose ----- */
+.content-section {
+  padding-block: 3rem;
+}
+
+.content-prose h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 2.25rem;
+  margin-bottom: 0.6rem;
+  color: var(--color-text);
+}
+
+.content-prose h2:first-child {
+  margin-top: 0;
+}
+
+.content-prose p {
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+
+.content-prose a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ----- Footer ----- */
+.site-footer {
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding-block: 1.25rem;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-inner p {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 480px) {
+  .nav-links {
+    gap: 1rem;
+  }
+}

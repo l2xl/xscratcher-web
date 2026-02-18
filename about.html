@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About The Scratcher Project — who we are and what drives us." />
+  <title>About — The Scratcher Project</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.svg" alt="The Scratcher Project logo" width="32" height="32" />
+        <span>The Scratcher Project</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>About the project</h1>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container content-prose">
+        <h2>What is The Scratcher Project?</h2>
+        <p>
+          The Scratcher Project is a personal startup focused on building practical tools
+          and frameworks for people who make things — designers, developers, writers,
+          and anyone else who spends their days turning ideas into reality.
+        </p>
+
+        <h2>The idea behind the name</h2>
+        <p>
+          "Scratching the surface" usually means you've barely started. We think that's
+          exactly the right place to be: curious, exploring, not yet locked into a single
+          answer. The Scratcher Project is built around that spirit of early-stage thinking
+          — the phase where possibilities are still wide open.
+        </p>
+
+        <h2>What we're building</h2>
+        <p>
+          We're starting small and iterating fast. Our focus is on tools that reduce
+          friction in the creative process — things that let you spend more time doing
+          and less time wrangling with your environment.
+        </p>
+
+        <h2>Get in touch</h2>
+        <p>
+          Have an idea, a question, or want to follow along?
+          Reach out at <a href="mailto:hello@thescratcherproject.com">hello@thescratcherproject.com</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> The Scratcher Project. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

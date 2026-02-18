@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Scratcher Project — building tools for creative people." />
+  <title>The Scratcher Project</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.svg" alt="The Scratcher Project logo" width="32" height="32" />
+        <span>The Scratcher Project</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1 class="hero-title">Scratch&nbsp;the&nbsp;surface.<br />Find what&nbsp;matters.</h1>
+        <p class="hero-sub">
+          The Scratcher Project builds tools and ideas that help creative people
+          dig deeper, move faster, and make things worth making.
+        </p>
+        <a href="about.html" class="btn btn-primary">Learn more</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> The Scratcher Project. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
