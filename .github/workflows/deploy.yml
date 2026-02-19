@@ -9,6 +9,7 @@ jobs:
   deploy:
     name: rsync to server via SSH
     runs-on: ubuntu-latest
+    environment: DEPLOY
 
     steps:
       - name: Checkout repository
