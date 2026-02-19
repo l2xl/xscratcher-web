@@ -353,6 +353,16 @@ code {
   padding: 0.15em 0.65em;
 }
 
+.roadmap-gh-link {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  transition: color var(--transition);
+}
+.roadmap-gh-link:hover { color: var(--color-accent); }
+
 /* ----- Side project cards ----- */
 .side-grid {
   display: grid;
