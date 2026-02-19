@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="The Scratcher Project — building tools for creative people." />
+  <meta name="description" content="The Scratcher Project — open-source tools for the crypto world. Trading, wallets, and decentralized exchange, built in the open." />
   <title>The Scratcher Project</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -12,27 +12,179 @@
   <header class="site-header">
     <nav class="nav container">
       <a href="index.html" class="nav-logo">
-        <img src="assets/logo.svg" alt="The Scratcher Project logo" width="32" height="32" />
+        <img src="assets/logo.svg" alt="The Scratcher Project" width="32" height="32" />
         <span>The Scratcher Project</span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li><a href="#more">More</a></li>
         <li><a href="about.html">About</a></li>
+        <li><a href="iprl.html">IPRL</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
+
+    <!-- ── Hero ─────────────────────────────────────────── -->
     <section class="hero">
       <div class="container hero-inner">
-        <h1 class="hero-title">Scratch&nbsp;the&nbsp;surface.<br />Find what&nbsp;matters.</h1>
+        <p class="hero-eyebrow">Open source &middot; Crypto &middot; Built in the open</p>
+        <h1 class="hero-title">Tools for the<br /><em>crypto world</em>,<br />built to last.</h1>
         <p class="hero-sub">
-          The Scratcher Project builds tools and ideas that help creative people
-          dig deeper, move faster, and make things worth making.
+          The Scratcher Project is an independent open-source initiative building
+          the infrastructure people need to trade, hold, and exchange crypto —
+          without giving up control or understanding what's happening under the hood.
         </p>
-        <a href="about.html" class="btn btn-primary">Learn more</a>
+        <div class="hero-cta">
+          <a href="#roadmap" class="btn btn-primary">See the roadmap</a>
+          <a href="about.html" class="btn btn-ghost">About the project</a>
+        </div>
       </div>
     </section>
+
+    <!-- ── Roadmap ────────────────────────────────────────── -->
+    <section class="section" id="roadmap">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">The roadmap</h2>
+          <p class="section-sub">
+            Three core products, built in sequence. Each one is a foundation for the next.
+          </p>
+        </div>
+
+        <ol class="roadmap-list">
+
+          <!-- Phase 1 -->
+          <li class="roadmap-item">
+            <div class="roadmap-phase">
+              <span class="phase-number">01</span>
+              <span class="phase-badge badge-active">In development</span>
+            </div>
+            <div class="roadmap-body">
+              <h3 class="roadmap-title">The Exchange Scratcher</h3>
+              <p class="roadmap-desc">
+                A single open-source application that connects to the major online exchanges via their public APIs.
+                Set up your accounts once, then trade across Binance, Kraken, Coinbase, and more from one place —
+                with one interface you actually control. No subscriptions, no black boxes, no proprietary lock-in.
+                Your strategy stays yours.
+              </p>
+              <ul class="roadmap-tags">
+                <li>Multi-exchange API</li>
+                <li>Unified order book</li>
+                <li>Desktop &amp; web</li>
+                <li>Open source</li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Phase 2 -->
+          <li class="roadmap-item">
+            <div class="roadmap-phase">
+              <span class="phase-number">02</span>
+              <span class="phase-badge badge-planning">Planning</span>
+            </div>
+            <div class="roadmap-body">
+              <h3 class="roadmap-title">The Scratcher Wallet</h3>
+              <p class="roadmap-desc">
+                Your keys, your crypto — and nothing hidden from you. A clean, modern self-custody wallet
+                built for people who want to actually understand what they're signing. It won't dumb things
+                down to the point of obscuring what's happening on-chain; it'll make the details readable.
+                Multi-chain, open source, and designed to work nicely alongside the Exchange Scratcher.
+              </p>
+              <ul class="roadmap-tags">
+                <li>Self-custody</li>
+                <li>Multi-chain</li>
+                <li>Transparent signing</li>
+                <li>Open source</li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Phase 3 -->
+          <li class="roadmap-item">
+            <div class="roadmap-phase">
+              <span class="phase-number">03</span>
+              <span class="phase-badge badge-horizon">On the horizon</span>
+            </div>
+            <div class="roadmap-body">
+              <h3 class="roadmap-title">The Scratcher DEX</h3>
+              <p class="roadmap-desc">
+                Cut out the middleman entirely. A blockchain-powered decentralized exchange where trades
+                settle peer-to-peer and the order book lives on-chain. No custodian, no single point of failure,
+                no counterparty risk beyond the smart contracts themselves — which will of course be open source
+                and auditable. The long-term vision for the whole stack.
+              </p>
+              <ul class="roadmap-tags">
+                <li>On-chain order book</li>
+                <li>Peer-to-peer settlement</li>
+                <li>Non-custodial</li>
+                <li>Open source</li>
+              </ul>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+    <!-- ── More from the project ────────────────────────── -->
+    <section class="section section-alt" id="more">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">More from the project</h2>
+          <p class="section-sub">
+            A handful of side endeavours that run alongside the main roadmap.
+          </p>
+        </div>
+
+        <div class="side-grid">
+
+          <a href="#" class="side-card">
+            <div class="side-card-icon">&#128218;</div>
+            <h3>Crypto Education</h3>
+            <p>
+              Practical articles on how crypto actually works — consensus mechanisms, key
+              management, DeFi primitives, and the bits documentation tends to skip over.
+              Written for builders and curious users, not traders chasing pumps.
+            </p>
+          </a>
+
+          <a href="iprl.html" class="side-card">
+            <div class="side-card-icon">&#128273;</div>
+            <h3>IP Reserve License <span class="inline-badge">IPRL</span></h3>
+            <p>
+              A license for founders who want to stay open source without giving up their
+              intellectual property before a company even exists. Keep your code open today;
+              preserve your IP as founder's capital for tomorrow.
+            </p>
+          </a>
+
+          <a href="#" class="side-card">
+            <div class="side-card-icon">&#128295;</div>
+            <h3>Useful Tools</h3>
+            <p>
+              Small, focused utilities that come up in the course of building the bigger things —
+              key generators, transaction decoders, fee estimators, and whatever else turns out
+              to be generally useful.
+            </p>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Philosophy strip ──────────────────────────────── -->
+    <section class="section philosophy-strip">
+      <div class="container philosophy-inner">
+        <blockquote>
+          "Open source is the default. The code is always available, always auditable,
+          always forkable. We're building infrastructure — it should be built in the open."
+        </blockquote>
+        <a href="about.html" class="btn btn-ghost">More about our approach &rarr;</a>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
