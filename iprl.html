@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Intellectual Property Reserve License (IPRL) — stay open source today, protect your IP as founder's capital for tomorrow." />
+  <title>IP Reserve License — The Scratcher Project</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.svg" alt="The Scratcher Project" width="32" height="32" />
+        <span>The Scratcher Project</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#roadmap">Roadmap</a></li>
+        <li><a href="index.html#more">More</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="iprl.html" class="active">IPRL</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="hero-eyebrow">License</p>
+        <h1>Intellectual Property<br />Reserve License</h1>
+        <p class="page-hero-sub">Stay open source. Keep your IP intact.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container content-prose">
+
+        <!-- TL;DR box -->
+        <div class="callout callout-accent">
+          <strong>The short version:</strong> The IPRL lets you publish open-source code
+          while explicitly reserving ownership of the intellectual property for future use as
+          founder's capital — should a company ever be formed around the project. The code stays
+          free; your IP doesn't evaporate into the commons.
+        </div>
+
+        <h2>The problem it solves</h2>
+        <p>
+          Founders at the pre-company stage face an uncomfortable dilemma. Open source is the
+          right default — it builds trust, attracts contributors, and lets the community verify
+          what you're building. But standard open-source licenses (MIT, Apache 2.0, GPL) are
+          designed for projects, not startups. They say nothing about IP ownership and
+          implicitly treat it as irrelevant.
+        </p>
+        <p>
+          When investors, co-founders, or lawyers enter the picture, the question of who owns
+          the intellectual property in that early open-source code becomes very real — and
+          often messy. The IPRL addresses this before it becomes a problem.
+        </p>
+
+        <h2>What the IPRL does</h2>
+        <p>
+          The license does two things simultaneously:
+        </p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">&#10003;</div>
+            <div>
+              <strong>Grants open-source freedoms</strong>
+              <p>
+                Anyone can use, study, modify, and redistribute the software. This part is
+                equivalent to a permissive open-source license. No usage restrictions.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#128273;</div>
+            <div>
+              <strong>Reserves IP ownership explicitly</strong>
+              <p>
+                The license explicitly states that intellectual property rights — patents,
+                trademarks, trade secrets, and the rights to commercialise the work — are
+                reserved by the named author(s). Using the software does not transfer or
+                license these rights.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2>When this matters</h2>
+        <p>
+          The typical scenario: a solo founder or small team builds something in the open,
+          builds a community around it, then reaches the point of incorporating a company.
+          Without IP documentation, the company formation process can get complicated —
+          who contributed what, does the open-source license affect the company's ability
+          to monetise, do contributors have implicit claims?
+        </p>
+        <p>
+          The IPRL makes the IP situation unambiguous from day one. Contributors know what
+          they're working with. Potential co-founders and investors have a clean paper trail.
+          The founder's contribution has a recorded value.
+        </p>
+
+        <h2>What it doesn't do</h2>
+        <p>
+          The IPRL is not a business-source license or a "source available" restriction.
+          It doesn't limit how anyone uses the software. It doesn't require payment or
+          attribution beyond standard attribution. It doesn't prevent forks.
+        </p>
+        <p>
+          It also isn't a substitute for proper legal advice when you're actually forming a
+          company. Think of it as a documented starting position — not a complete legal structure.
+        </p>
+
+        <h2>Using the IPRL</h2>
+        <p>
+          The license text is freely available. To apply it to your project, include it as
+          <code>LICENSE</code> in your repository, filling in the author name(s) and date.
+          Add the standard header comment to your source files.
+        </p>
+        <p>
+          The Scratcher Project uses the IPRL for all its projects during the pre-incorporation phase.
+        </p>
+
+        <div class="callout">
+          <strong>License text coming soon.</strong> The full IPRL text is being finalised.
+          Follow progress and contribute at
+          <a href="https://github.com/l2xl/IPRL" target="_blank" rel="noopener">github.com/l2xl/IPRL</a>,
+          or get in touch at
+          <a href="mailto:hello@thescratcherproject.com">hello@thescratcherproject.com</a>.
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> The Scratcher Project. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About The Scratcher Project — open-source crypto tools built by people who actually use them." />
+  <title>About — The Scratcher Project</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.svg" alt="The Scratcher Project" width="32" height="32" />
+        <span>The Scratcher Project</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#roadmap">Roadmap</a></li>
+        <li><a href="index.html#more">More</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="iprl.html">IPRL</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <h1>About the project</h1>
+        <p class="page-hero-sub">An independent open-source initiative. Built by users, for users.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container content-prose">
+
+        <h2>Where this came from</h2>
+        <p>
+          The Scratcher Project started from a familiar frustration: the best tools for trading and
+          managing crypto are either closed-source, SaaS-subscription products you can't fully trust,
+          or raw APIs that require writing your own glue code every single time. Neither is great.
+        </p>
+        <p>
+          The goal here is to build the open-source middle ground — proper applications, not scripts.
+          Things with real interfaces, real reliability, and source code you can actually read and verify.
+        </p>
+
+        <h2>What "The Scratcher Project" means</h2>
+        <p>
+          Scratching the surface usually signals that you've barely started. We think that's a feature,
+          not a bug. The best work happens when you're still curious, still questioning the obvious
+          assumptions, not yet locked into the first solution you tried.
+        </p>
+        <p>
+          This project deliberately stays in that mode: building incrementally, shipping early,
+          and staying open to rethinking things when they're not working.
+        </p>
+
+        <h2>Open source, for real</h2>
+        <p>
+          Everything here is open source. Not "open core" where the useful parts cost money.
+          Not "source available" with a license that prohibits commercial use. Actually open —
+          MIT or equivalent, forkable, auditable, buildable by anyone.
+        </p>
+        <p>
+          For crypto tools specifically, this isn't just a philosophy. It's a basic trust requirement.
+          You shouldn't run closed-source software that handles your private keys or executes your trades.
+          Open source is the only way to verify what's actually happening.
+        </p>
+
+        <h2>The intellectual property question</h2>
+        <p>
+          Building open source doesn't mean giving everything away forever with no path to sustainability.
+          The <a href="iprl.html">IP Reserve License</a> is our attempt to solve this honestly —
+          keeping code open during the pre-company phase while preserving the IP as a foundation for
+          whatever comes next. It's an approach we're sharing with anyone in the same position.
+        </p>
+
+        <h2>Get involved</h2>
+        <p>
+          The projects are early. If any of this resonates — whether you want to contribute code,
+          test things, write docs, or just follow along — reach out.
+        </p>
+        <p>
+          Email: <a href="mailto:hello@thescratcherproject.com">hello@thescratcherproject.com</a>
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> The Scratcher Project. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+name: Deploy to Ubuntu server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: rsync to server via SSH
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy files via rsync over SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST:        ${{ secrets.SSH_HOST }}
+          SSH_USER:        ${{ secrets.SSH_USER }}
+          SSH_PORT:        ${{ secrets.SSH_PORT }}
+        run: |
+          # Write private key to temp file
+          echo "$SSH_PRIVATE_KEY" > /tmp/deploy_key
+          chmod 600 /tmp/deploy_key
+
+          # Sync all site files to the server's web root
+          # Excludes hidden files (.git, .github, etc.) automatically via --exclude
+          rsync -avz --delete \
+            -e "ssh -i /tmp/deploy_key -p ${SSH_PORT:-22} -o StrictHostKeyChecking=no" \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='README.md' \
+            ./ \
+            "$SSH_USER@$SSH_HOST:/var/www/scratcher/"
+
+          # Clean up key
+          rm -f /tmp/deploy_key
