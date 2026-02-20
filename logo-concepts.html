@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logo Concepts — The Scratcher Project</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0f0f0f;
+      --surface: #1a1a1a;
+      --border:  #272727;
+      --text:    #e8e8e8;
+      --muted:   #888;
+      --faint:   #444;
+      --yellow:  #f0e040;
+      --orange:  #f0a040;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    .page-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+    .intro {
+      max-width: 640px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 3.5rem;
+      line-height: 1.7;
+    }
+    .intro strong { color: var(--text); }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    /* Dark canvas preview */
+    .preview {
+      background: #0f0f0f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .preview img,
+    .preview object {
+      width: 220px;
+      height: 220px;
+    }
+
+    /* Light canvas preview (for page variant) */
+    .preview-light {
+      background: #2a2a2a;
+    }
+
+    .card-body {
+      padding: 1.5rem 1.6rem 1.8rem;
+    }
+
+    .variant-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 0.35rem;
+    }
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.7rem;
+    }
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.1rem;
+    }
+
+    /* Theme pills */
+    .themes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .theme-pill {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--faint);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 0.18em 0.7em;
+    }
+
+    /* ── Small-size previews ── */
+    .sizes {
+      display: flex;
+      align-items: flex-end;
+      gap: 1rem;
+      padding: 1.2rem 1.6rem;
+      border-top: 1px solid var(--border);
+      background: #111;
+    }
+    .size-label {
+      font-size: 0.62rem;
+      color: var(--faint);
+      text-align: center;
+      margin-top: 0.3rem;
+    }
+    .size-item { display: flex; flex-direction: column; align-items: center; }
+
+    footer {
+      margin-top: 4rem;
+      color: var(--faint);
+      font-size: 0.78rem;
+    }
+    footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <p class="page-title">The Scratcher Project &mdash; Internal</p>
+  <h1>Logo Concepts</h1>
+  <p class="intro">
+    Four directions for the project mark. All share the same palette and
+    core ideas: <strong>built from scratch</strong>,
+    <strong>Bitcoin inscriptions &amp; on-chain legacy</strong>, and
+    <strong>blank-paper freedom</strong> — no restrictions, freehand.
+    Each takes a different angle on those themes.
+  </p>
+
+  <div class="grid">
+
+    <!-- ── A ── -->
+    <div class="card">
+      <div class="preview">
+        <img src="assets/logos/logo-a-gestural.svg" alt="Variant A — Gestural S" width="220" height="220"/>
+      </div>
+      <div class="card-body">
+        <p class="variant-label">Variant A</p>
+        <h2 class="card-title">The Gestural S</h2>
+        <p class="card-desc">
+          A single scratch stroke drawn in one swift motion — the S of Scratcher
+          as a physical act. The stroke tapers at both ends like a fingernail
+          dragged across a surface. The underline overshoots, the way a pen does
+          when you're moving fast. Three tick marks in the corner echo ordinal /
+          inscription notation: the hash symbol, Bitcoin's native language.
+        </p>
+        <div class="themes">
+          <span class="theme-pill">from scratch</span>
+          <span class="theme-pill">freehand gesture</span>
+          <span class="theme-pill">ordinal inscription</span>
+          <span class="theme-pill">single stroke</span>
+        </div>
+      </div>
+      <div class="sizes">
+        <div class="size-item">
+          <img src="assets/logos/logo-a-gestural.svg" width="64" height="64" alt="64px"/>
+          <span class="size-label">64px</span>
+        </div>
+        <div class="size-item">
+          <img src="assets/logos/logo-a-gestural.svg" width="32" height="32" alt="32px"/>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="size-item">
+          <img src="assets/logos/logo-a-gestural.svg" width="20" height="20" alt="20px"/>
+          <span class="size-label">20px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── B ── -->
+    <div class="card">
+      <div class="preview">
+        <img src="assets/logos/logo-b-inscription.svg" alt="Variant B — The Inscription" width="220" height="220"/>
+      </div>
+      <div class="card-body">
+        <p class="variant-label">Variant B</p>
+        <h2 class="card-title">The Inscription</h2>
+        <p class="card-desc">
+          A blockchain block with an S chiselled into its face — like an
+          Ordinal inscription on Bitcoin. The edge notches mimic a hex-dump
+          ruler or block-header ticks: data made visible. The engraved S uses
+          a shadow / highlight technique to look carved in stone. Permanent.
+          On-chain. The orange palette nods directly to Bitcoin.
+        </p>
+        <div class="themes">
+          <span class="theme-pill">blockchain block</span>
+          <span class="theme-pill">Bitcoin inscription</span>
+          <span class="theme-pill">engraved / carved</span>
+          <span class="theme-pill">permanence</span>
+        </div>
+      </div>
+      <div class="sizes">
+        <div class="size-item">
+          <img src="assets/logos/logo-b-inscription.svg" width="64" height="64" alt="64px"/>
+          <span class="size-label">64px</span>
+        </div>
+        <div class="size-item">
+          <img src="assets/logos/logo-b-inscription.svg" width="32" height="32" alt="32px"/>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="size-item">
+          <img src="assets/logos/logo-b-inscription.svg" width="20" height="20" alt="20px"/>
+          <span class="size-label">20px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── C ── -->
+    <div class="card">
+      <div class="preview preview-light">
+        <img src="assets/logos/logo-c-blank-page.svg" alt="Variant C — The Blank Page" width="220" height="220"/>
+      </div>
+      <div class="card-body">
+        <p class="variant-label">Variant C</p>
+        <h2 class="card-title">The Blank Page</h2>
+        <p class="card-desc">
+          A white sheet, slightly tilted, with a folded corner and faint ruled
+          lines — the open canvas. One bold freehand scratch is the only mark
+          on it. The page says: no predefined path, no restrictions, start
+          anywhere. The scratch says: but someone did start, here, from nothing.
+          Two interlocked chain links in the corner are the crypto thread running
+          through it all.
+        </p>
+        <div class="themes">
+          <span class="theme-pill">blank canvas</span>
+          <span class="theme-pill">no restrictions</span>
+          <span class="theme-pill">freehand</span>
+          <span class="theme-pill">chain / crypto</span>
+        </div>
+      </div>
+      <div class="sizes">
+        <div class="size-item">
+          <img src="assets/logos/logo-c-blank-page.svg" width="64" height="64" alt="64px"/>
+          <span class="size-label">64px</span>
+        </div>
+        <div class="size-item">
+          <img src="assets/logos/logo-c-blank-page.svg" width="32" height="32" alt="32px"/>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="size-item">
+          <img src="assets/logos/logo-c-blank-page.svg" width="20" height="20" alt="20px"/>
+          <span class="size-label">20px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── D ── -->
+    <div class="card">
+      <div class="preview">
+        <img src="assets/logos/logo-d-enso.svg" alt="Variant D — The Enso" width="220" height="220"/>
+      </div>
+      <div class="card-body">
+        <p class="variant-label">Variant D</p>
+        <h2 class="card-title">The Enso</h2>
+        <p class="card-desc">
+          An imperfect single-stroke circle — a Zen enso — open at the top.
+          The gap is intentional: the space where the user writes their own
+          ending. The horizontal scratch inside is the work itself, contained
+          within the open freedom. Where the brush lifted off, ink dissipates
+          to dots. Wholeness through imperfection; freedom through openness.
+        </p>
+        <div class="themes">
+          <span class="theme-pill">openness</span>
+          <span class="theme-pill">freedom</span>
+          <span class="theme-pill">imperfection</span>
+          <span class="theme-pill">the mark within</span>
+        </div>
+      </div>
+      <div class="sizes">
+        <div class="size-item">
+          <img src="assets/logos/logo-d-enso.svg" width="64" height="64" alt="64px"/>
+          <span class="size-label">64px</span>
+        </div>
+        <div class="size-item">
+          <img src="assets/logos/logo-d-enso.svg" width="32" height="32" alt="32px"/>
+          <span class="size-label">32px</span>
+        </div>
+        <div class="size-item">
+          <img src="assets/logos/logo-d-enso.svg" width="20" height="20" alt="20px"/>
+          <span class="size-label">20px</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Internal concept page &mdash; <a href="index.html">&larr; Back to site</a></p>
+  </footer>
+
+</body>
+</html>

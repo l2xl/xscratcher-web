@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!--
+    VARIANT C — "The Blank Page"
+    A white sheet of paper, slightly tilted — blank and open.
+    A single bold freehand scratch curves diagonally across it,
+    the only mark on an otherwise empty surface.
+    Folded corner (top-right) adds physicality.
+    Two interlocked links in the bottom-left corner: the crypto thread.
+
+    The white paper = no restrictions, open canvas, user freedom.
+    The scratch = from scratch, freehand, your mark to make.
+    The chain links = this freedom lives on the blockchain.
+
+    Themes: blank canvas · freehand · open · no restrictions
+  -->
+
+  <defs>
+    <!-- Page drop shadow -->
+    <filter id="page-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="6" dy="8" stdDeviation="10" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+
+    <!-- Hand-drawn wobble for the scratch line -->
+    <filter id="wob-c" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="turbulence" baseFrequency="0.028" numOctaves="4" seed="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4.5"
+                         xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <!-- Clip the page contents to the page shape -->
+    <clipPath id="page-clip">
+      <polygon points="78,58 322,58 322,342 78,342" transform="rotate(-4 200 200)"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="#0f0f0f"/>
+
+  <!-- ── Page body ── -->
+  <g transform="rotate(-4 200 200)">
+
+    <!-- Shadow -->
+    <rect x="78" y="58" width="244" height="284" rx="3"
+          fill="#f5f1e8"
+          filter="url(#page-shadow)"/>
+
+    <!-- Page surface — warm off-white, like laid paper -->
+    <rect x="78" y="58" width="244" height="284" rx="3"
+          fill="#f5f1e8"/>
+
+    <!-- Very faint ruled lines — the ghost of structure underneath -->
+    <g stroke="#e4e0d8" stroke-width="0.6" opacity="0.8">
+      <line x1="90"  y1="148" x2="310" y2="148"/>
+      <line x1="90"  y1="166" x2="310" y2="166"/>
+      <line x1="90"  y1="184" x2="310" y2="184"/>
+      <line x1="90"  y1="202" x2="310" y2="202"/>
+      <line x1="90"  y1="220" x2="310" y2="220"/>
+      <line x1="90"  y1="238" x2="310" y2="238"/>
+      <line x1="90"  y1="256" x2="310" y2="256"/>
+      <line x1="90"  y1="274" x2="310" y2="274"/>
+      <line x1="90"  y1="292" x2="310" y2="292"/>
+    </g>
+
+    <!-- ── Folded corner — top right ── -->
+    <!-- Fold-back triangle (lighter than page — the back of the sheet) -->
+    <polygon points="278,58 322,58 322,102" fill="#fffdf8"/>
+    <!-- Fold crease shadow -->
+    <line x1="278" y1="58" x2="322" y2="102"
+          stroke="#cdc9c0" stroke-width="0.8"/>
+    <!-- Subtle diagonal hatching on fold to show page thickness -->
+    <g stroke="#d8d4cb" stroke-width="0.5" opacity="0.5">
+      <line x1="288" y1="58" x2="322" y2="88"/>
+      <line x1="300" y1="58" x2="322" y2="76"/>
+      <line x1="312" y1="58" x2="322" y2="64"/>
+    </g>
+
+    <!-- ── THE SCRATCH — the only mark on the blank page ── -->
+    <!-- A bold freehand curve — not quite straight, not quite an S —
+         the gesture of someone marking "this is mine, I start here." -->
+    <!-- Main stroke -->
+    <path d="M 104,92
+             C 138,128 172,160 200,194
+             C 222,220 248,254 288,312"
+          fill="none"
+          stroke="#1a1410"
+          stroke-width="8"
+          stroke-linecap="round"
+          opacity="0.88"
+          filter="url(#wob-c)"/>
+    <!-- Secondary parallel line (double-scratch, like pressing harder) -->
+    <path d="M 114,90
+             C 148,126 182,158 210,192
+             C 232,218 258,252 298,310"
+          fill="none"
+          stroke="#1a1410"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          opacity="0.28"
+          filter="url(#wob-c)"/>
+    <!-- Tiny splatter dot at the start — pen touching down -->
+    <circle cx="102" cy="90" r="3.5" fill="#1a1410" opacity="0.5"/>
+    <circle cx="99"  cy="88" r="1.5" fill="#1a1410" opacity="0.25"/>
+
+    <!-- ── Chain links — bottom left corner ── -->
+    <!-- Two interlocked ovals, like a chain: the crypto underpinning -->
+    <g fill="none" stroke="#8a8078" stroke-width="2" stroke-linecap="round">
+      <ellipse cx="104" cy="320" rx="10" ry="6" transform="rotate(-35 104 320)"/>
+      <ellipse cx="117" cy="325" rx="10" ry="6" transform="rotate(-35 117 325)"/>
+    </g>
+
+  </g>
+
+</svg>
