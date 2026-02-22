@@ -1,0 +1,304 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!--
+    "PEN IN THE STORM" — full scene logo concept
+    Based on source image: a pen standing in a turbulent ocean with a swirling sky.
+
+    Symbolic reading:
+      Pen     = writing from scratch, freehand, your tool, your rules
+      Storm   = the volatile crypto world, blockchain complexity
+      Vortex  = the depth of knowledge (Bitcoin inscriptions, on-chain legacy)
+      Waves   = the market — powerful, impersonal, constant
+      The pen doesn't bend — it inscribes from inside the chaos
+
+    Palette: project scratch-yellow (#f0e040) on near-black (#0f0f0f)
+    Style:   manga ink-sketch — hatching, line weight, no gradients
+  -->
+  <defs>
+
+    <!-- Diagonal hatching — manga cross-hatch texture -->
+    <pattern id="hatch45" width="5" height="5"
+             patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="5"
+            stroke="#f0e040" stroke-width="0.6" opacity="0.22"/>
+    </pattern>
+    <pattern id="hatch135" width="5" height="5"
+             patternUnits="userSpaceOnUse" patternTransform="rotate(135)">
+      <line x1="0" y1="0" x2="0" y2="5"
+            stroke="#f0e040" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+
+    <!-- Clip: keep water hatching below the wave line -->
+    <clipPath id="water-clip">
+      <rect x="0" y="268" width="400" height="132"/>
+    </clipPath>
+
+    <!-- Slight organic wobble for lines that should feel hand-drawn -->
+    <filter id="wob" x="-4%" y="-4%" width="108%" height="108%">
+      <feTurbulence type="turbulence" baseFrequency="0.04"
+                    numOctaves="3" seed="5" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.5"
+                         xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+  </defs>
+
+  <!-- ══════════════════════════════════════════
+       BACKGROUND
+  ══════════════════════════════════════════ -->
+  <rect width="400" height="400" fill="#0f0f0f"/>
+
+  <!-- ══════════════════════════════════════════
+       VORTEX / SWIRL LINES
+       Fan of arcs radiating from (155, 118).
+       Each successive arc is larger and slightly
+       rotated — like the spiral in the source.
+       Opacity falls off toward the outer arcs.
+  ══════════════════════════════════════════ -->
+
+  <!-- Arc 6 — outermost, faintest -->
+  <path d="M 10,88 C 122,26 252,100 298,176"
+        fill="none" stroke="#f0e040" stroke-width="1"
+        stroke-linecap="round" opacity="0.11"/>
+
+  <!-- Arc 5 -->
+  <path d="M 30,82 C 132,34 246,102 285,172"
+        fill="none" stroke="#f0e040" stroke-width="1.1"
+        stroke-linecap="round" opacity="0.18"/>
+
+  <!-- Arc 4 -->
+  <path d="M 55,80 C 140,44 240,106 272,168"
+        fill="none" stroke="#f0e040" stroke-width="1.3"
+        stroke-linecap="round" opacity="0.26"/>
+
+  <!-- Arc 3 -->
+  <path d="M 80,82 C 148,54 233,110 258,164"
+        fill="none" stroke="#f0e040" stroke-width="1.5"
+        stroke-linecap="round" opacity="0.35"/>
+
+  <!-- Arc 2 -->
+  <path d="M 104,86 C 156,64 226,114 244,160"
+        fill="none" stroke="#f0e040" stroke-width="1.7"
+        stroke-linecap="round" opacity="0.46"/>
+
+  <!-- Arc 1 — innermost, boldest -->
+  <path d="M 124,92 C 164,74 218,118 232,156"
+        fill="none" stroke="#f0e040" stroke-width="2"
+        stroke-linecap="round" opacity="0.58"/>
+
+  <!-- Short inner arc connecting back toward pen -->
+  <path d="M 142,100 C 168,86 210,122 220,152"
+        fill="none" stroke="#f0e040" stroke-width="1.6"
+        stroke-linecap="round" opacity="0.42"/>
+
+  <!-- Left-side fan arcs (below the main arcs — storm extending down-left) -->
+  <path d="M 10,130 C 35,118 60,132 78,155 C 96,178 96,205 80,222"
+        fill="none" stroke="#f0e040" stroke-width="0.9"
+        stroke-linecap="round" opacity="0.2"/>
+  <path d="M 10,155 C 42,144 68,158 84,180 C 100,202 98,228 82,244"
+        fill="none" stroke="#f0e040" stroke-width="0.8"
+        stroke-linecap="round" opacity="0.14"/>
+
+  <!-- Right-side echo arcs -->
+  <path d="M 295,168 C 318,175 338,168 355,152 C 372,136 378,112 368,92"
+        fill="none" stroke="#f0e040" stroke-width="0.9"
+        stroke-linecap="round" opacity="0.18"/>
+  <path d="M 308,175 C 334,183 356,175 370,158 C 384,141 388,116 378,96"
+        fill="none" stroke="#f0e040" stroke-width="0.7"
+        stroke-linecap="round" opacity="0.12"/>
+
+  <!-- ══════════════════════════════════════════
+       PEN
+       Tilted ~11° counter-clockwise.
+       Pivot at (200, 284) — where the pen
+       meets the water surface.
+       Anatomy (back-to-front):
+         shadow → body → cap → band → nib → details
+  ══════════════════════════════════════════ -->
+  <g transform="rotate(-11 200 284)">
+
+    <!-- ── Drop shadow ── -->
+    <g transform="translate(5,7)" opacity="0.4">
+      <rect x="184" y="90" width="32" height="28" rx="16" fill="#000"/>
+      <rect x="185" y="116" width="30" height="8"           fill="#000"/>
+      <rect x="184" y="124" width="32" height="94"          fill="#000"/>
+      <rect x="181" y="218" width="38" height="15" rx="2"   fill="#000"/>
+      <rect x="185" y="233" width="30" height="44"          fill="#000"/>
+      <polygon points="185,277 215,277 200,298"             fill="#000"/>
+    </g>
+
+    <!-- ── Cap (top) ── -->
+    <!-- Cap body -->
+    <rect x="184" y="90" width="32" height="28" rx="16"
+          fill="#111" stroke="#f0e040" stroke-width="1.8"/>
+    <!-- Cap dome oval highlight (light reflection) -->
+    <ellipse cx="196" cy="92" rx="7" ry="3"
+             fill="none" stroke="#fffbe8" stroke-width="1" opacity="0.35"/>
+    <!-- Cap crown dot -->
+    <circle cx="200" cy="90" r="3.5" fill="#c8bc20"/>
+    <!-- Cap clip (the metal strip on the side of a pen cap) -->
+    <rect x="213" y="93" width="5" height="22" rx="2.5"
+          fill="#1a1800" stroke="#f0e040" stroke-width="1"/>
+    <line x1="215.5" y1="95" x2="215.5" y2="112"
+          stroke="#fffbe8" stroke-width="0.7" opacity="0.3"/>
+
+    <!-- ── Cap–barrel collar ── -->
+    <rect x="182" y="116" width="36" height="10" rx="2"
+          fill="#1a1800" stroke="#f0e040" stroke-width="1.4"/>
+    <line x1="184" y1="121" x2="216" y2="121"
+          stroke="#f0e040" stroke-width="0.6" opacity="0.5"/>
+
+    <!-- ── Upper barrel ── -->
+    <rect x="184" y="126" width="32" height="90"
+          fill="#0f0f0f" stroke="#f0e040" stroke-width="1.6"/>
+    <!-- Barrel hatching — manga texture -->
+    <rect x="184" y="126" width="32" height="90"
+          fill="url(#hatch45)"/>
+    <!-- Left-edge specular reflection -->
+    <line x1="189" y1="130" x2="189" y2="212"
+          stroke="#fffbe8" stroke-width="1.4" opacity="0.22"/>
+    <!-- Narrow right-side reflection -->
+    <line x1="212" y1="130" x2="212" y2="212"
+          stroke="#fffbe8" stroke-width="0.7" opacity="0.1"/>
+    <!-- Manufacturer mark / inscription lines on barrel -->
+    <line x1="190" y1="155" x2="208" y2="155"
+          stroke="#f0e040" stroke-width="0.6" opacity="0.35"/>
+    <line x1="190" y1="162" x2="208" y2="162"
+          stroke="#f0e040" stroke-width="0.6" opacity="0.35"/>
+
+    <!-- ── Metal centre band / ring ── -->
+    <rect x="181" y="216" width="38" height="17" rx="2"
+          fill="#1a1800" stroke="#f0e040" stroke-width="1.8"/>
+    <!-- Band shine strip -->
+    <rect x="183" y="218" width="34" height="5" rx="1"
+          fill="#f0e040" opacity="0.28"/>
+    <!-- Band lower rule -->
+    <line x1="183" y1="229" x2="217" y2="229"
+          stroke="#f0e040" stroke-width="0.8" opacity="0.55"/>
+
+    <!-- ── Lower barrel (grip section) ── -->
+    <rect x="185" y="233" width="30" height="44"
+          fill="#0d0d0d" stroke="#f0e040" stroke-width="1.5"/>
+    <!-- Cross-hatch on grip (denser, darker — rubber grip feel) -->
+    <rect x="185" y="233" width="30" height="44"
+          fill="url(#hatch45)"/>
+    <rect x="185" y="233" width="30" height="44"
+          fill="url(#hatch135)"/>
+    <!-- Grip left highlight -->
+    <line x1="190" y1="236" x2="190" y2="273"
+          stroke="#fffbe8" stroke-width="1" opacity="0.18"/>
+
+    <!-- ── Nib / tip ── -->
+    <polygon points="185,277 215,277 200,300"
+             fill="#0a0a0a" stroke="#f0e040"
+             stroke-width="1.6" stroke-linejoin="round"/>
+    <!-- Nib centre slit -->
+    <line x1="200" y1="278" x2="200" y2="298"
+          stroke="#f0e040" stroke-width="0.9" opacity="0.65"/>
+    <!-- Nib tine left highlight -->
+    <line x1="193" y1="281" x2="200" y2="294"
+          stroke="#fffbe8" stroke-width="0.8" opacity="0.3"/>
+
+  </g>
+  <!-- end pen group -->
+
+  <!-- ══════════════════════════════════════════
+       WAVES
+       Three layers: far back, mid, front crest.
+       The front crest is interrupted where the
+       pen pierces the surface.
+  ══════════════════════════════════════════ -->
+
+  <!-- Far background swell (very low, faint) -->
+  <path d="M 0,252 C 50,242 100,256 150,246
+           C 200,236 250,248 300,240
+           C 340,234 370,244 400,238"
+        fill="none" stroke="#f0e040" stroke-width="1"
+        stroke-linecap="round" opacity="0.28"/>
+
+  <!-- Mid wave -->
+  <path d="M 0,264 C 42,252 82,268 118,256
+           C 148,246 168,254 186,260
+           C 198,264 202,265 214,260
+           C 234,253 262,262 296,252
+           C 330,242 364,256 400,248"
+        fill="none" stroke="#f0e040" stroke-width="1.5"
+        stroke-linecap="round" opacity="0.42" filter="url(#wob)"/>
+
+  <!-- Mid wave hatch fill (depth below crest) -->
+  <path d="M 0,264 C 42,252 82,268 118,256
+           C 148,246 168,254 186,260
+           C 198,264 202,265 214,260
+           C 234,253 262,262 296,252
+           C 330,242 364,256 400,248
+           L 400,278 C 364,272 330,258 296,267
+           C 262,276 234,269 214,275
+           C 202,279 198,278 186,274
+           C 168,268 148,260 118,270
+           C 82,282 42,266 0,278 Z"
+        fill="url(#hatch45)" opacity="0.5"/>
+
+  <!-- FRONT WAVE — left half (before pen) -->
+  <path d="M 0,282 C 28,268 55,284 82,272
+           C 105,262 118,268 132,276
+           C 144,284 150,284 158,280"
+        fill="none" stroke="#f0e040" stroke-width="2.4"
+        stroke-linecap="round" opacity="0.88" filter="url(#wob)"/>
+
+  <!-- FRONT WAVE — right half (after pen) -->
+  <path d="M 245,276 C 256,272 268,280 286,270
+           C 314,256 348,274 378,264
+           C 388,260 394,264 400,266"
+        fill="none" stroke="#f0e040" stroke-width="2.4"
+        stroke-linecap="round" opacity="0.88" filter="url(#wob)"/>
+
+  <!-- Front wave hatch fill left -->
+  <path d="M 0,282 C 28,268 55,284 82,272
+           C 105,262 118,268 132,276
+           C 144,284 150,284 158,280
+           L 158,306 C 150,308 144,308 132,300
+           C 118,292 105,288 82,296
+           C 55,308 28,292 0,306 Z"
+        fill="url(#hatch45)" opacity="0.55"/>
+
+  <!-- Front wave hatch fill right -->
+  <path d="M 245,276 C 256,272 268,280 286,270
+           C 314,256 348,274 378,264
+           C 388,260 394,264 400,266
+           L 400,292 C 394,292 388,288 378,292
+           C 348,302 314,284 286,296
+           C 268,306 256,298 245,302 Z"
+        fill="url(#hatch45)" opacity="0.55"/>
+
+  <!-- Wave foam: small flick-marks at crest tops -->
+  <g stroke="#f0e040" stroke-linecap="round" opacity="0.6">
+    <path d="M 55,282 C 58,275 62,274 64,278" fill="none" stroke-width="1.2"/>
+    <path d="M 108,272 C 111,265 115,264 117,268" fill="none" stroke-width="1.1"/>
+    <path d="M 298,270 C 301,263 305,262 307,266" fill="none" stroke-width="1.1"/>
+    <path d="M 355,268 C 358,261 362,260 364,264" fill="none" stroke-width="1"/>
+  </g>
+
+  <!-- ══════════════════════════════════════════
+       WATER BODY (below the waves)
+  ══════════════════════════════════════════ -->
+
+  <!-- Water fill -->
+  <rect x="0" y="300" width="400" height="100" fill="#0a0a0a"/>
+
+  <!-- Horizontal surface ripples (fading downward) -->
+  <g stroke="#f0e040" stroke-linecap="round">
+    <line x1="18"  y1="314" x2="382" y2="314" stroke-width="0.9" opacity="0.22"/>
+    <line x1="10"  y1="328" x2="390" y2="328" stroke-width="0.7" opacity="0.15"/>
+    <line x1="25"  y1="342" x2="375" y2="342" stroke-width="0.6" opacity="0.10"/>
+    <line x1="40"  y1="356" x2="360" y2="356" stroke-width="0.5" opacity="0.07"/>
+    <line x1="60"  y1="370" x2="340" y2="370" stroke-width="0.4" opacity="0.05"/>
+  </g>
+
+  <!-- Ripple rings around the pen entry point -->
+  <g fill="none" stroke="#f0e040" stroke-linecap="round">
+    <ellipse cx="196" cy="292" rx="18"  ry="5"  stroke-width="1.3" opacity="0.6"/>
+    <ellipse cx="196" cy="293" rx="32"  ry="8"  stroke-width="0.9" opacity="0.35"/>
+    <ellipse cx="196" cy="295" rx="48"  ry="11" stroke-width="0.6" opacity="0.18"/>
+    <ellipse cx="196" cy="296" rx="66"  ry="14" stroke-width="0.4" opacity="0.1"/>
+  </g>
+
+</svg>
