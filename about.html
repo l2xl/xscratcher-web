@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="About The Scratcher Project — open-source crypto infrastructure built on the principles of transparency, self-custody, and Zero Trust design." />
+  <meta name="description" content="About The Scratcher Project — open-source crypto infrastructure guided by a user-first trust model: fully sovereign where technically possible, transparently bounded where not." />
   <title>About — The Scratcher Project</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -63,7 +63,7 @@
 
         <h2>Open source, without exceptions</h2>
         <p>
-          Every project here is fully open source — not "open core" where the useful features
+          Every software project here is fully open source — not "open core" where the useful features
           require a paid plan, and not "source available" under a license that prohibits commercial use.
           Actually open: MIT or equivalent, forkable, auditable, and buildable by anyone.
         </p>
@@ -72,16 +72,32 @@
           security requirement. Software that handles private keys or executes trades on your behalf
           must be inspectable. Open source is the only way to verify what is actually happening.
         </p>
-
-        <h2>Zero Trust by design</h2>
         <p>
-          We build our products so that even we cannot act on a user's behalf without their
-          explicit action. Exchange API keys stay on the user's device. Strategy execution is
-          scoped to the minimum permissions required. Every algorithm is in the open codebase.
+          Note that "open source" describes the software code. Where cloud services are offered
+          alongside it, those involve trusting The Scratcher Project's operations in addition to the
+          open codebase — a distinction we make explicit, not one we obscure.
+        </p>
+
+        <h2>A user-first trust model</h2>
+        <p>
+          Zero Trust is a guiding principle of The Scratcher Project — not a blanket guarantee
+          applied uniformly to every component. Where it is technically and economically possible
+          to build without requiring the user to trust us, we do.
         </p>
         <p>
-          This is not a marketing claim — it is an architectural constraint we apply from the
-          start of each project, not a property we add later.
+          The standalone application of The Exchange Scratcher and The Scratcher Wallet are the
+          primary expression of this: keys never leave the user's device, the application connects
+          directly to exchange APIs, and every algorithm it runs is in the open codebase.
+          The Scratcher Project cannot act on your behalf in either product.
+        </p>
+        <p>
+          The managed backend services — 24/7 strategy execution and copy-trading — operate under
+          a different model. The user grants The Scratcher Project scoped trading permissions and
+          we execute strategies on their behalf. This is not Zero Trust: it is limited, explicit
+          trust that the user opts into. The scope of that trust is minimal — trading permissions
+          only, never withdrawal access — and the code executing those strategies is open source
+          and auditable. The standalone application is always a full-capability alternative for
+          those who require complete sovereignty.
         </p>
 
         <h2>The intellectual property question</h2>

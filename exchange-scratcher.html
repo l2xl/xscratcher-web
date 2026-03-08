@@ -32,9 +32,11 @@
         <p class="hero-eyebrow">01 &mdash; In development</p>
         <h1>The Exchange Scratcher</h1>
         <p class="page-hero-sub">
-          The open-source trading terminal for crypto. Connect to major exchanges, trade from a
-          purpose-built cockpit interface, and run strategies around the clock —
-          without giving up custody of your keys or control of your data.
+          The open-source trading terminal for crypto. The standalone application is
+          architecturally zero-trust: your keys stay local, you connect directly to exchanges,
+          and every line of code is auditable. Need 24/7 automated execution?
+          The managed backend runs your strategies with scoped permissions —
+          a deliberate trust trade-off, not a hidden one.
         </p>
         <div class="hero-cta" style="margin-top:1.5rem;">
           <a href="https://github.com/l2xl/extools" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub &rarr;</a>
@@ -127,10 +129,11 @@
         </p>
 
         <div class="callout callout-accent">
-          <strong>Zero Trust by Design.</strong> We build the system so that even we cannot act on
-          your behalf. Your exchange keys never leave your local environment in the standalone
-          application. Every action the software takes on your account is initiated by you,
-          and every algorithm that executes it is in the open-source codebase.
+          <strong>Zero Trust in the standalone application.</strong> Your exchange keys never leave
+          your device. The application connects directly to exchange APIs — no intermediary can
+          access your account or act on your behalf. Every action on your account is initiated by
+          you, and every algorithm that executes it is in the open-source codebase.
+          This is the full-sovereignty path.
         </div>
 
         <p>
@@ -167,22 +170,15 @@
               </p>
             </div>
           </div>
-          <div class="feature-item">
-            <div class="feature-icon">&#127968;</div>
-            <div>
-              <strong>Self-hosted option</strong>
-              <p>
-                Deploy the backend server on your own infrastructure. Full source is available;
-                no proprietary components, no vendor lock-in.
-              </p>
-            </div>
-          </div>
         </div>
 
         <div class="callout">
-          <strong>Cloud or self-hosted.</strong> Use our managed infrastructure or run the server
-          yourself. Both options give you the same codebase and the same guarantees — the
-          difference is who operates the hardware.
+          <strong>The managed backend is limited trust — by design and by disclosure.</strong>
+          When you use the backend, you grant The Scratcher Project scoped trading permissions
+          and we execute strategies on your behalf. This is not zero-trust: it is an explicit,
+          bounded trust relationship you opt into consciously. Withdrawal access is never required
+          or requested. The standalone application is the zero-trust alternative — it covers the
+          full feature set for those who prefer complete sovereignty.
         </div>
 
         <!-- ── Strategy Marketplace ───────────────────────── -->
