@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Exchange Scratcher — an open-source crypto trading terminal with Trader Cockpit interface, 24/7 backend server, and strategy marketplace." />
+  <title>The Exchange Scratcher — The Scratcher Project</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.svg" alt="The Scratcher Project" width="32" height="32" />
+        <span>The Scratcher Project</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="exchange-scratcher.html" class="active">Exchange Scratcher</a></li>
+        <li><a href="index.html#roadmap">Roadmap</a></li>
+        <li><a href="index.html#more">More</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="iprl.html">IPRL</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="hero-eyebrow">01 &mdash; In development</p>
+        <h1>The Exchange Scratcher</h1>
+        <p class="page-hero-sub">
+          The open-source trading terminal for crypto. Connect to major exchanges, trade from a
+          purpose-built cockpit interface, and run strategies around the clock —
+          without giving up custody of your keys or control of your data.
+        </p>
+        <div class="hero-cta" style="margin-top:1.5rem;">
+          <a href="https://github.com/l2xl/extools" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+          <a href="index.html#roadmap" class="btn btn-ghost">Back to roadmap</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Trader Cockpit ────────────────────────────────── -->
+    <section class="content-section">
+      <div class="container content-prose">
+
+        <h2>Trader Cockpit</h2>
+        <p>
+          Most trading interfaces force you to split attention across multiple tabs: a chart in one
+          window, the order book in another, positions somewhere else. Trader Cockpit puts everything
+          on a single screen — chart, order book, open positions, pending orders, and trade history
+          in one coherent workspace. No context-switching, no missed signals.
+        </p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">&#128200;</div>
+            <div>
+              <strong>Automatic TA markers</strong>
+              <p>
+                Support and resistance levels, trend lines, and other technical analysis markers are
+                calculated and rendered on the chart automatically. Nothing needs to be configured manually;
+                the relevant context is always visible.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#128279;</div>
+            <div>
+              <strong>Orders linked to indicators</strong>
+              <p>
+                Orders can be bound directly to TA markers. When an indicator updates, the linked
+                order parameters recalculate automatically — keeping your positions anchored to
+                the current market structure rather than a static price you entered hours ago.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#9889;</div>
+            <div>
+              <strong>New order types</strong>
+              <p>
+                <strong>Dynamic Limit Order</strong> — a limit order whose price follows a selected
+                indicator in real time.<br />
+                <strong>Catch the Tail</strong> — optimal entry execution during sharp price moves:
+                the order selects the best entry mode while the deviation stays within an acceptable range.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#128240;</div>
+            <div>
+              <strong>Synchronised order book and spread</strong>
+              <p>
+                Market depth and the current spread are displayed alongside the chart, aligned to
+                the same price axis. The full market picture is always in context — no tab-switching required.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#127760;</div>
+            <div>
+              <strong>Unified multi-exchange view</strong>
+              <p>
+                Connect multiple exchanges via API and see TA markers and market context in a single
+                trading environment. Aggregate liquidity, compare spreads, and execute from one place.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Standalone Application ─────────────────────── -->
+        <h2>Standalone Application</h2>
+        <p>
+          The Exchange Scratcher is a standalone desktop and web application — free to download and
+          use, with no subscription or registration required. Exchange API keys are stored locally on
+          your device. The application communicates directly with exchange APIs; there is no
+          intermediary server that can access your account or act on your behalf.
+        </p>
+        <p>
+          The application is open source under the
+          <a href="iprl.html">IP Reserve License</a>. The full source is available to read, audit,
+          build, and fork. You are never dependent on our infrastructure to run it.
+        </p>
+
+        <div class="callout callout-accent">
+          <strong>Zero Trust by Design.</strong> We build the system so that even we cannot act on
+          your behalf. Your exchange keys never leave your local environment in the standalone
+          application. Every action the software takes on your account is initiated by you,
+          and every algorithm that executes it is in the open-source codebase.
+        </div>
+
+        <p>
+          <strong>Exchange support:</strong> MVP launch on Bybit.
+          Roadmap includes Binance, OKX, and Hyperliquid.
+        </p>
+
+        <!-- ── Backend Server ─────────────────────────────── -->
+        <h2>24/7 Backend Server</h2>
+        <p>
+          Crypto markets operate continuously. A strategy running only while your laptop is open
+          will miss signals, leave positions unprotected, and execute inconsistently. The Exchange
+          Scratcher backend server runs your strategies around the clock — no open device required.
+        </p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">&#128274;</div>
+            <div>
+              <strong>Scoped API key access</strong>
+              <p>
+                The server requests only the permissions a strategy needs to execute — typically
+                trading permissions only. Withdrawal access is never required or requested.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#128260;</div>
+            <div>
+              <strong>Isolated strategy environments</strong>
+              <p>
+                Each strategy runs in an isolated environment. A failing or misconfigured strategy
+                cannot affect the execution of others.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#127968;</div>
+            <div>
+              <strong>Self-hosted option</strong>
+              <p>
+                Deploy the backend server on your own infrastructure. Full source is available;
+                no proprietary components, no vendor lock-in.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>Cloud or self-hosted.</strong> Use our managed infrastructure or run the server
+          yourself. Both options give you the same codebase and the same guarantees — the
+          difference is who operates the hardware.
+        </div>
+
+        <!-- ── Strategy Marketplace ───────────────────────── -->
+        <h2>Strategy Marketplace &amp; Copy-trading</h2>
+        <p>
+          The Exchange Scratcher includes a strategy marketplace where developers can publish and
+          monetise trading algorithms, and users can discover and copy them. A live performance
+          leaderboard shows verified results, so you can evaluate a strategy's track record before
+          committing capital to it.
+        </p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">&#128203;</div>
+            <div>
+              <strong>Transparent leaderboard</strong>
+              <p>
+                Live performance data for published strategies: return, drawdown, trade count,
+                and time in market. Ranked by verified results, not self-reported figures.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#128101;</div>
+            <div>
+              <strong>Copy-trading</strong>
+              <p>
+                Subscribe to a strategy and have its trades mirrored to your account automatically.
+                You control the position sizing; the strategy author controls the logic.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#128176;</div>
+            <div>
+              <strong>Revenue share for authors</strong>
+              <p>
+                Developers who publish strategies earn a share of subscription revenue from users
+                who copy them. Build a strategy once; earn from it continuously.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#128270;</div>
+            <div>
+              <strong>Open source, inspectable code</strong>
+              <p>
+                Strategy code published to the marketplace is open for inspection. Users can review
+                what a strategy does before running it on their account.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── The Scratcher Agent ────────────────────────── -->
+        <h2>The Scratcher Agent</h2>
+        <p>
+          The Exchange Scratcher is designed to work alongside
+          <strong>The Scratcher Agent</strong> — an AI assistant for building and refining trading
+          strategies. The Agent integrates directly with the terminal through an open MCP
+          (Model Context Protocol) interface, giving it access to live market data, backtest
+          results, and your strategy configuration.
+        </p>
+        <p>
+          The Agent runs locally via Ollama, Llama, or Mistral for complete privacy, or connects to
+          cloud LLMs when more capability is needed. Every recommendation it makes is logged and
+          explainable — no opaque decisions, no black-box outputs.
+        </p>
+        <p>
+          The Scratcher Agent is currently in the planning phase.
+          <a href="index.html#roadmap">See the full roadmap &rarr;</a>
+        </p>
+
+        <!-- ── GitHub callout ─────────────────────────────── -->
+        <div class="callout">
+          <strong>The Exchange Scratcher is open source.</strong> Source code, open issues, and
+          contribution guidelines are on GitHub.<br />
+          <a href="https://github.com/l2xl/extools" target="_blank" rel="noopener">github.com/l2xl/extools &rarr;</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> The Scratcher Project. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
