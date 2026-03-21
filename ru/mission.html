@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Миссия The Scratcher Project — три революции: open source, децентрализованные блокчейны и LLM. Создано инженерами для инженеров." />
+  <title>Миссия — The Scratcher Project</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo">
+        <img src="../assets/logo.svg" alt="The Scratcher Project" width="32" height="32" />
+        <span>The Scratcher Project</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="exchange-scratcher.html">The Exchange Scratcher</a></li>
+        <li><a href="scratcher-assistant.html">The Scratcher Assistant</a></li>
+        <li><a href="iprl.html">IPRL</a></li>
+        <li><a href="mission.html" class="active">Миссия</a></li>
+        <li><a href="../mission.html" class="lang-switch" onclick="localStorage.setItem('tsp_lang','en')">EN</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="hero-eyebrow">Создано инженерами для инженеров</p>
+        <h1>Наша миссия</h1>
+        <p class="page-hero-sub">
+          Мы верим, что три революции формируют будущее софта —
+          и мы строим на их пересечении.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container content-prose">
+
+        <h2>Три революции</h2>
+
+        <div class="revolution-list">
+
+          <div class="revolution-item">
+            <div class="revolution-number">1</div>
+            <div class="revolution-body">
+              <h3>Open Source</h3>
+              <p>
+                Мы верим, что код должен быть свободным и открытым. Опыт IT-индустрии за последние
+                десятилетия показывает, что open source — один из главных двигателей прогресса.
+                Эта революция уже обрела форму — и мы полностью ей привержены.
+              </p>
+            </div>
+          </div>
+
+          <div class="revolution-item">
+            <div class="revolution-number">2</div>
+            <div class="revolution-body">
+              <h3>Децентрализованные блокчейны</h3>
+              <p>
+                Революция происходит, и мы — её часть. Хотя многие доказательства для
+                децентрализованных финансов уже на месте, финальная архитектура всё ещё неясна —
+                и это отличная возможность принять участие в формировании ландшафта DeFi.
+              </p>
+            </div>
+          </div>
+
+          <div class="revolution-item">
+            <div class="revolution-number">3</div>
+            <div class="revolution-body">
+              <h3>LLM сметают фигуры с доски</h3>
+              <p>
+                AI позволит людям по-настоящему стать создателями. Мы используем AI для своей работы;
+                мы строим AI, чтобы помочь нашим пользователям стать создателями.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── Контакты ──────────────────────────────────── -->
+        <h2>Присоединяйтесь</h2>
+        <p>
+          Проекты на ранней стадии. Хотите контрибьютить код, тестировать терминал,
+          сообщать о багах или просто следить за прогрессом — пишите.
+        </p>
+        <p>
+          Email: <a href="mailto:hello@thescratcherproject.com">hello@thescratcherproject.com</a>
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> The Scratcher Project. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

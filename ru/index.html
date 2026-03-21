@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Scratcher Project — open-source инфраструктура для криптомира. Торговый терминал, AI-ассистент и многое другое." />
+  <title>The Scratcher Project</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo">
+        <img src="../assets/logo.svg" alt="The Scratcher Project" width="32" height="32" />
+        <span>The Scratcher Project</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="exchange-scratcher.html">The Exchange Scratcher</a></li>
+        <li><a href="scratcher-assistant.html">The Scratcher Assistant</a></li>
+        <li><a href="iprl.html">IPRL</a></li>
+        <li><a href="mission.html">Миссия</a></li>
+        <li><a href="../index.html" class="lang-switch" onclick="localStorage.setItem('tsp_lang','en')">EN</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ── Hero ─────────────────────────────────────────── -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="hero-eyebrow">Open source &middot; Создано инженерами для инженеров</p>
+        <h1 class="hero-title">Инструменты для<br /><em>криптомира</em>,<br />созданные надолго.</h1>
+        <p class="hero-sub">
+          The Scratcher Project — open-source инициатива по созданию криптоинфраструктуры,
+          где уровень доверия выбираете вы. От торгового терминала с интерфейсом кабины пилота
+          до AI-ассистента, который помогает строить стратегии — каждый инструмент проверяем,
+          форкаем и полностью под вашим контролем.
+        </p>
+        <div class="hero-cta">
+          <a href="#roadmap" class="btn btn-primary">Дорожная карта</a>
+          <a href="mission.html" class="btn btn-ghost">Наша миссия</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Why ──────────────────────────────────────────── -->
+    <section class="section" id="why">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Зачем мы это строим</h2>
+          <p class="section-sub">
+            Биржевые UI слишком просты. Профессиональные платформы слишком сложны.
+            AI меняет всё — а текущие инструменты не успевают.
+          </p>
+        </div>
+
+        <div class="problem-grid">
+          <div class="problem-card">
+            <div class="problem-card-number">01</div>
+            <h3>Биржевая торговля маргинализирована в IT-сообществе</h3>
+            <p>Миллионы инженеров могли бы торговать, если бы инструменты уважали их навыки. Биржевые UI упрощены до предела; профессиональные платформы требуют глубокой экспертизы.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card-number">02</div>
+            <h3>AI-революция уже здесь</h3>
+            <p>Всё, что можно делать на компьютере, скоро будет делаться через AI. Текущие торговые решения не предоставляют такого функционала — пока.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card-number">03</div>
+            <h3>Трейдер спит — рынок не спит</h3>
+            <p>Рынок работает 24/7. Пропущенный сигнал ночью — упущенная сделка или незащищённая позиция. Ручной мониторинг физически невозможен.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card-number">04</div>
+            <h3>Платить приходится до того, как понятно — работает ли</h3>
+            <p>Большинство решений требуют подписки $15–100/мес до получения реального результата. Барьер входа отсекает тех, кто мог бы стать лояльным пользователем.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Roadmap ────────────────────────────────────────── -->
+    <section class="section section-alt" id="roadmap">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Дорожная карта</h2>
+          <p class="section-sub">
+            Два продукта в MVP. Каждый — фундамент для следующего.
+          </p>
+        </div>
+
+        <ol class="roadmap-list">
+
+          <!-- Phase 1 — The Exchange Scratcher -->
+          <li class="roadmap-item">
+            <div class="roadmap-phase">
+              <span class="phase-number">01</span>
+              <span class="phase-badge badge-active">В разработке</span>
+            </div>
+            <div class="roadmap-body">
+              <h3 class="roadmap-title">The Exchange Scratcher</h3>
+              <p class="roadmap-desc">
+                Open-source торговый терминал, подключаемый к криптобиржам через API.
+                Trader Cockpit-интерфейс, автоматический технический анализ, динамические ордера
+                и полная изоляция от биржи — всё на одном экране. Без подписок, без чёрных ящиков.
+              </p>
+
+              <ul class="roadmap-components">
+                <li class="roadmap-component-item">
+                  <span class="roadmap-component-icon">&#9992;</span>
+                  <div class="roadmap-component-text">
+                    <strong>Trader Cockpit</strong>
+                    <span>График, ордербук, позиции и ордера на одном экране. Маркеры ТА рассчитываются автоматически; ордера привязаны к индикаторам и обновляются в реальном времени.</span>
+                  </div>
+                </li>
+                <li class="roadmap-component-item">
+                  <span class="roadmap-component-icon">&#128218;</span>
+                  <div class="roadmap-component-text">
+                    <strong>DataHub</strong>
+                    <span>Унифицированный слой данных для агрегации, нормализации и распределения рыночных данных между биржевыми подключениями.</span>
+                  </div>
+                </li>
+              </ul>
+
+              <ul class="roadmap-tags">
+                <li>Trader Cockpit</li>
+                <li>DataHub</li>
+                <li>Multi-exchange API</li>
+                <li>Open source</li>
+              </ul>
+              <a href="exchange-scratcher.html" class="roadmap-gh-link">Подробнее о продукте &rarr;</a>
+              <a href="https://github.com/l2xl/extools" class="roadmap-gh-link" target="_blank" rel="noopener" style="margin-left:1.25rem;">GitHub &rarr;</a>
+            </div>
+          </li>
+
+          <!-- Phase 2 — The Scratcher Assistant -->
+          <li class="roadmap-item">
+            <div class="roadmap-phase">
+              <span class="phase-number">02</span>
+              <span class="phase-badge badge-planning">Планирование</span>
+            </div>
+            <div class="roadmap-body">
+              <h3 class="roadmap-title">The Scratcher Assistant</h3>
+              <p class="roadmap-desc">
+                AI-ассистент для разработки торговых стратегий. Пишет, отлаживает и оптимизирует
+                код стратегий. Работает локально через Ollama, Llama или Mistral для полной
+                приватности, или подключается к облачным LLM, когда мощность важнее изоляции.
+                Уровень доверия выбираете вы.
+              </p>
+              <ul class="roadmap-tags">
+                <li>Локальная LLM</li>
+                <li>Облачный AI</li>
+                <li>Разработка стратегий</li>
+                <li>Open source</li>
+              </ul>
+              <a href="scratcher-assistant.html" class="roadmap-gh-link">Подробнее &rarr;</a>
+            </div>
+          </li>
+
+        </ol>
+
+        <!-- ── Evolution ────────────────────────────────── -->
+        <div class="roadmap-divider">
+          <span>Эволюция &mdash; за пределами MVP</span>
+        </div>
+
+        <ol class="roadmap-list">
+
+          <!-- The Scratcher Wallet -->
+          <li class="roadmap-item">
+            <div class="roadmap-phase">
+              <span class="phase-number">03</span>
+              <span class="phase-badge badge-horizon">На горизонте</span>
+            </div>
+            <div class="roadmap-body">
+              <h3 class="roadmap-title">The Scratcher Wallet</h3>
+              <p class="roadmap-desc">
+                Web3-кошелёк с самостоятельным хранением, интегрированный с The Exchange Scratcher
+                и децентрализованными биржами. Те же принципы Zero Trust — ключи локально,
+                транзакции прозрачны, код открыт.
+              </p>
+              <ul class="roadmap-tags">
+                <li>Web3 кошелёк</li>
+                <li>Интеграция с DEX</li>
+                <li>Self-custody</li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Blockchain / StableCoin / DEX -->
+          <li class="roadmap-item">
+            <div class="roadmap-phase">
+              <span class="phase-number">04</span>
+              <span class="phase-badge badge-horizon">На горизонте</span>
+            </div>
+            <div class="roadmap-body">
+              <h3 class="roadmap-title">The Scratcher BlockChain &middot; StableCoin &middot; DEX</h3>
+              <p class="roadmap-desc">
+                Логическое завершение стека: полностью децентрализованная биржа со своим блокчейном
+                и стейблкоином. Peer-to-peer расчёты, ончейн-ордербук, без кастодиана —
+                open source и независимый аудит.
+              </p>
+              <ul class="roadmap-tags">
+                <li>Блокчейн</li>
+                <li>StableCoin</li>
+                <li>DEX</li>
+                <li>Non-custodial</li>
+              </ul>
+            </div>
+          </li>
+
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ── Philosophy strip ──────────────────────────────── -->
+    <section class="section philosophy-strip">
+      <div class="container philosophy-inner">
+        <blockquote>
+          «Open source — это по умолчанию. Код всегда доступен, всегда проверяем,
+          всегда форкаем. Мы строим инфраструктуру — а код инфраструктуры должен быть открытым.»
+        </blockquote>
+        <a href="mission.html" class="btn btn-ghost">Наша миссия &rarr;</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> The Scratcher Project. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

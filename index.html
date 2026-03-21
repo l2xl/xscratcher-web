@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="The Scratcher Project — open-source crypto infrastructure. A trading terminal, AI strategy assistant, and self-custody wallet." />
+  <meta name="description" content="The Scratcher Project — open-source crypto infrastructure built by engineers for engineers. Trading terminal, AI assistant, and more." />
   <title>The Scratcher Project</title>
   <link rel="stylesheet" href="css/style.css" />
+  <script src="js/i18n.js"></script>
 </head>
 <body>
 
@@ -17,10 +18,9 @@
       </a>
       <ul class="nav-links">
         <li><a href="exchange-scratcher.html">The Exchange Scratcher</a></li>
-        <li><a href="#roadmap">Roadmap</a></li>
-        <li><a href="#more">More</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="scratcher-assistant.html">The Scratcher Assistant</a></li>
         <li><a href="iprl.html">IPRL</a></li>
+        <li><a href="mission.html">Mission</a></li>
       </ul>
     </nav>
   </header>
@@ -30,35 +30,70 @@
     <!-- ── Hero ─────────────────────────────────────────── -->
     <section class="hero">
       <div class="container hero-inner">
-        <p class="hero-eyebrow">Open source &middot; Crypto infrastructure &middot; Your rules, your trust level</p>
+        <p class="hero-eyebrow">Open source &middot; Built by engineers for engineers</p>
         <h1 class="hero-title">Tools for the<br /><em>crypto world</em>,<br />built to last.</h1>
         <p class="hero-sub">
-          The Scratcher Project is an independent open-source initiative building crypto infrastructure
-          where the user controls the level of trust. Standalone products are architecturally zero-trust —
-          keys local, code auditable, no intermediary. Cloud services are offered for convenience,
-          with explicit and bounded permissions — and the standalone app always remains
-          a full-capability alternative.
+          The Scratcher Project is an open-source initiative building crypto infrastructure
+          where you choose the trust level. From a trading terminal with a real cockpit interface
+          to an AI assistant that helps you build strategies — every tool is auditable,
+          forkable, and yours to control.
         </p>
         <div class="hero-cta">
           <a href="#roadmap" class="btn btn-primary">See the roadmap</a>
-          <a href="about.html" class="btn btn-ghost">About the project</a>
+          <a href="mission.html" class="btn btn-ghost">Our mission</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Why ──────────────────────────────────────────── -->
+    <section class="section" id="why">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Why we are building this</h2>
+          <p class="section-sub">
+            Exchange UIs are too simple. Professional platforms are too complex.
+            AI is changing everything — and current tools are not keeping up.
+          </p>
+        </div>
+
+        <div class="problem-grid">
+          <div class="problem-card">
+            <div class="problem-card-number">01</div>
+            <h3>Trading is marginalized in the IT community</h3>
+            <p>Millions of engineers could trade if the tools respected their skillset. Exchange UIs are dumbed down; professional platforms demand deep expertise upfront.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card-number">02</div>
+            <h3>The AI revolution is here</h3>
+            <p>Everything that can be done on a computer will soon be done through AI. Current trading tools offer none of this — yet.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card-number">03</div>
+            <h3>You sleep — the market does not</h3>
+            <p>Crypto runs 24/7. A missed signal at night is a missed trade or an unprotected position. Manual monitoring is physically impossible.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card-number">04</div>
+            <h3>Pay before you know if it works</h3>
+            <p>Most solutions charge $15–100/month before delivering results. That barrier cuts off people who could become loyal users.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ── Roadmap ────────────────────────────────────────── -->
-    <section class="section" id="roadmap">
+    <section class="section section-alt" id="roadmap">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">The roadmap</h2>
           <p class="section-sub">
-            Four products, built in sequence. Each one is a foundation for the next.
+            Two products in the MVP. Each one is a foundation for the next.
           </p>
         </div>
 
         <ol class="roadmap-list">
 
-          <!-- Phase 1 — Exchange Scratcher -->
+          <!-- Phase 1 — The Exchange Scratcher -->
           <li class="roadmap-item">
             <div class="roadmap-phase">
               <span class="phase-number">01</span>
@@ -67,10 +102,9 @@
             <div class="roadmap-body">
               <h3 class="roadmap-title">The Exchange Scratcher</h3>
               <p class="roadmap-desc">
-                An open-source trading terminal that connects to major crypto exchanges via their public APIs.
-                Configure your accounts once and trade across Bybit, Binance, OKX, and more from a single
-                purpose-built interface — one you can audit, fork, and fully control.
-                No subscriptions, no proprietary lock-in, no black boxes.
+                An open-source trading terminal that connects to crypto exchanges via their public APIs.
+                Trader Cockpit interface, automatic technical analysis, dynamic orders, and full exchange
+                isolation — all in one screen. No subscriptions, no black boxes.
               </p>
 
               <ul class="roadmap-components">
@@ -78,29 +112,21 @@
                   <span class="roadmap-component-icon">&#9992;</span>
                   <div class="roadmap-component-text">
                     <strong>Trader Cockpit</strong>
-                    <span>Chart, order book, positions, and open orders on one screen. TA markers calculated automatically; orders linked to indicators and updated in real time.</span>
+                    <span>Chart, order book, positions, and orders on one screen. TA markers calculated automatically; orders linked to indicators and updated in real time.</span>
                   </div>
                 </li>
                 <li class="roadmap-component-item">
-                  <span class="roadmap-component-icon">&#128337;</span>
+                  <span class="roadmap-component-icon">&#128218;</span>
                   <div class="roadmap-component-text">
-                    <strong>24/7 Backend Server</strong>
-                    <span>Run strategies continuously without keeping a device online. Server-side execution with isolated environments and scoped API key access.</span>
-                  </div>
-                </li>
-                <li class="roadmap-component-item">
-                  <span class="roadmap-component-icon">&#128202;</span>
-                  <div class="roadmap-component-text">
-                    <strong>Strategy Marketplace &amp; Copy-trading</strong>
-                    <span>Browse, copy, and publish trading algorithms. A live performance leaderboard lets you evaluate strategies before committing capital.</span>
+                    <strong>DataHub library</strong>
+                    <span>Unified data layer for market data aggregation, normalisation, and distribution across exchange connections.</span>
                   </div>
                 </li>
               </ul>
 
               <ul class="roadmap-tags">
                 <li>Trader Cockpit</li>
-                <li>24/7 Server</li>
-                <li>Strategy Marketplace</li>
+                <li>DataHub</li>
                 <li>Multi-exchange API</li>
                 <li>Open source</li>
               </ul>
@@ -109,124 +135,84 @@
             </div>
           </li>
 
-          <!-- Phase 2 — Scratcher Agent -->
+          <!-- Phase 2 — The Scratcher Assistant -->
           <li class="roadmap-item">
             <div class="roadmap-phase">
               <span class="phase-number">02</span>
               <span class="phase-badge badge-planning">Planning</span>
             </div>
             <div class="roadmap-body">
-              <h3 class="roadmap-title">The Scratcher Agent</h3>
+              <h3 class="roadmap-title">The Scratcher Assistant</h3>
               <p class="roadmap-desc">
-                An AI assistant purpose-built for trading strategy development. The Agent writes and debugs
-                strategy code, tunes parameters against historical data, and interprets backtest results —
-                with every recommendation logged and explainable. Runs locally via Ollama, Llama, or Mistral
-                for complete privacy, or connects to cloud LLMs when raw capability matters more than isolation.
+                An AI assistant for trading strategy development. Writes, debugs, and optimises
+                strategy code. Runs locally via Ollama, Llama, or Mistral for complete privacy,
+                or connects to cloud LLMs when capability matters more than isolation.
                 You choose the trust boundary.
               </p>
               <ul class="roadmap-tags">
                 <li>Local LLM</li>
                 <li>Cloud AI</li>
                 <li>Strategy development</li>
-                <li>MCP integration</li>
                 <li>Open source</li>
               </ul>
+              <a href="scratcher-assistant.html" class="roadmap-gh-link">Learn more &rarr;</a>
             </div>
           </li>
 
-          <!-- Phase 3 — Scratcher Wallet -->
+        </ol>
+
+        <!-- ── Evolution ────────────────────────────────── -->
+        <div class="roadmap-divider">
+          <span>Evolution &mdash; beyond MVP</span>
+        </div>
+
+        <ol class="roadmap-list">
+
+          <!-- The Scratcher Wallet -->
           <li class="roadmap-item">
             <div class="roadmap-phase">
               <span class="phase-number">03</span>
-              <span class="phase-badge badge-planning">Planning</span>
+              <span class="phase-badge badge-horizon">On the horizon</span>
             </div>
             <div class="roadmap-body">
               <h3 class="roadmap-title">The Scratcher Wallet</h3>
               <p class="roadmap-desc">
-                Self-custody done without compromise. A clean, multi-chain wallet designed for users who
-                want to understand exactly what they are signing — not a simplified experience that obscures
-                on-chain details, but one that makes them readable. Built to work alongside the Exchange
-                Scratcher and share the same Zero Trust design principles.
+                A Web3 self-custody wallet integrated with The Exchange Scratcher and
+                decentralised exchanges. Same Zero Trust design principles — keys local,
+                transactions transparent, code open.
               </p>
               <ul class="roadmap-tags">
+                <li>Web3 wallet</li>
+                <li>DEX integration</li>
                 <li>Self-custody</li>
-                <li>Multi-chain</li>
-                <li>Transparent signing</li>
-                <li>Open source</li>
               </ul>
             </div>
           </li>
 
-          <!-- Phase 4 — Scratcher DEX -->
+          <!-- Blockchain / StableCoin / DEX -->
           <li class="roadmap-item">
             <div class="roadmap-phase">
               <span class="phase-number">04</span>
               <span class="phase-badge badge-horizon">On the horizon</span>
             </div>
             <div class="roadmap-body">
-              <h3 class="roadmap-title">The Scratcher DEX</h3>
+              <h3 class="roadmap-title">The Scratcher BlockChain &middot; StableCoin &middot; DEX</h3>
               <p class="roadmap-desc">
-                The logical conclusion of the stack: a fully decentralised exchange where trades settle
-                peer-to-peer and the order book lives on-chain. No custodian, no single point of failure,
-                no counterparty risk beyond the smart contracts themselves — which will be open source and
-                independently auditable. The long-term foundation for everything built before it.
+                The logical conclusion of the stack: a fully decentralised exchange with its own
+                blockchain and stablecoin. Peer-to-peer settlement, on-chain order book,
+                no custodian — open source and independently auditable.
               </p>
               <ul class="roadmap-tags">
-                <li>On-chain order book</li>
-                <li>Peer-to-peer settlement</li>
+                <li>Blockchain</li>
+                <li>StableCoin</li>
+                <li>DEX</li>
                 <li>Non-custodial</li>
-                <li>Open source</li>
               </ul>
             </div>
           </li>
 
         </ol>
-      </div>
-    </section>
 
-    <!-- ── More from the project ────────────────────────── -->
-    <section class="section section-alt" id="more">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">More from the project</h2>
-          <p class="section-sub">
-            Additional work running alongside the core roadmap.
-          </p>
-        </div>
-
-        <div class="side-grid">
-
-          <a href="https://github.com/l2xl/papers" class="side-card" target="_blank" rel="noopener">
-            <div class="side-card-icon">&#128218;</div>
-            <h3>Crypto Education</h3>
-            <p>
-              Technical writing on how crypto actually works — consensus mechanisms, key management,
-              DeFi primitives, and the details that most documentation glosses over.
-              Written for engineers and builders, not for traders chasing momentum.
-            </p>
-          </a>
-
-          <a href="iprl.html" class="side-card">
-            <div class="side-card-icon">&#128273;</div>
-            <h3>IP Reserve License <span class="inline-badge">IPRL</span></h3>
-            <p>
-              A license for founders publishing open-source code before incorporating a company.
-              Publish open-source code today and retain your intellectual property as founder's
-              capital for tomorrow — without restricting how anyone uses the software.
-            </p>
-          </a>
-
-          <a href="#" class="side-card">
-            <div class="side-card-icon">&#128295;</div>
-            <h3>Useful Tools</h3>
-            <p>
-              Focused utilities that emerge from building the larger products — key generators,
-              transaction decoders, fee estimators, and other standalone tools that are generally
-              useful to the crypto developer community.
-            </p>
-          </a>
-
-        </div>
       </div>
     </section>
 
@@ -237,7 +223,7 @@
           "Open source is the default. The code is always available, always auditable,
           always forkable. We are building infrastructure — and infrastructure code should be open source."
         </blockquote>
-        <a href="about.html" class="btn btn-ghost">More about our approach &rarr;</a>
+        <a href="mission.html" class="btn btn-ghost">Read our mission &rarr;</a>
       </div>
     </section>
 

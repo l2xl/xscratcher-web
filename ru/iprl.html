@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Intellectual Property Reserve License (IPRL) — публикуйте open-source код сегодня и сохраняйте интеллектуальную собственность как капитал основателя на завтра." />
+  <title>IP Reserve License — The Scratcher Project</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo">
+        <img src="../assets/logo.svg" alt="The Scratcher Project" width="32" height="32" />
+        <span>The Scratcher Project</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="exchange-scratcher.html">The Exchange Scratcher</a></li>
+        <li><a href="scratcher-assistant.html">The Scratcher Assistant</a></li>
+        <li><a href="iprl.html" class="active">IPRL</a></li>
+        <li><a href="mission.html">Миссия</a></li>
+        <li><a href="../iprl.html" class="lang-switch" onclick="localStorage.setItem('tsp_lang','en')">EN</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="hero-eyebrow">Лицензия</p>
+        <h1>Intellectual Property<br />Reserve License</h1>
+        <p class="page-hero-sub">Публикуйте open-source код. Сохраняйте интеллектуальную собственность.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container content-prose">
+
+        <!-- TL;DR -->
+        <div class="callout callout-accent">
+          <strong>Коротко:</strong> IPRL позволяет выпускать open-source софт, явно сохраняя
+          право собственности на интеллектуальную собственность — оставляя её как капитал
+          основателя, если вокруг проекта когда-либо будет создана компания.
+          Код остаётся свободным; ваша ИС не растворяется в общественном достоянии.
+        </div>
+
+        <h2>Какую проблему решает</h2>
+        <p>
+          Основатели на до-инкорпорационной стадии сталкиваются с настоящей дилеммой.
+          Open source — правильный выбор по умолчанию: он строит доверие, привлекает контрибьюторов
+          и позволяет сообществу проверить то, что вы строите. Но стандартные open-source лицензии
+          (MIT, Apache 2.0, GPL) были разработаны для зрелых проектов, а не стартапов на ранней
+          стадии. Они ничего не говорят о праве собственности на ИС и неявно считают это
+          несущественным.
+        </p>
+        <p>
+          Когда появляются инвесторы, сооснователи или юристы, вопрос о том, кому принадлежит
+          интеллектуальная собственность в раннем open-source коде, становится важным и зачастую
+          сложным. IPRL решает эту проблему до того, как она возникнет.
+        </p>
+
+        <h2>Что делает IPRL</h2>
+        <p>
+          Лицензия делает две вещи одновременно:
+        </p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">&#10003;</div>
+            <div>
+              <strong>Предоставляет open-source свободы</strong>
+              <p>
+                Любой может использовать, изучать, модифицировать и распространять софт.
+                Эта часть эквивалентна пермиссивной open-source лицензии — без ограничений
+                на использование.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#128273;</div>
+            <div>
+              <strong>Явно резервирует право собственности на ИС</strong>
+              <p>
+                Лицензия декларирует, что права интеллектуальной собственности — патенты,
+                товарные знаки, коммерческие тайны и права на коммерциализацию — сохраняются
+                за указанным автором или авторами. Использование или распространение софта
+                не передаёт и не лицензирует эти права неявно.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2>Когда это важно</h2>
+        <p>
+          Типичный сценарий: соло-основатель или небольшая команда строит что-то открыто,
+          формирует сообщество, а затем доходит до создания компании. Без задокументированного
+          права собственности на ИС процесс формирования может усложниться — кто что внёс,
+          влияет ли open-source лицензия на возможность компании коммерциализировать продукт,
+          имеют ли контрибьюторы неявные претензии?
+        </p>
+        <p>
+          IPRL делает ситуацию с ИС однозначной с первого дня. Контрибьюторы знают, с чем работают.
+          Потенциальные сооснователи и инвесторы имеют чистый paper trail.
+          Вклад основателя имеет задокументированную ценность.
+        </p>
+
+        <h2>Чего она не делает</h2>
+        <p>
+          IPRL — это не business-source лицензия и не source-available ограничение.
+          Она не лимитирует использование софта. Не требует оплаты кроме стандартной атрибуции.
+          Не запрещает форки.
+        </p>
+        <p>
+          Она также не заменяет юридическую консультацию на этапе реального создания компании.
+          Думайте о ней как о задокументированной стартовой позиции — не полной юридической
+          структуре.
+        </p>
+
+        <h2>Использование IPRL</h2>
+        <p>
+          Текст лицензии свободно доступен. Чтобы применить его к проекту, включите его как
+          <code>LICENSE</code> в репозиторий с именем автора (или авторов) и датой.
+          Добавьте стандартный заголовочный комментарий в файлы исходного кода.
+        </p>
+        <p>
+          The Scratcher Project использует IPRL для всех своих проектов на до-инкорпорационной стадии.
+        </p>
+
+        <div class="callout">
+          <strong>Текст лицензии готовится.</strong> Полный текст IPRL финализируется.
+          Следите за прогрессом и участвуйте на
+          <a href="https://github.com/l2xl/IPRL" target="_blank" rel="noopener">github.com/l2xl/IPRL</a>,
+          или пишите на
+          <a href="mailto:hello@thescratcherproject.com">hello@thescratcherproject.com</a>.
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> The Scratcher Project. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="The Exchange Scratcher — an open-source crypto trading terminal with Trader Cockpit interface, 24/7 backend server, and strategy marketplace." />
+  <meta name="description" content="The Exchange Scratcher — an open-source crypto trading terminal with Trader Cockpit interface, dynamic orders, and full exchange isolation." />
   <title>The Exchange Scratcher — The Scratcher Project</title>
   <link rel="stylesheet" href="css/style.css" />
+  <script src="js/i18n.js"></script>
 </head>
 <body>
 
@@ -17,10 +18,9 @@
       </a>
       <ul class="nav-links">
         <li><a href="exchange-scratcher.html" class="active">The Exchange Scratcher</a></li>
-        <li><a href="index.html#roadmap">Roadmap</a></li>
-        <li><a href="index.html#more">More</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="scratcher-assistant.html">The Scratcher Assistant</a></li>
         <li><a href="iprl.html">IPRL</a></li>
+        <li><a href="mission.html">Mission</a></li>
       </ul>
     </nav>
   </header>
@@ -32,11 +32,9 @@
         <p class="hero-eyebrow">01 &mdash; In development</p>
         <h1>The Exchange Scratcher</h1>
         <p class="page-hero-sub">
-          The open-source trading terminal for crypto. The standalone application is
-          architecturally zero-trust: your keys stay local, you connect directly to exchanges,
-          and every line of code is auditable. Need 24/7 automated execution?
-          The managed backend runs your strategies with scoped permissions —
-          a deliberate trust trade-off, not a hidden one.
+          Open-source trading terminal for crypto exchanges with Trader Cockpit interface
+          and AI-powered assistant. Your keys stay local, your code is auditable,
+          your trust level is your choice.
         </p>
         <div class="hero-cta" style="margin-top:1.5rem;">
           <a href="https://github.com/l2xl/extools" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub &rarr;</a>
@@ -45,16 +43,90 @@
       </div>
     </section>
 
-    <!-- ── Trader Cockpit ────────────────────────────────── -->
     <section class="content-section">
       <div class="container content-prose">
 
+        <!-- ── Problems ──────────────────────────────────── -->
+        <h2>The problem</h2>
+        <p>
+          Exchange UIs are too simple and limited — losses are built into the UX.
+          Professional platforms like Hummingbot or HaasOnline are overloaded and require
+          deep expertise. There is a massive population of IT professionals who would
+          never pay upfront, but could start trading if the right tools existed.
+        </p>
+
+        <div class="problem-grid">
+          <div class="problem-card">
+            <div class="problem-card-number">01</div>
+            <h3>You sleep — the market does not</h3>
+            <p>The market runs 24/7. A missed signal at night is a missed trade or an unprotected position. Manual monitoring is physically impossible.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card-number">02</div>
+            <h3>Speed decides — manual trading is from a pre-computer era</h3>
+            <p>While you enter parameters manually, the trade conditions are already gone. Manual trading means built-in losses on every deal.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card-number">03</div>
+            <h3>Pay before you know if it works</h3>
+            <p>Most solutions charge $15–100/month before delivering any real result. That barrier cuts off exactly the people who could become loyal users.</p>
+          </div>
+        </div>
+
+        <!-- ── Solution ──────────────────────────────────── -->
+        <h2>The solution</h2>
+        <p>
+          <strong>The Exchange Scratcher</strong> is an open-source platform for crypto exchange
+          trading with a Trader Cockpit interface and The Scratcher Assistant.
+          Open source means free entry and an audience where no competitors exist yet.
+        </p>
+
+        <!-- ── How it works ──────────────────────────────── -->
+        <h2>How it works</h2>
+
+        <div class="arch-diagram">
+<pre>
+┌──────────────────── User's machine ──────────────────────────────────────────┐
+│                                                                              │
+│ <span class="hl">[ The Exchange Scratcher ]</span>◄──────────►<span class="hl-blue">[ AI assistant ]</span>◄─────► local model    │
+│           │                                    │            Ollama / Llama   │
+│           │                                    │            Mistral          │
+└───────────│────────────────────────────────────│──────────────────────────────┘
+            │ exchange API                       │ LLM API
+            │                                    │
+     ┌──────┴──────┐                             │
+     │             │                             ▼
+  directly   via our                       <span class="hl-blue">[ AI servers ]</span>
+             server                       ChatGPT, Claude,
+                                             Gemini, ...
+             │
+             ▼
+      <span class="hl-green">[ Exchanges ]</span>
+     Bybit, Binance...
+</pre>
+        </div>
+
+        <p>
+          <strong>Trader Cockpit &rarr; exchange:</strong>
+          <strong>Directly</strong> — the client connects to the exchange via API; keys are stored locally, Zero Trust.
+          <strong>Via our server</strong> — for server-side 24/7 strategy execution.
+        </p>
+        <p>
+          <strong>AI assistant &rarr; model:</strong>
+          <strong>Locally</strong> — open-source LLM (Ollama / Llama / Mistral); full privacy, no external requests.
+          <strong>Cloud AI servers</strong> — ChatGPT, Claude, Gemini; more powerful, no hardware requirements.
+        </p>
+
+        <div class="callout callout-accent">
+          "Choose your trust level: want everything local — it stays local. Want the cloud — it's there for you."
+        </div>
+
+        <!-- ── Trader Cockpit ────────────────────────────── -->
         <h2>Trader Cockpit</h2>
         <p>
-          Most trading interfaces force you to split attention across multiple tabs: a chart in one
-          window, the order book in another, positions somewhere else. Trader Cockpit puts everything
-          on a single screen — chart, order book, open positions, pending orders, and trade history
-          in one coherent workspace. No context-switching, no missed signals.
+          The interface is like a pilot's cockpit: chart, positions, orders, history, and
+          controls — all on one screen. After connecting an exchange via API, the platform
+          <strong>instantly</strong> displays everything a computer can calculate and automate.
         </p>
 
         <div class="feature-list">
@@ -63,20 +135,19 @@
             <div>
               <strong>Automatic TA markers</strong>
               <p>
-                Support and resistance levels, trend lines, and other technical analysis markers are
-                calculated and rendered on the chart automatically. Nothing needs to be configured manually;
-                the relevant context is always visible.
+                Support and resistance levels, trends, channels — calculated and rendered on the
+                chart automatically. Nothing needs to be configured manually.
               </p>
             </div>
           </div>
           <div class="feature-item">
             <div class="feature-icon">&#128279;</div>
             <div>
-              <strong>Orders linked to indicators</strong>
+              <strong>Orders linked to TA markers — dynamic by default</strong>
               <p>
-                Orders can be bound directly to TA markers. When an indicator updates, the linked
-                order parameters recalculate automatically — keeping your positions anchored to
-                the current market structure rather than a static price you entered hours ago.
+                The key feature: out-of-the-box binding between technical analysis markers and order
+                management. Order parameters are computed from the linked indicator and recalculate
+                automatically when it changes.
               </p>
             </div>
           </div>
@@ -85,174 +156,93 @@
             <div>
               <strong>New order types</strong>
               <p>
-                <strong>Dynamic Limit Order</strong> — a limit order whose price follows a selected
-                indicator in real time.<br />
-                <strong>Catch the Tail</strong> — optimal entry execution during sharp price moves:
-                the order selects the best entry mode while the deviation stays within an acceptable range.
+                <strong>Dynamic Limit Order</strong> — a limit order whose price automatically follows
+                a selected indicator.<br />
+                <strong>Catch the Tail</strong> — optimal execution during sharp price moves: the order
+                picks the best entry mode while the deviation stays within an acceptable range.<br />
+                And other non-standard execution algorithms.
               </p>
             </div>
           </div>
           <div class="feature-item">
             <div class="feature-icon">&#128240;</div>
             <div>
-              <strong>Synchronised order book and spread</strong>
+              <strong>Order book synchronized with the price chart</strong>
               <p>
-                Market depth and the current spread are displayed alongside the chart, aligned to
-                the same price axis. The full market picture is always in context — no tab-switching required.
+                Market depth and the current spread are displayed alongside the chart, aligned to the
+                same price axis. The most convenient and complete visualization — out of the box.
               </p>
             </div>
           </div>
           <div class="feature-item">
             <div class="feature-icon">&#127760;</div>
             <div>
-              <strong>Unified multi-exchange view</strong>
+              <strong>Cumulative multi-exchange view</strong>
               <p>
                 Connect multiple exchanges via API and see TA markers and market context in a single
-                trading environment. Aggregate liquidity, compare spreads, and execute from one place.
+                trading environment.
               </p>
             </div>
           </div>
-        </div>
-
-        <!-- ── Standalone Application ─────────────────────── -->
-        <h2>Standalone Application</h2>
-        <p>
-          The Exchange Scratcher is a standalone desktop and web application — free to download and
-          use, with no subscription or registration required. Exchange API keys are stored locally on
-          your device. The application communicates directly with exchange APIs; there is no
-          intermediary server that can access your account or act on your behalf.
-        </p>
-        <p>
-          The application is open source under the
-          <a href="iprl.html">IP Reserve License</a>. The full source is available to read, audit,
-          build, and fork. You are never dependent on our infrastructure to run it.
-        </p>
-
-        <div class="callout callout-accent">
-          <strong>Zero Trust in the standalone application.</strong> Your exchange keys never leave
-          your device. The application connects directly to exchange APIs — no intermediary can
-          access your account or act on your behalf. Every action on your account is initiated by
-          you, and every algorithm that executes it is in the open-source codebase.
-          This is the full-sovereignty path.
-        </div>
-
-        <p>
-          <strong>Exchange support:</strong> MVP launch on Bybit.
-          Roadmap includes Binance, OKX, and Hyperliquid.
-        </p>
-
-        <!-- ── Backend Server ─────────────────────────────── -->
-        <h2>24/7 Backend Server</h2>
-        <p>
-          Crypto markets operate continuously. A strategy running only while your laptop is open
-          will miss signals, leave positions unprotected, and execute inconsistently. The Exchange
-          Scratcher backend server runs your strategies around the clock — no open device required.
-        </p>
-
-        <div class="feature-list">
           <div class="feature-item">
             <div class="feature-icon">&#128274;</div>
             <div>
-              <strong>Scoped API key access</strong>
+              <strong>Exchange isolation</strong>
               <p>
-                The server requests only the permissions a strategy needs to execute — typically
-                trading permissions only. Withdrawal access is never required or requested.
-              </p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">&#128260;</div>
-            <div>
-              <strong>Isolated strategy environments</strong>
-              <p>
-                Each strategy runs in an isolated environment. A failing or misconfigured strategy
-                cannot affect the execution of others.
+                Orders can be held locally and not sent to the exchange "until the last moment" —
+                preventing the exchange from trading against your position.
               </p>
             </div>
           </div>
         </div>
 
-        <div class="callout">
-          <strong>The managed backend is limited trust — by design and by disclosure.</strong>
-          When you use the backend, you grant The Scratcher Project scoped trading permissions
-          and we execute strategies on your behalf. This is not zero-trust: it is an explicit,
-          bounded trust relationship you opt into consciously. Withdrawal access is never required
-          or requested. The standalone application is the zero-trust alternative — it covers the
-          full feature set for those who prefer complete sovereignty.
-        </div>
+        <!-- ── Product modules ───────────────────────────── -->
+        <h2>Product modules</h2>
 
-        <!-- ── Strategy Marketplace ───────────────────────── -->
-        <h2>Strategy Marketplace &amp; Copy-trading</h2>
-        <p>
-          The Exchange Scratcher includes a strategy marketplace where developers can publish and
-          monetise trading algorithms, and users can discover and copy them. A live performance
-          leaderboard shows verified results, so you can evaluate a strategy's track record before
-          committing capital to it.
-        </p>
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>Module</th>
+              <th>What it does</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Trading terminal</td>
+              <td>Limit, market, and stop orders, trade history, Trader Cockpit</td>
+            </tr>
+            <tr>
+              <td>Exchange connections</td>
+              <td>MVP: Bybit; roadmap: Binance, OKX, Hyperliquid</td>
+            </tr>
+            <tr>
+              <td>AI assistant</td>
+              <td>Strategy development and parametrisation, result analysis; explainable recommendations</td>
+            </tr>
+            <tr>
+              <td>Strategy marketplace</td>
+              <td>Copy, rate, and sell algorithms; monetisation for authors</td>
+            </tr>
+            <tr>
+              <td>Backtest &amp; optimiser</td>
+              <td>Test strategies on historical data, genetic parameter optimiser</td>
+            </tr>
+            <tr>
+              <td>Telegram bot</td>
+              <td>Notifications, quick commands, monitoring without opening the app</td>
+            </tr>
+            <tr>
+              <td>API</td>
+              <td>Developers build their own modules and integrations</td>
+            </tr>
+            <tr>
+              <td>Mobile client</td>
+              <td>Desktop feature parity, AI demo mode</td>
+            </tr>
+          </tbody>
+        </table>
 
-        <div class="feature-list">
-          <div class="feature-item">
-            <div class="feature-icon">&#128203;</div>
-            <div>
-              <strong>Transparent leaderboard</strong>
-              <p>
-                Live performance data for published strategies: return, drawdown, trade count,
-                and time in market. Ranked by verified results, not self-reported figures.
-              </p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">&#128101;</div>
-            <div>
-              <strong>Copy-trading</strong>
-              <p>
-                Subscribe to a strategy and have its trades mirrored to your account automatically.
-                You control the position sizing; the strategy author controls the logic.
-              </p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">&#128176;</div>
-            <div>
-              <strong>Revenue share for authors</strong>
-              <p>
-                Developers who publish strategies earn a share of subscription revenue from users
-                who copy them. Build a strategy once; earn from it continuously.
-              </p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">&#128270;</div>
-            <div>
-              <strong>Open source, inspectable code</strong>
-              <p>
-                Strategy code published to the marketplace is open for inspection. Users can review
-                what a strategy does before running it on their account.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── The Scratcher Agent ────────────────────────── -->
-        <h2>The Scratcher Agent</h2>
-        <p>
-          The Exchange Scratcher is designed to work alongside
-          <strong>The Scratcher Agent</strong> — an AI assistant for building and refining trading
-          strategies. The Agent integrates directly with the terminal through an open MCP
-          (Model Context Protocol) interface, giving it access to live market data, backtest
-          results, and your strategy configuration.
-        </p>
-        <p>
-          The Agent runs locally via Ollama, Llama, or Mistral for complete privacy, or connects to
-          cloud LLMs when more capability is needed. Every recommendation it makes is logged and
-          explainable — no opaque decisions, no black-box outputs.
-        </p>
-        <p>
-          The Scratcher Agent is currently in the planning phase.
-          <a href="index.html#roadmap">See the full roadmap &rarr;</a>
-        </p>
-
-        <!-- ── GitHub callout ─────────────────────────────── -->
+        <!-- ── GitHub callout ────────────────────────────── -->
         <div class="callout">
           <strong>The Exchange Scratcher is open source.</strong> Source code, open issues, and
           contribution guidelines are on GitHub.<br />

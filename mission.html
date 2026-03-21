@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Scratcher Project mission — three revolutions: open source, decentralized blockchains, and LLMs. Built by engineers for engineers." />
+  <title>Mission — The Scratcher Project</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/i18n.js"></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.svg" alt="The Scratcher Project" width="32" height="32" />
+        <span>The Scratcher Project</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="exchange-scratcher.html">The Exchange Scratcher</a></li>
+        <li><a href="scratcher-assistant.html">The Scratcher Assistant</a></li>
+        <li><a href="iprl.html">IPRL</a></li>
+        <li><a href="mission.html" class="active">Mission</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="hero-eyebrow">Built by engineers for engineers</p>
+        <h1>Our mission</h1>
+        <p class="page-hero-sub">
+          We believe three revolutions are shaping the future of software —
+          and we are building at their intersection.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container content-prose">
+
+        <h2>Three revolutions</h2>
+
+        <div class="revolution-list">
+
+          <div class="revolution-item">
+            <div class="revolution-number">1</div>
+            <div class="revolution-body">
+              <h3>Open Source</h3>
+              <p>
+                We believe the code should be free and open. IT industry experience over the last
+                decades shows that open source is one of the main drivers of progress. This revolution
+                already has its shape — and we are committed to it fully.
+              </p>
+            </div>
+          </div>
+
+          <div class="revolution-item">
+            <div class="revolution-number">2</div>
+            <div class="revolution-body">
+              <h3>Decentralized Blockchains</h3>
+              <p>
+                The revolution is happening and we are part of it. While many proofs for decentralised
+                finance are in place, the final architecture is still unclear — and this is a great
+                opportunity to take part in the DeFi landscape formation.
+              </p>
+            </div>
+          </div>
+
+          <div class="revolution-item">
+            <div class="revolution-number">3</div>
+            <div class="revolution-body">
+              <h3>LLMs are sweeping pieces off the board</h3>
+              <p>
+                AI will allow people to truly become creators. We use AI to assist our work;
+                we build AI to assist our users in becoming creators.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── Contact ───────────────────────────────────── -->
+        <h2>Get involved</h2>
+        <p>
+          The projects are in early stages. Whether you want to contribute code, test the
+          terminal, report issues, or just follow along — reach out.
+        </p>
+        <p>
+          Email: <a href="mailto:hello@thescratcherproject.com">hello@thescratcherproject.com</a>
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> The Scratcher Project. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
