@@ -29,7 +29,6 @@
 
     <section class="page-hero">
       <div class="container">
-        <p class="hero-eyebrow">01 &mdash; In development</p>
         <h1>The Exchange Scratcher</h1>
         <p class="page-hero-sub">
           Open-source trading terminal for crypto exchanges with Trader Cockpit interface
@@ -113,8 +112,8 @@
         </p>
         <p>
           <strong>AI assistant &rarr; model:</strong>
-          <strong>Locally</strong> — open-source LLM (Ollama / Llama / Mistral); full privacy, no external requests.
-          <strong>Cloud AI servers</strong> — ChatGPT, Claude, Gemini; more powerful, no hardware requirements.
+          <strong>Local orchestration</strong> — open-source LLM (Ollama / Llama / Mistral); Controls privacy, reviews external requests.
+          <strong>Cloud AI servers</strong> — ChatGPT, Claude, Gemini; utilize the full AI power, no hardware requirements.
         </p>
 
         <div class="callout callout-accent">
@@ -148,19 +147,15 @@
                 The key feature: out-of-the-box binding between technical analysis markers and order
                 management. Order parameters are computed from the linked indicator and recalculate
                 automatically when it changes.
-              </p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">&#9889;</div>
-            <div>
-              <strong>New order types</strong>
-              <p>
+              </p><p>
                 <strong>Dynamic Limit Order</strong> — a limit order whose price automatically follows
-                a selected indicator.<br />
+                a selected indicator.
+              </p><p>
                 <strong>Catch the Tail</strong> — optimal execution during sharp price moves: the order
-                picks the best entry mode while the deviation stays within an acceptable range.<br />
-                And other non-standard execution algorithms.
+                picks the best entry mode while the deviation stays within an acceptable range.
+              </p><p>
+                <strong>Smart trailing stop</strong> - trailing stop order where its parameters may be automatically adjusted depending on market conditions,
+                like have less activation threshold while price is near to open price and then smartly adjust the threshold depending on actual volatility.
               </p>
             </div>
           </div>
@@ -208,7 +203,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>Trading terminal</td>
+              <td>Trading terminal with the Trader Cockpit</td>
               <td>Limit, market, and stop orders, trade history, Trader Cockpit</td>
             </tr>
             <tr>
@@ -216,7 +211,7 @@
               <td>MVP: Bybit; roadmap: Binance, OKX, Hyperliquid</td>
             </tr>
             <tr>
-              <td>AI assistant</td>
+              <td>The Scratcher Assistant</td>
               <td>Strategy development and parametrisation, result analysis; explainable recommendations</td>
             </tr>
             <tr>
@@ -228,30 +223,23 @@
               <td>Test strategies on historical data, genetic parameter optimiser</td>
             </tr>
             <tr>
-              <td>Telegram bot</td>
+              <td>Telegram integration</td>
               <td>Notifications, quick commands, monitoring without opening the app</td>
             </tr>
             <tr>
               <td>API</td>
               <td>Developers build their own modules and integrations</td>
             </tr>
-            <tr>
-              <td>Mobile client</td>
-              <td>Desktop feature parity, AI demo mode</td>
-            </tr>
           </tbody>
         </table>
 
         <!-- ── GitHub callout ────────────────────────────── -->
         <div class="callout">
-          <strong>The Exchange Scratcher is open source.</strong> Source code, open issues, and
-          contribution guidelines are on GitHub.<br />
-          <a href="https://github.com/l2xl/extools" target="_blank" rel="noopener">github.com/l2xl/extools &rarr;</a>
+          <strong>The Exchange Scratcher is planned to be open source.</strong> Temporarily available under IPRL.<br/>
+          <a href="https://github.com/l2xl/extools" target="_blank" rel="noopener">Source code on GitHub &rarr;</a>
         </div>
-
       </div>
     </section>
-
   </main>
 
   <footer class="site-footer">
