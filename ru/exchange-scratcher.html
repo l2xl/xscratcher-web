@@ -29,7 +29,6 @@
 
     <section class="page-hero">
       <div class="container">
-        <p class="hero-eyebrow">01 &mdash; В разработке</p>
         <h1>The Exchange Scratcher</h1>
         <p class="page-hero-sub">
           Open-source платформа для торговли на криптобиржах с Trader Cockpit-интерфейсом
@@ -113,8 +112,8 @@
         </p>
         <p>
           <strong>AI-ассистент &rarr; модель:</strong>
-          <strong>Локально</strong> — open-source LLM (Ollama / Llama / Mistral); полная приватность, нет внешних запросов.
-          <strong>Облачные AI-серверы</strong> — ChatGPT, Claude, Gemini; мощнее, без требований к железу.
+          <strong>Локальная оркестрация</strong> — open-source LLM (Ollama / Llama / Mistral); контролирует приватность, проверяет внешние запросы.
+          <strong>Облачные AI-серверы</strong> — ChatGPT, Claude, Gemini; используйте всю мощь AI, без требований к железу.
         </p>
 
         <div class="callout callout-accent">
@@ -148,20 +147,17 @@
                 Ключевая особенность: работающая «из коробки» связь между маркерами технического
                 анализа и управлением ордерами. Параметры ордера вычисляются на основе привязанного
                 индикатора и пересчитываются автоматически при его изменении.
-              </p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">&#9889;</div>
-            <div>
-              <strong>Новые типы ордеров</strong>
-              <p>
+              </p><p>
                 <strong>Динамический лимитный ордер</strong> — лимитная заявка, цена которой
-                автоматически следует за значением выбранного индикатора.<br />
+                автоматически следует за значением выбранного индикатора.
+              </p><p>
                 <strong>Catch the Tail</strong> — оптимальное исполнение при резком ценовом движении:
                 ордер выбирает наилучший режим входа, пока отклонение цены не вышло за допустимый
-                диапазон.<br />
-                И другие нестандартные алгоритмы исполнения.
+                диапазон.
+              </p><p>
+                <strong>Умный трейлинг-стоп</strong> — трейлинг-стоп ордер, параметры которого автоматически подстраиваются
+                под рыночные условия: меньший порог активации, пока цена близка к цене открытия, и умная корректировка
+                порога в зависимости от актуальной волатильности.
               </p>
             </div>
           </div>
@@ -209,7 +205,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>Торговый терминал</td>
+              <td>Торговый терминал с Trader Cockpit</td>
               <td>Лимитные, рыночные и стоп-ордера, история сделок, Trader Cockpit</td>
             </tr>
             <tr>
@@ -217,7 +213,7 @@
               <td>MVP: Bybit; роадмап: Binance, OKX, Hyperliquid</td>
             </tr>
             <tr>
-              <td>AI-ассистент</td>
+              <td>The Scratcher Assistant</td>
               <td>Разработка и параметризация торговых стратегий, анализ результатов; объяснимые рекомендации</td>
             </tr>
             <tr>
@@ -229,25 +225,20 @@
               <td>Проверка стратегии на истории, генетический оптимизатор параметров</td>
             </tr>
             <tr>
-              <td>Telegram-бот</td>
+              <td>Telegram-интеграция</td>
               <td>Уведомления, быстрые команды, мониторинг без открытия приложения</td>
             </tr>
             <tr>
               <td>API</td>
               <td>Разработчики строят собственные модули и интеграции</td>
             </tr>
-            <tr>
-              <td>Мобильный клиент</td>
-              <td>Паритет с desktop, демо-режим AI</td>
-            </tr>
           </tbody>
         </table>
 
         <!-- ── GitHub ────────────────────────────────────── -->
         <div class="callout">
-          <strong>The Exchange Scratcher — open source.</strong> Исходный код, задачи и руководство
-          по контрибуции на GitHub.<br />
-          <a href="https://github.com/l2xl/extools" target="_blank" rel="noopener">github.com/l2xl/extools &rarr;</a>
+          <strong>The Exchange Scratcher планируется как open source.</strong> Временно доступен под лицензией IPRL.<br/>
+          <a href="https://github.com/l2xl/extools" target="_blank" rel="noopener">Исходный код на GitHub &rarr;</a>
         </div>
 
       </div>
