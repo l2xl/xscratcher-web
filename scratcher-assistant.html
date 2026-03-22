@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Scratcher Assistant — an AI assistant for building, debugging, and optimizing automated trading strategies. Local or cloud LLMs, your choice." />
+  <title>The Scratcher Assistant — The Scratcher Project</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/i18n.js"></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.svg" alt="The Scratcher Project" width="32" height="32" />
+        <span>The Scratcher Project</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="exchange-scratcher.html">The Exchange Scratcher</a></li>
+        <li><a href="scratcher-assistant.html" class="active">The Scratcher Assistant</a></li>
+        <li><a href="iprl.html">IPRL</a></li>
+        <li><a href="mission.html">Mission</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="hero-eyebrow">02 &mdash; Planning</p>
+        <h1>The Scratcher Assistant</h1>
+        <p class="page-hero-sub">
+          An AI assistant purpose-built for trading strategy development.
+          It writes, debugs, and optimises your strategies — and it never sleeps.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container content-prose">
+
+        <!-- ── The problem ───────────────────────────────── -->
+        <h2>The AI revolution is starting — right now</h2>
+        <p>
+          In the short term, everything that can be done on a computer will be done through AI
+          or with AI assistance. Current trading solutions offer none of this functionality.
+          The gap between what AI can already do and what trading tools provide is widening
+          every month.
+        </p>
+
+        <div class="callout callout-accent">
+          LLMs are sweeping pieces off the board. AI will allow people to truly become creators.
+          We use AI to assist our work; we build AI to assist our users in becoming creators.
+        </div>
+
+        <!-- ── What it does ──────────────────────────────── -->
+        <h2>What The Scratcher Assistant does</h2>
+        <p>
+          The Scratcher Assistant helps you write and optimise automated trading strategies,
+          gives advice, simplifies automation, and — unlike you — does not sleep.
+        </p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">&#128187;</div>
+            <div>
+              <strong>Strategy development</strong>
+              <p>
+                Write strategy code from a natural-language description. The assistant generates,
+                explains, and iterates on the implementation until it matches your intent.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#128295;</div>
+            <div>
+              <strong>Parameter optimisation</strong>
+              <p>
+                Tune strategy parameters against historical data. The assistant interprets backtest
+                results and suggests adjustments with clear reasoning.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#128269;</div>
+            <div>
+              <strong>Result analysis</strong>
+              <p>
+                Every recommendation is logged and explainable. No opaque decisions,
+                no black-box outputs — you always understand why.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#127769;</div>
+            <div>
+              <strong>Always on</strong>
+              <p>
+                The market runs 24/7 and so does The Scratcher Assistant. It monitors,
+                advises, and alerts while you are away.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Architecture ──────────────────────────────── -->
+        <h2>Choose your trust level</h2>
+        <p>
+          The Scratcher Assistant can run entirely on your machine or connect to cloud
+          providers — the choice is yours. Both paths are first-class citizens.
+        </p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">&#128274;</div>
+            <div>
+              <strong>Local — complete privacy</strong>
+              <p>
+                Run an open-source LLM locally via Ollama, Llama, or Mistral.
+                No external requests, no data leaves your machine. Full sovereignty.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#9729;</div>
+            <div>
+              <strong>Cloud — maximum capability</strong>
+              <p>
+                Connect to ChatGPT, Claude, Gemini, and other cloud AI servers.
+                More powerful models, no hardware requirements on your side.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout">
+          "Choose your trust level: want everything local — it stays local.
+          Want the cloud — it's there for you."
+        </div>
+
+        <!-- ── Integration ───────────────────────────────── -->
+        <h2>Integration with The Exchange Scratcher</h2>
+        <p>
+          The Scratcher Assistant integrates directly with The Exchange Scratcher through
+          an open MCP (Model Context Protocol) interface, giving it access to live market data,
+          backtest results, and your strategy configuration. The assistant sees what you see —
+          and helps you act on it.
+        </p>
+
+        <p>
+          The Scratcher Assistant is currently in the planning phase.
+          <a href="index.html#roadmap">See the full roadmap &rarr;</a>
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> The Scratcher Project. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

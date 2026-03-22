@@ -121,6 +121,21 @@ code {
 .nav-links a:hover,
 .nav-links a.active { color: var(--color-text); }
 
+/* Language switcher (Russian pages only) */
+.lang-switch {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-faint);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.15em 0.55em;
+  transition: color var(--transition), border-color var(--transition);
+}
+.lang-switch:hover {
+  color: var(--color-text);
+  border-color: var(--color-faint);
+}
+
 /* ----- Hero (landing) ----- */
 .hero {
   padding-block: 5rem 4rem;
@@ -223,6 +238,45 @@ code {
   color: var(--color-muted);
   font-size: 1rem;
   max-width: 480px;
+}
+
+/* ----- Problem cards (home page) ----- */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 1.5rem;
+}
+
+.problem-card {
+  background: var(--color-surface2);
+  padding: 1.4rem;
+}
+
+.problem-card-number {
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--color-faint);
+  margin-bottom: 0.5rem;
+}
+
+.problem-card h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--color-text);
+  line-height: 1.35;
+}
+
+.problem-card p {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  line-height: 1.6;
 }
 
 /* ----- Roadmap ----- */
@@ -409,6 +463,102 @@ code {
   line-height: 1.5;
 }
 
+/* Roadmap divider (between MVP and Evolution) */
+.roadmap-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-block: 2.5rem;
+  padding-left: 4.5rem;
+}
+
+.roadmap-divider::before,
+.roadmap-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.roadmap-divider span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+  white-space: nowrap;
+}
+
+/* ----- Architecture diagram ----- */
+.arch-diagram {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-block: 1.5rem;
+  overflow-x: auto;
+}
+
+.arch-diagram pre {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+  white-space: pre;
+  margin: 0;
+}
+
+.arch-diagram .hl {
+  color: var(--color-accent);
+}
+
+.arch-diagram .hl-green {
+  color: var(--color-green);
+}
+
+.arch-diagram .hl-blue {
+  color: var(--color-blue);
+}
+
+/* ----- Product modules table ----- */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 1.5rem;
+  font-size: 0.88rem;
+}
+
+.product-table th,
+.product-table td {
+  text-align: left;
+  padding: 0.7rem 0.85rem;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+.product-table th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+  border-bottom-width: 2px;
+}
+
+.product-table td:first-child {
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.product-table td:last-child {
+  color: var(--color-muted);
+}
+
+.product-table tr:last-child td {
+  border-bottom: none;
+}
+
 /* ----- Side project cards ----- */
 .side-grid {
   display: grid;
@@ -555,7 +705,7 @@ blockquote {
   background: rgba(240, 224, 64, 0.05);
 }
 
-/* ----- Feature list (IPRL page) ----- */
+/* ----- Feature list ----- */
 .feature-list {
   display: flex;
   flex-direction: column;
@@ -596,6 +746,49 @@ blockquote {
   font-size: 0.88rem;
 }
 
+/* ----- Revolution cards (mission page) ----- */
+.revolution-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.revolution-item {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.revolution-number {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 2px solid var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.revolution-body h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--color-text);
+}
+
+.revolution-body p {
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
 /* ----- Footer ----- */
 .site-footer {
   background-color: var(--color-surface);
@@ -621,5 +814,12 @@ blockquote {
   .section { padding-block: 2.75rem; }
   .nav-links { gap: 0.9rem; }
   .roadmap-list::before { display: none; }
+  .roadmap-divider { padding-left: 0; }
   .side-grid { grid-template-columns: 1fr; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .product-table { font-size: 0.82rem; }
+  .product-table th,
+  .product-table td { padding: 0.5rem 0.6rem; }
+  .arch-diagram { padding: 1rem; }
+  .arch-diagram pre { font-size: 0.65rem; }
 }
