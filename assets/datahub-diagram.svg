@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" style="background:#0f0f0f;font-family:'Fira Code',Courier,monospace">
+  <defs>
+    <!-- single arrowhead → -->
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
+    </marker>
+    <!-- orange arrowhead (down) -->
+    <marker id="arr-down" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f0a040"/>
+    </marker>
+    <!-- orange arrowhead (up) -->
+    <marker id="arr-up" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto-start-reverse">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f0a040"/>
+    </marker>
+  </defs>
+
+  <!-- ====== MAIN PIPELINE BOXES (y=18, h=110) ====== -->
+
+  <!-- Box 1: Network (green) -->
+  <rect x="20" y="18" width="126" height="110" rx="6" fill="#141414" stroke="#3ecf8e" stroke-width="1.5"/>
+  <rect x="20" y="18" width="126" height="22" rx="6" fill="#3ecf8e" opacity="0.18"/>
+  <text x="83" y="34" fill="#3ecf8e" font-size="10.5" font-weight="bold" text-anchor="middle">Network</text>
+  <text x="83" y="53" fill="#e8e8e8" font-size="9.5" text-anchor="middle">WebSocket</text>
+  <text x="83" y="66" fill="#e8e8e8" font-size="9.5" text-anchor="middle">SSL / TLS</text>
+  <text x="83" y="84" fill="#888" font-size="9" text-anchor="middle">─────────</text>
+  <text x="83" y="98" fill="#e8e8e8" font-size="9.5" text-anchor="middle">HTTP REST</text>
+  <text x="83" y="111" fill="#e8e8e8" font-size="9.5" text-anchor="middle">API</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="147" y1="73" x2="166" y2="73" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Box 2: Transport (blue) -->
+  <rect x="168" y="18" width="128" height="110" rx="6" fill="#141414" stroke="#5ba3f5" stroke-width="1.5"/>
+  <rect x="168" y="18" width="128" height="22" rx="6" fill="#5ba3f5" opacity="0.18"/>
+  <text x="232" y="34" fill="#5ba3f5" font-size="10.5" font-weight="bold" text-anchor="middle">Transport</text>
+  <text x="232" y="53" fill="#e8e8e8" font-size="9.5" text-anchor="middle">websock_connection</text>
+  <text x="232" y="68" fill="#888" font-size="9" text-anchor="middle">─────────────</text>
+  <text x="232" y="83" fill="#e8e8e8" font-size="9.5" text-anchor="middle">http_query</text>
+  <text x="232" y="98" fill="#888" font-size="9" text-anchor="middle">Boost.Asio</text>
+  <text x="232" y="111" fill="#888" font-size="9" text-anchor="middle">any_io_executor</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="297" y1="73" x2="316" y2="73" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="306" y="68" fill="#555" font-size="8" text-anchor="middle">JSON</text>
+
+  <!-- Box 3: data_dispatcher (yellow) -->
+  <rect x="318" y="18" width="144" height="110" rx="6" fill="#141414" stroke="#f0e040" stroke-width="1.5"/>
+  <rect x="318" y="18" width="144" height="22" rx="6" fill="#f0e040" opacity="0.15"/>
+  <text x="390" y="34" fill="#f0e040" font-size="10.5" font-weight="bold" text-anchor="middle">data_dispatcher</text>
+  <text x="390" y="52" fill="#e8e8e8" font-size="9.5" text-anchor="middle">spsc_queue (lock-free)</text>
+  <text x="390" y="66" fill="#888" font-size="9" text-anchor="middle">capacity: 16</text>
+  <text x="390" y="82" fill="#e8e8e8" font-size="9.5" text-anchor="middle">Asio strand</text>
+  <text x="390" y="97" fill="#888" font-size="9" text-anchor="middle">A₁ ‖ A₂ ‖ … Aₙ</text>
+  <text x="390" y="112" fill="#888" font-size="9" text-anchor="middle">fold expression</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="463" y1="73" x2="482" y2="73" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Box 4: data_adapter (yellow) -->
+  <rect x="484" y="18" width="118" height="110" rx="6" fill="#141414" stroke="#f0e040" stroke-width="1.5"/>
+  <rect x="484" y="18" width="118" height="22" rx="6" fill="#f0e040" opacity="0.15"/>
+  <text x="543" y="34" fill="#f0e040" font-size="10.5" font-weight="bold" text-anchor="middle">data_adapter</text>
+  <text x="543" y="53" fill="#e8e8e8" font-size="9.5" text-anchor="middle">Glaze JSON</text>
+  <text x="543" y="67" fill="#e8e8e8" font-size="9.5" text-anchor="middle">→ struct</text>
+  <text x="543" y="84" fill="#888" font-size="9" text-anchor="middle">──────────</text>
+  <text x="543" y="98" fill="#e8e8e8" font-size="9.5" text-anchor="middle">returns bool</text>
+  <text x="543" y="112" fill="#888" font-size="9" text-anchor="middle">(chain fallback)</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="603" y1="73" x2="622" y2="73" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Box 5: data_sink (yellow) -->
+  <rect x="624" y="18" width="118" height="110" rx="6" fill="#141414" stroke="#f0e040" stroke-width="1.5"/>
+  <rect x="624" y="18" width="118" height="22" rx="6" fill="#f0e040" opacity="0.15"/>
+  <text x="683" y="34" fill="#f0e040" font-size="10.5" font-weight="bold" text-anchor="middle">data_sink</text>
+  <text x="683" y="52" fill="#e8e8e8" font-size="9.5" text-anchor="middle">model→accept()</text>
+  <text x="683" y="66" fill="#888" font-size="9" text-anchor="middle">new/changed only</text>
+  <text x="683" y="82" fill="#e8e8e8" font-size="9.5" text-anchor="middle">handle_data()</text>
+  <text x="683" y="96" fill="#e8e8e8" font-size="9.5" text-anchor="middle">handle_error()</text>
+  <text x="683" y="112" fill="#888" font-size="9" text-anchor="middle">generic_handler</text>
+
+  <!-- Arrow 5→6 -->
+  <line x1="743" y1="73" x2="762" y2="73" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Box 6: data_feed (yellow) — cx=836 -->
+  <rect x="764" y="18" width="144" height="110" rx="6" fill="#141414" stroke="#f0e040" stroke-width="1.5"/>
+  <rect x="764" y="18" width="144" height="22" rx="6" fill="#f0e040" opacity="0.15"/>
+  <text x="836" y="34" fill="#f0e040" font-size="10.5" font-weight="bold" text-anchor="middle">data_feed</text>
+  <text x="836" y="52" fill="#e8e8e8" font-size="9.5" text-anchor="middle">snapshot_data_feed</text>
+  <text x="836" y="65" fill="#888" font-size="9" text-anchor="middle">clear + replace</text>
+  <text x="836" y="80" fill="#e8e8e8" font-size="9.5" text-anchor="middle">sorted_data_feed</text>
+  <text x="836" y="93" fill="#888" font-size="9" text-anchor="middle">time-ordered · dedup</text>
+  <text x="836" y="107" fill="#888" font-size="9" text-anchor="middle">filter · subscriptions</text>
+
+  <!-- Arrow 6→7 -->
+  <line x1="909" y1="73" x2="928" y2="73" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="919" y="68" fill="#555" font-size="8" text-anchor="middle">kind</text>
+
+  <!-- Box 7: data_subscription (muted) -->
+  <rect x="930" y="18" width="136" height="110" rx="6" fill="#141414" stroke="#555" stroke-width="1.5"/>
+  <rect x="930" y="18" width="136" height="22" rx="6" fill="#555" opacity="0.3"/>
+  <text x="998" y="34" fill="#888" font-size="10.5" font-weight="bold" text-anchor="middle">data_subscription</text>
+  <text x="998" y="52" fill="#e8e8e8" font-size="9" text-anchor="middle">handle_update(</text>
+  <text x="998" y="65" fill="#e8e8e8" font-size="9" text-anchor="middle">  update_kind,</text>
+  <text x="998" y="78" fill="#e8e8e8" font-size="9" text-anchor="middle">  Container const&amp;)</text>
+  <text x="998" y="95" fill="#888" font-size="9" text-anchor="middle">snapshot | increment</text>
+  <text x="998" y="110" fill="#888" font-size="9" text-anchor="middle">immediate snapshot</text>
+
+  <!-- Arrow 7→8 -->
+  <line x1="1067" y1="73" x2="1086" y2="73" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Box 8: Consumers (muted) -->
+  <rect x="1088" y="18" width="100" height="110" rx="6" fill="#141414" stroke="#444" stroke-width="1.5"/>
+  <rect x="1088" y="18" width="100" height="22" rx="6" fill="#444" opacity="0.4"/>
+  <text x="1138" y="34" fill="#888" font-size="10.5" font-weight="bold" text-anchor="middle">Consumers</text>
+  <text x="1138" y="53" fill="#e8e8e8" font-size="9.5" text-anchor="middle">GUI Widgets</text>
+  <text x="1138" y="70" fill="#888" font-size="9" text-anchor="middle">──────────</text>
+  <text x="1138" y="86" fill="#e8e8e8" font-size="9.5" text-anchor="middle">Strategy</text>
+  <text x="1138" y="100" fill="#e8e8e8" font-size="9.5" text-anchor="middle">Engine</text>
+  <text x="1138" y="115" fill="#888" font-size="9" text-anchor="middle">any callable</text>
+
+  <!-- ====== STORAGE BRANCH (below data_feed, cx=836) ====== -->
+
+  <!-- Bidirectional arrow: data_feed ↔ data_model -->
+  <!-- Down arrow (sink writes): x=840, from y=129 to y=165 -->
+  <line x1="840" y1="129" x2="840" y2="163" stroke="#f0a040" stroke-width="1.5" marker-end="url(#arr-down)"/>
+  <!-- Up arrow (feed loads): x=832, from y=165 to y=129 -->
+  <line x1="832" y1="163" x2="832" y2="129" stroke="#f0a040" stroke-width="1.5" marker-end="url(#arr-up)"/>
+  <!-- Label -->
+  <text x="860" y="150" fill="#f0a040" font-size="8.5">init (load) / persist</text>
+
+  <!-- data_model box (orange) -->
+  <rect x="716" y="165" width="240" height="90" rx="6" fill="#141414" stroke="#f0a040" stroke-width="1.5"/>
+  <rect x="716" y="165" width="240" height="22" rx="6" fill="#f0a040" opacity="0.18"/>
+  <text x="836" y="181" fill="#f0a040" font-size="10.5" font-weight="bold" text-anchor="middle">data_model&lt;Entity, PrimaryKey&gt;</text>
+  <text x="836" y="200" fill="#e8e8e8" font-size="9.5" text-anchor="middle">Glaze reflection → SQLite schema (RAII)</text>
+  <text x="836" y="214" fill="#888" font-size="9" text-anchor="middle">insert_or_replace · CRUD · count · drop_table</text>
+  <text x="836" y="228" fill="#888" font-size="9" text-anchor="middle">table_suffix · precompiled statements</text>
+  <text x="836" y="243" fill="#888" font-size="8.5" text-anchor="middle">metadata.hpp · query_builder.hpp · operations.hpp</text>
+
+  <!-- ====== ASIO SCHEDULER BANNER ====== -->
+  <rect x="10" y="278" width="1180" height="38" rx="4" fill="#141414" stroke="#272727" stroke-width="1"/>
+  <text x="600" y="292" fill="#5ba3f5" font-size="10" font-weight="bold" text-anchor="middle">AsioScheduler</text>
+  <text x="600" y="308" fill="#888" font-size="9" text-anchor="middle">Boost.Asio thread pool · any_io_executor · strand (ordered dispatch) · SSL context · spsc_queue bridge</text>
+
+  <!-- ====== SECTION LABELS ====== -->
+  <text x="83" y="9" fill="#3ecf8e" font-size="8" text-anchor="middle" opacity="0.7">sources</text>
+  <text x="232" y="9" fill="#5ba3f5" font-size="8" text-anchor="middle" opacity="0.7">transport</text>
+  <text x="390" y="9" fill="#f0e040" font-size="8" text-anchor="middle" opacity="0.7">routing</text>
+  <text x="543" y="9" fill="#f0e040" font-size="8" text-anchor="middle" opacity="0.7">parsing</text>
+  <text x="683" y="9" fill="#f0e040" font-size="8" text-anchor="middle" opacity="0.7">persistence</text>
+  <text x="836" y="9" fill="#f0e040" font-size="8" text-anchor="middle" opacity="0.7">in-memory cache</text>
+  <text x="998" y="9" fill="#888" font-size="8" text-anchor="middle" opacity="0.7">notification</text>
+  <text x="1138" y="9" fill="#888" font-size="8" text-anchor="middle" opacity="0.7">consumers</text>
+</svg>
