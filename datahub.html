@@ -3,55 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="DataHub — generic async C++ data pipeline with SQLite persistence, Boost.Asio scheduling, and lock-free queues." />
+  <meta name="description" content="DataHub — generic async C++ data pipeline." />
   <title>DataHub — The Scratcher Project</title>
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/i18n.js"></script>
 </head>
 <body>
-
   <header class="site-header">
     <nav class="nav container">
       <a href="index.html" class="nav-logo">
         <img src="assets/logo.svg" alt="The Scratcher Project" width="32" height="32" />
-        <span>The Scratcher Project</span>
-      </a>
+        <span>The Scratcher Project</span></a>
       <ul class="nav-links">
         <li><a href="exchange-scratcher.html">The Exchange Scratcher</a></li>
         <li><a href="datahub.html" class="active">DataHub</a></li>
         <li><a href="scratcher-assistant.html">The Scratcher Assistant</a></li>
         <li><a href="iprl.html">IPRL</a></li>
         <li><a href="mission.html">Mission</a></li>
-      </ul>
-    </nav>
-  </header>
-
+      </ul></nav></header>
   <main>
-
     <section class="page-hero">
       <div class="container">
         <p class="hero-eyebrow">Open source &middot; C++23 &middot; Zero runtime overhead</p>
         <h1>DataHub</h1>
         <p class="page-hero-sub">
           Generic async data pipeline with SQLite persistence,
-          Boost.Asio scheduling, and lock-free message queues.
-        </p>
+          Boost.Asio scheduling, and lock-free message queues.</p>
         <div class="hero-cta" style="margin-top:1.5rem;">
           <a href="https://github.com/l2xl/extools" class="btn btn-primary" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
           <a href="exchange-scratcher.html" class="btn btn-ghost">Back to Exchange Scratcher</a>
-        </div>
-      </div>
-    </section>
-
+        </div></div></section>
     <section class="content-section">
       <div class="container content-prose">
-
         <!-- Architecture Diagram -->
-        <h2>Architecture</h2>
+        <h2>Design</h2>
         <p>
           The diagram below shows the full data pipeline — from raw network bytes to
-          in-memory subscriber notifications — with the optional SQLite persistence branch
-          hanging below <code>data_feed</code>.
+          in-memory subscriber notifications. Every component implements the same data acceptor concept and may be omitted from the pipe if excessive. For example order book has no DB representation: data adapter pass its data directly to the data feed (the data sink is omitted).
         </p>
         <div style="overflow-x:auto;margin:2rem 0;border-radius:6px;">
           <img src="assets/datahub-diagram.svg"
@@ -61,172 +49,74 @@
 
         <!-- Overview -->
         <h2>Overview</h2>
-        <p>
-          DataHub is a header-only C++23 library providing a complete async data pipeline
+        <p>DataHub is a header-only C++23 library providing a complete async data pipeline
           with zero runtime overhead via static polymorphism and compile-time reflection.
           It connects network sources (WebSocket, HTTP REST) to typed subscriber callbacks,
-          with optional SQLite persistence at the data sink stage.
-        </p>
-        <p>
-          All scheduling runs on a shared <strong>Boost.Asio</strong> executor.
+          with optional SQLite persistence at the data sink stage.</p>
+        <p>All scheduling runs on a shared <strong>Boost.Asio</strong> executor.
           A lock-free <code>spsc_queue</code> bridges the network receive thread to a
           dispatch strand, ensuring ordered, non-blocking delivery with no dynamic allocation
           in the hot path. Schema generation and JSON serialisation are handled at compile
           time via <strong>Glaze</strong> reflection — no registration macros, no runtime
-          type maps.
-        </p>
-
+          type maps.</p>
         <!-- Core Components -->
         <h2>Core components</h2>
-
         <div class="feature-list">
-
           <div class="feature-item">
             <div class="feature-icon">&#9654;</div>
             <div>
               <strong>data_dispatcher&lt;Acceptor...&gt;</strong>
-              <p>
-                Receives raw JSON strings from any transport. Pushes each message into a
-                lock-free <code>spsc_queue</code> (capacity&nbsp;16) and posts a drain task
+              <p>Receives raw JSON strings from any transport. Pushes each message into a
+                lock-free <code>spsc_queue</code> and posts a drain task
                 onto a <code>boost::asio::strand</code>. The strand serialises processing —
                 all adapter calls are ordered and thread-safe. Multiple adapters are tried
                 via a C++23 fold expression (<code>A&#x2081;&nbsp;||&nbsp;A&#x2082;&nbsp;||&nbsp;&hellip;&nbsp;A&#x2099;</code>):
-                the first adapter returning <code>true</code> consumes the message.
-              </p>
-            </div>
-          </div>
-
+                the first adapter returning <code>true</code> consumes the message.</p></div></div>
           <div class="feature-item">
             <div class="feature-icon">&#9654;</div>
             <div>
-              <strong>data_adapter&lt;DataType, Handler&gt;</strong>
-              <p>
-                Deserialises a JSON string into a typed C++ struct using Glaze
-                (<code>glz::read_json</code>). Calls the downstream handler and propagates
-                its <code>bool</code> result — <code>false</code> means "not consumed",
-                allowing fallthrough to the next adapter in the dispatcher chain.
-              </p>
-            </div>
-          </div>
-
+              <strong>Data Adapter</strong>
+              <p>Deserialises a JSON string into a typed C++ struct using Glaze. Calls the downstream handler and propagates
+                its <code>bool</code> result — <code>false</code> means "not consumed", allowing fallthrough to the next adapter in the dispatcher chain.</p></div></div>
           <div class="feature-item">
             <div class="feature-icon">&#9654;</div>
             <div>
-              <strong>data_sink&lt;Model&gt;</strong>
+              <strong>Data Sink</strong>
               <p>
                 Owns a <code>shared_ptr&lt;Model&gt;</code> (typically
                 <code>data_model</code>). Calls <code>model-&gt;accept(range)</code> to
-                persist incoming entities and receive back only the new or changed ones.
-                Subclasses override <code>handle_data(cache_type&amp;&amp;)</code> and
-                <code>handle_error(exception_ptr)</code>. A <code>generic_handler</code>
-                CRTP helper creates concrete subclasses from plain callables via the
-                <code>make_data_sink()</code> factory. Data sinks without a
-                <code>data_model</code> skip persistence entirely (e.g. order book).
-              </p>
-            </div>
-          </div>
-
+                persist incoming entities and receive back only the new or changed ones.</p></div></div>
           <div class="feature-item">
             <div class="feature-icon">&#9654;</div>
             <div>
-              <strong>data_model&lt;Entity, PrimaryKey&gt;</strong>
+              <strong>Data Model</strong>
               <p>
-                SQLite DAO with RAII table creation on construction. Uses Glaze compile-time
+                DAO with RAII table creation on construction. Uses Glaze compile-time
                 reflection to derive the table name, column types, and primary key — no
                 hand-written SQL schema. <code>accept()</code> runs precompiled
                 <code>INSERT&nbsp;OR&nbsp;REPLACE</code> statements and returns only the
                 rows that were inserted or actually changed.
                 Supports an optional <code>table_suffix</code> for per-symbol sharding.
-                Full CRUD, <code>count()</code>, and <code>drop_table()</code> included.
-                Implemented across <code>metadata.hpp</code>, <code>query_builder.hpp</code>,
-                and <code>operations.hpp</code>.
-              </p>
+                Full CRUD, <code>count()</code>, and <code>drop_table()</code> included.</p></div></div>
+
+          <div class="feature-item">
+            <div class="feature-icon">&#9654;</div>
+            <div>
+              <strong>Data Feed</strong>
+              <p>In-memory cache providing fast access to actual data for subscribers.</p>
             </div>
           </div>
 
           <div class="feature-item">
             <div class="feature-icon">&#9654;</div>
             <div>
-              <strong>data_feed — two variants</strong>
-              <p>
-                In-memory cache sitting between the sink and subscribers.
-                <code>snapshot_data_feed</code> clears and replaces the cache on every
-                update, sending <code>update_kind::snapshot</code> to all subscribers.
-                <code>sorted_data_feed</code> inserts new items in time-field order,
-                deduplicates by a compile-time key field, and sends
-                <code>update_kind::increment</code> — only the new items are delivered.
-                Both variants give a new subscriber an immediate <code>snapshot</code>
-                of the current cache on <code>subscribe()</code>. An optional filter
-                predicate is evaluated before each insert.
-              </p>
-            </div>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">&#9654;</div>
-            <div>
-              <strong>data_subscription&lt;Entity, Container&gt;</strong>
-              <p>
-                Abstract notification interface:
-                <code>handle_update(update_kind,&nbsp;Container&nbsp;const&amp;)</code>.
-                Subscribers are held as <code>weak_ptr</code> — expired subscribers are
-                silently dropped on the next notification. A factory function
-                <code>make_data_subscription(callable)</code> wraps any callable into a
-                concrete <code>subscription_handler</code>.
-              </p>
-            </div>
-          </div>
-
+              <strong>Data Subscription</strong>
+              <p>Abstract notification interface.</p>
+              <p>Subscribers are held as <code>weak_ptr</code> — expired subscribers are
+                silently dropped on the next notification.</p></div></div>
         </div>
-
-        <!-- Update Semantics -->
-        <h2>Update semantics</h2>
-
-        <div class="arch-diagram">
-<pre>
-<span class="hl">snapshot_data_feed</span>   update_kind::snapshot   — full replace; cache cleared before insert
-      ↑
- HTTP REST              instruments, top-of-book
-
-<span class="hl-blue">sorted_data_feed</span>     update_kind::increment  — time-ordered; dedup by key field; new items only
-      ↑
- WebSocket              public trades, private orders
-</pre>
-        </div>
-
-        <p>
-          A new subscriber always receives the current full cache as an initial
-          <code>snapshot</code> regardless of which feed type they subscribe to.
-          Subsequent notifications carry either the full replacement
-          (<code>snapshot</code>) or the new-only incremental batch
-          (<code>increment</code>).
-        </p>
-
-        <!-- Persistence -->
-        <h2>Persistence — init and update cycle</h2>
-        <p>
-          When a <code>data_feed</code> is created it can be initialised from a
-          <code>data_model</code> — all rows are loaded from SQLite into the in-memory
-          cache so subscribers receive a complete state immediately on startup, even
-          before the first network message arrives.
-        </p>
-        <p>
-          On every subsequent update, the <code>data_sink</code> calls
-          <code>data_model::accept()</code> first — new or changed entities are persisted
-          to SQLite — then passes only those new entities downstream to the
-          <code>data_feed</code>. Unchanged entities (already in DB) are silently dropped.
-        </p>
-
-        <!-- GitHub callout -->
-        <div class="callout callout-accent">
-          <strong>DataHub is part of the Exchange Scratcher open-source project.</strong><br />
-          Source:
-          <a href="https://github.com/l2xl/extools/tree/elementsgui/src/datahub" target="_blank" rel="noopener">github.com/l2xl/extools &mdash; src/datahub &rarr;</a>
-        </div>
-
-      </div>
+      </div>  
     </section>
-
   </main>
 
   <footer class="site-footer">
