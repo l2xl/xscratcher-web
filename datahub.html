@@ -17,8 +17,8 @@
       <ul class="nav-links">
         <li><a href="exchange-scratcher.html">The Exchange Scratchpad</a></li>
         <li><a href="scratcher-assistant.html">The Scratcher Assistant</a></li>
-        <li><a href="iprl.html">IPRL</a></li>
         <li><a href="datahub.html" class="active">DataHub</a></li>
+        <li><a href="iprl.html">IPRL</a></li>
         <li><a href="mission.html">Mission</a></li>
       </ul></nav></header>
   <main>
@@ -26,11 +26,10 @@
       <div class="container">
         <h1>DataHub</h1>
         <p class="page-hero-sub">
-          Generic async data pipeline with SQLite persistence,
-          Boost.Asio scheduling, and lock-free message queues.</p>
+          Generic async data pipeline with optional DB persistence and runtime subscriptions.</p>
         <div class="hero-cta" style="margin-top:1.5rem;">
           <a href="https://github.com/l2xl/extools" class="btn btn-primary" target="_blank" rel="noopener">Source on GitHub &rarr;</a>
-          <a href="exchange-scratcher.html" class="btn btn-ghost">Back to Exchange Scratcher</a>
+          <a href="exchange-scratcher.html" class="btn btn-ghost">Back to The Exchange Scratchpad</a>
         </div></div></section>
     <section class="content-section">
       <div class="container content-prose">
@@ -42,7 +41,7 @@
         </p>
         <div style="overflow-x:auto;margin:2rem 0;border-radius:6px;">
           <img src="assets/datahub-diagram.svg"
-               alt="DataHub architecture diagram: horizontal pipeline from Network through Transport, data_dispatcher, data_adapter, data_sink, data_feed to data_subscription and Consumers, with data_model storage branch below data_feed"
+               alt="DataHub architecture diagram: pipeline from Network through Transport, Data Dispatcher and Adapter, Data Sink with persistence using Data Model, Data Feed to Subscriptions."
                style="width:100%;max-width:1200px;height:auto;display:block;" />
         </div>
 
@@ -51,26 +50,16 @@
         <p>DataHub is a header-only C++23 library providing a complete async data pipeline
           with zero runtime overhead via static polymorphism and compile-time reflection.
           It connects network sources (WebSocket, HTTP REST) to typed subscriber callbacks,
-          with optional SQLite persistence at the data sink stage.</p>
-        <p>All scheduling runs on a shared <strong>Boost.Asio</strong> executor.
-          A lock-free <code>spsc_queue</code> bridges the network receive thread to a
-          dispatch strand, ensuring ordered, non-blocking delivery with no dynamic allocation
-          in the hot path. Schema generation and JSON serialisation are handled at compile
-          time via <strong>Glaze</strong> reflection — no registration macros, no runtime
-          type maps.</p>
+          with optional database persistence.</p>
         <!-- Core Components -->
         <h2>Core components</h2>
         <div class="feature-list">
           <div class="feature-item">
             <div class="feature-icon">&#9654;</div>
             <div>
-              <strong>data_dispatcher&lt;Acceptor...&gt;</strong>
-              <p>Receives raw JSON strings from any transport. Pushes each message into a
-                lock-free <code>spsc_queue</code> and posts a drain task
-                onto a <code>boost::asio::strand</code>. The strand serialises processing —
-                all adapter calls are ordered and thread-safe. Multiple adapters are tried
-                via a C++23 fold expression (<code>A&#x2081;&nbsp;||&nbsp;A&#x2082;&nbsp;||&nbsp;&hellip;&nbsp;A&#x2099;</code>):
-                the first adapter returning <code>true</code> consumes the message.</p></div></div>
+              <strong>Data Dispatcher&lt;Acceptor...&gt;</strong>
+              <p>Receives raw JSON strings from any transport. Tryes to pushes each message into Multiple adapters which tries to decode
+                via a C++23 static reflection.</p></div></div>
           <div class="feature-item">
             <div class="feature-icon">&#9654;</div>
             <div>
@@ -82,9 +71,7 @@
             <div>
               <strong>Data Sink</strong>
               <p>
-                Owns a <code>shared_ptr&lt;Model&gt;</code> (typically
-                <code>data_model</code>). Calls <code>model-&gt;accept(range)</code> to
-                persist incoming entities and receive back only the new or changed ones.</p></div></div>
+                Collects data from different data streams, persist and propagates to runtime subscription targeted Data Feed.</p></div></div>
           <div class="feature-item">
             <div class="feature-icon">&#9654;</div>
             <div>
@@ -92,27 +79,17 @@
               <p>
                 DAO with RAII table creation on construction. Uses Glaze compile-time
                 reflection to derive the table name, column types, and primary key — no
-                hand-written SQL schema. <code>accept()</code> runs precompiled
-                <code>INSERT&nbsp;OR&nbsp;REPLACE</code> statements and returns only the
-                rows that were inserted or actually changed.
-                Supports an optional <code>table_suffix</code> for per-symbol sharding.
-                Full CRUD, <code>count()</code>, and <code>drop_table()</code> included.</p></div></div>
-
+                hand-written SQL schema.</p></div></div>
           <div class="feature-item">
             <div class="feature-icon">&#9654;</div>
             <div>
               <strong>Data Feed</strong>
-              <p>In-memory cache providing fast access to actual data for subscribers.</p>
-            </div>
-          </div>
-
+              <p>In-memory structured cache providing fast access to actual data for subscribers.</p></div></div>
           <div class="feature-item">
             <div class="feature-icon">&#9654;</div>
             <div>
               <strong>Data Subscription</strong>
-              <p>Abstract notification interface.</p>
-              <p>Subscribers are held as <code>weak_ptr</code> — expired subscribers are
-                silently dropped on the next notification.</p></div></div>
+              <p>Runtime notification interface.</p>
         </div>
       </div>  
     </section>
