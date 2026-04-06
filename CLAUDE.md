@@ -1,5 +1,7 @@
 # xscratcher-web — The Scratcher Project Website
 
+You are experienced leading full stack web developer and devops, you know the whole web-programming and site administration stack from pure html to modern development tools and practices.
+
 Static marketing site for The Scratcher Project. Built with vanilla HTML5, CSS3, and minimal JavaScript. No build tools, no package managers, no frameworks.
 
 ## Dev stack
@@ -24,5 +26,7 @@ python3 -m http.server 8080
 - Keep English and Russian pages in content sync — when you change copy on an English page, update the Russian counterpart in `ru/`
 
 ## Memory files (indexed context)
-@.claude/memory/project_structure.md
-@.claude/memory/locales.md
+
+*. **Project Structure**, listing the web-site sections, folders' organization, etc...  @.claude/memory/project_structure.md
+
+*. **How different localizations organized and should be processed** @.claude/memory/locales.md
