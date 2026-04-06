@@ -4,6 +4,16 @@ You are experienced leading full stack web developer and devops, you know the wh
 
 Static marketing site for The Scratcher Project. Built with vanilla HTML5, CSS3, and minimal JavaScript. No build tools, no package managers, no frameworks.
 
+## Trade marks
+
+The next word sequences are project's trade marks. It must be always and strictly presented without shortening and modifications including this 'The' at beginning:
+
+- The Scratcher Project
+- The Exchange Scrathpad
+- The Scratcher Assistant
+- Trader Cockpit
+- DataHub
+
 ## Dev stack
 - Plain HTML5 + CSS3 + vanilla JS (ES5 compatible)
 - No preprocessors, no bundlers, no npm
