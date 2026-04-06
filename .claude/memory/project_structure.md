@@ -4,11 +4,11 @@
 | Page | File | Description |
 |---|---|---|
 | Landing | `index.html` | Hero, "Why we are building this" (4 problem cards), Roadmap, Philosophy strip |
-| Exchange Scratcher | `exchange-scratcher.html` | Exchange Scratcher product details |
-| Scratcher Assistant | `scratcher-assistant.html` | Scratcher Assistant product details |
-| IPRL | `iprl.html` | IPRL product page |
-| DataHub | `datahub.html` | DataHub product page |
-| Mission | `mission.html` | Mission & values |
+| The Exchange Scratchpad | `exchange-scratcher.html` | The Exchange Scratchpad - standalone exchange trading application details |
+| The Scratcher Assistant | `scratcher-assistant.html` | The Scratcher Assistant - AI assistant details |
+| IPRL | `iprl.html` | Intellectual Property Reserve License page |
+| DataHub | `datahub.html` | DataHub library description |
+| Mission | `mission.html` | The Exchange Scratcher Mission |
 
 ## Shared assets
 - `css/style.css` — single shared stylesheet for all pages
@@ -20,8 +20,3 @@
 ## CI/CD
 - `.github/workflows/deploy.yml` — rsync deploy to Ubuntu/Nginx server on push to `main`
 
-## Local development
-```bash
-python3 -m http.server 8080
-# open http://localhost:8080
-```
