@@ -27,6 +27,6 @@ python3 -m http.server 8080
 
 ## Memory files (indexed context)
 
-*. **Project Structure**, listing the web-site sections, folders' organization, etc...  @.claude/memory/project_structure.md
+* **Project Structure**, listing the web-site sections, folders' organization, etc...  @.claude/memory/project_structure.md
 
-*. **How different localizations organized and should be processed** @.claude/memory/locales.md
+* **How different localizations organized and should be processed** @.claude/memory/locales.md
