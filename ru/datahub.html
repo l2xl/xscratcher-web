@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DataHub — универсальный асинхронный конвейер данных на C++." />
+  <title>DataHub — The Scratcher Project</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo">
+        <img src="../assets/logo.svg" alt="The Scratcher Project" width="32" height="32" />
+        <span>The Scratcher Project</span></a>
+      <ul class="nav-links">
+        <li><a href="exchange-scratcher.html">The Exchange Scratchpad</a></li>
+        <li><a href="scratcher-assistant.html">The Scratcher Assistant</a></li>
+        <li><a href="datahub.html" class="active">DataHub</a></li>
+        <li><a href="iprl.html">IPRL</a></li>
+        <li><a href="mission.html">Миссия</a></li>
+        <li><a href="../datahub.html" class="lang-switch" onclick="localStorage.setItem('tsp_lang','en')">EN</a></li>
+      </ul></nav></header>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>DataHub</h1>
+        <p class="page-hero-sub">
+          Универсальный асинхронный конвейер данных с опциональным хранением в БД
+          и подписками в рантайме.</p>
+        <div class="hero-cta" style="margin-top:1.5rem;">
+          <a href="https://github.com/l2xl/extools" class="btn btn-primary" target="_blank" rel="noopener">Исходный код на GitHub &rarr;</a>
+          <a href="exchange-scratcher.html" class="btn btn-ghost">К The Exchange Scratchpad</a>
+        </div></div></section>
+    <section class="content-section">
+      <div class="container content-prose">
+        <!-- Диаграмма архитектуры -->
+        <h2>Архитектура</h2>
+        <p>
+          Диаграмма ниже показывает полный конвейер данных — от сырых байт из сети до уведомлений
+          подписчиков в памяти. Каждый компонент реализует единую концепцию data acceptor и может
+          быть исключён из конвейера, если избыточен. Например, стакан заявок не имеет
+          представления в БД: data adapter передаёт данные напрямую в data feed (data sink опускается).
+        </p>
+        <div style="overflow-x:auto;margin:2rem 0;border-radius:6px;">
+          <img src="../assets/datahub-diagram.svg"
+               alt="Диаграмма архитектуры DataHub: конвейер от Network через Transport, Dispatcher к Data Adapters, Data Sink с хранением через Data Model, Data Feed к Subscriptions."
+               style="width:100%;max-width:1200px;height:auto;display:block;" />
+        </div>
+
+        <!-- Обзор -->
+        <h2>Обзор</h2>
+        <p>DataHub — header-only библиотека на C++23, реализующая полный асинхронный конвейер
+          данных без накладных расходов в рантайме благодаря статическому полиморфизму и
+          compile-time рефлексии. Она соединяет сетевые источники (WebSocket, HTTP REST) с
+          типизированными коллбэками подписчиков, с опциональным хранением в базе данных.</p>
+
+        <!-- Основные компоненты -->
+        <h2>Основные компоненты</h2>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">&#9654;</div>
+            <div>
+              <strong>Data Dispatcher&lt;Acceptor...&gt;</strong>
+              <p>Принимает сырые JSON-строки от любого транспорта. Передаёт каждое сообщение
+                нескольким адаптерам, которые пытаются его декодировать через C++23
+                статическую рефлексию.</p></div></div>
+          <div class="feature-item">
+            <div class="feature-icon">&#9654;</div>
+            <div>
+              <strong>Data Adapter</strong>
+              <p>Десериализует JSON-строку в типизированный C++-структуру с помощью Glaze. Вызывает
+                нижестоящий обработчик и возвращает его результат <code>bool</code> —
+                <code>false</code> означает «не обработано», что позволяет передать сообщение
+                следующему адаптеру в цепочке диспетчера.</p></div></div>
+          <div class="feature-item">
+            <div class="feature-icon">&#9654;</div>
+            <div>
+              <strong>Data Sink</strong>
+              <p>
+                Собирает данные из разных потоков, сохраняет их и передаёт в Data Feed,
+                нацеленный на runtime-подписки.</p></div></div>
+          <div class="feature-item">
+            <div class="feature-icon">&#9654;</div>
+            <div>
+              <strong>Data Model</strong>
+              <p>
+                DAO с RAII-созданием таблицы при конструировании. Использует compile-time
+                рефлексию Glaze для получения имени таблицы, типов столбцов и первичного ключа —
+                без ручного написания SQL-схемы.</p></div></div>
+          <div class="feature-item">
+            <div class="feature-icon">&#9654;</div>
+            <div>
+              <strong>Data Feed</strong>
+              <p>Структурированный in-memory кэш, обеспечивающий быстрый доступ к актуальным данным для подписчиков.</p></div></div>
+          <div class="feature-item">
+            <div class="feature-icon">&#9654;</div>
+            <div>
+              <strong>Data Subscription</strong>
+              <p>Интерфейс уведомлений в рантайме.</p>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> The Scratcher Project. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
