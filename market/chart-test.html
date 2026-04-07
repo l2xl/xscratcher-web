@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candlestick chart — test</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    body { padding: 2rem 0; background: var(--color-bg); }
+    .chart-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .chart-wrap object {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1200 / 700;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .meta {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chart-wrap">
+    <object type="image/svg+xml" data="candlestick.svg">
+      <!-- fallback for browsers that block SVG scripts in <object> -->
+      <img src="candlestick.svg" alt="BTCUSDC 15m candlestick chart" />
+    </object>
+    <p class="meta">
+      BTCUSDC &middot; 15m &middot; Bybit spot &nbsp;|&nbsp;
+      data: <code>market/candles.json</code> &nbsp;|&nbsp;
+      renderer: <code>market/candlestick.svg</code>
+    </p>
+  </div>
+
+</body>
+</html>
