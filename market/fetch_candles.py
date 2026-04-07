@@ -70,7 +70,7 @@ def main():
     parser = argparse.ArgumentParser(description="Fetch Bybit candles → market/candles.json")
     parser.add_argument("--symbol",   default="BTCUSDC", help="Trading pair (default: BTCUSDC)")
     parser.add_argument("--interval", default="15",      help="Kline interval in minutes (default: 15)")
-    parser.add_argument("--limit",    default=80, type=int, help="Number of candles (default: 80)")
+    parser.add_argument("--limit",    default=100, type=int, help="Number of candles (default: 100)")
     args = parser.parse_args()
 
     candles = fetch_candles(args.symbol, args.interval, args.limit)
