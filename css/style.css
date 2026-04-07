@@ -808,6 +808,27 @@ blockquote {
   font-size: 0.82rem;
 }
 
+/* ----- Market chart ----- */
+.chart-wrap {
+  margin: 2rem 0;
+}
+
+.chart-wrap object {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 700;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.chart-wrap .meta {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+}
+
 /* ----- Responsive ----- */
 @media (max-width: 600px) {
   .hero { padding-block: 3rem 2.5rem; }
