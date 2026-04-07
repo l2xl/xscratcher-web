@@ -1,0 +1,2 @@
+# Runtime market data — managed by server cron, never committed to git
+candles.json
