@@ -27,20 +27,17 @@
   </header>
 
   <main>
-
     <section class="page-hero">
       <div class="container">
-        <h1>Intellectual Property<br />Reserve License</h1>
+        <h1>Intellectual Property<br/>Reserve License</h1>
         <p class="page-hero-sub">Publish your source code openly. Retain your intellectual property.</p>
       </div>
     </section>
-
     <section class="content-section">
       <div class="container content-prose">
-
         <!-- TL;DR box -->
         <div class="callout callout-accent">
-          <strong>The short version:</strong> The IPRL lets you publish source code openly while
+          <strong>The short version:</strong> The IPRL lets you publish source code while
           explicitly reserving intellectual property ownership — keeping it available as founder's
           capital if a company is ever formed around the project. The source is freely readable
           and usable, but <strong>IPRL is not an Open Source license</strong> in the OSI sense:
@@ -48,31 +45,22 @@
           restrictions are intentionally temporary — projects published under the IPRL plan to
           transition to a genuine open-source license once the IP situation is formalised.
         </div>
-
         <h2>The problem it solves</h2>
-        <p>
-          Founders at the pre-incorporation stage face a genuine dilemma. Open source is the right
+        <p>Founders at the pre-incorporation stage face a genuine dilemma. Open source is the right
           default — it builds trust, attracts contributors, and lets the community verify what you
           are building. But standard open-source licenses (MIT, Apache 2.0, GPL) were designed for
           established projects, not early-stage startups. They say nothing about IP ownership and
-          implicitly treat it as irrelevant.
-        </p>
-        <p>
-          When investors, co-founders, or lawyers enter the picture, the question of who owns the
+          implicitly treat it as irrelevant.</p>
+        <p>When investors, co-founders, or lawyers enter the picture, the question of who owns the
           intellectual property in that early open-source code becomes important and often
-          complicated. The IPRL addresses this before it becomes a problem.
-        </p>
-
+          complicated. The IPRL addresses this before it becomes a problem.</p>
         <h2>What the IPRL does</h2>
-        <p>
-          The license does two things simultaneously:
-        </p>
-
+        <p>The license does two things simultaneously:</p>
         <div class="feature-list">
           <div class="feature-item">
             <div class="feature-icon">&#10003;</div>
             <div>
-              <strong>Publishes source code openly</strong>
+              <strong>Allows to publish source code</strong>
               <p>
                 The source is publicly available: anyone can read, build, and use the software.
                 This transparency is deliberate and important. However, IPRL is not an Open Source
@@ -87,81 +75,28 @@
             <div class="feature-icon">&#128273;</div>
             <div>
               <strong>Reserves IP ownership — for now</strong>
-              <p>
-                The license states that intellectual property rights — patents, trademarks, trade
+              <p>The license states that intellectual property rights — patents, trademarks, trade
                 secrets, and the rights to commercialise the work — are reserved by the named
                 author or authors. Using or redistributing the software does not transfer or
                 implicitly license these rights. This reservation is a deliberate but temporary
                 measure: as the project matures and the pre-incorporation phase ends, the authors
                 intend to transition to a true open-source license.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <h2>When this matters</h2>
-        <p>
-          The typical scenario: a solo founder or small team builds something in the open, builds a
-          community around it, then reaches the point of incorporating a company. Without documented
-          IP ownership, the formation process can get complicated — who contributed what, does the
-          open-source license affect the company's ability to commercialise, do contributors have
-          implicit claims?
-        </p>
-        <p>
-          The IPRL makes the IP situation unambiguous from day one. Contributors know what they are
-          working with. Potential co-founders and investors have a clean paper trail. The founder's
-          contribution has a recorded value.
-        </p>
-
-        <h2>IPRL and the Open Source Definition</h2>
-        <p>
-          The IPRL is not an OSI-certified open-source license. It is closer in spirit to a
-          source-available license — the code is public and auditable, but not all the freedoms
-          required by the Open Source Definition are granted. The specific gap: IPRL reserves IP
-          rights over derivative works and commercial use — freedoms the Open Source Initiative
-          requires every certified license to grant unconditionally.
-        </p>
-        <p>
-          This is a deliberate trade-off, not an oversight. The goal is to publish openly and build
-          trust, without dissolving intellectual property into the commons before the legal
-          groundwork is in place. The IPRL tries to stay as close to open source as its legal
-          purpose allows, and the authors intend to remove these restrictions — moving to a genuine
-          open-source license — as soon as it becomes possible.
-        </p>
-        <p>
-          It is also not a substitute for legal advice at the point of actual company formation.
-          Think of it as a documented starting position — not a complete legal structure.
-        </p>
-
+              </p></div></div></div>
         <h2>Using the IPRL</h2>
-        <p>
-          The license text is freely available. To apply it to a project, include it as
+        <p>The license text is freely available. To apply it to a project, include it as
           <code>LICENSE</code> in the repository, with the author name or names and date filled in.
-          Add the standard header comment to source files.
-        </p>
-        <p>
-          The Scratcher Project uses the IPRL for all its projects during the pre-incorporation phase.
-        </p>
-
+          Add the standard header comment to source files.</p>
+        <p>The Scratcher Project uses the IPRL for all its projects during the pre-incorporation phase.</p>
         <div class="callout">
-          <strong>License text coming soon.</strong> The full IPRL text is being finalised.
+          <strong>The IPRV v1 is available.</strong> IPRL v2 currently in progress targeting modern version control based publication.<br>
           Follow progress and contribute at
           <a href="https://github.com/l2xl/IPRL" target="_blank" rel="noopener">github.com/l2xl/IPRL</a>,
-          or get in touch at
-          <a href="mailto:l2xl@protonmail.com">l2xl@protonmail.com</a>.
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
+          or get in touch at&nbsp;<a href="mailto:l2xl@protonmail.com">l2xl@protonmail.com</a></div></div></section></main>
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>&copy; <span id="year"></span> The Scratcher Project. All rights reserved.</p>
     </div>
   </footer>
-
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
