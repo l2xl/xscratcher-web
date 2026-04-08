@@ -34,6 +34,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 150%;
 }
 
 body {
@@ -69,8 +70,8 @@ code {
 
 /* ----- Utility ----- */
 .container {
-  width: 100%;
-  max-width: var(--max-w);
+  width: 80%;
+  min-width: var(--max-w);
   margin-inline: auto;
   padding-inline: 1.25rem;
 }
