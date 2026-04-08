@@ -848,7 +848,8 @@ blockquote {
   margin: 2rem 0;
 }
 
-.chart-wrap object {
+.chart-wrap object,
+.chart-wrap svg {
   display: block;
   width: 100%;
   height: auto;
@@ -863,6 +864,66 @@ blockquote {
   color: var(--color-muted);
   font-family: var(--font-mono);
 }
+
+/* ----- Live chart controls ----- */
+.chart-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
+.chart-status {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  min-width: 10rem;
+}
+
+.chart-status.error { color: #f44336; }
+.chart-status.ok    { color: var(--color-green); }
+
+.chart-selectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.chart-selectors label {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+}
+
+.chart-selectors select,
+.chart-selectors input[type="number"] {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.2rem 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.chart-selectors button {
+  background: var(--color-accent);
+  color: #0f0f0f;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.25rem 0.8rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.chart-selectors button:hover { background: var(--color-accent-dk); }
+.chart-selectors button:disabled { background: var(--color-surface); color: var(--color-muted); cursor: not-allowed; }
 
 /* ----- Responsive ----- */
 
