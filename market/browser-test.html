@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candlestick — browser fetch test</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    body { padding: 2rem 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-mono, monospace); }
+    .chart-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    h2 { font-size: 1rem; font-weight: 600; color: var(--color-muted); margin: 0 0 1rem; letter-spacing: .05em; text-transform: uppercase; }
+    .controls { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-bottom: 1rem; }
+    .controls label { font-size: .8rem; color: var(--color-muted); }
+    .controls select,
+    .controls input[type="number"] { background: #1e2130; color: #d1d4dc; border: 1px solid #2a2e39; border-radius: 4px; padding: .25rem .5rem; font-family: inherit; font-size: .85rem; }
+    .controls button { background: #2962ff; color: #fff; border: none; border-radius: 4px; padding: .3rem .9rem; font-family: inherit; font-size: .85rem; cursor: pointer; }
+    .controls button:hover { background: #1a4fd8; }
+    .controls button:disabled { background: #2a2e39; cursor: not-allowed; }
+    #status { font-size: .8rem; padding: .25rem 0; min-height: 1.4em; color: var(--color-muted); }
+    #status.error { color: #ef5350; }
+    #status.ok    { color: #26a69a; }
+    #chart-svg { display: block; width: 100%; height: auto; aspect-ratio: 1200/700; border-radius: 8px; background: #131722; }
+    .meta { margin-top: .75rem; font-size: .75rem; color: var(--color-muted); }
+    .meta code { color: #a0a8b8; }
+  </style>
+</head>
+<body>
+<div class="chart-wrap">
+  <h2>Candlestick — browser fetch test</h2>
+
+  <div class="controls">
+    <label for="sym">Symbol</label>
+    <select id="sym">
+      <option value="BTCUSDC" selected>BTCUSDC</option>
+      <option value="ETHUSDC">ETHUSDC</option>
+      <option value="SOLUSDC">SOLUSDC</option>
+    </select>
+    <label for="ivl">Interval</label>
+    <select id="ivl">
+      <option value="1">1m</option>
+      <option value="5">5m</option>
+      <option value="15" selected>15m</option>
+      <option value="60">1h</option>
+      <option value="240">4h</option>
+      <option value="D">1D</option>
+    </select>
+    <label for="lim">Candles</label>
+    <input id="lim" type="number" value="100" min="10" max="200" style="width:5rem" />
+    <button id="btn-load">Refresh</button>
+  </div>
+
+  <div id="status">Loading…</div>
+
+  <svg id="chart-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+    <rect width="1200" height="700" fill="#131722"/>
+    <g id="grid"></g>
+    <g id="candles"></g>
+    <g id="overlay"></g>
+  </svg>
+
+  <p class="meta">
+    Data: Bybit public API (browser fetch, no server) &nbsp;|&nbsp;
+    <code>market/candles-browser.js</code>
+  </p>
+</div>
+
+<script src="candles-browser.js"></script>
+<script>
+  var svg = document.getElementById('chart-svg');
+  var statusEl = document.getElementById('status');
+  var btn = document.getElementById('btn-load');
+
+  function doLoad() {
+    btn.disabled = true;
+    statusEl.className = '';
+    statusEl.textContent = 'Loading\u2026';
+    CandleChart.load(svg, {
+      symbol:   document.getElementById('sym').value,
+      interval: document.getElementById('ivl').value,
+      limit:    parseInt(document.getElementById('lim').value, 10) || 100
+    }, function(msg, isError) {
+      btn.disabled = false;
+      statusEl.textContent = msg;
+      statusEl.className = isError ? 'error' : 'ok';
+    });
+  }
+
+  btn.addEventListener('click', doLoad);
+  doLoad();
+</script>
+</body>
+</html>
