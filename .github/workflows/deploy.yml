@@ -26,6 +26,11 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
 
+          # Stop any in-flight candle fetch before overwriting files
+          ssh -i /tmp/deploy_key -p "${SSH_PORT:-22}" -o StrictHostKeyChecking=no \
+            "$SSH_USER@$SSH_HOST" \
+            'pkill -f "fetch_candles.py" 2>/dev/null || true'
+
           # Sync all site files to the server's web root
           # Excludes hidden files (.git, .github, etc.) automatically via --exclude
           rsync -avz --delete \
