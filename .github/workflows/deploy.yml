@@ -29,8 +29,7 @@ jobs:
           # Stop any in-flight candle fetch and remove the cron job if present
           ssh -i /tmp/deploy_key -p "${SSH_PORT:-22}" -o StrictHostKeyChecking=no \
             "$SSH_USER@$SSH_HOST" \
-            'pkill -f "fetch_candles.py" 2>/dev/null || true
-             crontab -l 2>/dev/null | grep -v "fetch_candles.py" | crontab -'
+            'pkill -f "fetch_candles.py" 2>/dev/null || true; crontab -l 2>/dev/null | grep -v "fetch_candles.py" | crontab -'
 
           # Sync all site files to the server's web root
           # Excludes hidden files (.git, .github, etc.) automatically via --exclude
