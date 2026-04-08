@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candlestick — browser fetch test</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    body { padding: 2rem 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-mono, monospace); }
+
+    .chart-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-muted);
+      margin: 0 0 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .controls label {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    .controls select,
+    .controls input[type="number"] {
+      background: #1e2130;
+      color: #d1d4dc;
+      border: 1px solid #2a2e39;
+      border-radius: 4px;
+      padding: 0.25rem 0.5rem;
+      font-family: inherit;
+      font-size: 0.85rem;
+    }
+
+    .controls button {
+      background: #2962ff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.3rem 0.9rem;
+      font-family: inherit;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .controls button:hover { background: #1a4fd8; }
+    .controls button:disabled { background: #2a2e39; cursor: not-allowed; }
+
+    #status {
+      font-size: 0.8rem;
+      padding: 0.25rem 0;
+      min-height: 1.4em;
+    }
+    #status.ok    { color: #26a69a; }
+    #status.error { color: #ef5350; }
+    #status.info  { color: var(--color-muted); }
+
+    #chart-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1200 / 700;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #131722;
+    }
+
+    .meta {
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--color-muted);
+    }
+    .meta code { color: #a0a8b8; }
+  </style>
+</head>
+<body>
+
+<div class="chart-wrap">
+  <h2>Candlestick — browser fetch test</h2>
+
+  <div class="controls">
+    <label for="sym">Symbol</label>
+    <select id="sym">
+      <option value="BTCUSDC" selected>BTCUSDC</option>
+      <option value="ETHUSDC">ETHUSDC</option>
+      <option value="SOLUSDC">SOLUSDC</option>
+    </select>
+
+    <label for="ivl">Interval</label>
+    <select id="ivl">
+      <option value="1">1m</option>
+      <option value="5">5m</option>
+      <option value="15" selected>15m</option>
+      <option value="60">1h</option>
+      <option value="240">4h</option>
+      <option value="D">1D</option>
+    </select>
+
+    <label for="lim">Candles</label>
+    <input id="lim" type="number" value="100" min="10" max="200" style="width:5rem" />
+
+    <button id="btn-load" onclick="load()">Refresh</button>
+  </div>
+
+  <div id="status" class="info">Loading…</div>
+
+  <svg id="chart-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+    <rect width="1200" height="700" fill="#131722"/>
+    <g id="grid"></g>
+    <g id="candles"></g>
+    <g id="overlay"></g>
+  </svg>
+
+  <p class="meta">
+    Data fetched by browser from Bybit public API &nbsp;|&nbsp;
+    Script: <code>market/candles-browser.js</code> &nbsp;|&nbsp;
+    No server cron required
+  </p>
+</div>
+
+<script src="candles-browser.js"></script>
+<script>
+var GREEN     = '#26a69a';
+var RED       = '#ef5350';
+var GRID_COL  = '#1e2130';
+var AXIS_TEXT = '#787b86';
+var LAST_LINE = '#2962ff';
+
+var W = 1200, H = 700;
+var M = { top: 20, right: 72, bottom: 28, left: 8 };
+var chartW = W - M.left - M.right;
+var chartH = H - M.top - M.bottom;
+var ns = 'http://www.w3.org/2000/svg';
+
+function mk(tag, attrs, parent) {
+  var e = document.createElementNS(ns, tag);
+  for (var k in attrs) e.setAttribute(k, String(attrs[k]));
+  parent.appendChild(e);
+  return e;
+}
+
+function clearGroup(id) {
+  var g = document.getElementById(id);
+  while (g.firstChild) g.removeChild(g.firstChild);
+  return g;
+}
+
+function render(DATA) {
+  var grid = clearGroup('grid');
+  var cg   = clearGroup('candles');
+  var ov   = clearGroup('overlay');
+
+  var prices = [];
+  for (var i = 0; i < DATA.length; i++) { prices.push(DATA[i].h, DATA[i].l); }
+  var minP = Math.min.apply(null, prices);
+  var maxP = Math.max.apply(null, prices);
+  var pad  = (maxP - minP) * 0.06;
+  var lo   = minP - pad;
+  var hi   = maxP + pad;
+
+  function py(p) { return M.top + chartH - ((p - lo) / (hi - lo)) * chartH; }
+  var spacing = chartW / DATA.length;
+  var cw = Math.max(1, Math.floor(spacing * 0.65));
+  function cx(i) { return M.left + i * spacing + spacing / 2; }
+
+  var STEPS = 9;
+  for (var s = 0; s <= STEPS; s++) {
+    var p = lo + (hi - lo) * (s / STEPS);
+    var y = py(p);
+    mk('line', { x1: M.left, y1: y, x2: W - M.right, y2: y, stroke: GRID_COL, 'stroke-width': 1 }, grid);
+    mk('text', { x: W - M.right + 6, y: y + 4, fill: AXIS_TEXT, 'font-size': 11, 'font-family': 'monospace' }, grid)
+      .textContent = p.toFixed(2);
+  }
+  mk('line', { x1: W - M.right, y1: M.top,     x2: W - M.right, y2: H - M.bottom, stroke: '#2a2e39', 'stroke-width': 1 }, grid);
+  mk('line', { x1: M.left,      y1: H - M.bottom, x2: W - M.right, y2: H - M.bottom, stroke: '#2a2e39', 'stroke-width': 1 }, grid);
+
+  for (var j = 0; j < DATA.length; j++) {
+    var d   = DATA[j];
+    var x   = cx(j);
+    var col = d.c >= d.o ? GREEN : RED;
+    var bTop = py(Math.max(d.o, d.c));
+    var bBot = py(Math.min(d.o, d.c));
+    var bH   = Math.max(1, bBot - bTop);
+    mk('line', { x1: x, y1: py(d.h), x2: x, y2: py(d.l), stroke: col, 'stroke-width': 1 }, cg);
+    mk('rect', { x: x - cw / 2, y: bTop, width: cw, height: bH, fill: col }, cg);
+  }
+
+  var last = DATA[DATA.length - 1].c;
+  var ly   = py(last);
+  mk('line', { x1: M.left, y1: ly, x2: W - M.right, y2: ly, stroke: LAST_LINE, 'stroke-width': 1, 'stroke-dasharray': '3,3', opacity: 0.8 }, ov);
+  mk('rect', { x: W - M.right, y: ly - 9, width: M.right - 2, height: 18, fill: LAST_LINE, rx: 2 }, ov);
+  mk('text', { x: W - M.right + 4, y: ly + 4, fill: '#ffffff', 'font-size': 11, 'font-family': 'monospace', 'font-weight': 'bold' }, ov)
+    .textContent = last.toFixed(2);
+}
+
+function setStatus(msg, cls) {
+  var el = document.getElementById('status');
+  el.textContent = msg;
+  el.className = cls || 'info';
+}
+
+function load() {
+  var btn = document.getElementById('btn-load');
+  btn.disabled = true;
+  setStatus('Fetching from Bybit API…', 'info');
+
+  var opts = {
+    symbol:   document.getElementById('sym').value,
+    interval: document.getElementById('ivl').value,
+    limit:    parseInt(document.getElementById('lim').value, 10) || 100
+  };
+
+  fetchCandles(opts, function(err, candles) {
+    btn.disabled = false;
+    if (err) {
+      setStatus('Error: ' + err, 'error');
+      return;
+    }
+    render(candles);
+    var ts = new Date().toLocaleTimeString();
+    setStatus(
+      'OK — ' + candles.length + ' candles · ' + opts.symbol + ' ' + opts.interval + 'm · updated ' + ts,
+      'ok'
+    );
+  });
+}
+
+load();
+</script>
+
+</body>
+</html>
