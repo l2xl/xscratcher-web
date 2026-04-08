@@ -148,7 +148,7 @@ var CandleChart = (function () {
   function fetchCandles(opts, callback) {
     var symbol   = (opts && opts.symbol)   || 'BTCUSDC';
     var interval = (opts && opts.interval) || '15';
-    var limit    = (opts && opts.limit)    || 100;
+    var limit    = (opts && opts.limit)    || 300;
 
     var url = BYBIT_KLINE_URL +
       '?category=spot' +
