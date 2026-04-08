@@ -85,10 +85,35 @@
         </p>
 
         <div class="chart-wrap">
-          <object type="image/svg+xml" data="../market/candlestick.svg">
-            <img src="../market/candlestick.svg" alt="BTCUSDC 15m candlestick chart" />
-          </object>
-          <p class="meta">BTCUSDC &middot; 15m &middot; Bybit spot</p>
+          <svg id="chart-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+            <rect width="1200" height="700" fill="#1a1a1a"/>
+            <g id="grid"></g>
+            <g id="candles"></g>
+            <g id="overlay"></g>
+          </svg>
+          <div class="chart-controls">
+            <div id="chart-status" class="chart-status">Loading&hellip;</div>
+            <div class="chart-selectors">
+              <label for="chart-sym">Symbol</label>
+              <select id="chart-sym">
+                <option value="BTCUSDC" selected>BTCUSDC</option>
+                <option value="ETHUSDC">ETHUSDC</option>
+                <option value="SOLUSDC">SOLUSDC</option>
+              </select>
+              <label for="chart-ivl">Interval</label>
+              <select id="chart-ivl">
+                <option value="1">1m</option>
+                <option value="5">5m</option>
+                <option value="15" selected>15m</option>
+                <option value="60">1h</option>
+                <option value="240">4h</option>
+                <option value="D">1D</option>
+              </select>
+              <label for="chart-lim">Candles</label>
+              <input id="chart-lim" type="number" value="300" min="10" max="1000" style="width:4rem" />
+              <button id="chart-btn">Refresh</button>
+            </div>
+          </div>
         </div>
 
         <!-- ── Как это работает ──────────────────────────── -->
@@ -263,6 +288,32 @@
     </div>
   </footer>
 
+  <script src="../market/candles-browser.js"></script>
+  <script>
+    (function () {
+      var svg      = document.getElementById('chart-svg');
+      var statusEl = document.getElementById('chart-status');
+      var btn      = document.getElementById('chart-btn');
+
+      function doLoad() {
+        btn.disabled = true;
+        statusEl.className = 'chart-status';
+        statusEl.textContent = 'Loading\u2026';
+        CandleChart.load(svg, {
+          symbol:   document.getElementById('chart-sym').value,
+          interval: document.getElementById('chart-ivl').value,
+          limit:    parseInt(document.getElementById('chart-lim').value, 10) || 100
+        }, function (msg, isError) {
+          btn.disabled = false;
+          statusEl.textContent = msg;
+          statusEl.className = 'chart-status ' + (isError ? 'error' : 'ok');
+        });
+      }
+
+      btn.addEventListener('click', doLoad);
+      doLoad();
+    }());
+  </script>
   <script src="../js/nav.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();

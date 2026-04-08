@@ -26,6 +26,12 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
 
+          # Stop any in-flight candle fetch and remove the cron job if present
+          ssh -i /tmp/deploy_key -p "${SSH_PORT:-22}" -o StrictHostKeyChecking=no \
+            "$SSH_USER@$SSH_HOST" \
+            'pkill -f "fetch_candles.py" 2>/dev/null || true
+             crontab -l 2>/dev/null | grep -v "fetch_candles.py" | crontab -'
+
           # Sync all site files to the server's web root
           # Excludes hidden files (.git, .github, etc.) automatically via --exclude
           rsync -avz --delete \
@@ -36,12 +42,6 @@ jobs:
             --exclude='market/candles.json' \
             ./ \
             "$SSH_USER@$SSH_HOST:/var/www/scratcher/"
-
-          # Install (or update) the candle-refresh cron job on the server.
-          # Removes any existing fetch_candles.py entry first so the step is idempotent.
-          ssh -i /tmp/deploy_key -p "${SSH_PORT:-22}" -o StrictHostKeyChecking=no \
-            "$SSH_USER@$SSH_HOST" \
-            '(crontab -l 2>/dev/null | grep -v "fetch_candles.py"; echo "*/15 * * * * cd /var/www/scratcher && python3 market/fetch_candles.py >> /var/log/candles.log 2>&1") | crontab -'
 
           # Clean up key
           rm -f /tmp/deploy_key

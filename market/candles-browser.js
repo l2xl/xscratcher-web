@@ -63,10 +63,10 @@ var CandleChart = (function () {
     {o:257,h:264,l:253,c:261},{o:261,h:268,l:257,c:265}
   ];
 
-  var GREEN     = '#26a69a';
-  var RED       = '#ef5350';
-  var GRID_COL  = '#1e2130';
-  var AXIS_TEXT = '#787b86';
+  var GREEN     = '#3ecf8e';
+  var RED       = '#f44336';
+  var GRID_COL  = '#272727';
+  var AXIS_TEXT = '#888888';
   var LAST_LINE = '#2962ff';
   var NS        = 'http://www.w3.org/2000/svg';
 
@@ -119,8 +119,8 @@ var CandleChart = (function () {
       mk('text', { x: W - M.right + 6, y: y + 4, fill: AXIS_TEXT, 'font-size': 11, 'font-family': 'monospace' }, grid)
         .textContent = p.toFixed(2);
     }
-    mk('line', { x1: W - M.right, y1: M.top,        x2: W - M.right, y2: H - M.bottom, stroke: '#2a2e39', 'stroke-width': 1 }, grid);
-    mk('line', { x1: M.left,      y1: H - M.bottom, x2: W - M.right, y2: H - M.bottom, stroke: '#2a2e39', 'stroke-width': 1 }, grid);
+    mk('line', { x1: W - M.right, y1: M.top,        x2: W - M.right, y2: H - M.bottom, stroke: '#333333', 'stroke-width': 1 }, grid);
+    mk('line', { x1: M.left,      y1: H - M.bottom, x2: W - M.right, y2: H - M.bottom, stroke: '#333333', 'stroke-width': 1 }, grid);
 
     /* candle bodies + wicks */
     for (var j = 0; j < DATA.length; j++) {
@@ -148,7 +148,7 @@ var CandleChart = (function () {
   function fetchCandles(opts, callback) {
     var symbol   = (opts && opts.symbol)   || 'BTCUSDC';
     var interval = (opts && opts.interval) || '15';
-    var limit    = (opts && opts.limit)    || 100;
+    var limit    = (opts && opts.limit)    || 300;
 
     var url = BYBIT_KLINE_URL +
       '?category=spot' +
