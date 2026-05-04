@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Investor Relations — The Scratcher Project</title>
+  <link rel="stylesheet" href="investor.css" />
+</head>
+<body>
+
+  <header class="inv-header">
+    <a href="index.html" class="inv-logo">
+      <img src="../assets/logo.svg" alt="" width="28" height="28" />
+      The Scratcher Project
+    </a>
+    <div class="inv-header-right">
+      <span class="inv-header-label">Investor Relations</span>
+    </div>
+  </header>
+
+  <!-- Full-width sunrise hero -->
+  <section class="inv-hero" aria-label="Investor portal hero">
+    <div class="inv-hero-inner">
+      <div class="inv-hero-eyebrow">Confidential &nbsp;&middot;&nbsp; Qualified Investors Only</div>
+      <h1 class="inv-hero-title">
+        Building the future<br>
+        of <em>crypto infrastructure</em>
+      </h1>
+      <p class="inv-hero-sub">
+        Open-source trading tools for the next generation of engineers and independent traders.
+      </p>
+    </div>
+    <!-- Planet horizon arc -->
+    <div class="inv-hero-arc" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="720" cy="90" rx="1050" ry="90" fill="#fffaf5" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Sidebar + content -->
+  <div class="inv-wrapper">
+
+    <aside class="inv-sidebar">
+      <div class="inv-sidebar-label">Documents</div>
+      <ul class="inv-nav">
+        <li><a href="index.html" class="active"><span class="inv-nav-icon">&#9670;</span> Overview</a></li>
+        <li><a href="brief.html"><span class="inv-nav-icon">&#9673;</span> Company Brief</a></li>
+        <li><a href="pitch-deck.html"><span class="inv-nav-icon">&#9670;</span> Pitch Deck</a></li>
+      </ul>
+    </aside>
+
+    <main class="inv-content">
+
+      <span class="inv-confidential">&#128274;&nbsp; Confidential</span>
+
+      <div class="inv-intro">
+        <h2>Investor Documentation</h2>
+        <p>
+          Welcome to the investor relations portal for The Scratcher Project.
+          The materials below are provided for qualified investors under a
+          confidentiality agreement and are not intended for public distribution.
+        </p>
+        <p>Select a document from the catalog or use the sidebar to navigate.</p>
+      </div>
+
+      <div class="inv-catalog">
+
+        <a href="brief.html" class="inv-catalog-card">
+          <div class="inv-card-icon">&#9673;</div>
+          <div class="inv-card-title">Company Brief</div>
+          <p class="inv-card-desc">
+            Executive summary covering vision, market opportunity,
+            product overview, and founding team.
+          </p>
+          <span class="inv-card-arrow">Read brief &rarr;</span>
+        </a>
+
+        <a href="pitch-deck.html" class="inv-catalog-card">
+          <div class="inv-card-icon">&#9670;</div>
+          <div class="inv-card-title">Pitch Deck</div>
+          <p class="inv-card-desc">
+            Full investor presentation: problem, solution, traction,
+            go-to-market, financials, and the ask.
+          </p>
+          <span class="inv-card-arrow">View deck &rarr;</span>
+        </a>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <footer class="inv-footer">
+    <p>
+      &copy; <span id="year"></span> The Scratcher Project
+      &nbsp;&middot;&nbsp; Confidential &mdash; not for distribution
+      &nbsp;&middot;&nbsp; <a href="../index.html">Back to main site</a>
+    </p>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
