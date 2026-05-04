@@ -1,11 +1,365 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Company Brief &mdash; Investor Relations &middot; The Scratcher Project</title>
   <link rel="stylesheet" href="investor.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    /* ── Brief-specific components (use investor.css variables) ── */
+
+    .brief-badge {
+      display: inline-block;
+      background: var(--inv-accent);
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 800;
+      padding: 0.4em 1.2em;
+      border-radius: var(--inv-radius);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Metric cards ── */
+    .brief-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 0;
+    }
+    .brief-metric {
+      background: #fff;
+      border: 1px solid var(--inv-border);
+      border-top: 3px solid var(--inv-rose);
+      border-radius: var(--inv-radius);
+      padding: 1rem;
+      text-align: center;
+    }
+    .brief-metric .bm-label {
+      font-size: 0.67rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--inv-faint);
+      margin-bottom: 0.3rem;
+    }
+    .brief-metric .bm-value {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--inv-text);
+    }
+    .brief-metric .bm-sub {
+      font-size: 0.69rem;
+      color: var(--inv-muted);
+      margin-top: 0.15rem;
+    }
+
+    /* ── Section titles ── */
+    .brief-section {
+      margin-bottom: 2.25rem;
+    }
+    .brief-section-title {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--inv-rose);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .brief-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--inv-border);
+    }
+
+    /* ── Mermaid diagrams ── */
+    .brief-mermaid-wrap {
+      background: #fff;
+      border: 1px solid var(--inv-border);
+      border-radius: var(--inv-radius-lg);
+      padding: 1.25rem 1.5rem;
+      overflow-x: auto;
+      margin-bottom: 0.75rem;
+    }
+    .brief-mermaid-wrap:last-child { margin-bottom: 0; }
+    .mermaid { text-align: center; }
+
+    /* ── Why us quote ── */
+    .brief-quote {
+      background: linear-gradient(135deg, #c43060 0%, var(--inv-rose) 100%);
+      color: #fff;
+      border-radius: var(--inv-radius-lg);
+      padding: 1.5rem 2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.75;
+      margin-bottom: 2.25rem;
+    }
+    .brief-quote strong { color: #ffd700; font-weight: 800; }
+
+    /* ── Two columns ── */
+    .brief-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem;
+    }
+
+    /* ── Innovation table ── */
+    .brief-inno-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+    .brief-inno-table tr { border-bottom: 1px solid var(--inv-border); }
+    .brief-inno-table tr:last-child { border-bottom: none; }
+    .brief-inno-table td { padding: 0.55rem 0.6rem; vertical-align: top; }
+    .brief-inno-table td:first-child {
+      font-weight: 700;
+      color: var(--inv-text);
+      white-space: nowrap;
+      width: 185px;
+      font-size: 0.8rem;
+    }
+    .brief-inno-table td:last-child { color: var(--inv-muted); }
+    .brief-inno-table strong { color: var(--inv-accent); font-weight: 700; }
+
+    /* ── Business model cards ── */
+    .brief-biz-card {
+      background: #fff;
+      border: 1px solid var(--inv-border);
+      border-radius: var(--inv-radius-lg);
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .brief-biz-card:last-child { margin-bottom: 0; }
+    .brief-biz-card h4 {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--inv-text);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 2px solid var(--inv-rose);
+    }
+    .brief-biz-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid var(--inv-border);
+      font-size: 0.83rem;
+    }
+    .brief-biz-item:last-child { border-bottom: none; }
+    .brief-biz-item .bi-key { color: var(--inv-muted); }
+    .brief-biz-item .bi-val { font-weight: 700; color: var(--inv-text); text-align: right; }
+    .brief-biz-item .bi-val.zero { color: var(--inv-accent); }
+
+    /* ── ARR table ── */
+    .brief-arr-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+    .brief-arr-table th {
+      background: var(--inv-text);
+      color: #fff;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.7rem;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .brief-arr-table th:first-child { text-align: left; border-radius: 6px 0 0 0; }
+    .brief-arr-table th:last-child  { border-radius: 0 6px 0 0; }
+    .brief-arr-table td {
+      padding: 0.55rem 0.75rem;
+      text-align: center;
+      border: 1px solid var(--inv-border);
+    }
+    .brief-arr-table td:first-child { text-align: left; font-weight: 600; color: var(--inv-muted); }
+    .brief-arr-table tr.arr-highlight td {
+      background: var(--inv-text);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.94rem;
+    }
+    .brief-arr-table tr.arr-highlight td:first-child { color: var(--inv-champagne); }
+    .brief-arr-sam {
+      margin-top: 0.6rem;
+      background: #fff8e1;
+      border-left: 3px solid var(--inv-gold);
+      padding: 0.5rem 0.9rem;
+      font-size: 0.82rem;
+      border-radius: 0 var(--inv-radius) var(--inv-radius) 0;
+      color: var(--inv-muted);
+    }
+    .brief-arr-sam strong { color: var(--inv-text); }
+
+    /* ── Roadmap ── */
+    .brief-roadmap-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--inv-border);
+      font-size: 0.85rem;
+      color: var(--inv-muted);
+    }
+    .brief-roadmap-item:last-child { border-bottom: none; }
+    .brief-roadmap-dot {
+      width: 8px; height: 8px;
+      background: var(--inv-rose);
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    .brief-roadmap-date {
+      font-weight: 700;
+      color: var(--inv-text);
+      min-width: 88px;
+      display: inline-block;
+    }
+
+    /* ── Team ── */
+    .brief-team-name {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--inv-text);
+      margin-bottom: 0.2rem;
+    }
+    .brief-team-role {
+      font-size: 0.72rem;
+      color: var(--inv-rose);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.6rem;
+    }
+    .brief-team-stack {
+      font-size: 0.83rem;
+      color: var(--inv-muted);
+      line-height: 1.9;
+    }
+    .brief-team-advisory {
+      margin-top: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--inv-faint);
+      font-style: italic;
+      line-height: 1.65;
+    }
+
+    /* ── Round terms ── */
+    .brief-terms-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .brief-term-card {
+      background: #fff;
+      border: 1px solid var(--inv-border);
+      border-radius: var(--inv-radius);
+      padding: 0.85rem 0.6rem;
+      text-align: center;
+    }
+    .brief-term-card .tc-label {
+      font-size: 0.63rem;
+      color: var(--inv-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      margin-bottom: 0.25rem;
+    }
+    .brief-term-card .tc-value {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--inv-text);
+    }
+
+    /* ── Budget bars ── */
+    .brief-budget-rows { margin-bottom: 1rem; }
+    .brief-budget-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.82rem;
+    }
+    .brief-budget-label { width: 190px; color: var(--inv-muted); flex-shrink: 0; }
+    .brief-budget-track {
+      flex: 1;
+      background: var(--inv-border);
+      border-radius: 3px;
+      height: 7px;
+    }
+    .brief-budget-fill {
+      height: 7px;
+      background: linear-gradient(90deg, var(--inv-rose), var(--inv-accent));
+      border-radius: 3px;
+    }
+    .brief-budget-pct {
+      width: 80px;
+      text-align: right;
+      font-weight: 700;
+      color: var(--inv-text);
+      font-size: 0.79rem;
+    }
+
+    /* ── Jurisdiction note ── */
+    .brief-juris-note {
+      margin-top: 0;
+      font-size: 0.8rem;
+      color: var(--inv-faint);
+      padding: 0.7rem 1rem;
+      background: var(--inv-surface);
+      border-radius: var(--inv-radius);
+      border-left: 3px solid var(--inv-border);
+    }
+    .brief-juris-note strong { color: var(--inv-muted); }
+
+    /* ── Contact block ── */
+    .brief-contact {
+      background: var(--inv-surface);
+      border: 1px solid var(--inv-border);
+      border-radius: var(--inv-radius-lg);
+      padding: 1.4rem 1.75rem;
+      font-size: 0.86rem;
+      color: var(--inv-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .brief-contact strong { color: var(--inv-text); }
+    .brief-contact-links {
+      display: flex;
+      gap: 1rem;
+      flex-shrink: 0;
+      font-size: 0.82rem;
+      color: var(--inv-faint);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .brief-metrics { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .brief-two-col { grid-template-columns: 1fr; }
+      .brief-terms-grid { grid-template-columns: repeat(3, 1fr); }
+      .brief-budget-label { width: 140px; }
+    }
+    @media (max-width: 480px) {
+      .brief-metrics { grid-template-columns: repeat(2, 1fr); }
+      .brief-terms-grid { grid-template-columns: repeat(2, 1fr); }
+      .brief-budget-label { width: 110px; font-size: 0.75rem; }
+      .brief-budget-pct { width: 60px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -33,23 +387,286 @@
 
     <main class="inv-content">
 
+      <!-- Hero -->
       <div class="inv-page-hero">
         <div class="inv-page-eyebrow">Investor Document &middot; 2025</div>
         <h1 class="inv-page-title">Company Brief</h1>
         <p class="inv-page-sub">
-          An executive summary of The Scratcher Project &mdash;
-          vision, market opportunity, product, and founding team.
+          THE EXCHANGE SCRATCHER &mdash; Open Source торговая платформа нового
+          поколения для торговли на криптобиржах.
         </p>
+        <div style="margin-top: 1.25rem;">
+          <span class="brief-badge">Pre-Seed &middot; $205 000</span>
+        </div>
       </div>
 
-      <div class="inv-placeholder">
-        <div class="inv-placeholder-icon">&#9673;</div>
-        <h3>Content coming soon</h3>
-        <p>
-          The company brief is being prepared. This section will contain
-          the full executive summary document.
-        </p>
-        <span class="inv-placeholder-tag">In preparation</span>
+      <!-- РЫНОК -->
+      <div class="brief-section">
+        <div class="brief-section-title">Рынок</div>
+        <div class="brief-metrics">
+          <div class="brief-metric">
+            <div class="bm-label">&#127757; TAM сейчас</div>
+            <div class="bm-value">$1.63B</div>
+            <div class="bm-sub">рынок крипто-инструментов</div>
+          </div>
+          <div class="brief-metric">
+            <div class="bm-label">&#127919; SAM</div>
+            <div class="bm-value">1&ndash;2M</div>
+            <div class="bm-sub">tech-трейдеров</div>
+          </div>
+          <div class="brief-metric">
+            <div class="bm-label">&#128200; CAGR</div>
+            <div class="bm-value">16%</div>
+            <div class="bm-sub">к 2032 &rarr; $5.4B</div>
+          </div>
+          <div class="brief-metric">
+            <div class="bm-label">&#128202; ARR Год 5</div>
+            <div class="bm-value">$96M+</div>
+            <div class="bm-sub">SAM потенциал $480M+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ОКНО ВОЗМОЖНОСТЕЙ -->
+      <div class="brief-section">
+        <div class="brief-section-title">Окно возможностей</div>
+        <div class="brief-mermaid-wrap">
+          <div class="mermaid">
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 40}}}%%
+flowchart LR
+    A["&#127962; КРИПТО-БИРЖИ\nСниженные регуляции\nВысокая волатильность\nМалый объём торгов\nВход с малым депозитом"] -->|"Стать трейдером легко"| B["&#128104;&#8205;&#128187; IT-ИНЖЕНЕРЫ\nЗнают крипто · высокий доход\nФинансовая грамотность\nАудитория готова расти"]
+    B -->|"Целевая аудитория"| C["&#128275; OPEN SOURCE\nДоверие целевой аудитории\nНизкий CAC\nИнновационный инструмент\nЕдинственные в поиске"]
+    C -->|"Активные трейдеры"| D["&#128176; AFFILIATE PROGRAM\nБиржа платит 20–50%\nот своей комиссии\nМонетизация с первой сделки"]
+          </div>
+        </div>
+        <div class="brief-mermaid-wrap">
+          <div class="mermaid">
+flowchart TD
+    A["&#129302; AI РЕВОЛЮЦИЯ"] --> B["&#9881;&#65039; AI В РАЗРАБОТКЕ\nСкорость и качество разработки продукта\nв разы выше, чем у конкурентов"]
+    A --> C["&#128200; AI АССИСТЕНТ В ТОРГОВЛЕ\nПишет стратегии · выбирает момент входа\nМониторит рынок 24/7"]
+          </div>
+        </div>
+      </div>
+
+      <!-- ПОЧЕМУ МЫ -->
+      <div class="brief-quote">
+        Мы даём трейдеру <strong>бесплатно инновационный инструмент</strong> &mdash;
+        и получаем <strong>20&ndash;50% комиссии биржи</strong> с каждой его сделки.
+      </div>
+
+      <!-- ИННОВАЦИИ + БИЗНЕС-МОДЕЛЬ -->
+      <div class="brief-section">
+        <div class="brief-two-col">
+          <div>
+            <div class="brief-section-title">Инновации</div>
+            <table class="brief-inno-table">
+              <tr>
+                <td>Trader Cockpit</td>
+                <td>Всё на одном экране без переключений</td>
+              </tr>
+              <tr>
+                <td>Авто ТА-маркеры</td>
+                <td>Уровни, тренды, каналы &mdash; без настройки</td>
+              </tr>
+              <tr>
+                <td>Динамические ордера</td>
+                <td>Привязаны к ТА &mdash; пересчитываются при изменении рынка</td>
+              </tr>
+              <tr>
+                <td>Новые типы ордеров</td>
+                <td><strong>Динамический лимитный &middot; Catch the Tail</strong> &mdash; аналогов нет</td>
+              </tr>
+              <tr>
+                <td>Ордербук + график</td>
+                <td>Синхронизированы по оси цены</td>
+              </tr>
+              <tr>
+                <td>Scratcher Assistant</td>
+                <td>AI-агент: стратегии в коде, вход, мониторинг 24/7</td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <div class="brief-section-title">Бизнес-модель</div>
+            <div class="brief-biz-card">
+              <h4>Фаза 1 &mdash; Fee Share (мес. 0&ndash;18)</h4>
+              <div class="brief-biz-item">
+                <span class="bi-key">Трейдер платит</span>
+                <span class="bi-val zero">$0</span>
+              </div>
+              <div class="brief-biz-item">
+                <span class="bi-key">Биржа платит нам</span>
+                <span class="bi-val">20&ndash;30% комиссий</span>
+              </div>
+              <div class="brief-biz-item">
+                <span class="bi-key">Revenue с первой сделки</span>
+                <span class="bi-val">без порога</span>
+              </div>
+            </div>
+            <div class="brief-biz-card">
+              <h4>Фаза 2 &mdash; Broker Master (~мес. 16&ndash;18)</h4>
+              <div class="brief-biz-item">
+                <span class="bi-key">Fee share растёт до</span>
+                <span class="bi-val">40&ndash;50%</span>
+              </div>
+              <div class="brief-biz-item">
+                <span class="bi-key">Cloud Starter</span>
+                <span class="bi-val">$12/мес</span>
+              </div>
+              <div class="brief-biz-item">
+                <span class="bi-key">Доп. биржа</span>
+                <span class="bi-val">+$5/мес</span>
+              </div>
+              <div class="brief-biz-item">
+                <span class="bi-key">Marketplace стратегий</span>
+                <span class="bi-val">10&ndash;20% с продаж</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- РОСТ ARR -->
+      <div class="brief-section">
+        <div class="brief-section-title">Рост ARR &mdash; консервативный прогноз</div>
+        <table class="brief-arr-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Мес. 18</th>
+              <th>Мес. 30</th>
+              <th>Год 3</th>
+              <th>Год 4</th>
+              <th>Год 5</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Активных трейдеров</td>
+              <td>210</td><td>3 000</td><td>6 000</td><td>10 000</td><td>20 000</td>
+            </tr>
+            <tr>
+              <td>RPAT / мес</td>
+              <td>$120</td><td>$244</td><td>$360</td><td>$350</td><td>$400</td>
+            </tr>
+            <tr class="arr-highlight">
+              <td>ARR</td>
+              <td>$0.3M</td><td>$9.5M</td><td>$26M</td><td>$42M</td><td>$96M</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="brief-arr-sam">
+          SAM потенциал (5%):&nbsp; <strong>100 000+ трейдеров &middot; ARR $480M+</strong>
+        </div>
+      </div>
+
+      <!-- ДОРОЖНАЯ КАРТА + КОМАНДА -->
+      <div class="brief-section">
+        <div class="brief-two-col">
+          <div>
+            <div class="brief-section-title">Дорожная карта</div>
+            <div class="brief-roadmap-item">
+              <div class="brief-roadmap-dot"></div>
+              <div><span class="brief-roadmap-date">Мес. 8</span> MVP &middot; подача на Broker ID</div>
+            </div>
+            <div class="brief-roadmap-item">
+              <div class="brief-roadmap-dot"></div>
+              <div><span class="brief-roadmap-date">Мес. 10&ndash;12</span> Первый revenue fee share</div>
+            </div>
+            <div class="brief-roadmap-item">
+              <div class="brief-roadmap-dot"></div>
+              <div><span class="brief-roadmap-date">Мес. 18</span> 200+ активных &middot; Seed-ready</div>
+            </div>
+            <div class="brief-roadmap-item">
+              <div class="brief-roadmap-dot"></div>
+              <div><span class="brief-roadmap-date">Мес. 30</span> ARR $9.5M &middot; Series A prep</div>
+            </div>
+          </div>
+          <div>
+            <div class="brief-section-title">Команда</div>
+            <div class="brief-team-name">Алексей Тихвинский</div>
+            <div class="brief-team-role">CEO &middot; CTO &middot; Lead Developer</div>
+            <div class="brief-team-stack">
+              TypeScript &middot; Rust &middot; React &middot; WebSocket<br>
+              REST API бирж &middot; DevOps &middot; AI-интеграции<br>
+              Покрывает 100% технических потребностей MVP
+            </div>
+            <div class="brief-team-advisory">
+              Advisory board формируется: крипто-инфраструктура &middot; Growth/PLG &middot; Regulatory MENA/EU
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- УСЛОВИЯ РАУНДА -->
+      <div class="brief-section">
+        <div class="brief-section-title">Условия раунда</div>
+        <div class="brief-terms-grid">
+          <div class="brief-term-card">
+            <div class="tc-label">Инструмент</div>
+            <div class="tc-value">SAFE</div>
+          </div>
+          <div class="brief-term-card">
+            <div class="tc-label">Запрос</div>
+            <div class="tc-value">$205K</div>
+          </div>
+          <div class="brief-term-card">
+            <div class="tc-label">Cap</div>
+            <div class="tc-value">$2.05M</div>
+          </div>
+          <div class="brief-term-card">
+            <div class="tc-label">Discount</div>
+            <div class="tc-value">20%</div>
+          </div>
+          <div class="brief-term-card">
+            <div class="tc-label">Доля</div>
+            <div class="tc-value">~10%</div>
+          </div>
+        </div>
+        <div class="brief-budget-rows">
+          <div class="brief-budget-row">
+            <span class="brief-budget-label">Runway основателя (18 мес.)</span>
+            <div class="brief-budget-track"><div class="brief-budget-fill" style="width:53%"></div></div>
+            <span class="brief-budget-pct">53% &middot; $108K</span>
+          </div>
+          <div class="brief-budget-row">
+            <span class="brief-budget-label">Разработчик (11 мес.)</span>
+            <div class="brief-budget-track"><div class="brief-budget-fill" style="width:27%"></div></div>
+            <span class="brief-budget-pct">27% &middot; $55K</span>
+          </div>
+          <div class="brief-budget-row">
+            <span class="brief-budget-label">Маркетинг + GTM</span>
+            <div class="brief-budget-track"><div class="brief-budget-fill" style="width:12%"></div></div>
+            <span class="brief-budget-pct">12% &middot; $24K</span>
+          </div>
+          <div class="brief-budget-row">
+            <span class="brief-budget-label">Инфраструктура</span>
+            <div class="brief-budget-track"><div class="brief-budget-fill" style="width:5%"></div></div>
+            <span class="brief-budget-pct">5% &middot; $10K</span>
+          </div>
+          <div class="brief-budget-row">
+            <span class="brief-budget-label">Конференции + юр.</span>
+            <div class="brief-budget-track"><div class="brief-budget-fill" style="width:4%"></div></div>
+            <span class="brief-budget-pct">4% &middot; $8K</span>
+          </div>
+        </div>
+        <div class="brief-juris-note">
+          <strong>Юрисдикция:</strong> Кыргызстан ПВТ &middot; 0% CIT &middot; 0% НДС
+          &rarr; Redomiciliation Cayman/Singapore перед Seed
+        </div>
+      </div>
+
+      <!-- КОНТАКТ -->
+      <div class="brief-contact">
+        <span class="brief-contact-note">
+          Полный питч-дек &middot; финансовая модель &middot; конкурентный анализ &mdash;
+          <strong>по запросу</strong>
+        </span>
+        <div class="brief-contact-links">
+          <span>[email]</span>
+          <span>[Telegram]</span>
+          <span>[GitHub]</span>
+        </div>
       </div>
 
     </main>
@@ -64,5 +681,6 @@
   </footer>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>mermaid.initialize({ startOnLoad: true, theme: 'neutral' });</script>
 </body>
 </html>
