@@ -8,543 +8,172 @@
   <link rel="stylesheet" href="investor.css" />
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <style>
-    /* ═══════════════════════════════════════════════════════
-       BRIEF — INFOGRAPHIC STYLE
-       Palette: rose #d4547a · coral #c0392b · champagne #f5e6c8
-                plum-dark #2d0a18 · cream #fffaf5
-       ═══════════════════════════════════════════════════════ */
-
     .inv-content { padding-top: 0; overflow-x: clip; }
+    .b-bleed { margin-left:-3.5rem; margin-right:-3.5rem; padding-left:3.5rem; padding-right:3.5rem; }
 
-    /* ── Full-bleed helper ── */
-    .b-bleed {
-      margin-left:  -3.5rem;
-      margin-right: -3.5rem;
-      padding-left:  3.5rem;
-      padding-right: 3.5rem;
-    }
-
-    /* ══ 1. DARK HERO ══════════════════════════════════════ */
+    /* HERO */
     .b-hero {
-      background: linear-gradient(135deg, #2d0a18 0%, #3a1020 55%, #1c1410 100%);
-      position: relative;
-      overflow: hidden;
-      margin-left: -3.5rem;
-      margin-right: -3.5rem;
-      margin-top: -3rem;
+      background: linear-gradient(135deg,#2d0a18 0%,#3a1020 55%,#1c1410 100%);
+      position: relative; overflow: hidden;
+      margin-left:-3.5rem; margin-right:-3.5rem; margin-top:-3rem;
       padding: 2.75rem 3.5rem 3.5rem;
     }
     .b-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
+      content:''; position:absolute; inset:0; pointer-events:none;
       background-image:
-        radial-gradient(1.5px 1.5px at  8% 15%, rgba(245,230,200,.70) 0%, transparent 100%),
-        radial-gradient(1.0px 1.0px at 22% 35%, rgba(245,230,200,.45) 0%, transparent 100%),
-        radial-gradient(2.0px 2.0px at 35%  8%, rgba(212,84,122,.55)  0%, transparent 100%),
-        radial-gradient(1.0px 1.0px at 50% 25%, rgba(245,230,200,.40) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 62%  6%, rgba(245,230,200,.65) 0%, transparent 100%),
-        radial-gradient(1.0px 1.0px at 74% 20%, rgba(212,84,122,.45)  0%, transparent 100%),
-        radial-gradient(2.0px 2.0px at 86% 10%, rgba(245,230,200,.70) 0%, transparent 100%),
-        radial-gradient(1.0px 1.0px at 93% 32%, rgba(245,230,200,.38) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at  4% 55%, rgba(245,230,200,.28) 0%, transparent 100%),
-        radial-gradient(1.0px 1.0px at 16% 68%, rgba(212,84,122,.32)  0%, transparent 100%);
-      pointer-events: none;
+        radial-gradient(1.5px 1.5px at  8% 15%,rgba(245,230,200,.70) 0%,transparent 100%),
+        radial-gradient(1.0px 1.0px at 22% 35%,rgba(245,230,200,.45) 0%,transparent 100%),
+        radial-gradient(2.0px 2.0px at 35%  8%,rgba(212,84,122,.55)  0%,transparent 100%),
+        radial-gradient(1.5px 1.5px at 62%  6%,rgba(245,230,200,.65) 0%,transparent 100%),
+        radial-gradient(2.0px 2.0px at 86% 10%,rgba(245,230,200,.70) 0%,transparent 100%),
+        radial-gradient(1.0px 1.0px at 16% 68%,rgba(212,84,122,.32)  0%,transparent 100%);
     }
-    .b-hero-inner {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      align-items: start;
-    }
-    .b-hero-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1.1rem;
-    }
-    .b-hero-logo-badge {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      border: 2px solid rgba(212,84,122,.5);
-      background: rgba(212,84,122,.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-    }
-    .b-hero-logo-text {
-      font-size: 0.73rem;
-      font-weight: 600;
-      color: rgba(255,255,255,.5);
-      letter-spacing: .09em;
-      text-transform: uppercase;
-    }
-    .b-hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(1.6rem, 3.5vw, 2.3rem);
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.12;
-      letter-spacing: -.015em;
-      margin-bottom: .4rem;
-    }
-    .b-hero-subtitle {
-      font-size: .82rem;
-      color: var(--inv-champagne);
-      line-height: 1.65;
-      margin-bottom: 1.4rem;
-      opacity: .82;
-    }
-    .b-hero-badge {
-      display: inline-flex;
-      align-items: center;
-      background: var(--inv-accent);
-      color: #fff;
-      font-size: .84rem;
-      font-weight: 800;
-      padding: .42em 1.2em;
-      border-radius: var(--inv-radius);
-      letter-spacing: .05em;
-    }
-    .b-hero-right {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(212,84,122,.22);
-      border-radius: var(--inv-radius-lg);
-      padding: 1.35rem 1.5rem;
-    }
-    .b-hero-intro-label {
-      font-size: .62rem;
-      font-weight: 800;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--inv-rose);
-      margin-bottom: .5rem;
-    }
-    .b-hero-intro-text {
-      font-size: .82rem;
-      color: rgba(255,255,255,.68);
-      line-height: 1.78;
-    }
-    .b-hero-intro-text strong { color: var(--inv-champagne); font-weight: 700; }
-    .b-hero-arc {
-      position: absolute;
-      bottom: -1px; left: 0; right: 0;
-      line-height: 0;
-      pointer-events: none;
-    }
-    .b-hero-arc svg { display: block; width: 100%; }
+    .b-hero-inner { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; }
+    .b-hero-logo { display:flex; align-items:center; gap:.6rem; margin-bottom:1.1rem; }
+    .b-hero-logo-badge { width:40px;height:40px;border-radius:50%;border:2px solid rgba(212,84,122,.5);background:rgba(212,84,122,.12);display:flex;align-items:center;justify-content:center;font-size:1.1rem; }
+    .b-hero-logo-text { font-size:.73rem;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.09em;text-transform:uppercase; }
+    .b-hero-title { font-family:var(--font-serif);font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:700;color:#fff;line-height:1.12;letter-spacing:-.015em;margin-bottom:.4rem; }
+    .b-hero-subtitle { font-size:.82rem;color:var(--inv-champagne);line-height:1.65;margin-bottom:1.4rem;opacity:.82; }
+    .b-hero-badge { display:inline-flex;align-items:center;background:var(--inv-accent);color:#fff;font-size:.84rem;font-weight:800;padding:.42em 1.2em;border-radius:var(--inv-radius);letter-spacing:.05em; }
+    .b-hero-right { background:rgba(255,255,255,.06);border:1px solid rgba(212,84,122,.22);border-radius:var(--inv-radius-lg);padding:1.35rem 1.5rem; }
+    .b-hero-intro-label { font-size:.62rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--inv-rose);margin-bottom:.5rem; }
+    .b-hero-intro-text { font-size:.82rem;color:rgba(255,255,255,.68);line-height:1.78; }
+    .b-hero-intro-text strong { color:var(--inv-champagne);font-weight:700; }
+    .b-hero-arc { position:absolute;bottom:-1px;left:0;right:0;line-height:0;pointer-events:none; }
+    .b-hero-arc svg { display:block;width:100%; }
 
-    /* ══ SECTION WRAPPERS ════════════════════════════════ */
-    .b-sec   { padding: 2rem 0; }
-    .b-sec-dark {
-      background: linear-gradient(135deg, #2d0a18 0%, #3a1020 100%);
-      padding: 2.25rem 3.5rem;
-      margin-left: -3.5rem;
-      margin-right: -3.5rem;
-    }
-    .b-sec-warm {
-      background: var(--inv-surface);
-      padding: 2.25rem 3.5rem;
-      margin-left: -3.5rem;
-      margin-right: -3.5rem;
-    }
+    /* SECTIONS */
+    .b-sec   { padding:2rem 0; }
+    .b-sec-dark  { background:linear-gradient(135deg,#2d0a18 0%,#3a1020 100%);padding:2.25rem 3.5rem;margin-left:-3.5rem;margin-right:-3.5rem; }
+    .b-sec-warm  { background:var(--inv-surface);padding:2.25rem 3.5rem;margin-left:-3.5rem;margin-right:-3.5rem; }
 
-    /* ══ SECTION HEADING ════════════════════════════════ */
-    .b-head {
-      display: flex;
-      align-items: center;
-      gap: .85rem;
-      margin-bottom: 1.3rem;
-    }
-    .b-icon {
-      width: 34px; height: 34px;
-      border-radius: 50%;
-      background: rgba(212,84,122,.1);
-      border: 2px solid rgba(212,84,122,.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    .b-icon.dk {
-      background: rgba(212,84,122,.2);
-      border-color: rgba(212,84,122,.5);
-    }
-    .b-title {
-      font-size: .65rem;
-      font-weight: 800;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--inv-rose);
-    }
-    .b-title.dk { color: var(--inv-champagne); }
+    /* SECTION HEADING */
+    .b-head { display:flex;align-items:center;gap:.85rem;margin-bottom:1.3rem; }
+    .b-icon { width:34px;height:34px;border-radius:50%;background:rgba(212,84,122,.1);border:2px solid rgba(212,84,122,.3);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0; }
+    .b-icon.dk { background:rgba(212,84,122,.2);border-color:rgba(212,84,122,.5); }
+    .b-title { font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--inv-rose); }
+    .b-title.dk { color:var(--inv-champagne); }
 
-    /* ══ 2. MARKET METRICS ══════════════════════════════ */
-    .b-metrics {
-      display: grid;
-      grid-template-columns: repeat(4,1fr);
-      gap: 1rem;
-    }
-    .b-metric {
-      background: #fff;
-      border: 1px solid var(--inv-border);
-      border-top: 4px solid var(--inv-rose);
-      border-radius: var(--inv-radius);
-      padding: 1rem .9rem;
-      text-align: center;
-    }
-    .b-metric-ico { font-size: 1.3rem; margin-bottom: .3rem; line-height: 1; }
-    .b-metric-lbl { font-size: .62rem; text-transform: uppercase; letter-spacing: .1em; color: var(--inv-faint); margin-bottom: .2rem; }
-    .b-metric-val { font-size: 1.55rem; font-weight: 900; color: var(--inv-text); line-height: 1; margin-bottom: .18rem; }
-    .b-metric-sub { font-size: .68rem; color: var(--inv-muted); }
+    /* MARKET METRICS */
+    .b-metrics { display:grid;grid-template-columns:repeat(4,1fr);gap:1rem; }
+    .b-metric { background:#fff;border:1px solid var(--inv-border);border-top:4px solid var(--inv-rose);border-radius:var(--inv-radius);padding:1rem .9rem;text-align:center; }
+    .b-metric-ico { font-size:1.3rem;margin-bottom:.3rem;line-height:1; }
+    .b-metric-lbl { font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--inv-faint);margin-bottom:.2rem; }
+    .b-metric-val { font-size:1.55rem;font-weight:900;color:var(--inv-text);line-height:1;margin-bottom:.18rem; }
+    .b-metric-sub { font-size:.68rem;color:var(--inv-muted); }
 
-    /* ══ MERMAID WRAPPER (dark) ════════════════════════ */
-    .b-merm {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(212,84,122,.22);
-      border-radius: var(--inv-radius-lg);
-      padding: 1.25rem;
-      overflow-x: auto;
-      margin-bottom: .75rem;
-      text-align: center;
-    }
-    .b-merm:last-child { margin-bottom: 0; }
+    /* CIRCULAR DIAGRAM */
+    .b-circ { text-align:center;margin-bottom:.75rem; }
+    .b-circ svg { width:100%;max-width:580px;display:inline-block; }
 
-    /* ══ 4. QUOTE ═══════════════════════════════════════ */
-    .b-quote {
-      background: linear-gradient(135deg, #b02050 0%, #d4547a 55%, #e0704a 100%);
-      color: #fff;
-      border-radius: var(--inv-radius-lg);
-      padding: 1.6rem 2rem;
-      font-size: 1rem;
-      font-weight: 500;
-      line-height: 1.78;
-      position: relative;
-      overflow: hidden;
-    }
-    .b-quote::before {
-      content: '\275D';
-      position: absolute;
-      top: -.6rem; left: 1.2rem;
-      font-size: 5.5rem;
-      opacity: .08;
-      color: #fff;
-      line-height: 1;
-      pointer-events: none;
-    }
-    .b-quote-txt { position: relative; z-index: 1; }
-    .b-quote strong { color: #ffd700; font-weight: 800; }
+    /* MERMAID */
+    .b-merm { background:rgba(255,255,255,.05);border:1px solid rgba(212,84,122,.22);border-radius:var(--inv-radius-lg);padding:1.25rem;overflow-x:auto;margin-bottom:.75rem;text-align:center; }
+    .b-merm:last-child { margin-bottom:0; }
 
-    /* ══ 5. TWO COLUMNS ════════════════════════════════ */
-    .b-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    /* QUOTE */
+    .b-quote { background:linear-gradient(135deg,#b02050 0%,#d4547a 55%,#e0704a 100%);color:#fff;border-radius:var(--inv-radius-lg);padding:1.6rem 2rem;font-size:1rem;font-weight:500;line-height:1.78;position:relative;overflow:hidden; }
+    .b-quote::before { content:'\275D';position:absolute;top:-.6rem;left:1.2rem;font-size:5.5rem;opacity:.08;color:#fff;line-height:1;pointer-events:none; }
+    .b-quote-txt { position:relative;z-index:1; }
+    .b-quote strong { color:#ffd700;font-weight:800; }
 
-    /* ══ INNOVATION LIST ════════════════════════════════ */
-    .b-inno { list-style: none; }
-    .b-inno-row {
-      display: flex;
-      gap: .65rem;
-      padding: .62rem 0;
-      border-bottom: 1px solid var(--inv-border);
-      font-size: .86rem;
-      align-items: baseline;
-    }
-    .b-inno-row:last-child { border-bottom: none; }
-    .b-inno-row::before {
-      content: '\203A';
-      color: var(--inv-rose);
-      font-size: 1.2rem;
-      font-weight: 900;
-      flex-shrink: 0;
-      line-height: 1.2;
-    }
-    .b-inno-key { font-weight: 700; color: var(--inv-text); font-size: .81rem; min-width: 145px; flex-shrink: 0; }
-    .b-inno-val { color: var(--inv-muted); }
-    .b-inno-val strong { color: var(--inv-accent); font-weight: 700; }
+    /* TWO COLUMNS */
+    .b-2col { display:grid;grid-template-columns:1fr 1fr;gap:2rem; }
 
-    /* ══ BIZ MODEL CARDS ════════════════════════════════ */
-    .b-biz {
-      background: #fff;
-      border: 1px solid var(--inv-border);
-      border-radius: var(--inv-radius-lg);
-      overflow: hidden;
-      margin-bottom: .75rem;
-    }
-    .b-biz:last-child { margin-bottom: 0; }
-    .b-biz-hd {
-      background: linear-gradient(90deg, var(--inv-rose), var(--inv-accent));
-      color: #fff;
-      font-size: .63rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      padding: .55rem 1.2rem;
-    }
-    .b-biz-row {
-      display: flex;
-      justify-content: space-between;
-      padding: .38rem 1.2rem;
-      border-bottom: 1px solid var(--inv-border);
-      font-size: .83rem;
-    }
-    .b-biz-row:last-child { border-bottom: none; }
-    .b-biz-k { color: var(--inv-muted); }
-    .b-biz-v { font-weight: 700; color: var(--inv-text); }
-    .b-biz-v.zero { color: var(--inv-accent); }
+    /* INNOVATION LIST */
+    .b-inno { list-style:none; }
+    .b-inno-row { display:flex;gap:.65rem;padding:.62rem 0;border-bottom:1px solid var(--inv-border);font-size:.86rem;align-items:baseline; }
+    .b-inno-row:last-child { border-bottom:none; }
+    .b-inno-row::before { content:'\203A';color:var(--inv-rose);font-size:1.2rem;font-weight:900;flex-shrink:0;line-height:1.2; }
+    .b-inno-key { font-weight:700;color:var(--inv-text);font-size:.81rem;min-width:145px;flex-shrink:0; }
+    .b-inno-val { color:var(--inv-muted); }
+    .b-inno-val strong { color:var(--inv-accent);font-weight:700; }
 
-    /* ══ 6. ARR SVG CHART ════════════════════════════════ */
-    .b-chart-box {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(212,84,122,.22);
-      border-radius: var(--inv-radius-lg);
-      padding: 1.25rem 1.5rem 1rem;
-      margin-bottom: .85rem;
-    }
-    .b-chart-box svg { width: 100%; display: block; }
-    .b-traders {
-      display: grid;
-      grid-template-columns: repeat(5,1fr);
-      gap: .5rem;
-      margin-bottom: .85rem;
-    }
-    .b-trader-cell {
-      text-align: center;
-      background: rgba(255,255,255,.05);
-      border-radius: 6px;
-      padding: .5rem .4rem;
-    }
-    .b-trader-cell.hl {
-      background: rgba(212,84,122,.15);
-      border: 1px solid rgba(212,84,122,.3);
-    }
-    .b-tc-lbl { font-size: .58rem; color: rgba(255,255,255,.38); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .18rem; }
-    .b-tc-val { font-size: .9rem; font-weight: 700; color: rgba(255,255,255,.68); }
-    .b-trader-cell.hl .b-tc-lbl { color: rgba(245,230,200,.6); }
-    .b-trader-cell.hl .b-tc-val { color: #f5e6c8; font-weight: 800; }
-    .b-arr-sam {
-      background: rgba(245,230,200,.09);
-      border-left: 3px solid var(--inv-champagne);
-      padding: .5rem .9rem;
-      font-size: .8rem;
-      border-radius: 0 var(--inv-radius) var(--inv-radius) 0;
-      color: rgba(255,255,255,.6);
-    }
-    .b-arr-sam strong { color: var(--inv-champagne); }
+    /* BIZ CARDS */
+    .b-biz { background:#fff;border:1px solid var(--inv-border);border-radius:var(--inv-radius-lg);overflow:hidden;margin-bottom:.75rem; }
+    .b-biz:last-child { margin-bottom:0; }
+    .b-biz-hd { background:linear-gradient(90deg,var(--inv-rose),var(--inv-accent));color:#fff;font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;padding:.55rem 1.2rem; }
+    .b-biz-row { display:flex;justify-content:space-between;padding:.38rem 1.2rem;border-bottom:1px solid var(--inv-border);font-size:.83rem; }
+    .b-biz-row:last-child { border-bottom:none; }
+    .b-biz-k { color:var(--inv-muted); }
+    .b-biz-v { font-weight:700;color:var(--inv-text); }
+    .b-biz-v.zero { color:var(--inv-accent); }
 
-    /* ══ 7. ROADMAP TIMELINE ════════════════════════════ */
-    .b-timeline {
-      display: grid;
-      grid-template-columns: repeat(4,1fr);
-      position: relative;
-      margin-top: .75rem;
-    }
-    .b-timeline::before {
-      content: '';
-      position: absolute;
-      top: 15px;
-      left: 12.5%;
-      right: 12.5%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--inv-rose), var(--inv-accent));
-    }
-    .b-tl {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 0 .5rem;
-    }
-    .b-tl-dot {
-      width: 30px; height: 30px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--inv-rose), var(--inv-accent));
-      border: 3px solid var(--inv-bg);
-      box-shadow: 0 0 0 3px rgba(212,84,122,.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: .68rem;
-      color: #fff;
-      font-weight: 800;
-      position: relative;
-      z-index: 1;
-      flex-shrink: 0;
-    }
-    .b-tl-date {
-      font-size: .67rem;
-      font-weight: 800;
-      color: var(--inv-rose);
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      margin-top: .7rem;
-      margin-bottom: .18rem;
-    }
-    .b-tl-label { font-size: .8rem; font-weight: 700; color: var(--inv-text); margin-bottom: .18rem; }
-    .b-tl-sub { font-size: .7rem; color: var(--inv-muted); line-height: 1.5; }
+    /* ARR CHART */
+    .b-chart-box { background:rgba(255,255,255,.05);border:1px solid rgba(212,84,122,.22);border-radius:var(--inv-radius-lg);padding:1.25rem 1.5rem 1rem;margin-bottom:.85rem; }
+    .b-chart-box svg { width:100%;display:block; }
+    .b-traders { display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;margin-bottom:.85rem; }
+    .b-trader-cell { text-align:center;background:rgba(255,255,255,.05);border-radius:6px;padding:.5rem .4rem; }
+    .b-trader-cell.hl { background:rgba(212,84,122,.15);border:1px solid rgba(212,84,122,.3); }
+    .b-tc-lbl { font-size:.58rem;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.18rem; }
+    .b-tc-val { font-size:.9rem;font-weight:700;color:rgba(255,255,255,.68); }
+    .b-trader-cell.hl .b-tc-lbl { color:rgba(245,230,200,.6); }
+    .b-trader-cell.hl .b-tc-val { color:#f5e6c8;font-weight:800; }
+    .b-arr-sam { background:rgba(245,230,200,.09);border-left:3px solid var(--inv-champagne);padding:.5rem .9rem;font-size:.8rem;border-radius:0 var(--inv-radius) var(--inv-radius) 0;color:rgba(255,255,255,.6); }
+    .b-arr-sam strong { color:var(--inv-champagne); }
 
-    /* ══ 8. TEAM ════════════════════════════════════════ */
-    .b-team {
-      background: #fff;
-      border: 1px solid var(--inv-border);
-      border-radius: var(--inv-radius-lg);
-      overflow: hidden;
-    }
-    .b-team-hd {
-      background: linear-gradient(135deg, var(--inv-rose) 0%, var(--inv-accent) 100%);
-      padding: 1.1rem 1.3rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .b-team-avatar {
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.2);
-      border: 2px solid rgba(255,255,255,.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-    .b-team-name { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 600; color: #fff; }
-    .b-team-role { font-size: .68rem; color: rgba(255,255,255,.78); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-top: .15rem; }
-    .b-team-body { padding: 1.1rem 1.3rem; }
-    .b-tags { display: flex; flex-wrap: wrap; gap: .3rem .35rem; margin-bottom: .75rem; }
-    .b-tag {
-      background: var(--inv-surface);
-      border: 1px solid var(--inv-border);
-      border-radius: 4px;
-      padding: .12em .55em;
-      font-size: .75rem;
-      font-weight: 600;
-      color: var(--inv-muted);
-    }
-    .b-team-advisory {
-      font-size: .78rem;
-      color: var(--inv-faint);
-      font-style: italic;
-      border-top: 1px solid var(--inv-border);
-      padding-top: .65rem;
-      line-height: 1.65;
-    }
+    /* TIMELINE */
+    .b-timeline { display:grid;grid-template-columns:repeat(4,1fr);position:relative;margin-top:.75rem; }
+    .b-timeline::before { content:'';position:absolute;top:15px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--inv-rose),var(--inv-accent)); }
+    .b-tl { display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 .5rem; }
+    .b-tl-dot { width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--inv-rose),var(--inv-accent));border:3px solid var(--inv-bg);box-shadow:0 0 0 3px rgba(212,84,122,.25);display:flex;align-items:center;justify-content:center;font-size:.68rem;color:#fff;font-weight:800;position:relative;z-index:1;flex-shrink:0; }
+    .b-tl-date { font-size:.67rem;font-weight:800;color:var(--inv-rose);text-transform:uppercase;letter-spacing:.05em;margin-top:.7rem;margin-bottom:.18rem; }
+    .b-tl-label { font-size:.8rem;font-weight:700;color:var(--inv-text);margin-bottom:.18rem; }
+    .b-tl-sub { font-size:.7rem;color:var(--inv-muted);line-height:1.5; }
 
-    /* ══ 9. ROUND TERMS ════════════════════════════════ */
-    .b-terms {
-      display: grid;
-      grid-template-columns: repeat(5,1fr);
-      gap: .75rem;
-      margin-bottom: 1.3rem;
-    }
-    .b-term {
-      background: #fff;
-      border: 1px solid var(--inv-border);
-      border-radius: var(--inv-radius);
-      padding: .9rem .7rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .b-term::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--inv-rose), var(--inv-accent));
-    }
-    .b-term-lbl { font-size: .62rem; color: var(--inv-faint); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .3rem; }
-    .b-term-val { font-size: 1.22rem; font-weight: 900; color: var(--inv-text); }
-    .b-budget-row {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      margin-bottom: .5rem;
-      font-size: .82rem;
-    }
-    .b-blbl { width: 195px; color: var(--inv-muted); flex-shrink: 0; }
-    .b-btrack { flex: 1; background: var(--inv-border); border-radius: 3px; height: 8px; }
-    .b-bfill { height: 8px; background: linear-gradient(90deg, var(--inv-rose), var(--inv-accent)); border-radius: 3px; }
-    .b-bpct { width: 80px; text-align: right; font-weight: 700; color: var(--inv-text); font-size: .79rem; }
-    .b-juris {
-      margin-top: 1rem;
-      font-size: .8rem;
-      color: var(--inv-faint);
-      padding: .7rem 1rem;
-      background: var(--inv-surface);
-      border-left: 3px solid var(--inv-rose);
-      border-radius: 0 var(--inv-radius) var(--inv-radius) 0;
-    }
-    .b-juris strong { color: var(--inv-muted); }
+    /* TEAM */
+    .b-team { background:#fff;border:1px solid var(--inv-border);border-radius:var(--inv-radius-lg);overflow:hidden; }
+    .b-team-hd { background:linear-gradient(135deg,var(--inv-rose) 0%,var(--inv-accent) 100%);padding:1.1rem 1.3rem;display:flex;align-items:center;gap:1rem; }
+    .b-team-avatar { width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0; }
+    .b-team-name { font-family:var(--font-serif);font-size:1.05rem;font-weight:600;color:#fff; }
+    .b-team-role { font-size:.68rem;color:rgba(255,255,255,.78);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem; }
+    .b-team-body { padding:1.1rem 1.3rem; }
+    .b-tags { display:flex;flex-wrap:wrap;gap:.3rem .35rem;margin-bottom:.75rem; }
+    .b-tag { background:var(--inv-surface);border:1px solid var(--inv-border);border-radius:4px;padding:.12em .55em;font-size:.75rem;font-weight:600;color:var(--inv-muted); }
+    .b-team-advisory { font-size:.78rem;color:var(--inv-faint);font-style:italic;border-top:1px solid var(--inv-border);padding-top:.65rem;line-height:1.65; }
 
-    /* ══ 10. CONTACT ════════════════════════════════════ */
-    .b-cta {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 1.5rem;
-      align-items: center;
-    }
-    .b-cta-text { font-size: .86rem; color: rgba(255,255,255,.65); line-height: 1.75; }
-    .b-cta-text strong { color: var(--inv-champagne); }
-    .b-cta-badge {
-      background: linear-gradient(135deg, var(--inv-rose), var(--inv-accent));
-      border-radius: var(--inv-radius-lg);
-      padding: 1.2rem 1.5rem;
-      min-width: 175px;
-    }
-    .b-cta-badge-lbl {
-      font-size: .6rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      color: rgba(255,255,255,.65);
-      margin-bottom: .55rem;
-    }
-    .b-cta-link {
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      font-size: .82rem;
-      color: #fff;
-      font-weight: 600;
-      margin-bottom: .35rem;
-    }
-    .b-cta-link:last-child { margin-bottom: 0; }
-    .b-cta-ico {
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.16);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: .68rem;
-      flex-shrink: 0;
-    }
+    /* TERMS */
+    .b-terms { display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;margin-bottom:1.3rem; }
+    .b-term { background:#fff;border:1px solid var(--inv-border);border-radius:var(--inv-radius);padding:.9rem .7rem;text-align:center;position:relative;overflow:hidden; }
+    .b-term::after { content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--inv-rose),var(--inv-accent)); }
+    .b-term-lbl { font-size:.62rem;color:var(--inv-faint);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem; }
+    .b-term-val { font-size:1.22rem;font-weight:900;color:var(--inv-text); }
+    .b-budget-row { display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;font-size:.82rem; }
+    .b-blbl { width:195px;color:var(--inv-muted);flex-shrink:0; }
+    .b-btrack { flex:1;background:var(--inv-border);border-radius:3px;height:8px; }
+    .b-bfill { height:8px;background:linear-gradient(90deg,var(--inv-rose),var(--inv-accent));border-radius:3px; }
+    .b-bpct { width:80px;text-align:right;font-weight:700;color:var(--inv-text);font-size:.79rem; }
+    .b-juris { margin-top:1rem;font-size:.8rem;color:var(--inv-faint);padding:.7rem 1rem;background:var(--inv-surface);border-left:3px solid var(--inv-rose);border-radius:0 var(--inv-radius) var(--inv-radius) 0; }
+    .b-juris strong { color:var(--inv-muted); }
 
-    /* ══ RESPONSIVE ══════════════════════════════════════ */
-    @media (max-width: 900px) {
-      .b-metrics { grid-template-columns: repeat(2,1fr); }
-      .b-hero-inner { grid-template-columns: 1fr; }
-      .b-hero-right { display: none; }
+    /* CONTACT */
+    .b-cta { display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center; }
+    .b-cta-text { font-size:.86rem;color:rgba(255,255,255,.65);line-height:1.75; }
+    .b-cta-text strong { color:var(--inv-champagne); }
+    .b-cta-badge { background:linear-gradient(135deg,var(--inv-rose),var(--inv-accent));border-radius:var(--inv-radius-lg);padding:1.2rem 1.5rem;min-width:175px; }
+    .b-cta-badge-lbl { font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.65);margin-bottom:.55rem; }
+    .b-cta-link { display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:#fff;font-weight:600;margin-bottom:.35rem; }
+    .b-cta-link:last-child { margin-bottom:0; }
+    .b-cta-ico { width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:.68rem;flex-shrink:0; }
+
+    /* RESPONSIVE */
+    @media (max-width:900px) {
+      .b-metrics { grid-template-columns:repeat(2,1fr); }
+      .b-hero-inner { grid-template-columns:1fr; }
+      .b-hero-right { display:none; }
     }
-    @media (max-width: 768px) {
-      .b-bleed,.b-sec-dark,.b-sec-warm,.b-hero {
-        margin-left: -1.5rem; margin-right: -1.5rem;
-        padding-left: 1.5rem; padding-right: 1.5rem;
-      }
-      .b-2col { grid-template-columns: 1fr; }
-      .b-terms { grid-template-columns: repeat(3,1fr); }
-      .b-timeline { grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
-      .b-timeline::before { display: none; }
-      .b-cta { grid-template-columns: 1fr; }
+    @media (max-width:768px) {
+      .b-bleed,.b-sec-dark,.b-sec-warm,.b-hero { margin-left:-1.5rem;margin-right:-1.5rem;padding-left:1.5rem;padding-right:1.5rem; }
+      .b-2col { grid-template-columns:1fr; }
+      .b-terms { grid-template-columns:repeat(3,1fr); }
+      .b-timeline { grid-template-columns:repeat(2,1fr);gap:1.5rem; }
+      .b-timeline::before { display:none; }
+      .b-cta { grid-template-columns:1fr; }
     }
-    @media (max-width: 480px) {
-      .b-terms { grid-template-columns: repeat(2,1fr); }
-      .b-blbl { width: 120px; font-size: .76rem; }
-      .b-bpct { width: 65px; }
-      .b-traders { grid-template-columns: repeat(3,1fr); }
+    @media (max-width:480px) {
+      .b-terms { grid-template-columns:repeat(2,1fr); }
+      .b-blbl { width:120px;font-size:.76rem; }
+      .b-bpct { width:65px; }
+      .b-traders { grid-template-columns:repeat(3,1fr); }
     }
   </style>
 </head>
@@ -562,7 +191,6 @@
   </header>
 
   <div class="inv-wrapper">
-
     <aside class="inv-sidebar">
       <div class="inv-sidebar-label">Documents</div>
       <ul class="inv-nav">
@@ -574,7 +202,7 @@
 
     <main class="inv-content">
 
-      <!-- ══ 1. HERO ══ -->
+      <!-- HERO -->
       <div class="b-hero">
         <div class="b-hero-inner">
           <div>
@@ -583,216 +211,188 @@
               <span class="b-hero-logo-text">The Scratcher Project</span>
             </div>
             <h1 class="b-hero-title">THE EXCHANGE<br>SCRATCHER</h1>
-            <p class="b-hero-subtitle">
-              Open Source торговая платформа нового поколения<br>для торговли на криптобиржах
-            </p>
+            <p class="b-hero-subtitle">Open Source торговая платформа нового поколения<br>для торговли на криптобиржах</p>
             <span class="b-hero-badge">Pre-Seed &middot; $205 000</span>
           </div>
           <div class="b-hero-right">
             <div class="b-hero-intro-label">О продукте</div>
-            <p class="b-hero-intro-text">
-              Профессиональный торговый терминал с <strong>открытым исходным кодом</strong> &mdash;
-              бесплатный инструмент для IT-инженеров, торгующих криптовалютой.
-              <strong>Монетизация — через биржу</strong>: 20&ndash;50%
-              от комиссий с каждой сделки трейдера.
-              Трейдер не платит ничего.
-            </p>
+            <p class="b-hero-intro-text">Профессиональный торговый терминал с <strong>открытым исходным кодом</strong> &mdash; бесплатный инструмент для IT-инженеров. <strong>Монетизация — через биржу</strong>: 20&ndash;50% от комиссий.</p>
           </div>
         </div>
         <div class="b-hero-arc">
           <svg viewBox="0 0 820 36" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="410" cy="36" rx="600" ry="36" fill="#fffaf5" />
+            <ellipse cx="410" cy="36" rx="600" ry="36" fill="#fffaf5"/>
           </svg>
         </div>
       </div>
 
-      <!-- ══ 2. MARKET ══ -->
+      <!-- MARKET -->
       <div class="b-sec">
-        <div class="b-head">
-          <div class="b-icon">&#128202;</div>
-          <span class="b-title">Рынок</span>
-        </div>
+        <div class="b-head"><div class="b-icon">&#128202;</div><span class="b-title">Рынок</span></div>
         <div class="b-metrics">
-          <div class="b-metric">
-            <div class="b-metric-ico">&#127757;</div>
-            <div class="b-metric-lbl">TAM сейчас</div>
-            <div class="b-metric-val">$1.63B</div>
-            <div class="b-metric-sub">крипто-инструменты</div>
-          </div>
-          <div class="b-metric">
-            <div class="b-metric-ico">&#127919;</div>
-            <div class="b-metric-lbl">SAM</div>
-            <div class="b-metric-val">1&ndash;2M</div>
-            <div class="b-metric-sub">tech-трейдеров</div>
-          </div>
-          <div class="b-metric">
-            <div class="b-metric-ico">&#128200;</div>
-            <div class="b-metric-lbl">CAGR</div>
-            <div class="b-metric-val">16%</div>
-            <div class="b-metric-sub">&rarr; $5.4B к 2032</div>
-          </div>
-          <div class="b-metric">
-            <div class="b-metric-ico">&#128176;</div>
-            <div class="b-metric-lbl">ARR Год 5</div>
-            <div class="b-metric-val">$96M+</div>
-            <div class="b-metric-sub">SAM потенциал $480M+</div>
-          </div>
+          <div class="b-metric"><div class="b-metric-ico">&#127757;</div><div class="b-metric-lbl">TAM сейчас</div><div class="b-metric-val">$1.63B</div><div class="b-metric-sub">крипто-инструменты</div></div>
+          <div class="b-metric"><div class="b-metric-ico">&#127919;</div><div class="b-metric-lbl">SAM</div><div class="b-metric-val">1&ndash;2M</div><div class="b-metric-sub">tech-трейдеров</div></div>
+          <div class="b-metric"><div class="b-metric-ico">&#128200;</div><div class="b-metric-lbl">CAGR</div><div class="b-metric-val">16%</div><div class="b-metric-sub">&rarr; $5.4B к 2032</div></div>
+          <div class="b-metric"><div class="b-metric-ico">&#128176;</div><div class="b-metric-lbl">ARR Год 5</div><div class="b-metric-val">$96M+</div><div class="b-metric-sub">SAM потенциал $480M+</div></div>
         </div>
       </div>
 
-      <!-- ══ 3. OPPORTUNITY (dark) ══ -->
+      <!-- OPPORTUNITY (dark) -->
       <div class="b-sec-dark">
-        <div class="b-head">
-          <div class="b-icon dk">&#128275;</div>
-          <span class="b-title dk">Окно возможностей</span>
+        <div class="b-head"><div class="b-icon dk">&#128275;</div><span class="b-title dk">Окно возможностей</span></div>
+
+        <!-- SVG circular diagram -->
+        <div class="b-circ">
+          <svg viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="rg" x1="0.85" y1="0" x2="0.15" y2="1">
+                <stop offset="0%"   stop-color="#f9c0d0" stop-opacity="0.85"/>
+                <stop offset="42%"  stop-color="#d4547a" stop-opacity="0.60"/>
+                <stop offset="100%" stop-color="#b890cc" stop-opacity="0.80"/>
+              </linearGradient>
+              <linearGradient id="rg2" x1="0.2" y1="0" x2="0.8" y2="1">
+                <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#f0c0d8" stop-opacity="0.20"/>
+              </linearGradient>
+              <radialGradient id="ng" cx="50%" cy="38%" r="62%">
+                <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.96"/>
+                <stop offset="100%" stop-color="#fce8f0" stop-opacity="0.80"/>
+              </radialGradient>
+              <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M0 1L0 7L7 4z" fill="#c03868" opacity="0.82"/>
+              </marker>
+            </defs>
+
+            <!-- Decorative painted ring (two layers for depth) -->
+            <circle cx="298" cy="242" r="196" fill="none" stroke="url(#rg)"  stroke-width="46" opacity="0.52"/>
+            <circle cx="304" cy="237" r="188" fill="none" stroke="url(#rg2)" stroke-width="20" opacity="0.28"/>
+
+            <!-- Node circles -->
+            <!-- N1 top: KRPYTO-BIRZHI -->
+            <circle cx="300" cy="100" r="80" fill="url(#ng)" stroke="#d4547a" stroke-width="1" stroke-opacity="0.30"/>
+            <!-- N2 bottom-right: IT-INZHENERY -->
+            <circle cx="430" cy="335" r="80" fill="url(#ng)" stroke="#d4547a" stroke-width="1" stroke-opacity="0.30"/>
+            <!-- N3 bottom-left: OPEN SOURCE -->
+            <circle cx="170" cy="335" r="80" fill="url(#ng)" stroke="#d4547a" stroke-width="1" stroke-opacity="0.30"/>
+
+            <!-- Clockwise arrows: N1->N2->N3->N1 -->
+            <!-- N1(300,100)->N2(430,335): dir(130,235) len=269.3 unit(0.483,0.876) start=(339,170) end=(367+63,335-76)=(430-39,259)=(391,259) -->
+            <path d="M339,170 Q432,182 393,263" fill="none" stroke="#c03868" stroke-width="1.7" opacity="0.75" marker-end="url(#arr)"/>
+            <!-- N2(430,335)->N3(170,335): dir(-260,0) unit(-1,0) start=(350,335) end=(250,335) -->
+            <path d="M350,335 Q300,415 250,335" fill="none" stroke="#c03868" stroke-width="1.7" opacity="0.75" marker-end="url(#arr)"/>
+            <!-- N3(170,335)->N1(300,100): dir(130,-235) unit(0.483,-0.876) start(209,265) end(261,170) -->
+            <path d="M209,265 Q168,182 261,170" fill="none" stroke="#c03868" stroke-width="1.7" opacity="0.75" marker-end="url(#arr)"/>
+
+            <!-- NODE 1 TEXT: KRPYTO-BIRZHI (center 300,100) -->
+            <text x="300" y="66"  text-anchor="middle" font-size="15">&#127962;</text>
+            <text x="300" y="83"  text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="9"   font-weight="700" fill="#9b2e50" letter-spacing="0.5">КРИПТО-БИРЖИ</text>
+            <text x="300" y="96"  text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="8.5" fill="#9b2e50">Сниженные регуляции</text>
+            <text x="300" y="108" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="8.5" fill="#9b2e50">Высокая волатильность</text>
+            <text x="300" y="120" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="8.5" fill="#9b2e50">Малый объём торгов</text>
+            <text x="300" y="132" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="8.5" fill="#9b2e50">Вход с малым депозитом</text>
+
+            <!-- NODE 2 TEXT: IT-INZHENERY (center 430,335) -->
+            <text x="430" y="301" text-anchor="middle" font-size="15">&#128104;&#8205;&#128187;</text>
+            <text x="430" y="318" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="9"   font-weight="700" fill="#9b2e50" letter-spacing="0.5">IT-ИНЖЕНЕРЫ</text>
+            <text x="430" y="331" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="8.5" fill="#9b2e50">Знают крипто · высокий доход</text>
+            <text x="430" y="343" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="8.5" fill="#9b2e50">Финансовая грамотность</text>
+            <text x="430" y="355" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="8.5" fill="#9b2e50">Аудитория готова расти</text>
+
+            <!-- NODE 3 TEXT: OPEN SOURCE (center 170,335) -->
+            <text x="170" y="301" text-anchor="middle" font-size="15">&#128275;</text>
+            <text x="170" y="318" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="9"   font-weight="700" fill="#9b2e50" letter-spacing="0.5">OPEN SOURCE</text>
+            <text x="170" y="331" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="8.5" fill="#9b2e50">Доверие аудитории</text>
+            <text x="170" y="343" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="8.5" fill="#9b2e50">Низкий CAC</text>
+            <text x="170" y="355" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="8.5" fill="#9b2e50">Инновационный инструмент</text>
+            <text x="170" y="367" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="8.5" fill="#9b2e50">Единственные в поиске</text>
+
+            <!-- ARROW LABELS (same size/color as node text, slightly bolder) -->
+            <!-- N1->N2: above right arc -->
+            <text x="420" y="174" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="8.5" fill="#9b2e50" font-weight="600">Стать трейдером легко</text>
+            <!-- N2->N3: below center arc -->
+            <text x="300" y="428" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="8.5" fill="#9b2e50" font-weight="600">Целевая аудитория</text>
+            <!-- N3->N1: above left arc -->
+            <text x="180" y="174" text-anchor="middle" font-family="DM Sans,system-ui,sans-serif" font-size="8.5" fill="#9b2e50" font-weight="600">Активные трейдеры</text>
+          </svg>
         </div>
-        <div class="b-merm">
-          <div class="mermaid">
-%%{init: {'flowchart': {'nodeSpacing': 18, 'rankSpacing': 36}, 'theme': 'dark'}}%%
-flowchart LR
-    A["&#127962; КРИПТО-БИРЖИ\nСниженные регуляции\nВысокая волатильность\nВход с малым депозитом"] -->|"Стать трейдером легко"| B["&#128104;&#8205;&#128187; IT-ИНЖЕНЕРЫ\nЗнают крипто\nФинансовая грамотность\nАудитория растёт"]
-    B -->|"Целевая аудитория"| C["&#128275; OPEN SOURCE\nДоверие аудитории\nНизкий CAC\nЕдинственные в поиске"]
-    C -->|"Активные трейдеры"| D["&#128176; AFFILIATE\nБиржа платит 20–50%\nс первой сделки"]
-          </div>
-        </div>
+
+        <!-- AI revolution -->
         <div class="b-merm">
           <div class="mermaid">
 %%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["&#129302; AI РЕВОЛЮЦИЯ"] --> B["&#9881;&#65039; AI В РАЗРАБОТКЕ\nСкорость и качество в разы выше конкурентов"]
-    A --> C["&#128200; AI АССИСТЕНТ\nСтратегии · выбор момента входа\nМониторинг рынка 24/7"]
+    A --> C["&#128200; AI АССИСТЕНТ\nСтратегии · выбор момента входа\nМониторинг 24/7"]
           </div>
         </div>
       </div>
 
-      <!-- ══ 4. WHY US ══ -->
+      <!-- WHY US -->
       <div class="b-sec">
-        <div class="b-quote">
-          <div class="b-quote-txt">
-            Мы даём трейдеру <strong>бесплатно инновационный инструмент</strong>
-            &mdash; и получаем <strong>20&ndash;50% комиссии биржи</strong>
-            с каждой его сделки. Трейдер не платит ничего.
-            Барьера входа нет. Revenue — с первой же сделки.
-          </div>
-        </div>
+        <div class="b-quote"><div class="b-quote-txt">Мы даём трейдеру <strong>бесплатно инновационный инструмент</strong> &mdash; и получаем <strong>20&ndash;50% комиссии биржи</strong> с каждой его сделки. Трейдер не платит ничего. Revenue &mdash; с первой сделки.</div></div>
       </div>
 
-      <!-- ══ 5. INNOVATIONS + BIZ MODEL (warm) ══ -->
+      <!-- INNOVATIONS + BIZ MODEL -->
       <div class="b-sec-warm">
         <div class="b-2col">
           <div>
-            <div class="b-head">
-              <div class="b-icon">&#9889;</div>
-              <span class="b-title">Инновации</span>
-            </div>
+            <div class="b-head"><div class="b-icon">&#9889;</div><span class="b-title">Инновации</span></div>
             <ul class="b-inno">
-              <li class="b-inno-row">
-                <span class="b-inno-key">Trader Cockpit</span>
-                <span class="b-inno-val">Всё на одном экране без переключений</span>
-              </li>
-              <li class="b-inno-row">
-                <span class="b-inno-key">Автоматич. ТА-маркеры</span>
-                <span class="b-inno-val">Уровни, тренды, каналы &mdash; без настройки</span>
-              </li>
-              <li class="b-inno-row">
-                <span class="b-inno-key">Динамические ордера</span>
-                <span class="b-inno-val">Привязаны к ТА, пересчитываются автоматически</span>
-              </li>
-              <li class="b-inno-row">
-                <span class="b-inno-key">Новые типы ордеров</span>
-                <span class="b-inno-val"><strong>Динамичный лимитный &middot; Catch&nbsp;the&nbsp;Tail</strong></span>
-              </li>
-              <li class="b-inno-row">
-                <span class="b-inno-key">Ордербук + график</span>
-                <span class="b-inno-val">Синхронизированы по оси цены</span>
-              </li>
-              <li class="b-inno-row">
-                <span class="b-inno-key">Scratcher Assistant</span>
-                <span class="b-inno-val">AI-агент: стратегии, вход, мониторинг 24/7</span>
-              </li>
+              <li class="b-inno-row"><span class="b-inno-key">Trader Cockpit</span><span class="b-inno-val">Всё на одном экране без переключений</span></li>
+              <li class="b-inno-row"><span class="b-inno-key">Автоматич. ТА-маркеры</span><span class="b-inno-val">Уровни, тренды, каналы &mdash; без настройки</span></li>
+              <li class="b-inno-row"><span class="b-inno-key">Динамические ордера</span><span class="b-inno-val">Привязаны к ТА, пересчитываются авто</span></li>
+              <li class="b-inno-row"><span class="b-inno-key">Новые типы ордеров</span><span class="b-inno-val"><strong>Динамичный лимитный &middot; Catch the Tail</strong></span></li>
+              <li class="b-inno-row"><span class="b-inno-key">Ордербук + график</span><span class="b-inno-val">Синхронизированы по оси цены</span></li>
+              <li class="b-inno-row"><span class="b-inno-key">Scratcher Assistant</span><span class="b-inno-val">AI-агент: стратегии, вход, мониторинг 24/7</span></li>
             </ul>
           </div>
           <div>
-            <div class="b-head">
-              <div class="b-icon">&#128188;</div>
-              <span class="b-title">Бизнес-модель</span>
-            </div>
-            <div class="b-biz">
-              <div class="b-biz-hd">Фаза 1 &mdash; Fee Share &nbsp;&middot;&nbsp; Мес. 0&ndash;18</div>
-              <div class="b-biz-row"><span class="b-biz-k">Трейдер платит</span><span class="b-biz-v zero">$0</span></div>
-              <div class="b-biz-row"><span class="b-biz-k">Биржа платит нам</span><span class="b-biz-v">20&ndash;30% комиссий</span></div>
-              <div class="b-biz-row"><span class="b-biz-k">Revenue</span><span class="b-biz-v">с первой сделки, без порога</span></div>
-            </div>
-            <div class="b-biz">
-              <div class="b-biz-hd">Фаза 2 &mdash; Broker Master &nbsp;&middot;&nbsp; ~Мес. 16&ndash;18</div>
-              <div class="b-biz-row"><span class="b-biz-k">Fee share растёт до</span><span class="b-biz-v">40&ndash;50%</span></div>
-              <div class="b-biz-row"><span class="b-biz-k">Cloud Starter</span><span class="b-biz-v">$12/мес</span></div>
-              <div class="b-biz-row"><span class="b-biz-k">Доп. биржа</span><span class="b-biz-v">+$5/мес</span></div>
-              <div class="b-biz-row"><span class="b-biz-k">Marketplace стратегий</span><span class="b-biz-v">10&ndash;20%</span></div>
-            </div>
+            <div class="b-head"><div class="b-icon">&#128188;</div><span class="b-title">Бизнес-модель</span></div>
+            <div class="b-biz"><div class="b-biz-hd">Фаза 1 &mdash; Fee Share &middot; Мес. 0&ndash;18</div><div class="b-biz-row"><span class="b-biz-k">Трейдер платит</span><span class="b-biz-v zero">$0</span></div><div class="b-biz-row"><span class="b-biz-k">Биржа платит нам</span><span class="b-biz-v">20&ndash;30% комиссий</span></div><div class="b-biz-row"><span class="b-biz-k">Revenue</span><span class="b-biz-v">с первой сделки</span></div></div>
+            <div class="b-biz"><div class="b-biz-hd">Фаза 2 &mdash; Broker Master &middot; ~Мес. 16&ndash;18</div><div class="b-biz-row"><span class="b-biz-k">Fee share растёт до</span><span class="b-biz-v">40&ndash;50%</span></div><div class="b-biz-row"><span class="b-biz-k">Cloud Starter</span><span class="b-biz-v">$12/мес</span></div><div class="b-biz-row"><span class="b-biz-k">Доп. биржа</span><span class="b-biz-v">+$5/мес</span></div><div class="b-biz-row"><span class="b-biz-k">Marketplace</span><span class="b-biz-v">10&ndash;20%</span></div></div>
           </div>
         </div>
       </div>
 
-      <!-- ══ 6. ARR CHART (dark) ══ -->
+      <!-- ARR CHART -->
       <div class="b-sec-dark">
-        <div class="b-head">
-          <div class="b-icon dk">&#128201;</div>
-          <span class="b-title dk">Рост ARR &mdash; консервативный прогноз</span>
-        </div>
+        <div class="b-head"><div class="b-icon dk">&#128201;</div><span class="b-title dk">Рост ARR &mdash; консервативный прогноз</span></div>
         <div class="b-chart-box">
           <svg viewBox="0 0 560 190" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="bG" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#d4547a"/>
-                <stop offset="100%" stop-color="#c0392b"/>
-              </linearGradient>
-              <linearGradient id="bGhl" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#f5e6c8"/>
-                <stop offset="100%" stop-color="#d4547a"/>
-              </linearGradient>
+              <linearGradient id="bG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d4547a"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+              <linearGradient id="bGhl" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5e6c8"/><stop offset="100%" stop-color="#d4547a"/></linearGradient>
             </defs>
-            <!-- grid lines -->
             <line x1="58" y1="10"  x2="58"  y2="148" stroke="rgba(212,84,122,.3)" stroke-width="1"/>
             <line x1="58" y1="148" x2="540" y2="148" stroke="rgba(212,84,122,.3)" stroke-width="1"/>
             <line x1="58" y1="148" x2="540" y2="148" stroke="rgba(255,255,255,.07)" stroke-dasharray="4"/>
             <line x1="58" y1="103" x2="540" y2="103" stroke="rgba(255,255,255,.07)" stroke-dasharray="4"/>
             <line x1="58" y1="58"  x2="540" y2="58"  stroke="rgba(255,255,255,.07)" stroke-dasharray="4"/>
             <line x1="58" y1="13"  x2="540" y2="13"  stroke="rgba(255,255,255,.07)" stroke-dasharray="4"/>
-            <!-- y labels -->
             <text x="52" y="151" text-anchor="end" fill="rgba(255,255,255,.35)" font-size="9">$0</text>
             <text x="52" y="106" text-anchor="end" fill="rgba(255,255,255,.35)" font-size="9">$30M</text>
             <text x="52" y="61"  text-anchor="end" fill="rgba(255,255,255,.35)" font-size="9">$60M</text>
             <text x="52" y="16"  text-anchor="end" fill="rgba(255,255,255,.35)" font-size="9">$96M</text>
-            <!-- bars: chart area y10–148 = 138px. scale: val/96*138 -->
-            <!-- $0.3M → 0.43 → min 8px; top = 148-8=140 -->
             <rect x="82"  y="140" width="48" height="8"   rx="3" fill="url(#bG)" opacity=".55"/>
-            <!-- $9.5M → 13.7 → 14px; top=134 -->
-            <rect x="178" y="134" width="48" height="14"  rx="3" fill="url(#bG)" opacity=".7"/>
-            <!-- $26M → 37.4 → 37px; top=111 -->
+            <rect x="178" y="134" width="48" height="14"  rx="3" fill="url(#bG)" opacity=".70"/>
             <rect x="274" y="111" width="48" height="37"  rx="3" fill="url(#bG)" opacity=".85"/>
-            <!-- $42M → 60.4 → 60px; top=88 -->
             <rect x="370" y="88"  width="48" height="60"  rx="3" fill="url(#bG)" opacity=".95"/>
-            <!-- $96M → 138px; top=10 -->
             <rect x="466" y="10"  width="48" height="138" rx="3" fill="url(#bGhl)"/>
-            <!-- value labels -->
             <text x="106" y="136" text-anchor="middle" fill="rgba(255,255,255,.45)" font-size="8">$0.3M</text>
             <text x="202" y="129" text-anchor="middle" fill="rgba(255,255,255,.55)" font-size="8">$9.5M</text>
             <text x="298" y="106" text-anchor="middle" fill="rgba(255,255,255,.72)" font-size="9">$26M</text>
             <text x="394" y="83"  text-anchor="middle" fill="rgba(255,255,255,.85)" font-size="9">$42M</text>
             <text x="490" y="6"   text-anchor="middle" fill="#f5e6c8" font-size="11" font-weight="bold">$96M</text>
-            <!-- x labels -->
             <text x="106" y="163" text-anchor="middle" fill="rgba(255,255,255,.45)" font-size="9">Мес. 18</text>
             <text x="202" y="163" text-anchor="middle" fill="rgba(255,255,255,.45)" font-size="9">Мес. 30</text>
             <text x="298" y="163" text-anchor="middle" fill="rgba(255,255,255,.45)" font-size="9">Год 3</text>
             <text x="394" y="163" text-anchor="middle" fill="rgba(255,255,255,.45)" font-size="9">Год 4</text>
             <text x="490" y="163" text-anchor="middle" fill="#f5e6c8" font-size="9" font-weight="bold">Год 5</text>
-            <!-- rpat sub-labels -->
             <text x="106" y="176" text-anchor="middle" fill="rgba(212,84,122,.55)" font-size="8">RPAT $120</text>
             <text x="202" y="176" text-anchor="middle" fill="rgba(212,84,122,.55)" font-size="8">RPAT $244</text>
             <text x="298" y="176" text-anchor="middle" fill="rgba(212,84,122,.55)" font-size="8">RPAT $360</text>
             <text x="394" y="176" text-anchor="middle" fill="rgba(212,84,122,.55)" font-size="8">RPAT $350</text>
-            <text x="490" y="176" text-anchor="middle" fill="rgba(212,84,122,.7)"  font-size="8" font-weight="bold">RPAT $400</text>
+            <text x="490" y="176" text-anchor="middle" fill="rgba(212,84,122,.70)" font-size="8" font-weight="bold">RPAT $400</text>
           </svg>
         </div>
         <div class="b-traders">
@@ -802,83 +402,35 @@ flowchart TD
           <div class="b-trader-cell"><div class="b-tc-lbl">Год 4</div><div class="b-tc-val">10 000</div></div>
           <div class="b-trader-cell hl"><div class="b-tc-lbl">Год 5</div><div class="b-tc-val">20 000</div></div>
         </div>
-        <div class="b-arr-sam">
-          SAM потенциал (5%):&nbsp; <strong>100 000+ трейдеров &middot; ARR $480M+</strong>
-        </div>
+        <div class="b-arr-sam">SAM потенциал (5%):&nbsp; <strong>100 000+ трейдеров &middot; ARR $480M+</strong></div>
       </div>
 
-      <!-- ══ 7. ROADMAP TIMELINE ══ -->
+      <!-- ROADMAP -->
       <div class="b-sec">
-        <div class="b-head">
-          <div class="b-icon">&#128506;</div>
-          <span class="b-title">Дорожная карта</span>
-        </div>
+        <div class="b-head"><div class="b-icon">&#128506;</div><span class="b-title">Дорожная карта</span></div>
         <div class="b-timeline">
-          <div class="b-tl">
-            <div class="b-tl-dot">8</div>
-            <div class="b-tl-date">Мес. 8</div>
-            <div class="b-tl-label">MVP</div>
-            <div class="b-tl-sub">Подача на Broker ID</div>
-          </div>
-          <div class="b-tl">
-            <div class="b-tl-dot">12</div>
-            <div class="b-tl-date">Мес. 10&ndash;12</div>
-            <div class="b-tl-label">First Revenue</div>
-            <div class="b-tl-sub">Первый fee share</div>
-          </div>
-          <div class="b-tl">
-            <div class="b-tl-dot">18</div>
-            <div class="b-tl-date">Мес. 18</div>
-            <div class="b-tl-label">Seed-ready</div>
-            <div class="b-tl-sub">200+ активных трейдеров</div>
-          </div>
-          <div class="b-tl">
-            <div class="b-tl-dot">30</div>
-            <div class="b-tl-date">Мес. 30</div>
-            <div class="b-tl-label">Series A prep</div>
-            <div class="b-tl-sub">ARR $9.5M</div>
-          </div>
+          <div class="b-tl"><div class="b-tl-dot">8</div><div class="b-tl-date">Мес. 8</div><div class="b-tl-label">MVP</div><div class="b-tl-sub">Подача на Broker ID</div></div>
+          <div class="b-tl"><div class="b-tl-dot">12</div><div class="b-tl-date">Мес. 10&ndash;12</div><div class="b-tl-label">First Revenue</div><div class="b-tl-sub">Первый fee share</div></div>
+          <div class="b-tl"><div class="b-tl-dot">18</div><div class="b-tl-date">Мес. 18</div><div class="b-tl-label">Seed-ready</div><div class="b-tl-sub">200+ активных трейдеров</div></div>
+          <div class="b-tl"><div class="b-tl-dot">30</div><div class="b-tl-date">Мес. 30</div><div class="b-tl-label">Series A prep</div><div class="b-tl-sub">ARR $9.5M</div></div>
         </div>
       </div>
 
-      <!-- ══ 8. TEAM (warm) ══ -->
+      <!-- TEAM -->
       <div class="b-sec-warm">
-        <div class="b-head">
-          <div class="b-icon">&#128100;</div>
-          <span class="b-title">Команда</span>
-        </div>
+        <div class="b-head"><div class="b-icon">&#128100;</div><span class="b-title">Команда</span></div>
         <div class="b-team">
-          <div class="b-team-hd">
-            <div class="b-team-avatar">&#128104;&#8205;&#128187;</div>
-            <div>
-              <div class="b-team-name">Алексей Тихвинский</div>
-              <div class="b-team-role">CEO &middot; CTO &middot; Lead Developer</div>
-            </div>
-          </div>
+          <div class="b-team-hd"><div class="b-team-avatar">&#128104;&#8205;&#128187;</div><div><div class="b-team-name">Алексей Тихвинский</div><div class="b-team-role">CEO &middot; CTO &middot; Lead Developer</div></div></div>
           <div class="b-team-body">
-            <div class="b-tags">
-              <span class="b-tag">TypeScript</span>
-              <span class="b-tag">Rust</span>
-              <span class="b-tag">React</span>
-              <span class="b-tag">WebSocket</span>
-              <span class="b-tag">REST API бирж</span>
-              <span class="b-tag">DevOps</span>
-              <span class="b-tag">AI-интеграции</span>
-            </div>
-            <div class="b-team-advisory">
-              Покрывает 100% технических потребностей MVP.
-              Advisory board формируется: крипто-инфраструктура &middot; Growth/PLG &middot; Regulatory MENA/EU
-            </div>
+            <div class="b-tags"><span class="b-tag">TypeScript</span><span class="b-tag">Rust</span><span class="b-tag">React</span><span class="b-tag">WebSocket</span><span class="b-tag">REST API бирж</span><span class="b-tag">DevOps</span><span class="b-tag">AI-интеграции</span></div>
+            <div class="b-team-advisory">Покрывает 100% технических потребностей MVP. Advisory board: крипто-инфраструктура &middot; Growth/PLG &middot; Regulatory MENA/EU</div>
           </div>
         </div>
       </div>
 
-      <!-- ══ 9. ROUND TERMS ══ -->
+      <!-- ROUND TERMS -->
       <div class="b-sec">
-        <div class="b-head">
-          <div class="b-icon">&#128203;</div>
-          <span class="b-title">Условия раунда</span>
-        </div>
+        <div class="b-head"><div class="b-icon">&#128203;</div><span class="b-title">Условия раунда</span></div>
         <div class="b-terms">
           <div class="b-term"><div class="b-term-lbl">Инструмент</div><div class="b-term-val">SAFE</div></div>
           <div class="b-term"><div class="b-term-lbl">Запрос</div><div class="b-term-val">$205K</div></div>
@@ -891,20 +443,15 @@ flowchart TD
         <div class="b-budget-row"><span class="b-blbl">Маркетинг + GTM</span><div class="b-btrack"><div class="b-bfill" style="width:12%"></div></div><span class="b-bpct">12% &middot; $24K</span></div>
         <div class="b-budget-row"><span class="b-blbl">Инфраструктура</span><div class="b-btrack"><div class="b-bfill" style="width:5%"></div></div><span class="b-bpct">5% &middot; $10K</span></div>
         <div class="b-budget-row"><span class="b-blbl">Конференции + юр.</span><div class="b-btrack"><div class="b-bfill" style="width:4%"></div></div><span class="b-bpct">4% &middot; $8K</span></div>
-        <div class="b-juris">
-          <strong>Юрисдикция:</strong> Кыргызстан ПВТ &middot; 0% CIT &middot; 0% НДС
-          &rarr; Redomiciliation Cayman/Singapore перед Seed
-        </div>
+        <div class="b-juris"><strong>Юрисдикция:</strong> Кыргызстан ПВТ &middot; 0% CIT &middot; 0% НДС &rarr; Redomiciliation Cayman/Singapore перед Seed</div>
       </div>
 
-      <!-- ══ 10. CONTACT (dark) ══ -->
+      <!-- CONTACT -->
       <div class="b-sec-dark" style="margin-bottom:-3rem;">
         <div class="b-cta">
           <div class="b-cta-text">
             <div style="font-size:.63rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--inv-rose);margin-bottom:.65rem;">Связаться с нами</div>
-            Полный питч-дек &middot; финансовая модель &middot; конкурентный анализ
-            &mdash; <strong>по запросу</strong>.<br>
-            Мы открыты к разговору и готовы предоставить любую дополнительную информацию.
+            Полный питч-дек &middot; финансовая модель &middot; конкурентный анализ &mdash; <strong>по запросу</strong>.
           </div>
           <div class="b-cta-badge">
             <div class="b-cta-badge-lbl">Контакты</div>
@@ -919,10 +466,7 @@ flowchart TD
   </div>
 
   <footer class="inv-footer">
-    <p>
-      &copy; <span id="year"></span> The Scratcher Project
-      &nbsp;&middot;&nbsp; Confidential &mdash; not for distribution
-    </p>
+    <p>&copy; <span id="year"></span> The Scratcher Project &nbsp;&middot;&nbsp; Confidential &mdash; not for distribution</p>
   </footer>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
