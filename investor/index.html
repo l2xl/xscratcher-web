@@ -9,66 +9,55 @@
 </head>
 <body>
 
-  <!-- ── Screen navigation (hidden on print) ──────────────── -->
-  <div class="brief-screen-nav">
-    <header class="inv-header">
-      <a href="index.html" class="inv-logo">
-        <img src="assets/x-logo.png" alt=""
-             style="mix-blend-mode:multiply" />
-        The Scratcher Project
-      </a>
-      <div class="inv-header-right">
-        <span class="inv-header-label">Investor Relations</span>
-      </div>
-    </header>
-  </div>
-  <!-- ─────────────────────────────────────────────────────── -->
+  <header class="inv-header print-hide">
+    <a href="index.html" class="inv-logo">
+      <img src="assets/x-logo.png" alt="" style="mix-blend-mode:multiply" />
+      The Scratcher Project
+    </a>
+    <div class="inv-header-right">
+      <a href="../index.html" class="inv-back-link">&larr; Main site</a>
+      <span class="inv-header-label">Investor Relations</span>
+    </div>
+  </header>
 
-  <div class="brief-wrapper">
+  <div class="inv-wrapper">
 
-    <!-- Sidebar (screen only, hidden on print via @media print in investor.css scope) -->
-    <aside class="inv-sidebar brief-screen-nav">
+    <aside class="inv-sidebar print-hide">
       <ul class="inv-nav">
         <li><a href="index.html" class="active"><span class="inv-nav-icon">&#9673;</span> Company Brief</a></li>
         <li><a href="pitch-deck.html"><span class="inv-nav-icon">&#9670;</span> Pitch Deck</a></li>
       </ul>
     </aside>
 
-    <!-- ── Printable document ───────────────────────────── -->
-    <div class="brief-page">
+    <article class="inv-doc">
 
-      <!-- Planet: upper-right corner, ~33% clipped top and right symmetrically -->
+      <!-- Planet: upper-right corner, ~33 % clipped top and right -->
       <div class="brief-planet" aria-hidden="true">
         <img src="assets/sci-fi-planet.png" alt="" />
       </div>
 
-      <!-- Document header -->
-      <header class="brief-header">
-        <div class="brief-logo-lockup">
-          <img src="assets/x-logo.png" alt="X-Cockpit"
-               class="brief-logo-img" />
-          <div class="brief-logo-text">
-            <span class="brief-logo-name">X-Cockpit</span>
-            <span class="brief-logo-sub">Open-source crypto trading infrastructure</span>
+      <header class="inv-doc-header">
+        <div class="inv-doc-logo">
+          <img src="assets/x-logo.png" alt="X-Cockpit" class="inv-doc-logo-img" />
+          <div class="inv-doc-logo-text">
+            <span class="inv-doc-logo-name">X-Cockpit</span>
+            <span class="inv-doc-logo-sub">Open-source crypto trading infrastructure</span>
           </div>
         </div>
-        <div class="brief-header-meta">
+        <div class="inv-doc-meta">
           <span class="inv-confidential">&#128274;&nbsp;Confidential</span>
-          <span class="brief-doc-label">Company Brief &middot; <span id="year"></span></span>
+          <span class="inv-doc-label">Company Brief &middot; <span class="year-ref"></span></span>
         </div>
       </header>
 
-      <!-- Main content -->
-      <main class="brief-content">
+      <main class="inv-doc-body">
 
-        <!-- Title block (left-constrained; planet floats upper-right) -->
-        <div class="brief-title-block">
-          <div class="brief-eyebrow">Pre-Seed &middot; Qualified Investors Only</div>
-          <h1 class="brief-title">[Company headline<br>goes here]</h1>
-          <p class="brief-subtitle">[One or two sentence positioning statement &mdash; problem solved and for whom.]</p>
+        <div class="inv-title-block">
+          <div class="inv-eyebrow">Pre-Seed &middot; Qualified Investors Only</div>
+          <h1 class="inv-title">[Company headline<br>goes here]</h1>
+          <p class="inv-subtitle">[One or two sentence positioning statement &mdash; problem solved and for whom.]</p>
         </div>
 
-        <!-- Key metrics strip -->
         <div class="brief-metrics">
           <div class="brief-metric">
             <div class="brief-metric-value">$[X]B</div>
@@ -92,7 +81,6 @@
           </div>
         </div>
 
-        <!-- 2-column section grid -->
         <div class="brief-grid">
 
           <div class="brief-section">
@@ -139,11 +127,10 @@
             </div>
           </div>
 
-        </div><!-- /brief-grid -->
+        </div>
 
-        <!-- Investment ask bar -->
         <div class="brief-ask">
-          <div class="brief-ask-left">
+          <div>
             <div class="brief-ask-label">Round Ask</div>
             <div class="brief-ask-amount">$[Amount]</div>
           </div>
@@ -167,31 +154,27 @@
           </div>
         </div>
 
-      </main><!-- /brief-content -->
+      </main>
 
-      <!-- Document footer -->
-      <footer class="brief-footer">
-        <p class="brief-footer-note">
+      <footer class="inv-doc-footer">
+        <p class="inv-doc-footer-note">
           &copy; <span class="year-ref"></span> The Scratcher Project
           &nbsp;&middot;&nbsp; Confidential &mdash; not for distribution
           &nbsp;&middot;&nbsp; Full pitch deck, financial model &amp; competitive analysis available on request.
         </p>
-        <div class="brief-footer-contact">
-          <span class="brief-footer-note">[contact] &nbsp;&middot;&nbsp; [telegram] &nbsp;&middot;&nbsp; [github]</span>
-        </div>
+        <p class="inv-doc-footer-contact">
+          [contact] &nbsp;&middot;&nbsp; [telegram] &nbsp;&middot;&nbsp; [github]
+        </p>
       </footer>
 
-    </div><!-- /brief-page -->
+    </article>
 
-    <!-- Right spacer mirrors sidebar width -->
-    <div class="inv-right-space brief-screen-nav" aria-hidden="true"></div>
+    <div class="inv-right-space print-hide" aria-hidden="true"></div>
 
-  </div><!-- /brief-wrapper -->
+  </div>
 
   <script>
-    const y = new Date().getFullYear();
-    document.getElementById('year').textContent = y;
-    document.querySelectorAll('.year-ref').forEach(el => el.textContent = y);
+    document.querySelectorAll('.year-ref').forEach(el => el.textContent = new Date().getFullYear());
   </script>
 </body>
 </html>

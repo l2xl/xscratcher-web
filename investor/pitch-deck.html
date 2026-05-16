@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <header class="inv-header">
+  <header class="inv-header print-hide">
     <a href="index.html" class="inv-logo">
       <img src="assets/x-logo.png" alt="" style="mix-blend-mode:multiply" />
       The Scratcher Project
@@ -22,47 +22,67 @@
 
   <div class="inv-wrapper">
 
-    <aside class="inv-sidebar">
+    <aside class="inv-sidebar print-hide">
       <ul class="inv-nav">
         <li><a href="index.html"><span class="inv-nav-icon">&#9673;</span> Company Brief</a></li>
         <li><a href="pitch-deck.html" class="active"><span class="inv-nav-icon">&#9670;</span> Pitch Deck</a></li>
       </ul>
     </aside>
 
-    <main class="inv-content">
+    <article class="inv-doc">
 
-      <div class="inv-page-hero">
-        <div class="inv-page-eyebrow">Investor Document &middot; 2025</div>
-        <h1 class="inv-page-title">Pitch Deck</h1>
-        <p class="inv-page-sub">
-          Full investor presentation &mdash; problem, solution, traction,
-          go-to-market, financials, and the ask.
+      <header class="inv-doc-header">
+        <div class="inv-doc-logo">
+          <img src="assets/x-logo.png" alt="X-Cockpit" class="inv-doc-logo-img" />
+          <div class="inv-doc-logo-text">
+            <span class="inv-doc-logo-name">X-Cockpit</span>
+            <span class="inv-doc-logo-sub">Open-source crypto trading infrastructure</span>
+          </div>
+        </div>
+        <div class="inv-doc-meta">
+          <span class="inv-confidential">&#128274;&nbsp;Confidential</span>
+          <span class="inv-doc-label">Pitch Deck &middot; <span class="year-ref"></span></span>
+        </div>
+      </header>
+
+      <main class="inv-doc-body">
+
+        <div class="inv-title-block">
+          <div class="inv-eyebrow">Investor Document &middot; <span class="year-ref"></span></div>
+          <h1 class="inv-title">Pitch Deck</h1>
+          <p class="inv-subtitle">
+            Full investor presentation &mdash; problem, solution, traction,
+            go-to-market, financials, and the ask.
+          </p>
+        </div>
+
+        <div class="inv-placeholder">
+          <div class="inv-placeholder-icon">&#9670;</div>
+          <h3>Content coming soon</h3>
+          <p>
+            The pitch deck presentation is being finalized. This section
+            will embed the full slide deck and supporting materials.
+          </p>
+          <span class="inv-placeholder-tag">In preparation</span>
+        </div>
+
+      </main>
+
+      <footer class="inv-doc-footer">
+        <p class="inv-doc-footer-note">
+          &copy; <span class="year-ref"></span> The Scratcher Project
+          &nbsp;&middot;&nbsp; Confidential &mdash; not for distribution
         </p>
-      </div>
+      </footer>
 
-      <div class="inv-placeholder">
-        <div class="inv-placeholder-icon">&#9670;</div>
-        <h3>Content coming soon</h3>
-        <p>
-          The pitch deck presentation is being finalized. This section
-          will embed the full slide deck and supporting materials.
-        </p>
-        <span class="inv-placeholder-tag">In preparation</span>
-      </div>
+    </article>
 
-    </main>
-
-    <div class="inv-right-space" aria-hidden="true"></div>
+    <div class="inv-right-space print-hide" aria-hidden="true"></div>
 
   </div>
 
-  <footer class="inv-footer">
-    <p>
-      &copy; <span id="year"></span> The Scratcher Project
-      &nbsp;&middot;&nbsp; Confidential &mdash; not for distribution
-    </p>
-  </footer>
-
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.querySelectorAll('.year-ref').forEach(el => el.textContent = new Date().getFullYear());
+  </script>
 </body>
 </html>
