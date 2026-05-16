@@ -69,38 +69,12 @@
       pointer-events: none;
     }
 
-    .brief-planet-inner {
-      position: relative;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      overflow: visible;
-      /* CSS sci-fi planet — swap for <img> once asset is placed */
-      background: radial-gradient(
-        circle at 34% 30%,
-        #a8cfe0 0%,
-        #4a90b8 18%,
-        #1e5a80 42%,
-        #0d2f4a 68%,
-        #05141f 100%
-      );
-      box-shadow:
-        inset -18% -12% 35% 8% rgba(0, 8, 24, 0.80),
-        0 0 70px 20px rgba(45, 110, 165, 0.16),
-        0 0 140px 50px rgba(20, 65, 105, 0.10);
-    }
-
-    /* Subtle atmospheric halo */
-    .brief-planet-inner::before {
-      content: '';
-      position: absolute;
-      inset: -6%;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle,
-        transparent 48%,
-        rgba(80, 150, 200, 0.12) 60%,
-        transparent 72%
-      );
+    .brief-planet img {
+      display: block;
+      width: 100%;
+      /* Screen blends black-space bg into page — only the lit planet shows */
+      mix-blend-mode: screen;
+      opacity: 0.92;
     }
 
     /* ── Document header strip ── */
@@ -401,7 +375,6 @@
 
       /* Remove box shadows that print poorly */
       .brief-section  { box-shadow: none; }
-      .brief-planet-inner { box-shadow: none; }
     }
 
     /* ── Responsive (screen) ── */
@@ -423,8 +396,8 @@
   <div class="brief-screen-nav">
     <header class="inv-header">
       <a href="index.html" class="inv-logo">
-        <img src="../assets/xwinger.png" alt="" width="28" height="28"
-             onerror="this.src='../assets/logo.svg'" />
+        <img src="assets/x-logo.png" alt="" width="28" height="28"
+             style="mix-blend-mode:multiply" />
         The Scratcher Project
       </a>
       <div class="inv-header-right">
@@ -451,18 +424,15 @@
     <div class="brief-page">
 
       <!-- Planet: upper-right, half inside column / half in empty field -->
-      <!-- Replace .brief-planet-inner with <img src="../assets/planet.png"> once asset is available -->
       <div class="brief-planet" aria-hidden="true">
-        <div class="brief-planet-inner"></div>
+        <img src="assets/sci-fi-planet.png" alt="" />
       </div>
 
       <!-- Document header -->
       <header class="brief-header">
         <div class="brief-logo-lockup">
-          <!-- xwinger.png: place at assets/xwinger.png; falls back to logo.svg -->
-          <img src="../assets/xwinger.png" alt="xScratcher"
-               class="brief-logo-img"
-               onerror="this.src='../assets/logo.svg'" />
+          <img src="assets/x-logo.png" alt="xScratcher"
+               class="brief-logo-img" />
           <div class="brief-logo-text">
             <span class="brief-logo-name">The Scratcher Project</span>
             <span class="brief-logo-sub">Open-source crypto trading infrastructure</span>
