@@ -22,7 +22,7 @@
      Sidebar centres around 300px on common desktop (~25% wider
      than the original 240px) while scaling down on small screens
      and up on hi-res displays. */
-  --inv-sidebar-w:  clamp(16rem, 22vw, 22rem);
+  --inv-sidebar-w:  clamp(14.4rem, 19.8vw, 19.8rem);
   --inv-header-h:   clamp(3.5rem, 5vw, 4rem);
   --inv-doc-pad-x:  clamp(1.25rem, 3vw, 2.5rem);
 
@@ -399,14 +399,13 @@ a:hover { color: var(--inv-rose); }
    ask bar). Only the brief page uses these.
    ========================================================= */
 
-/* Planet: ~200 % of column width, anchored to upper-right
-   corner with ~33 % clipped symmetrically on top and right. */
+/* Planet: fixed to the viewport so it is clipped by the actual
+   window edges (not by the sidebar or right spacer columns). */
 .brief-planet {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
-  width: 96%;
-  max-width: 96%;
+  width: 58vw;
   aspect-ratio: 1 / 1;
   transform: translateX(33%) translateY(-33%);
   z-index: 0;
@@ -639,7 +638,7 @@ a:hover { color: var(--inv-rose); }
 
   .print-hide { display: none !important; }
 
-  .brief-planet { transform: none; right: -1.2cm; }
+  .brief-planet { position: absolute; transform: none; right: -1.2cm; }
 
   .brief-section,
   .brief-ask,
