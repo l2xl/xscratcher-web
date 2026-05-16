@@ -72,7 +72,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.4rem 2.5rem 1.2rem;
+      padding: 1.4rem clamp(1.25rem, 3vw, 2.5rem) 1.2rem;
       border-bottom: 1px solid var(--inv-border);
       gap: 1rem;
     }
@@ -84,8 +84,8 @@
     }
 
     .brief-logo-img {
-      width: 44px;
-      height: 44px;
+      width: 2.75rem;
+      height: 2.75rem;
       object-fit: contain;
       flex-shrink: 0;
       mix-blend-mode: multiply;
@@ -134,7 +134,7 @@
     .brief-content {
       position: relative;
       z-index: 1;
-      padding: 2rem 2.5rem 1.75rem;
+      padding: 2rem clamp(1.25rem, 3vw, 2.5rem) 1.75rem;
     }
 
     /* ── Title block ── */
@@ -154,7 +154,7 @@
 
     .brief-title {
       font-family: var(--font-serif);
-      font-size: 1.75rem;
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
       font-weight: 600;
       line-height: 1.2;
       letter-spacing: -0.025em;
@@ -186,7 +186,7 @@
 
     .brief-metric-value {
       font-family: var(--font-serif);
-      font-size: 1.3rem;
+      font-size: clamp(1rem, 1.8vw, 1.3rem);
       font-weight: 600;
       color: var(--inv-text);
       letter-spacing: -0.02em;
@@ -281,8 +281,6 @@
       margin-bottom: 1.5rem;
     }
 
-    .brief-ask-left {}
-
     .brief-ask-label {
       font-size: 0.63rem;
       font-weight: 700;
@@ -294,7 +292,7 @@
 
     .brief-ask-amount {
       font-family: var(--font-serif);
-      font-size: 1.45rem;
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
       font-weight: 600;
       color: var(--inv-text);
       letter-spacing: -0.025em;
@@ -306,9 +304,7 @@
       flex-shrink: 0;
     }
 
-    .brief-ask-pill {
-      text-align: center;
-    }
+    .brief-ask-pill { text-align: center; }
 
     .brief-ask-pill-val {
       font-size: 0.9rem;
@@ -333,7 +329,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      padding: 0.8rem 2.5rem;
+      padding: 0.8rem clamp(1.25rem, 3vw, 2.5rem);
       border-top: 1px solid var(--inv-border);
     }
 
@@ -352,14 +348,13 @@
 
     /* ── Print overrides ── */
     @media print {
-      .brief-section   { break-inside: avoid; }
-      .brief-ask       { break-inside: avoid; }
-      .brief-metrics   { break-inside: avoid; }
-      .brief-section  { box-shadow: none; }
+      .brief-section  { break-inside: avoid; box-shadow: none; }
+      .brief-ask      { break-inside: avoid; }
+      .brief-metrics  { break-inside: avoid; }
     }
 
-    /* ── Responsive (screen) ── */
-    @media (max-width: 768px) {
+    /* ── Responsive — em breakpoints respect user zoom ── */
+    @media (max-width: 48em) {
       .brief-planet { display: none; }
       .brief-title-block { max-width: 100%; }
       .brief-grid { grid-template-columns: 1fr; }
@@ -369,6 +364,11 @@
       .brief-content { padding: 1.5rem 1.25rem; }
       .brief-footer { padding: 0.75rem 1.25rem; flex-direction: column; align-items: flex-start; }
     }
+
+    @media (max-width: 30em) {
+      .brief-metrics { grid-template-columns: repeat(2, 1fr); }
+      .brief-ask-pills { gap: 0.75rem; }
+    }
   </style>
 </head>
 <body>
@@ -377,7 +377,7 @@
   <div class="brief-screen-nav">
     <header class="inv-header">
       <a href="index.html" class="inv-logo">
-        <img src="assets/x-logo.png" alt="" width="28" height="28"
+        <img src="assets/x-logo.png" alt=""
              style="mix-blend-mode:multiply" />
         The Scratcher Project
       </a>
