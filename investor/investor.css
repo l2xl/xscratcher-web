@@ -18,8 +18,11 @@
   --inv-champagne:  #f5e6c8;
   --inv-accent:     #c0392b;
 
-  /* Layout — fluid, viewport-relative */
-  --inv-sidebar-w:  clamp(11rem, 15vw, 20rem);
+  /* Layout — fluid, viewport-relative.
+     Sidebar centres around 300px on common desktop (~25% wider
+     than the original 240px) while scaling down on small screens
+     and up on hi-res displays. */
+  --inv-sidebar-w:  clamp(16rem, 22vw, 22rem);
   --inv-header-h:   clamp(3.5rem, 5vw, 4rem);
   --inv-doc-pad-x:  clamp(1.25rem, 3vw, 2.5rem);
 
@@ -191,7 +194,7 @@ a:hover { color: var(--inv-rose); }
   flex: 1;
   min-width: 0;
   position: relative;
-  overflow: clip;   /* clips brief-planet bleed without scroll */
+  overflow: hidden;   /* clips brief-planet bleed (widely supported) */
 }
 
 /* Header strip: logo lockup left, meta right */
@@ -294,9 +297,10 @@ a:hover { color: var(--inv-rose); }
    ========================================================= */
 .inv-title-block { padding-bottom: 1.5rem; }
 
-/* When a planet sibling claims the top-right space, constrain
-   the title block so text doesn't run beneath it. */
-.inv-doc:has(.brief-planet) .inv-title-block {
+/* When a planet sibling claims the top-right space, constrain the
+   title block so text doesn't run beneath it. Use an explicit modifier
+   on .inv-doc rather than :has() for broad browser support. */
+.inv-doc--with-planet .inv-title-block {
   max-width: 54%;
 }
 
@@ -402,12 +406,17 @@ a:hover { color: var(--inv-rose); }
   top: 0;
   right: 0;
   width: 96%;
+  max-width: 96%;
+  aspect-ratio: 1 / 1;
   transform: translateX(33%) translateY(-33%);
   z-index: 0;
   pointer-events: none;
 }
 .brief-planet img {
+  display: block;
   width: 100%;
+  height: 100%;
+  object-fit: contain;
   mix-blend-mode: screen;
   opacity: 0.92;
 }
@@ -602,7 +611,7 @@ a:hover { color: var(--inv-rose); }
     align-items: flex-start;
   }
 
-  .inv-doc:has(.brief-planet) .inv-title-block { max-width: 100%; }
+  .inv-doc--with-planet .inv-title-block { max-width: 100%; }
 
   .brief-planet { display: none; }
   .brief-grid { grid-template-columns: 1fr; }
