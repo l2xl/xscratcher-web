@@ -16,7 +16,7 @@
   --inv-champagne:  #f5e6c8;
   --inv-accent:     #c0392b;
   --inv-gold:       #b08010;
-  --inv-sidebar-w:  240px;
+  --inv-sidebar-w:  300px;
   --inv-header-h:   64px;
   --inv-radius:     6px;
   --inv-radius-lg:  12px;
@@ -281,6 +281,12 @@ a:hover { color: var(--inv-rose); }
   flex-shrink: 0;
   line-height: 1;
   opacity: 0.75;
+}
+
+/* ── Right margin spacer (mirrors sidebar width) ─────── */
+.inv-right-space {
+  width: var(--inv-sidebar-w);
+  flex-shrink: 0;
 }
 
 /* ── Main content ────────────────────────────────────── */
