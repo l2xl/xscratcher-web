@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Company Brief &mdash; Investor Relations &middot; The Scratcher Project</title>
+  <link rel="stylesheet" href="investor.css" />
+  <style>
+    /* ============================================================
+       COMPANY BRIEF — single-page printable
+       Print target: A4 portrait, natural margins, no explicit borders
+       ============================================================ */
+
+    @page {
+      size: A4 portrait;
+      margin: 1.4cm 1.6cm 1.2cm;
+    }
+
+    @media print {
+      html { font-size: 9pt; }
+      body { background: #fff !important; }
+      .brief-screen-nav { display: none !important; }
+      .brief-planet {
+        /* On print the planet lives within the page box;
+           no translateX — right half naturally sits in the
+           typographic empty space to the right of body text. */
+        transform: none;
+        right: -1.2cm; /* bleed into page margin */
+      }
+    }
+
+    /* ── Brief: outer shell (screen) ──────────────────────────
+       Matches inv-wrapper flex so the sidebar fits exactly as on
+       other investor pages, and the brief-page sits in the
+       content column to the right of it.
+       On the right of brief-page the planet bleeds into the
+       viewport margin — the "empty field".
+    ── */
+    .brief-wrapper {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    /* ── Brief page: the printable document ── */
+    .brief-page {
+      flex: 1;
+      min-width: 0;
+      position: relative;   /* anchor for .brief-planet */
+      /* Let planet overflow right without triggering scroll */
+      overflow-x: clip;
+      overflow-y: visible;
+    }
+
+    /* ── Planet image ──────────────────────────────────────────
+       Positioned at the top-right of the document column.
+       width ≈ 50 % of column width.
+       translateX(50 %) shifts the element right by half its own
+       width → left half sits over the column background,
+       right half floats in the empty field beside it.
+    ── */
+    .brief-planet {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 48%;
+      transform: translateX(50%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .brief-planet-inner {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: visible;
+      /* CSS sci-fi planet — swap for <img> once asset is placed */
+      background: radial-gradient(
+        circle at 34% 30%,
+        #a8cfe0 0%,
+        #4a90b8 18%,
+        #1e5a80 42%,
+        #0d2f4a 68%,
+        #05141f 100%
+      );
+      box-shadow:
+        inset -18% -12% 35% 8% rgba(0, 8, 24, 0.80),
+        0 0 70px 20px rgba(45, 110, 165, 0.16),
+        0 0 140px 50px rgba(20, 65, 105, 0.10);
+    }
+
+    /* Subtle atmospheric halo */
+    .brief-planet-inner::before {
+      content: '';
+      position: absolute;
+      inset: -6%;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        transparent 48%,
+        rgba(80, 150, 200, 0.12) 60%,
+        transparent 72%
+      );
+    }
+
+    /* ── Document header strip ── */
+    .brief-header {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 2.5rem 1.2rem;
+      border-bottom: 1px solid var(--inv-border);
+      gap: 1rem;
+    }
+
+    .brief-logo-lockup {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .brief-logo-img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      flex-shrink: 0;
+      /* Blend black background of logo PNG into page surface */
+      mix-blend-mode: multiply;
+      border-radius: var(--inv-radius);
+    }
+
+    .brief-logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .brief-logo-name {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--inv-text);
+      line-height: 1.15;
+    }
+
+    .brief-logo-sub {
+      font-size: 0.67rem;
+      color: var(--inv-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .brief-header-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.35rem;
+    }
+
+    .brief-doc-label {
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--inv-faint);
+    }
+
+    /* Reuse .inv-confidential but override margin */
+    .brief-header .inv-confidential { margin-bottom: 0; }
+
+    /* ── Main content area ── */
+    .brief-content {
+      position: relative;
+      z-index: 1;
+      padding: 2rem 2.5rem 1.75rem;
+    }
+
+    /* ── Title block
+       Constrained to ~55 % width so the planet floats
+       in the upper-right without text running beneath it.
+    ── */
+    .brief-title-block {
+      max-width: 54%;
+      padding-bottom: 1.5rem;
+    }
+
+    .brief-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--inv-rose);
+      margin-bottom: 0.5rem;
+    }
+
+    .brief-title {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+      color: var(--inv-text);
+      margin-bottom: 0.55rem;
+    }
+
+    .brief-subtitle {
+      font-size: 0.82rem;
+      color: var(--inv-muted);
+      line-height: 1.65;
+    }
+
+    /* ── Metrics strip ── */
+    .brief-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .brief-metric {
+      background: var(--inv-surface);
+      border: 1px solid var(--inv-border);
+      border-radius: var(--inv-radius);
+      padding: 0.75rem 0.9rem;
+      text-align: center;
+    }
+
+    .brief-metric-value {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--inv-text);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .brief-metric-label {
+      font-size: 0.61rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--inv-faint);
+      margin-top: 0.25rem;
+    }
+
+    .brief-metric-sub {
+      font-size: 0.59rem;
+      color: var(--inv-faint);
+      margin-top: 0.1rem;
+      font-style: italic;
+    }
+
+    /* ── Sections 2-up grid ── */
+    .brief-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .brief-section {
+      background: #fff;
+      border: 1px solid var(--inv-border);
+      border-radius: var(--inv-radius);
+      padding: 0.9rem 1.05rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brief-section::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--inv-rose) 0%, var(--inv-champagne) 100%);
+    }
+
+    .brief-section-title {
+      font-family: var(--font-heading);
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--inv-rose);
+      margin-bottom: 0.55rem;
+    }
+
+    .brief-section-body {
+      font-size: 0.79rem;
+      color: var(--inv-muted);
+      line-height: 1.6;
+    }
+
+    .brief-kv {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.2rem;
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+
+    .brief-kv-key {
+      font-weight: 600;
+      color: var(--inv-text);
+      flex-shrink: 0;
+      min-width: 4.5rem;
+    }
+
+    .brief-kv-val { color: var(--inv-muted); }
+
+    /* ── Ask bar ── */
+    .brief-ask {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      background: linear-gradient(135deg, #fff0e8 0%, #fef8f2 100%);
+      border: 1px solid var(--inv-border);
+      border-left: 3px solid var(--inv-rose);
+      border-radius: var(--inv-radius);
+      padding: 0.9rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .brief-ask-left {}
+
+    .brief-ask-label {
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--inv-rose);
+      margin-bottom: 0.15rem;
+    }
+
+    .brief-ask-amount {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--inv-text);
+      letter-spacing: -0.025em;
+    }
+
+    .brief-ask-pills {
+      display: flex;
+      gap: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .brief-ask-pill {
+      text-align: center;
+    }
+
+    .brief-ask-pill-val {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--inv-text);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .brief-ask-pill-lbl {
+      font-size: 0.59rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--inv-faint);
+      margin-top: 0.15rem;
+    }
+
+    /* ── Document footer ── */
+    .brief-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.8rem 2.5rem;
+      border-top: 1px solid var(--inv-border);
+    }
+
+    .brief-footer-note {
+      font-size: 0.61rem;
+      color: var(--inv-faint);
+      line-height: 1.55;
+    }
+
+    .brief-footer-contact {
+      font-size: 0.61rem;
+      color: var(--inv-faint);
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ── Print overrides ── */
+    @media print {
+      .brief-section   { break-inside: avoid; }
+      .brief-ask       { break-inside: avoid; }
+      .brief-metrics   { break-inside: avoid; }
+
+      /* Remove box shadows that print poorly */
+      .brief-section  { box-shadow: none; }
+      .brief-planet-inner { box-shadow: none; }
+    }
+
+    /* ── Responsive (screen) ── */
+    @media (max-width: 768px) {
+      .brief-planet { display: none; } /* too small to show split effect */
+      .brief-title-block { max-width: 100%; }
+      .brief-grid { grid-template-columns: 1fr; }
+      .brief-metrics { grid-template-columns: repeat(2, 1fr); }
+      .brief-ask { flex-direction: column; align-items: flex-start; }
+      .brief-header { padding: 1rem 1.25rem; }
+      .brief-content { padding: 1.5rem 1.25rem; }
+      .brief-footer { padding: 0.75rem 1.25rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Screen navigation (hidden on print) ──────────────── -->
+  <div class="brief-screen-nav">
+    <header class="inv-header">
+      <a href="index.html" class="inv-logo">
+        <img src="../assets/xwinger.png" alt="" width="28" height="28"
+             onerror="this.src='../assets/logo.svg'" />
+        The Scratcher Project
+      </a>
+      <div class="inv-header-right">
+        <a href="index.html" class="inv-back-link">&larr; Overview</a>
+        <span class="inv-header-label">Investor Relations</span>
+      </div>
+    </header>
+  </div>
+  <!-- ─────────────────────────────────────────────────────── -->
+
+  <div class="brief-wrapper">
+
+    <!-- Sidebar (screen only, hidden on print via @media print in investor.css scope) -->
+    <aside class="inv-sidebar brief-screen-nav">
+      <div class="inv-sidebar-label">Documents</div>
+      <ul class="inv-nav">
+        <li><a href="index.html"><span class="inv-nav-icon">&#9670;</span> Overview</a></li>
+        <li><a href="brief.html" class="active"><span class="inv-nav-icon">&#9673;</span> Company Brief</a></li>
+        <li><a href="pitch-deck.html"><span class="inv-nav-icon">&#9670;</span> Pitch Deck</a></li>
+      </ul>
+    </aside>
+
+    <!-- ── Printable document ───────────────────────────── -->
+    <div class="brief-page">
+
+      <!-- Planet: upper-right, half inside column / half in empty field -->
+      <!-- Replace .brief-planet-inner with <img src="../assets/planet.png"> once asset is available -->
+      <div class="brief-planet" aria-hidden="true">
+        <div class="brief-planet-inner"></div>
+      </div>
+
+      <!-- Document header -->
+      <header class="brief-header">
+        <div class="brief-logo-lockup">
+          <!-- xwinger.png: place at assets/xwinger.png; falls back to logo.svg -->
+          <img src="../assets/xwinger.png" alt="xScratcher"
+               class="brief-logo-img"
+               onerror="this.src='../assets/logo.svg'" />
+          <div class="brief-logo-text">
+            <span class="brief-logo-name">The Scratcher Project</span>
+            <span class="brief-logo-sub">Open-source crypto trading infrastructure</span>
+          </div>
+        </div>
+        <div class="brief-header-meta">
+          <span class="inv-confidential">&#128274;&nbsp;Confidential</span>
+          <span class="brief-doc-label">Company Brief &middot; <span id="year"></span></span>
+        </div>
+      </header>
+
+      <!-- Main content -->
+      <main class="brief-content">
+
+        <!-- Title block (left-constrained; planet floats upper-right) -->
+        <div class="brief-title-block">
+          <div class="brief-eyebrow">Pre-Seed &middot; Qualified Investors Only</div>
+          <h1 class="brief-title">[Company headline<br>goes here]</h1>
+          <p class="brief-subtitle">[One or two sentence positioning statement &mdash; problem solved and for whom.]</p>
+        </div>
+
+        <!-- Key metrics strip -->
+        <div class="brief-metrics">
+          <div class="brief-metric">
+            <div class="brief-metric-value">$[X]B</div>
+            <div class="brief-metric-label">TAM</div>
+            <div class="brief-metric-sub">[descriptor]</div>
+          </div>
+          <div class="brief-metric">
+            <div class="brief-metric-value">[X]%</div>
+            <div class="brief-metric-label">CAGR</div>
+            <div class="brief-metric-sub">[descriptor]</div>
+          </div>
+          <div class="brief-metric">
+            <div class="brief-metric-value">$[X]M</div>
+            <div class="brief-metric-label">ARR Yr&nbsp;5</div>
+            <div class="brief-metric-sub">[conservative]</div>
+          </div>
+          <div class="brief-metric">
+            <div class="brief-metric-value">$[X]K</div>
+            <div class="brief-metric-label">Raising</div>
+            <div class="brief-metric-sub">[instrument]</div>
+          </div>
+        </div>
+
+        <!-- 2-column section grid -->
+        <div class="brief-grid">
+
+          <div class="brief-section">
+            <div class="brief-section-title">Problem &amp; Solution</div>
+            <div class="brief-section-body">
+              <p>[Problem statement placeholder]</p>
+              <p>[Solution statement placeholder]</p>
+            </div>
+          </div>
+
+          <div class="brief-section">
+            <div class="brief-section-title">Market Opportunity</div>
+            <div class="brief-section-body">
+              <p>[Market size and dynamics placeholder]</p>
+              <p>[SAM / target segment placeholder]</p>
+            </div>
+          </div>
+
+          <div class="brief-section">
+            <div class="brief-section-title">Business Model</div>
+            <div class="brief-section-body">
+              <div class="brief-kv">
+                <span class="brief-kv-key">Phase&nbsp;1</span>
+                <span class="brief-kv-val">[Revenue model placeholder]</span>
+              </div>
+              <div class="brief-kv">
+                <span class="brief-kv-key">Phase&nbsp;2</span>
+                <span class="brief-kv-val">[Expansion model placeholder]</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="brief-section">
+            <div class="brief-section-title">Team &amp; Traction</div>
+            <div class="brief-section-body">
+              <div class="brief-kv">
+                <span class="brief-kv-key">[Name]</span>
+                <span class="brief-kv-val">[Role &amp; background placeholder]</span>
+              </div>
+              <div class="brief-kv">
+                <span class="brief-kv-key">Status</span>
+                <span class="brief-kv-val">[Traction / milestone placeholder]</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /brief-grid -->
+
+        <!-- Investment ask bar -->
+        <div class="brief-ask">
+          <div class="brief-ask-left">
+            <div class="brief-ask-label">Round Ask</div>
+            <div class="brief-ask-amount">$[Amount]</div>
+          </div>
+          <div class="brief-ask-pills">
+            <div class="brief-ask-pill">
+              <div class="brief-ask-pill-val">[Instrument]</div>
+              <div class="brief-ask-pill-lbl">Instrument</div>
+            </div>
+            <div class="brief-ask-pill">
+              <div class="brief-ask-pill-val">$[X]M</div>
+              <div class="brief-ask-pill-lbl">Cap</div>
+            </div>
+            <div class="brief-ask-pill">
+              <div class="brief-ask-pill-val">[X]%</div>
+              <div class="brief-ask-pill-lbl">Discount</div>
+            </div>
+            <div class="brief-ask-pill">
+              <div class="brief-ask-pill-val">~[X]%</div>
+              <div class="brief-ask-pill-lbl">Implied equity</div>
+            </div>
+          </div>
+        </div>
+
+      </main><!-- /brief-content -->
+
+      <!-- Document footer -->
+      <footer class="brief-footer">
+        <p class="brief-footer-note">
+          &copy; <span class="year-ref"></span> The Scratcher Project
+          &nbsp;&middot;&nbsp; Confidential &mdash; not for distribution
+          &nbsp;&middot;&nbsp; Full pitch deck, financial model &amp; competitive analysis available on request.
+        </p>
+        <div class="brief-footer-contact">
+          <span class="brief-footer-note">[contact] &nbsp;&middot;&nbsp; [telegram] &nbsp;&middot;&nbsp; [github]</span>
+        </div>
+      </footer>
+
+    </div><!-- /brief-page -->
+  </div><!-- /brief-wrapper -->
+
+  <script>
+    const y = new Date().getFullYear();
+    document.getElementById('year').textContent = y;
+    document.querySelectorAll('.year-ref').forEach(el => el.textContent = y);
+  </script>
+</body>
+</html>
