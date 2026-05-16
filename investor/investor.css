@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
 
 /* =========================================================
-   Investor Relations — Exoplanet Sunrise style
+   Investor Relations — shared design system
    Palette: warm cream · rose dawn · champagne · coral-red
+   Used by every page under /investor/.
    ========================================================= */
 
 :root {
+  /* Palette */
   --inv-bg:         #fffaf5;
   --inv-surface:    #fff3e8;
   --inv-border:     #e8d4c4;
@@ -15,27 +17,32 @@
   --inv-rose:       #d4547a;
   --inv-champagne:  #f5e6c8;
   --inv-accent:     #c0392b;
-  --inv-gold:       #b08010;
-  --inv-sidebar-w:  240px;
-  --inv-header-h:   64px;
-  --inv-radius:     6px;
-  --inv-radius-lg:  12px;
+
+  /* Layout — fluid, viewport-relative.
+     Sidebar centres around 300px on common desktop (~25% wider
+     than the original 240px) while scaling down on small screens
+     and up on hi-res displays. */
+  --inv-sidebar-w:  clamp(16rem, 22vw, 22rem);
+  --inv-header-h:   clamp(3.5rem, 5vw, 4rem);
+  --inv-doc-pad-x:  clamp(1.25rem, 3vw, 2.5rem);
+
+  /* Shape & motion */
+  --inv-radius:     0.375rem;
+  --inv-radius-lg:  0.75rem;
   --inv-transition: 0.18s ease;
+
+  /* Type stacks */
   --font-heading:   'DM Sans', system-ui, sans-serif;
   --font-body:      'DM Sans', system-ui, sans-serif;
   --font-serif:     'Lora', Georgia, serif;
-  --font-mono:      'Fira Code', 'Courier New', monospace;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
+  /* Fluid root: ~16px on mobile → ~19px on hi-res desktop */
+  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.2rem);
   scroll-behavior: smooth;
-  font-size: 112%;
 }
 
 body {
@@ -43,12 +50,11 @@ body {
   color: var(--inv-text);
   font-family: var(--font-body);
   line-height: 1.7;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
 
-.inv-wrapper { flex: 1; }
 img { max-width: 100%; display: block; }
 
 a {
@@ -58,7 +64,9 @@ a {
 }
 a:hover { color: var(--inv-rose); }
 
-/* ── Header ──────────────────────────────────────────── */
+/* =========================================================
+   Top chrome — sticky brand bar
+   ========================================================= */
 .inv-header {
   height: var(--inv-header-h);
   background: rgba(255, 250, 245, 0.96);
@@ -70,24 +78,23 @@ a:hover { color: var(--inv-rose); }
   z-index: 100;
   display: flex;
   align-items: center;
-  padding-inline: 2rem;
-  gap: 1.5rem;
   justify-content: space-between;
+  padding-inline: clamp(1rem, 3vw, 2.5rem);
+  gap: 1.5rem;
 }
 
 .inv-logo {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.6rem;
   color: var(--inv-text);
   font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: -0.01em;
-  text-decoration: none;
   flex-shrink: 0;
 }
 .inv-logo:hover { color: var(--inv-accent); }
-.inv-logo img { flex-shrink: 0; }
+.inv-logo img { flex-shrink: 0; width: 1.75rem; height: 1.75rem; }
 
 .inv-header-right {
   display: flex;
@@ -102,7 +109,7 @@ a:hover { color: var(--inv-rose); }
   text-transform: uppercase;
   color: var(--inv-faint);
   border: 1px solid var(--inv-border);
-  border-radius: 99px;
+  border-radius: 9999px;
   padding: 0.25em 0.75em;
 }
 
@@ -112,134 +119,27 @@ a:hover { color: var(--inv-rose); }
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  transition: color var(--inv-transition);
 }
 .inv-back-link:hover { color: var(--inv-muted); }
 
-/* ── Hero ────────────────────────────────────────────── */
-.inv-hero {
-  position: relative;
-  background: linear-gradient(175deg,
-    #c43060 0%,
-    #d4547a 15%,
-    #e8845a 35%,
-    #f5b878 55%,
-    #fae0c0 75%,
-    #fffaf5 100%
-  );
-  padding: 5rem 2rem 7.5rem;
-  overflow: hidden;
-  text-align: center;
-}
-
-/* Star scatter via radial gradients */
-.inv-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(1.5px 1.5px at  7% 12%, rgba(255,255,255,0.90) 0%, transparent 100%),
-    radial-gradient(1.0px 1.0px at 17% 32%, rgba(255,255,255,0.65) 0%, transparent 100%),
-    radial-gradient(2.0px 2.0px at 29%  8%, rgba(255,255,255,0.80) 0%, transparent 100%),
-    radial-gradient(1.0px 1.0px at 41% 22%, rgba(255,255,255,0.55) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 54%  6%, rgba(255,255,255,0.85) 0%, transparent 100%),
-    radial-gradient(1.0px 1.0px at 63% 18%, rgba(255,255,255,0.60) 0%, transparent 100%),
-    radial-gradient(2.0px 2.0px at 76%  9%, rgba(255,255,255,0.75) 0%, transparent 100%),
-    radial-gradient(1.0px 1.0px at 88% 28%, rgba(255,255,255,0.50) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 95% 14%, rgba(255,255,255,0.70) 0%, transparent 100%),
-    radial-gradient(1.0px 1.0px at  3% 40%, rgba(255,255,255,0.40) 0%, transparent 100%),
-    radial-gradient(1.0px 1.0px at 22% 48%, rgba(255,255,255,0.30) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 48% 38%, rgba(255,255,255,0.35) 0%, transparent 100%),
-    radial-gradient(1.0px 1.0px at 83% 42%, rgba(255,255,255,0.38) 0%, transparent 100%),
-    radial-gradient(1.0px 1.0px at 12%  5%, rgba(255,255,255,0.70) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 67%  3%, rgba(255,255,255,0.80) 0%, transparent 100%);
-  pointer-events: none;
-}
-
-.inv-hero-inner {
-  position: relative;
-  z-index: 1;
-  max-width: 620px;
-  margin-inline: auto;
-}
-
-.inv-hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.78);
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(255,255,255,0.28);
-  border-radius: 99px;
-  padding: 0.3em 1em;
-}
-
-.inv-hero-title {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 600;
-  line-height: 1.2;
-  color: #fff;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 40px rgba(80, 0, 20, 0.22);
-}
-
-.inv-hero-title em {
-  font-style: italic;
-  opacity: 0.88;
-}
-
-.inv-hero-sub {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.72);
-  line-height: 1.75;
-  max-width: 440px;
-  margin-inline: auto;
-}
-
-/* Planet horizon arc */
-.inv-hero-arc {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  line-height: 0;
-  pointer-events: none;
-}
-.inv-hero-arc svg { display: block; width: 100%; }
-
-/* ── Wrapper: sidebar + content ──────────────────────── */
+/* =========================================================
+   Page shell — sidebar + main column + right spacer
+   ========================================================= */
 .inv-wrapper {
+  flex: 1;
   display: flex;
   align-items: flex-start;
 }
 
-/* ── Sidebar ─────────────────────────────────────────── */
 .inv-sidebar {
   width: var(--inv-sidebar-w);
   flex-shrink: 0;
   border-right: 1px solid var(--inv-border);
-  padding: 2rem 1.25rem;
+  padding: 2rem clamp(0.75rem, 1.5vw, 1.25rem);
   position: sticky;
   top: var(--inv-header-h);
-  height: calc(100vh - var(--inv-header-h));
+  height: calc(100dvh - var(--inv-header-h));
   overflow-y: auto;
-}
-
-.inv-sidebar-label {
-  font-size: 0.64rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--inv-faint);
-  padding-bottom: 0.6rem;
-  margin-bottom: 0.5rem;
-  border-bottom: 1px solid var(--inv-border);
 }
 
 .inv-nav {
@@ -258,7 +158,6 @@ a:hover { color: var(--inv-rose); }
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--inv-muted);
-  text-decoration: none;
   border-left: 2px solid transparent;
   transition: background var(--inv-transition), color var(--inv-transition);
 }
@@ -273,7 +172,6 @@ a:hover { color: var(--inv-rose); }
   color: var(--inv-accent);
   font-weight: 600;
   border-left-color: var(--inv-rose);
-  padding-left: calc(0.7rem - 0px);
 }
 
 .inv-nav-icon {
@@ -283,15 +181,156 @@ a:hover { color: var(--inv-rose); }
   opacity: 0.75;
 }
 
-/* ── Main content ────────────────────────────────────── */
-.inv-content {
-  flex: 1;
-  min-width: 0;
-  padding: 3rem 3.5rem;
-  max-width: 820px;
+.inv-right-space {
+  width: var(--inv-sidebar-w);
+  flex-shrink: 0;
 }
 
-/* ── Confidential badge ──────────────────────────────── */
+/* =========================================================
+   Document framing — every investor page is a "document"
+   with header / body / footer rows in the main column.
+   ========================================================= */
+.inv-doc {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  overflow: hidden;   /* clips brief-planet bleed (widely supported) */
+}
+
+/* Header strip: logo lockup left, meta right */
+.inv-doc-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.4rem var(--inv-doc-pad-x) 1.2rem;
+  border-bottom: 1px solid var(--inv-border);
+}
+
+.inv-doc-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.inv-doc-logo-img {
+  width: 2.75rem;
+  height: 2.75rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  mix-blend-mode: multiply;
+  border-radius: var(--inv-radius);
+}
+
+.inv-doc-logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.inv-doc-logo-name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--inv-text);
+  line-height: 1.15;
+}
+
+.inv-doc-logo-sub {
+  font-size: 0.67rem;
+  color: var(--inv-muted);
+  letter-spacing: 0.02em;
+}
+
+.inv-doc-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+}
+
+.inv-doc-label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--inv-faint);
+}
+
+.inv-doc-header .inv-confidential { margin-bottom: 0; }
+
+/* Body: padded content area */
+.inv-doc-body {
+  position: relative;
+  z-index: 1;
+  padding: 2rem var(--inv-doc-pad-x) 1.75rem;
+}
+
+/* Footer strip */
+.inv-doc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem var(--inv-doc-pad-x);
+  border-top: 1px solid var(--inv-border);
+}
+
+.inv-doc-footer-note {
+  font-size: 0.61rem;
+  color: var(--inv-faint);
+  line-height: 1.55;
+}
+
+.inv-doc-footer-contact {
+  font-size: 0.61rem;
+  color: var(--inv-faint);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   Shared typographic primitives
+   ========================================================= */
+.inv-title-block { padding-bottom: 1.5rem; }
+
+/* When a planet sibling claims the top-right space, constrain the
+   title block so text doesn't run beneath it. Use an explicit modifier
+   on .inv-doc rather than :has() for broad browser support. */
+.inv-doc--with-planet .inv-title-block {
+  max-width: 54%;
+}
+
+.inv-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--inv-rose);
+  margin-bottom: 0.5rem;
+}
+
+.inv-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 3vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--inv-text);
+  margin-bottom: 0.55rem;
+}
+
+.inv-subtitle {
+  font-size: 0.92rem;
+  color: var(--inv-muted);
+  line-height: 1.7;
+  max-width: min(31.25rem, 100%);
+}
+
+/* Confidential pill */
 .inv-confidential {
   display: inline-flex;
   align-items: center;
@@ -303,160 +342,18 @@ a:hover { color: var(--inv-rose); }
   color: var(--inv-accent);
   background: rgba(192, 57, 43, 0.06);
   border: 1px solid rgba(192, 57, 43, 0.18);
-  border-radius: 99px;
+  border-radius: 9999px;
   padding: 0.3em 0.8em;
-  margin-bottom: 1.75rem;
 }
 
-/* ── Index intro ─────────────────────────────────────── */
-.inv-intro {
-  margin-bottom: 2.5rem;
-}
-
-.inv-intro h2 {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.65rem;
-  color: var(--inv-text);
-}
-
-.inv-intro p {
-  color: var(--inv-muted);
-  font-size: 0.92rem;
-  max-width: 560px;
-  line-height: 1.75;
-  margin-bottom: 0.5rem;
-}
-
-/* ── Catalog cards ───────────────────────────────────── */
-.inv-catalog {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1.25rem;
-}
-
-.inv-catalog-card {
-  display: block;
-  background: #fff;
-  border: 1px solid var(--inv-border);
-  border-radius: var(--inv-radius-lg);
-  padding: 1.75rem 1.5rem;
-  text-decoration: none;
-  color: var(--inv-text);
-  position: relative;
-  overflow: hidden;
-  transition:
-    box-shadow var(--inv-transition),
-    border-color var(--inv-transition),
-    transform var(--inv-transition);
-}
-
-.inv-catalog-card::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--inv-rose), var(--inv-champagne));
-  opacity: 0;
-  transition: opacity var(--inv-transition);
-}
-
-.inv-catalog-card:hover {
-  box-shadow: 0 8px 32px rgba(212, 84, 122, 0.12);
-  border-color: rgba(212, 84, 122, 0.28);
-  transform: translateY(-2px);
-  color: var(--inv-text);
-}
-
-.inv-catalog-card:hover::after { opacity: 1; }
-
-.inv-card-icon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  line-height: 1;
-  color: var(--inv-rose);
-  opacity: 0.7;
-}
-
-.inv-card-title {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.4rem;
-  letter-spacing: -0.01em;
-  color: var(--inv-text);
-}
-
-.inv-card-desc {
-  font-size: 0.84rem;
-  color: var(--inv-muted);
-  line-height: 1.65;
-}
-
-.inv-card-arrow {
-  display: inline-block;
-  margin-top: 1rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--inv-rose);
-}
-
-/* ── Page hero (inner pages) ─────────────────────────── */
-.inv-page-hero {
-  position: relative;
-  background: linear-gradient(135deg, #fff0e8 0%, #fdf6ee 60%, var(--inv-bg) 100%);
-  border: 1px solid var(--inv-border);
-  border-radius: var(--inv-radius-lg);
-  padding: 2.5rem;
-  margin-bottom: 2.5rem;
-  overflow: hidden;
-}
-
-.inv-page-hero::before {
-  content: '';
-  position: absolute;
-  top: -50px; right: -50px;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(212,84,122,0.1) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.inv-page-eyebrow {
-  font-size: 0.67rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--inv-rose);
-  margin-bottom: 0.5rem;
-}
-
-.inv-page-title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: var(--inv-text);
-  margin-bottom: 0.6rem;
-}
-
-.inv-page-sub {
-  font-size: 0.92rem;
-  color: var(--inv-muted);
-  max-width: 500px;
-  line-height: 1.7;
-}
-
-/* ── Placeholder ─────────────────────────────────────── */
+/* =========================================================
+   Placeholder block (in-progress content)
+   ========================================================= */
 .inv-placeholder {
   background: linear-gradient(135deg, #fff8f3, #fef4ec);
   border: 2px dashed var(--inv-border);
   border-radius: var(--inv-radius-lg);
-  padding: 4rem 2rem;
+  padding: clamp(2rem, 5vw, 4rem) 2rem;
   text-align: center;
 }
 
@@ -480,7 +377,7 @@ a:hover { color: var(--inv-rose); }
   font-size: 0.86rem;
   color: var(--inv-faint);
   line-height: 1.65;
-  max-width: 320px;
+  max-width: min(20rem, 100%);
   margin-inline: auto;
 }
 
@@ -493,35 +390,204 @@ a:hover { color: var(--inv-rose); }
   text-transform: uppercase;
   color: var(--inv-faint);
   border: 1px solid var(--inv-border);
-  border-radius: 99px;
+  border-radius: 9999px;
   padding: 0.25em 0.85em;
 }
 
-/* ── Footer ──────────────────────────────────────────── */
-.inv-footer {
-  background: var(--inv-bg);
-  border-top: 1px solid var(--inv-border);
-  padding: 1.25rem 2rem;
+/* =========================================================
+   Brief-specific content blocks (planet, metrics, sections,
+   ask bar). Only the brief page uses these.
+   ========================================================= */
+
+/* Planet: ~200 % of column width, anchored to upper-right
+   corner with ~33 % clipped symmetrically on top and right. */
+.brief-planet {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 96%;
+  max-width: 96%;
+  aspect-ratio: 1 / 1;
+  transform: translateX(33%) translateY(-33%);
+  z-index: 0;
+  pointer-events: none;
+}
+.brief-planet img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  opacity: 0.92;
+}
+
+/* Metrics strip */
+.brief-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.brief-metric {
+  background: rgba(255, 243, 232, 0.25);
+  border: 1px solid var(--inv-border);
+  border-radius: var(--inv-radius);
+  padding: 0.75rem 0.9rem;
   text-align: center;
 }
 
-.inv-footer p {
+.brief-metric-value {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  font-weight: 600;
+  color: var(--inv-text);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.brief-metric-label {
+  font-size: 0.61rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--inv-faint);
+  margin-top: 0.25rem;
+}
+
+.brief-metric-sub {
+  font-size: 0.59rem;
+  color: var(--inv-faint);
+  margin-top: 0.1rem;
+  font-style: italic;
+}
+
+/* 2-up section grid */
+.brief-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.brief-section {
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid var(--inv-border);
+  border-radius: var(--inv-radius);
+  padding: 0.9rem 1.05rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.brief-section::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--inv-rose) 0%, var(--inv-champagne) 100%);
+}
+
+.brief-section-title {
+  font-family: var(--font-heading);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--inv-rose);
+  margin-bottom: 0.55rem;
+}
+
+.brief-section-body {
+  font-size: 0.79rem;
+  color: var(--inv-muted);
+  line-height: 1.6;
+}
+
+.brief-kv {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
   font-size: 0.78rem;
-  color: var(--inv-faint);
+  line-height: 1.5;
 }
 
-.inv-footer a {
-  color: var(--inv-faint);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+.brief-kv-key {
+  font-weight: 600;
+  color: var(--inv-text);
+  flex-shrink: 0;
+  min-width: 4.5rem;
 }
-.inv-footer a:hover { color: var(--inv-muted); }
 
-/* ── Responsive ──────────────────────────────────────── */
-@media (max-width: 768px) {
-  .inv-wrapper {
-    flex-direction: column;
-  }
+.brief-kv-val { color: var(--inv-muted); }
+
+/* Investment ask bar */
+.brief-ask {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background: rgba(255, 240, 232, 0.25);
+  border: 1px solid var(--inv-border);
+  border-left: 3px solid var(--inv-rose);
+  border-radius: var(--inv-radius);
+  padding: 0.9rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.brief-ask-label {
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--inv-rose);
+  margin-bottom: 0.15rem;
+}
+
+.brief-ask-amount {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-weight: 600;
+  color: var(--inv-text);
+  letter-spacing: -0.025em;
+}
+
+.brief-ask-pills {
+  display: flex;
+  gap: 1.25rem;
+  flex-shrink: 0;
+}
+
+.brief-ask-pill { text-align: center; }
+
+.brief-ask-pill-val {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--inv-text);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.brief-ask-pill-lbl {
+  font-size: 0.59rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--inv-faint);
+  margin-top: 0.15rem;
+}
+
+/* =========================================================
+   Utilities
+   ========================================================= */
+/* .print-hide: visible on screen, hidden in print */
+
+/* =========================================================
+   Responsive — em breakpoints respect user zoom
+   ========================================================= */
+
+/* Tablet / narrow desktop (~768px @ default font) */
+@media (max-width: 48em) {
+  .inv-wrapper { flex-direction: column; }
 
   .inv-sidebar {
     width: 100%;
@@ -529,8 +595,10 @@ a:hover { color: var(--inv-rose); }
     position: static;
     border-right: none;
     border-bottom: 1px solid var(--inv-border);
-    padding: 1rem 1.25rem;
+    padding: 0.75rem 1rem;
   }
+
+  .inv-right-space { display: none; }
 
   .inv-nav {
     flex-direction: row;
@@ -538,17 +606,43 @@ a:hover { color: var(--inv-rose); }
     gap: 0.3rem;
   }
 
-  .inv-content {
-    padding: 2rem 1.5rem;
+  .inv-doc-footer {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .inv-hero {
-    padding: 3.5rem 1.25rem 6.5rem;
-  }
+  .inv-doc--with-planet .inv-title-block { max-width: 100%; }
+
+  .brief-planet { display: none; }
+  .brief-grid { grid-template-columns: 1fr; }
+  .brief-metrics { grid-template-columns: repeat(2, 1fr); }
+  .brief-ask { flex-direction: column; align-items: flex-start; }
 }
 
-@media (max-width: 480px) {
-  .inv-header { padding-inline: 1rem; }
-  .inv-content { padding: 1.5rem 1rem; }
-  .inv-page-hero { padding: 1.75rem 1.25rem; }
+/* Small mobile (~480px @ default font) */
+@media (max-width: 30em) {
+  .inv-header { padding-inline: 0.875rem; }
+  .brief-ask-pills { gap: 0.75rem; }
+}
+
+/* =========================================================
+   Print — A4 portrait (brief page is print-targeted)
+   ========================================================= */
+@page {
+  size: A4 portrait;
+  margin: 1.4cm 1.6cm 1.2cm;
+}
+
+@media print {
+  html { font-size: 9pt; }
+  body { background: #fff !important; }
+
+  .print-hide { display: none !important; }
+
+  .brief-planet { transform: none; right: -1.2cm; }
+
+  .brief-section,
+  .brief-ask,
+  .brief-metrics { break-inside: avoid; }
+  .brief-section { box-shadow: none; }
 }
