@@ -18,20 +18,14 @@
   --inv-champagne:  #f5e6c8;
   --inv-accent:     #c0392b;
 
-  /* Layout — fluid, viewport-relative.
-     Sidebar centres around 300px on common desktop (~25% wider
-     than the original 240px) while scaling down on small screens
-     and up on hi-res displays. */
   --inv-sidebar-w:  clamp(14.5rem, 20vw, 20rem);
   --inv-header-h:   clamp(3.5rem, 5vw, 4rem);
   --inv-doc-pad-x:  clamp(1.25rem, 3vw, 2.5rem);
 
-  /* Shape & motion */
   --inv-radius:     0.375rem;
   --inv-radius-lg:  0.75rem;
   --inv-transition: 0.18s ease;
 
-  /* Type stacks */
   --font-heading:   'DM Sans', system-ui, sans-serif;
   --font-body:      'DM Sans', system-ui, sans-serif;
   --font-serif:     'Lora', Georgia, serif;
@@ -40,7 +34,6 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-  /* Fluid root: ~16px on mobile → ~19px on hi-res desktop */
   font-size: clamp(1rem, 0.9rem + 0.3vw, 1.2rem);
   scroll-behavior: smooth;
 }
@@ -187,20 +180,20 @@ a:hover { color: var(--inv-rose); }
 }
 
 /* =========================================================
-   Document framing — every investor page is a "document"
-   with header / body / footer rows in the main column.
+   Document framing
    ========================================================= */
 .inv-doc {
   flex: 1;
   min-width: 0;
   position: relative;
-  /* overflow: visible — allows .inv-hero-logo to bleed upward into the sticky header */
+  /* overflow: visible — lets .inv-hero-logo bleed upward into the sticky header */
 }
 
-/* Header strip: logo lockup left, meta right */
+/* z-index raised to 150 so the hero logo (inside this stacking context)
+   paints above the sticky top bar (z-index: 100). */
 .inv-doc-header {
   position: relative;
-  z-index: 2;
+  z-index: 150;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -209,10 +202,12 @@ a:hover { color: var(--inv-rose); }
   border-bottom: 1px solid var(--inv-border);
 }
 
+/* position:relative makes this the containing block for .inv-hero-logo */
 .inv-doc-logo {
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  position: relative;
 }
 
 .inv-doc-logo-text {
@@ -253,14 +248,12 @@ a:hover { color: var(--inv-rose); }
 
 .inv-doc-header .inv-confidential { margin-bottom: 0; }
 
-/* Body: padded content area */
 .inv-doc-body {
   position: relative;
   z-index: 1;
   padding: 2rem var(--inv-doc-pad-x) 1.75rem;
 }
 
-/* Footer strip */
 .inv-doc-footer {
   display: flex;
   align-items: center;
@@ -318,7 +311,6 @@ a:hover { color: var(--inv-rose); }
   max-width: min(31.25rem, 100%);
 }
 
-/* Confidential pill */
 .inv-confidential {
   display: inline-flex;
   align-items: center;
@@ -335,7 +327,7 @@ a:hover { color: var(--inv-rose); }
 }
 
 /* =========================================================
-   Placeholder block (in-progress content)
+   Placeholder block
    ========================================================= */
 .inv-placeholder {
   background: linear-gradient(135deg, #fff8f3, #fef4ec);
@@ -383,8 +375,7 @@ a:hover { color: var(--inv-rose); }
 }
 
 /* =========================================================
-   Brief-specific content blocks (planet, hero logo, metrics,
-   sections, ask bar). Only the brief page uses these.
+   Brief-specific blocks
    ========================================================= */
 
 .brief-planet {
@@ -405,18 +396,24 @@ a:hover { color: var(--inv-rose); }
   mix-blend-mode: screen;
 }
 
-/* Hero logo: sits between the brand-name text right edge and the planet
-   left edge. left: 22% of .inv-doc width lands in that gap.
-   Size is 10% smaller than the previous 6.5/10vw/8rem values. */
+/* Hero logo: absolutely positioned inside .inv-doc-logo (position:relative).
+   left:100% places its left edge at the text block's right edge —
+   overlap with the brand text is geometrically impossible at any viewport.
+   top:50% + translateY(-50%) centres it on the text row; the logo is tall
+   enough (~5.85–7.2rem) that it naturally bleeds ~1.3rem into the sticky
+   bar above without needing an explicit negative top.
+   .inv-doc-header z-index is 150, so this element paints above the sticky
+   bar (z-index:100) via the parent stacking context. */
 .inv-hero-logo {
   position: absolute;
-  top: -2rem;
-  left: clamp(7rem, 22%, 15rem);
+  left: calc(100% + 0.5rem);
+  top: 50%;
+  transform: translateY(-50%);
   width: clamp(5.85rem, 9vw, 7.2rem);
   height: clamp(5.85rem, 9vw, 7.2rem);
   object-fit: contain;
   mix-blend-mode: multiply;
-  z-index: 150;
+  z-index: 1;
   pointer-events: none;
   display: block;
 }
@@ -462,7 +459,6 @@ a:hover { color: var(--inv-rose); }
   font-style: italic;
 }
 
-/* 2-up section grid */
 .brief-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -520,7 +516,6 @@ a:hover { color: var(--inv-rose); }
 
 .brief-kv-val { color: var(--inv-muted); }
 
-/* Investment ask bar */
 .brief-ask {
   display: flex;
   align-items: center;
@@ -577,12 +572,7 @@ a:hover { color: var(--inv-rose); }
 }
 
 /* =========================================================
-   Utilities
-   ========================================================= */
-/* .print-hide: visible on screen, hidden in print */
-
-/* =========================================================
-   Responsive — em breakpoints respect user zoom
+   Responsive
    ========================================================= */
 
 @media (max-width: 48em) {
@@ -628,7 +618,7 @@ a:hover { color: var(--inv-rose); }
 }
 
 /* =========================================================
-   Print — A4 portrait (brief page is print-targeted)
+   Print
    ========================================================= */
 @page {
   size: A4 portrait;
@@ -642,7 +632,7 @@ a:hover { color: var(--inv-rose); }
   .print-hide { display: none !important; }
 
   .brief-planet { position: absolute; transform: none; right: -1.2cm; }
-  .inv-hero-logo { position: absolute; top: -0.6cm; right: 3cm; width: 2.2cm; height: 2.2cm; mix-blend-mode: normal; }
+  .inv-hero-logo { position: absolute; left: auto; right: 3cm; top: -0.6cm; transform: none; width: 2.2cm; height: 2.2cm; mix-blend-mode: normal; }
 
   .brief-section,
   .brief-ask,
