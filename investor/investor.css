@@ -433,6 +433,14 @@ a:hover { color: var(--inv-rose); }
   margin-bottom: 0.75rem;
 }
 
+.brief-section--market {
+  aspect-ratio: 1 / 1;
+  background-image: url('assets/triple-arrow.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 .brief-section--team .brief-section-body {
   display: flex;
   gap: clamp(1rem, 3vw, 2.5rem);
