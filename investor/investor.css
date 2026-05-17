@@ -18,7 +18,10 @@
   --inv-champagne:  #f5e6c8;
   --inv-accent:     #c0392b;
 
-  --inv-sidebar-w:  clamp(14.5rem, 20vw, 20rem);
+  /* Layout — sidebar / right-spacer scale proportionally with the viewport.
+     min(20vw, 20rem): pure 20 vw up to the 20 rem cap; no fixed floor so the
+     columns always shrink in step with the window instead of staying constant. */
+  --inv-sidebar-w:  min(20vw, 20rem);
   --inv-header-h:   clamp(3.5rem, 5vw, 4rem);
   --inv-doc-pad-x:  clamp(1.25rem, 3vw, 2.5rem);
 
@@ -572,10 +575,11 @@ a:hover { color: var(--inv-rose); }
 }
 
 /* =========================================================
-   Responsive
+   Responsive — em breakpoints use the browser base (16 px)
+   62em = 992 px: collapse to single column earlier than before (was 48em/768px)
    ========================================================= */
 
-@media (max-width: 48em) {
+@media (max-width: 62em) {
   .inv-wrapper { flex-direction: column; }
 
   .inv-sidebar {
