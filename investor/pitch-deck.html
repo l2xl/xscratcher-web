@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Pitch Deck &mdash; Investor Relations &middot; The Scratcher Project</title>
-  <link rel="stylesheet" href="investor.css?v=3" />
+  <link rel="stylesheet" href="investor.css?v=6" />
 </head>
 <body>
 
@@ -14,6 +14,18 @@
       <img src="assets/x-logo.png" alt="" width="28" height="28" style="mix-blend-mode:multiply" />
       The Scratcher Project
     </a>
+
+    <div class="inv-header-nav">
+      <button class="inv-nav-toggle" aria-expanded="false" aria-controls="inv-nav-list">
+        <span class="inv-nav-toggle-label">Pitch Deck</span>
+        <span class="inv-nav-toggle-caret">&#9660;</span>
+      </button>
+      <ul class="inv-nav inv-nav--header" id="inv-nav-list">
+        <li><a href="index.html"><span class="inv-nav-icon">&#9673;</span> Company Brief</a></li>
+        <li><a href="pitch-deck.html" class="active"><span class="inv-nav-icon">&#9670;</span> Pitch Deck</a></li>
+      </ul>
+    </div>
+
     <div class="inv-header-right">
       <a href="../index.html" class="inv-back-link">&larr; Main site</a>
       <span class="inv-header-label">Investor Relations</span>
@@ -33,15 +45,11 @@
 
       <header class="inv-doc-header">
         <div class="inv-doc-logo">
-          <img src="assets/x-logo.png" alt="X-Cockpit" width="44" height="44" class="inv-doc-logo-img" />
+          <img src="assets/x-logo.png" alt="X&middot;Cockpit" width="44" height="44" class="inv-doc-logo-img" />
           <div class="inv-doc-logo-text">
-            <span class="inv-doc-logo-name">X-Cockpit</span>
+            <span class="inv-doc-logo-name">X&middot;Cockpit</span>
             <span class="inv-doc-logo-sub">Open-source crypto trading AI platform</span>
           </div>
-        </div>
-        <div class="inv-doc-meta">
-          <span class="inv-confidential">&#128274;&nbsp;Confidential</span>
-          <span class="inv-doc-label">Pitch Deck &middot; <span class="year-ref"></span></span>
         </div>
       </header>
 
@@ -83,6 +91,19 @@
 
   <script>
     document.querySelectorAll('.year-ref').forEach(el => el.textContent = new Date().getFullYear());
+    const navToggle = document.querySelector('.inv-nav-toggle');
+    if (navToggle) {
+      navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!open));
+      });
+      document.addEventListener('click', () => {
+        if (navToggle.getAttribute('aria-expanded') === 'true') {
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
   </script>
 </body>
 </html>

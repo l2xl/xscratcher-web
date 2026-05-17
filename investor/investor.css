@@ -2,12 +2,9 @@
 
 /* =========================================================
    Investor Relations — shared design system
-   Palette: warm cream · rose dawn · champagne · coral-red
-   Used by every page under /investor/.
    ========================================================= */
 
 :root {
-  /* Palette */
   --inv-bg:         #fffaf5;
   --inv-surface:    #fff3e8;
   --inv-border:     #e8d4c4;
@@ -18,20 +15,14 @@
   --inv-champagne:  #f5e6c8;
   --inv-accent:     #c0392b;
 
-  /* Layout — fluid, viewport-relative.
-     Sidebar centres around 300px on common desktop (~25% wider
-     than the original 240px) while scaling down on small screens
-     and up on hi-res displays. */
-  --inv-sidebar-w:  clamp(14.5rem, 20vw, 20rem);
+  --inv-sidebar-w:  min(20vw, 20rem);
   --inv-header-h:   clamp(3.5rem, 5vw, 4rem);
   --inv-doc-pad-x:  clamp(1.25rem, 3vw, 2.5rem);
 
-  /* Shape & motion */
   --inv-radius:     0.375rem;
   --inv-radius-lg:  0.75rem;
   --inv-transition: 0.18s ease;
 
-  /* Type stacks */
   --font-heading:   'DM Sans', system-ui, sans-serif;
   --font-body:      'DM Sans', system-ui, sans-serif;
   --font-serif:     'Lora', Georgia, serif;
@@ -40,7 +31,6 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-  /* Fluid root: ~16px on mobile → ~19px on hi-res desktop */
   font-size: clamp(1rem, 0.9rem + 0.3vw, 1.2rem);
   scroll-behavior: smooth;
 }
@@ -64,12 +54,9 @@ a {
 }
 a:hover { color: var(--inv-rose); }
 
-/* =========================================================
-   Top chrome — sticky brand bar
-   ========================================================= */
 .inv-header {
   height: var(--inv-header-h);
-  background: rgba(255, 250, 245, 0.5);
+  background: rgba(255, 250, 245, 0.85);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--inv-border);
@@ -80,7 +67,7 @@ a:hover { color: var(--inv-rose); }
   align-items: center;
   justify-content: space-between;
   padding-inline: clamp(1rem, 3vw, 2.5rem);
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .inv-logo {
@@ -119,12 +106,13 @@ a:hover { color: var(--inv-rose); }
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  white-space: nowrap;
 }
 .inv-back-link:hover { color: var(--inv-muted); }
 
-/* =========================================================
-   Page shell — sidebar + main column + right spacer
-   ========================================================= */
+/* Header-mounted section nav (mobile only) */
+.inv-header-nav { display: none; }
+
 .inv-wrapper {
   flex: 1;
   display: flex;
@@ -181,26 +169,48 @@ a:hover { color: var(--inv-rose); }
   opacity: 0.75;
 }
 
+.inv-nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0.7rem;
+  background: var(--inv-surface);
+  border: 1px solid var(--inv-border);
+  border-radius: var(--inv-radius);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--inv-text);
+  cursor: pointer;
+  gap: 0.5rem;
+  white-space: nowrap;
+  transition: background var(--inv-transition);
+}
+.inv-nav-toggle:hover { background: var(--inv-champagne); }
+.inv-nav-toggle-label { flex: 1; text-align: left; }
+.inv-nav-toggle-caret {
+  font-size: 0.65rem;
+  color: var(--inv-muted);
+  transition: transform var(--inv-transition);
+}
+.inv-nav-toggle[aria-expanded="true"] .inv-nav-toggle-caret {
+  transform: rotate(180deg);
+}
+
 .inv-right-space {
   width: var(--inv-sidebar-w);
   flex-shrink: 0;
 }
 
-/* =========================================================
-   Document framing — every investor page is a "document"
-   with header / body / footer rows in the main column.
-   ========================================================= */
 .inv-doc {
   flex: 1;
   min-width: 0;
   position: relative;
-  overflow: hidden;   /* clips brief-planet bleed (widely supported) */
 }
 
-/* Header strip: logo lockup left, meta right */
 .inv-doc-header {
   position: relative;
-  z-index: 2;
+  z-index: 150;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -213,15 +223,7 @@ a:hover { color: var(--inv-rose); }
   display: flex;
   align-items: center;
   gap: 0.8rem;
-}
-
-.inv-doc-logo-img {
-  width: 2.75rem;
-  height: 2.75rem;
-  object-fit: contain;
-  flex-shrink: 0;
-  mix-blend-mode: multiply;
-  border-radius: var(--inv-radius);
+  position: relative;
 }
 
 .inv-doc-logo-text {
@@ -232,7 +234,7 @@ a:hover { color: var(--inv-rose); }
 
 .inv-doc-logo-name {
   font-family: var(--font-heading);
-  font-size: 1rem;
+  font-size: clamp(1.5rem, 2.5vw, 1.85rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--inv-text);
@@ -245,31 +247,12 @@ a:hover { color: var(--inv-rose); }
   letter-spacing: 0.02em;
 }
 
-.inv-doc-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.35rem;
-}
-
-.inv-doc-label {
-  font-size: 0.66rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--inv-faint);
-}
-
-.inv-doc-header .inv-confidential { margin-bottom: 0; }
-
-/* Body: padded content area */
 .inv-doc-body {
   position: relative;
   z-index: 1;
   padding: 2rem var(--inv-doc-pad-x) 1.75rem;
 }
 
-/* Footer strip */
 .inv-doc-footer {
   display: flex;
   align-items: center;
@@ -292,14 +275,8 @@ a:hover { color: var(--inv-rose); }
   flex-shrink: 0;
 }
 
-/* =========================================================
-   Shared typographic primitives
-   ========================================================= */
 .inv-title-block { padding-bottom: 1.5rem; }
 
-/* When a planet sibling claims the top-right space, constrain the
-   title block so text doesn't run beneath it. Use an explicit modifier
-   on .inv-doc rather than :has() for broad browser support. */
 .inv-doc--with-planet .inv-title-block {
   max-width: 54%;
 }
@@ -330,7 +307,6 @@ a:hover { color: var(--inv-rose); }
   max-width: min(31.25rem, 100%);
 }
 
-/* Confidential pill */
 .inv-confidential {
   display: inline-flex;
   align-items: center;
@@ -346,9 +322,6 @@ a:hover { color: var(--inv-rose); }
   padding: 0.3em 0.8em;
 }
 
-/* =========================================================
-   Placeholder block (in-progress content)
-   ========================================================= */
 .inv-placeholder {
   background: linear-gradient(135deg, #fff8f3, #fef4ec);
   border: 2px dashed var(--inv-border);
@@ -394,20 +367,13 @@ a:hover { color: var(--inv-rose); }
   padding: 0.25em 0.85em;
 }
 
-/* =========================================================
-   Brief-specific content blocks (planet, metrics, sections,
-   ask bar). Only the brief page uses these.
-   ========================================================= */
-
-/* Planet: fixed to the viewport so it is clipped by the actual
-   window edges (not by the sidebar or right spacer columns). */
 .brief-planet {
   position: fixed;
   top: 0;
   right: 0;
   width: max(82vw, 32rem);
   aspect-ratio: 1 / 1;
-  transform: translateX(33%) translateY(-20%);
+  transform: translateX(33%) translateY(-33%);
   z-index: 0;
   pointer-events: none;
 }
@@ -419,7 +385,20 @@ a:hover { color: var(--inv-rose); }
   mix-blend-mode: screen;
 }
 
-/* Metrics strip */
+.inv-hero-logo {
+  position: absolute;
+  left: calc(100% + 0.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(5.85rem, 9vw, 7.2rem);
+  height: clamp(5.85rem, 9vw, 7.2rem);
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  z-index: 1;
+  pointer-events: none;
+  display: block;
+}
+
 .brief-metrics {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -460,7 +439,6 @@ a:hover { color: var(--inv-rose); }
   font-style: italic;
 }
 
-/* 2-up section grid */
 .brief-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -518,7 +496,6 @@ a:hover { color: var(--inv-rose); }
 
 .brief-kv-val { color: var(--inv-muted); }
 
-/* Investment ask bar */
 .brief-ask {
   display: flex;
   align-items: center;
@@ -575,33 +552,56 @@ a:hover { color: var(--inv-rose); }
 }
 
 /* =========================================================
-   Utilities
-   ========================================================= */
-/* .print-hide: visible on screen, hidden in print */
-
-/* =========================================================
-   Responsive — em breakpoints respect user zoom
+   Responsive
+   62em = 992 px: single-column phone/tablet layout
+   Sidebar disappears; nav drops down from the sticky header.
    ========================================================= */
 
-/* Tablet / narrow desktop (~768px @ default font) */
-@media (max-width: 48em) {
+@media (max-width: 62em) {
   .inv-wrapper { flex-direction: column; }
 
-  .inv-sidebar {
-    width: 100%;
-    height: auto;
-    position: static;
-    border-right: none;
-    border-bottom: 1px solid var(--inv-border);
-    padding: 0.75rem 1rem;
-  }
-
+  /* Sidebar removed on phones; section nav moves into the top header */
+  .inv-sidebar { display: none; }
   .inv-right-space { display: none; }
 
-  .inv-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.3rem;
+  /* Free room in the header strip */
+  .inv-header-label { display: none; }
+
+  /* Sticky header must paint above the doc-header stacking context (z:150)
+     so the dropdown overlay isn't covered by document content below */
+  .inv-header { z-index: 200; }
+
+  /* Header-mounted nav container (anchor for the absolute dropdown) */
+  .inv-header-nav {
+    display: block;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .inv-nav-toggle { display: flex; min-width: 8.5rem; }
+
+  /* Dropdown panel, anchored to the toggle, opens downward from the header */
+  .inv-nav--header {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.4rem);
+    right: 0;
+    min-width: 13rem;
+    background: var(--inv-bg);
+    border: 1px solid var(--inv-border);
+    border-radius: var(--inv-radius);
+    box-shadow: 0 6px 20px rgba(28, 20, 16, 0.12);
+    flex-direction: column;
+    padding: 0.25rem;
+    gap: 0.1rem;
+  }
+  .inv-nav-toggle[aria-expanded="true"] + .inv-nav--header { display: flex; }
+
+  /* doc-header stacks brand + (formerly meta) on phones */
+  .inv-doc-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem var(--inv-doc-pad-x) 0.9rem;
   }
 
   .inv-doc-footer {
@@ -613,22 +613,20 @@ a:hover { color: var(--inv-rose); }
 
   .brief-planet {
     width: 200vw;
-    transform: translateX(50%) translateY(-20%);
+    transform: translateX(50%) translateY(-33%);
   }
+  .inv-hero-logo { display: none; }
   .brief-grid { grid-template-columns: 1fr; }
   .brief-metrics { grid-template-columns: repeat(2, 1fr); }
   .brief-ask { flex-direction: column; align-items: flex-start; }
 }
 
-/* Small mobile (~480px @ default font) */
 @media (max-width: 30em) {
-  .inv-header { padding-inline: 0.875rem; }
+  .inv-header { padding-inline: 0.875rem; gap: 0.6rem; }
+  .inv-back-link { display: none; }
   .brief-ask-pills { gap: 0.75rem; }
 }
 
-/* =========================================================
-   Print — A4 portrait (brief page is print-targeted)
-   ========================================================= */
 @page {
   size: A4 portrait;
   margin: 1.4cm 1.6cm 1.2cm;
@@ -641,6 +639,7 @@ a:hover { color: var(--inv-rose); }
   .print-hide { display: none !important; }
 
   .brief-planet { position: absolute; transform: none; right: -1.2cm; }
+  .inv-hero-logo { position: absolute; left: auto; right: 3cm; top: -0.6cm; transform: none; width: 2.2cm; height: 2.2cm; mix-blend-mode: normal; }
 
   .brief-section,
   .brief-ask,
