@@ -450,7 +450,7 @@ a:hover { color: var(--inv-rose); }
   background-image: url('assets/triple-arrow.png');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: 75%;
   z-index: 1;
 }
 
