@@ -10,6 +10,19 @@
 | DataHub | `datahub.html` | DataHub library description |
 | Mission | `mission.html` | The Exchange Scratcher Mission |
 
+## Investor section (`investor/`)
+Self-contained subdirectory for investor relations. Uses its own stylesheet (`investor/investor.css`) and local assets — does NOT share the root `css/style.css`.
+
+| Page | File | Description |
+|---|---|---|
+| Investor Brief | `investor/index.html` | X-Cockpit investor brief landing page |
+| Pitch Deck | `investor/pitch-deck.html` | Investor relations pitch deck |
+
+### Investor-local assets (`investor/assets/`)
+- `sci-fi-planet.png` — decorative hero illustration
+- `triple-arrow.png` — icon/graphic used in the deck
+- `x-logo.png` — X-Cockpit logo
+
 ## Shared assets
 - `css/style.css` — single shared stylesheet for all pages
 - `js/i18n.js` — language detection & automatic redirect script
