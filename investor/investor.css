@@ -69,7 +69,7 @@ a:hover { color: var(--inv-rose); }
    ========================================================= */
 .inv-header {
   height: var(--inv-header-h);
-  background: rgba(255, 250, 245, 0.96);
+  background: rgba(255, 250, 245, 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--inv-border);
@@ -168,7 +168,7 @@ a:hover { color: var(--inv-rose); }
 }
 
 .inv-nav a.active {
-  background: linear-gradient(90deg, rgba(212,84,122,0.09) 0%, rgba(245,230,200,0.25) 100%);
+  background: linear-gradient(90deg, rgba(212,84,122,0.09) 0%, rgba(245,230,200,0.5) 100%);
   color: var(--inv-accent);
   font-weight: 600;
   border-left-color: var(--inv-rose);
@@ -405,9 +405,9 @@ a:hover { color: var(--inv-rose); }
   position: fixed;
   top: 0;
   right: 0;
-  width: 58vw;
+  width: max(82vw, 32rem);
   aspect-ratio: 1 / 1;
-  transform: translateX(33%) translateY(-33%);
+  transform: translateX(33%) translateY(-20%);
   z-index: 0;
   pointer-events: none;
 }
@@ -417,7 +417,6 @@ a:hover { color: var(--inv-rose); }
   height: 100%;
   object-fit: contain;
   mix-blend-mode: screen;
-  opacity: 0.92;
 }
 
 /* Metrics strip */
@@ -429,7 +428,7 @@ a:hover { color: var(--inv-rose); }
 }
 
 .brief-metric {
-  background: rgba(255, 243, 232, 0.25);
+  background: rgba(255, 243, 232, 0.5);
   border: 1px solid var(--inv-border);
   border-radius: var(--inv-radius);
   padding: 0.75rem 0.9rem;
@@ -470,7 +469,7 @@ a:hover { color: var(--inv-rose); }
 }
 
 .brief-section {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid var(--inv-border);
   border-radius: var(--inv-radius);
   padding: 0.9rem 1.05rem;
@@ -612,7 +611,10 @@ a:hover { color: var(--inv-rose); }
 
   .inv-doc--with-planet .inv-title-block { max-width: 100%; }
 
-  .brief-planet { display: none; }
+  .brief-planet {
+    width: 200vw;
+    transform: translateX(50%) translateY(-20%);
+  }
   .brief-grid { grid-template-columns: 1fr; }
   .brief-metrics { grid-template-columns: repeat(2, 1fr); }
   .brief-ask { flex-direction: column; align-items: flex-start; }
