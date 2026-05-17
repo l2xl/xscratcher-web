@@ -410,14 +410,16 @@ a:hover { color: var(--inv-rose); }
   mix-blend-mode: screen;
 }
 
-/* Hero logo: large X-Cockpit mark positioned to the right of the brand
-   name in the doc header, bleeding upward into the sticky top bar.
+/* Hero logo: large X-Cockpit mark sitting to the right of the brand
+   name in the doc-header strip, with a 2 rem bleed into the sticky bar.
+   top: -2rem centres the logo vertically on the doc-header row while
+   keeping a subtle overlap with the sticky top bar.
    .inv-doc has no z-index (no stacking context), so z-index: 150 here
    participates directly in the root stacking context — above the sticky
    header (z-index: 100) and the doc header (z-index: 2). */
 .inv-hero-logo {
   position: absolute;
-  top: calc(-1 * var(--inv-header-h));
+  top: -2rem;
   left: clamp(10rem, 35%, 22rem);
   width: clamp(6.5rem, 10vw, 8rem);
   height: clamp(6.5rem, 10vw, 8rem);
