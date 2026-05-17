@@ -439,6 +439,8 @@ a:hover { color: var(--inv-rose); }
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  background-blend-mode: multiply;
+  filter: saturate(1.8) contrast(1.25);
 }
 
 .brief-section--team .brief-section-body {
