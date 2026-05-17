@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>X-Cockpit &mdash; Investor Brief &middot; The Scratcher Project</title>
-  <link rel="stylesheet" href="investor.css?v=3" />
+  <link rel="stylesheet" href="investor.css?v=4" />
 </head>
 <body>
 
@@ -23,7 +23,11 @@
   <div class="inv-wrapper">
 
     <aside class="inv-sidebar print-hide">
-      <ul class="inv-nav">
+      <button class="inv-nav-toggle" aria-expanded="false" aria-controls="inv-nav-list">
+        <span class="inv-nav-toggle-label">Company Brief</span>
+        <span class="inv-nav-toggle-caret">&#9660;</span>
+      </button>
+      <ul class="inv-nav" id="inv-nav-list">
         <li><a href="index.html" class="active"><span class="inv-nav-icon">&#9673;</span> Company Brief</a></li>
         <li><a href="pitch-deck.html"><span class="inv-nav-icon">&#9670;</span> Pitch Deck</a></li>
       </ul>
@@ -176,6 +180,13 @@
 
   <script>
     document.querySelectorAll('.year-ref').forEach(el => el.textContent = new Date().getFullYear());
+    const navToggle = document.querySelector('.inv-nav-toggle');
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        const open = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!open));
+      });
+    }
   </script>
 </body>
 </html>
