@@ -3,7 +3,7 @@ name: Deploy to Ubuntu server
 on:
   push:
     branches:
-      - main
+      - '**'
 
 jobs:
   deploy:
@@ -15,26 +15,47 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Determine deploy path
+        id: vars
+        run: |
+          BRANCH="${GITHUB_REF_NAME}"
+          # Replace any character that is not alphanumeric, dot, underscore, or hyphen with '-'
+          SAFE_BRANCH=$(echo "$BRANCH" | sed 's/[^a-zA-Z0-9._-]/-/g')
+          if [ "$BRANCH" = "main" ]; then
+            echo "deploy_path=/var/www/scratcher/" >> "$GITHUB_OUTPUT"
+            echo "is_main=true"                    >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy_path=/var/www/scratcher/${SAFE_BRANCH}/" >> "$GITHUB_OUTPUT"
+            echo "is_main=false"                                   >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Deploy files via rsync over SSH
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_HOST:        ${{ secrets.SSH_HOST }}
           SSH_USER:        ${{ secrets.SSH_USER }}
           SSH_PORT:        ${{ secrets.SSH_PORT }}
+          DEPLOY_PATH:     ${{ steps.vars.outputs.deploy_path }}
+          IS_MAIN:         ${{ steps.vars.outputs.is_main }}
         run: |
           # Write private key to temp file
           echo "$SSH_PRIVATE_KEY" > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
 
-          # Stop any in-flight candle fetch and remove the cron job if present.
-          # Best-effort: || true ensures a failure here never blocks the deploy.
-          ssh -i /tmp/deploy_key -p "${SSH_PORT:-22}" -o StrictHostKeyChecking=no \
-            "$SSH_USER@$SSH_HOST" \
-            'pkill -f "fetch_candles.py" 2>/dev/null; crontab -l 2>/dev/null | grep -v "fetch_candles.py" | crontab - 2>/dev/null; true' \
-            || true
+          # Stop any in-flight candle fetch — main branch only
+          if [ "$IS_MAIN" = "true" ]; then
+            ssh -i /tmp/deploy_key -p "${SSH_PORT:-22}" -o StrictHostKeyChecking=no \
+              "$SSH_USER@$SSH_HOST" \
+              'pkill -f "fetch_candles.py" 2>/dev/null; crontab -l 2>/dev/null | grep -v "fetch_candles.py" | crontab - 2>/dev/null; true' \
+              || true
+          fi
 
-          # Sync all site files to the server's web root
-          # Excludes hidden files (.git, .github, etc.) automatically via --exclude
+          # Ensure the target directory exists on the server
+          ssh -i /tmp/deploy_key -p "${SSH_PORT:-22}" -o StrictHostKeyChecking=no \
+            "$SSH_USER@$SSH_HOST" "mkdir -p ${DEPLOY_PATH}"
+
+          # Sync all site files to the target directory
+          # Excludes hidden files (.git, .github, etc.) and transient data
           rsync -avz --delete \
             -e "ssh -i /tmp/deploy_key -p ${SSH_PORT:-22} -o StrictHostKeyChecking=no" \
             --exclude='.git' \
@@ -42,7 +63,7 @@ jobs:
             --exclude='README.md' \
             --exclude='market/candles.json' \
             ./ \
-            "$SSH_USER@$SSH_HOST:/var/www/scratcher/"
+            "$SSH_USER@$SSH_HOST:${DEPLOY_PATH}"
 
           # Clean up key
           rm -f /tmp/deploy_key
