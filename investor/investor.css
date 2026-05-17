@@ -194,7 +194,7 @@ a:hover { color: var(--inv-rose); }
   flex: 1;
   min-width: 0;
   position: relative;
-  overflow: hidden;   /* clips brief-planet bleed (widely supported) */
+  /* overflow: visible — allows .inv-hero-logo to bleed upward into the sticky header */
 }
 
 /* Header strip: logo lockup left, meta right */
@@ -213,15 +213,6 @@ a:hover { color: var(--inv-rose); }
   display: flex;
   align-items: center;
   gap: 0.8rem;
-}
-
-.inv-doc-logo-img {
-  width: 2.75rem;
-  height: 2.75rem;
-  object-fit: contain;
-  flex-shrink: 0;
-  mix-blend-mode: multiply;
-  border-radius: var(--inv-radius);
 }
 
 .inv-doc-logo-text {
@@ -395,8 +386,8 @@ a:hover { color: var(--inv-rose); }
 }
 
 /* =========================================================
-   Brief-specific content blocks (planet, metrics, sections,
-   ask bar). Only the brief page uses these.
+   Brief-specific content blocks (planet, hero logo, metrics,
+   sections, ask bar). Only the brief page uses these.
    ========================================================= */
 
 /* Planet: fixed to the viewport so it is clipped by the actual
@@ -417,6 +408,24 @@ a:hover { color: var(--inv-rose); }
   height: 100%;
   object-fit: contain;
   mix-blend-mode: screen;
+}
+
+/* Hero logo: large X-Cockpit mark positioned to the right of the brand
+   name in the doc header, bleeding upward into the sticky top bar.
+   .inv-doc has no z-index (no stacking context), so z-index: 150 here
+   participates directly in the root stacking context — above the sticky
+   header (z-index: 100) and the doc header (z-index: 2). */
+.inv-hero-logo {
+  position: absolute;
+  top: calc(-1 * var(--inv-header-h));
+  left: clamp(10rem, 35%, 22rem);
+  width: clamp(6.5rem, 10vw, 8rem);
+  height: clamp(6.5rem, 10vw, 8rem);
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  z-index: 150;
+  pointer-events: none;
+  display: block;
 }
 
 /* Metrics strip */
@@ -615,6 +624,7 @@ a:hover { color: var(--inv-rose); }
     width: 200vw;
     transform: translateX(50%) translateY(-33%);
   }
+  .inv-hero-logo { display: none; }
   .brief-grid { grid-template-columns: 1fr; }
   .brief-metrics { grid-template-columns: repeat(2, 1fr); }
   .brief-ask { flex-direction: column; align-items: flex-start; }
@@ -641,6 +651,7 @@ a:hover { color: var(--inv-rose); }
   .print-hide { display: none !important; }
 
   .brief-planet { position: absolute; transform: none; right: -1.2cm; }
+  .inv-hero-logo { position: absolute; top: -0.6cm; right: 3cm; width: 2.2cm; height: 2.2cm; mix-blend-mode: normal; }
 
   .brief-section,
   .brief-ask,
