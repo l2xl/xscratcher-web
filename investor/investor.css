@@ -434,13 +434,50 @@ a:hover { color: var(--inv-rose); }
 }
 
 .brief-section--market {
+  background: #ffffff;
+}
+
+.brief-market-stack {
+  position: relative;
+  width: 100%;
   aspect-ratio: 1 / 1;
+  margin-top: 0.4rem;
+}
+
+.brief-market-arrow {
+  position: absolute;
+  inset: 0;
   background-image: url('assets/triple-arrow.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  background-blend-mode: multiply;
-  filter: saturate(1.8) contrast(1.25);
+  z-index: 1;
+}
+
+.brief-market-text {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.brief-market-text-lg {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  fill: var(--inv-text);
+}
+
+.brief-market-text-sm {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: var(--inv-muted);
 }
 
 .brief-section--team .brief-section-body {
