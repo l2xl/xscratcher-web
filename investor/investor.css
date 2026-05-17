@@ -18,9 +18,6 @@
   --inv-champagne:  #f5e6c8;
   --inv-accent:     #c0392b;
 
-  /* Layout — sidebar / right-spacer scale proportionally with the viewport.
-     min(20vw, 20rem): pure 20 vw up to the 20 rem cap; no fixed floor so the
-     columns always shrink in step with the window instead of staying constant. */
   --inv-sidebar-w:  min(20vw, 20rem);
   --inv-header-h:   clamp(3.5rem, 5vw, 4rem);
   --inv-doc-pad-x:  clamp(1.25rem, 3vw, 2.5rem);
@@ -60,9 +57,6 @@ a {
 }
 a:hover { color: var(--inv-rose); }
 
-/* =========================================================
-   Top chrome — sticky brand bar
-   ========================================================= */
 .inv-header {
   height: var(--inv-header-h);
   background: rgba(255, 250, 245, 0.5);
@@ -118,9 +112,6 @@ a:hover { color: var(--inv-rose); }
 }
 .inv-back-link:hover { color: var(--inv-muted); }
 
-/* =========================================================
-   Page shell — sidebar + main column + right spacer
-   ========================================================= */
 .inv-wrapper {
   flex: 1;
   display: flex;
@@ -210,18 +201,12 @@ a:hover { color: var(--inv-rose); }
   flex-shrink: 0;
 }
 
-/* =========================================================
-   Document framing
-   ========================================================= */
 .inv-doc {
   flex: 1;
   min-width: 0;
   position: relative;
-  /* overflow: visible — lets .inv-hero-logo bleed upward into the sticky header */
 }
 
-/* z-index raised to 150 so the hero logo (inside this stacking context)
-   paints above the sticky top bar (z-index: 100). */
 .inv-doc-header {
   position: relative;
   z-index: 150;
@@ -233,7 +218,6 @@ a:hover { color: var(--inv-rose); }
   border-bottom: 1px solid var(--inv-border);
 }
 
-/* position:relative makes this the containing block for .inv-hero-logo */
 .inv-doc-logo {
   display: flex;
   align-items: center;
@@ -249,7 +233,7 @@ a:hover { color: var(--inv-rose); }
 
 .inv-doc-logo-name {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: clamp(1.5rem, 2.5vw, 1.85rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--inv-text);
@@ -261,23 +245,6 @@ a:hover { color: var(--inv-rose); }
   color: var(--inv-muted);
   letter-spacing: 0.02em;
 }
-
-.inv-doc-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.35rem;
-}
-
-.inv-doc-label {
-  font-size: 0.66rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--inv-faint);
-}
-
-.inv-doc-header .inv-confidential { margin-bottom: 0; }
 
 .inv-doc-body {
   position: relative;
@@ -307,9 +274,6 @@ a:hover { color: var(--inv-rose); }
   flex-shrink: 0;
 }
 
-/* =========================================================
-   Shared typographic primitives
-   ========================================================= */
 .inv-title-block { padding-bottom: 1.5rem; }
 
 .inv-doc--with-planet .inv-title-block {
@@ -357,9 +321,6 @@ a:hover { color: var(--inv-rose); }
   padding: 0.3em 0.8em;
 }
 
-/* =========================================================
-   Placeholder block
-   ========================================================= */
 .inv-placeholder {
   background: linear-gradient(135deg, #fff8f3, #fef4ec);
   border: 2px dashed var(--inv-border);
@@ -405,10 +366,6 @@ a:hover { color: var(--inv-rose); }
   padding: 0.25em 0.85em;
 }
 
-/* =========================================================
-   Brief-specific blocks
-   ========================================================= */
-
 .brief-planet {
   position: fixed;
   top: 0;
@@ -427,14 +384,6 @@ a:hover { color: var(--inv-rose); }
   mix-blend-mode: screen;
 }
 
-/* Hero logo: absolutely positioned inside .inv-doc-logo (position:relative).
-   left:100% places its left edge at the text block's right edge —
-   overlap with the brand text is geometrically impossible at any viewport.
-   top:50% + translateY(-50%) centres it on the text row; the logo is tall
-   enough (~5.85–7.2rem) that it naturally bleeds ~1.3rem into the sticky
-   bar above without needing an explicit negative top.
-   .inv-doc-header z-index is 150, so this element paints above the sticky
-   bar (z-index:100) via the parent stacking context. */
 .inv-hero-logo {
   position: absolute;
   left: calc(100% + 0.5rem);
@@ -449,7 +398,6 @@ a:hover { color: var(--inv-rose); }
   display: block;
 }
 
-/* Metrics strip */
 .brief-metrics {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -603,8 +551,8 @@ a:hover { color: var(--inv-rose); }
 }
 
 /* =========================================================
-   Responsive — em breakpoints use the browser base (16 px)
-   62em = 992 px: collapse to single column earlier than before (was 48em/768px)
+   Responsive
+   62em = 992 px: collapse to single column
    ========================================================= */
 
 @media (max-width: 62em) {
@@ -637,6 +585,12 @@ a:hover { color: var(--inv-rose); }
 
   .inv-nav-toggle[aria-expanded="true"] ~ .inv-nav { display: flex; }
 
+  .inv-doc-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem var(--inv-doc-pad-x) 0.9rem;
+  }
+
   .inv-doc-footer {
     flex-direction: column;
     align-items: flex-start;
@@ -659,9 +613,6 @@ a:hover { color: var(--inv-rose); }
   .brief-ask-pills { gap: 0.75rem; }
 }
 
-/* =========================================================
-   Print
-   ========================================================= */
 @page {
   size: A4 portrait;
   margin: 1.4cm 1.6cm 1.2cm;
