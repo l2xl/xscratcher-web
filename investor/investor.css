@@ -223,7 +223,7 @@ a:hover { color: var(--inv-rose); }
 
 .inv-doc-logo-name {
   font-family: var(--font-heading);
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--inv-text);
