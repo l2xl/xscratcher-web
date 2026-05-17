@@ -407,7 +407,7 @@ a:hover { color: var(--inv-rose); }
   right: 0;
   width: max(82vw, 32rem);
   aspect-ratio: 1 / 1;
-  transform: translateX(33%) translateY(-20%);
+  transform: translateX(33%) translateY(-33%);
   z-index: 0;
   pointer-events: none;
 }
@@ -613,7 +613,7 @@ a:hover { color: var(--inv-rose); }
 
   .brief-planet {
     width: 200vw;
-    transform: translateX(50%) translateY(-20%);
+    transform: translateX(50%) translateY(-33%);
   }
   .brief-grid { grid-template-columns: 1fr; }
   .brief-metrics { grid-template-columns: repeat(2, 1fr); }
