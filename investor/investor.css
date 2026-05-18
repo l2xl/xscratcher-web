@@ -474,8 +474,8 @@ a:hover { color: var(--inv-rose); }
 }
 
 .brief-market-num {
-  font-family: var(--font-serif);
-  font-size: 48px;
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
   font-weight: 800;
   letter-spacing: -0.01em;
   fill: #000;
@@ -483,15 +483,15 @@ a:hover { color: var(--inv-rose); }
 
 .brief-market-bullet {
   font-family: var(--font-heading);
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 500;
   fill: #000;
 }
 
 .brief-market-dash {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 28px;
+  font-size: 1.6rem;
   font-weight: 600;
   fill: var(--inv-accent);
 }
@@ -503,8 +503,8 @@ a:hover { color: var(--inv-rose); }
 }
 
 .brief-market-ai-title {
-  font-family: var(--font-serif);
-  font-size: 1.35rem;
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   text-align: center;
