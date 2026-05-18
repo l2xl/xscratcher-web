@@ -475,15 +475,15 @@ a:hover { color: var(--inv-rose); }
 
 .brief-market-num {
   font-family: var(--font-serif);
-  font-size: 46px;
-  font-weight: 700;
+  font-size: 70px;
+  font-weight: 800;
   letter-spacing: -0.01em;
   fill: #000;
 }
 
 .brief-market-bullet {
   font-family: var(--font-heading);
-  font-size: 28px;
+  font-size: 52px;
   font-weight: 600;
   fill: #000;
 }
@@ -491,7 +491,7 @@ a:hover { color: var(--inv-rose); }
 .brief-market-dash {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 600;
   fill: #000;
 }
