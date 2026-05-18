@@ -62,7 +62,7 @@ a:hover { color: var(--inv-rose); }
   border-bottom: 1px solid var(--inv-border);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 200;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -650,10 +650,6 @@ a:hover { color: var(--inv-rose); }
 
   /* Free room in the header strip */
   .inv-header-label { display: none; }
-
-  /* Sticky header must paint above the doc-header stacking context (z:150)
-     so the dropdown overlay isn't covered by document content below */
-  .inv-header { z-index: 200; }
 
   /* Header-mounted nav container (anchor for the absolute dropdown) */
   .inv-header-nav {
