@@ -433,10 +433,6 @@ a:hover { color: var(--inv-rose); }
   margin-bottom: 0.75rem;
 }
 
-.brief-section--market {
-  background: #ffffff;
-}
-
 .brief-market-stack {
   position: relative;
   width: 100%;
@@ -445,12 +441,13 @@ a:hover { color: var(--inv-rose); }
 
 .brief-market-arrow {
   position: absolute;
-  inset: 0;
-  background-image: url('assets/spiral-galaxy.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 75%;
+  top: 50%;
+  left: 50%;
+  width: 75%;
+  height: auto;
+  transform: translate(-50%, -50%);
   z-index: 1;
+  pointer-events: none;
 }
 
 .brief-market-text {
