@@ -446,7 +446,7 @@ a:hover { color: var(--inv-rose); }
 .brief-market-arrow {
   position: absolute;
   inset: 0;
-  background-image: url('assets/triple-arrow.png');
+  background-image: url('assets/spiral-galaxy.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 75%;
