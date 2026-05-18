@@ -56,13 +56,13 @@ a:hover { color: var(--inv-rose); }
 
 .inv-header {
   height: var(--inv-header-h);
-  background: rgba(255, 250, 245, 0.85);
+  background: rgba(255, 250, 245, 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--inv-border);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 200;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -373,7 +373,7 @@ a:hover { color: var(--inv-rose); }
   right: 0;
   width: max(82vw, 32rem);
   aspect-ratio: 1 / 1;
-  transform: translateX(33%) translateY(-33%);
+  transform: translateX(33%) translateY(-48%);
   z-index: 0;
   pointer-events: none;
 }
@@ -433,24 +433,18 @@ a:hover { color: var(--inv-rose); }
   margin-bottom: 0.75rem;
 }
 
-.brief-section--market {
-  background: #ffffff;
-}
-
 .brief-market-stack {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
 }
 
 .brief-market-arrow {
-  position: absolute;
-  inset: 0;
-  background-image: url('assets/spiral-galaxy.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 75%;
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
   z-index: 1;
+  pointer-events: none;
 }
 
 .brief-market-text {
@@ -657,10 +651,6 @@ a:hover { color: var(--inv-rose); }
   /* Free room in the header strip */
   .inv-header-label { display: none; }
 
-  /* Sticky header must paint above the doc-header stacking context (z:150)
-     so the dropdown overlay isn't covered by document content below */
-  .inv-header { z-index: 200; }
-
   /* Header-mounted nav container (anchor for the absolute dropdown) */
   .inv-header-nav {
     display: block;
@@ -702,8 +692,8 @@ a:hover { color: var(--inv-rose); }
   .inv-doc--with-planet .inv-title-block { max-width: 100%; }
 
   .brief-planet {
-    width: 200vw;
-    transform: translateX(50%) translateY(-33%);
+    width: 75vw;
+    transform: translateX(25%) translateY(-58%);
   }
   .inv-hero-logo { display: none; }
   .brief-grid { grid-template-columns: 1fr; }
