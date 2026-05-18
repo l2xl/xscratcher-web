@@ -475,32 +475,25 @@ a:hover { color: var(--inv-rose); }
 
 .brief-market-num {
   font-family: var(--font-serif);
-  font-size: 34px;
-  font-weight: 600;
+  font-size: 46px;
+  font-weight: 700;
   letter-spacing: -0.01em;
-  fill: var(--inv-text);
+  fill: #000;
 }
 
 .brief-market-bullet {
   font-family: var(--font-heading);
-  font-size: 20px;
-  font-weight: 500;
-  fill: var(--inv-muted);
+  font-size: 28px;
+  font-weight: 600;
+  fill: #000;
 }
 
 .brief-market-dash {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 600;
-  fill: var(--inv-accent);
-}
-
-.brief-market-dash-sub {
-  font-family: var(--font-heading);
-  font-style: italic;
-  font-size: 18px;
-  fill: var(--inv-muted);
+  fill: #000;
 }
 
 .brief-market-ai {
