@@ -441,7 +441,7 @@ a:hover { color: var(--inv-rose); }
 .brief-market-arrow {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   position: relative;
   z-index: 1;
   pointer-events: none;
@@ -471,6 +471,14 @@ a:hover { color: var(--inv-rose); }
   letter-spacing: 0.06em;
   text-transform: uppercase;
   fill: var(--inv-muted);
+}
+
+.brief-market-hero {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 1000;
+  letter-spacing: -0.01em;
+  fill: #000;
 }
 
 .brief-market-num {
