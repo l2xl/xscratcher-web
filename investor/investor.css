@@ -731,6 +731,84 @@ a:hover { color: var(--inv-rose); }
   margin-top: 0.15rem;
 }
 
+/* ARR growth scenarios table */
+.brief-section--arr { margin-bottom: 1rem; }
+
+.brief-arr-scroll { overflow-x: auto; }
+
+.brief-arr-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.74rem;
+  min-width: 32rem;
+}
+
+.brief-arr-table th,
+.brief-arr-table td {
+  padding: 0.4rem 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--inv-border);
+}
+
+.brief-arr-table thead th {
+  font-family: var(--font-heading);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--inv-rose);
+  line-height: 1.25;
+  vertical-align: bottom;
+}
+
+.brief-arr-table thead th span {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--inv-faint);
+}
+
+.brief-arr-table tbody th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--inv-text);
+  white-space: nowrap;
+}
+
+.brief-arr-table tbody td { color: var(--inv-muted); }
+
+.brief-arr-table .brief-arr-base {
+  background: rgba(212, 84, 122, 0.07);
+  color: var(--inv-text);
+  font-weight: 600;
+}
+
+.brief-arr-table .brief-arr-total th,
+.brief-arr-table .brief-arr-total td {
+  font-weight: 700;
+  color: var(--inv-text);
+  border-bottom: none;
+  font-size: 0.82rem;
+}
+
+.brief-arr-note {
+  margin-top: 0.55rem;
+  font-size: 0.68rem;
+  color: var(--inv-faint);
+  line-height: 1.5;
+}
+
+.brief-funds-note {
+  font-size: 0.72rem;
+  color: var(--inv-muted);
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+
+.brief-funds-note strong { color: var(--inv-text); font-weight: 600; }
+
 /* =========================================================
    Responsive
    62em = 992 px: single-column phone/tablet layout
