@@ -809,6 +809,76 @@ a:hover { color: var(--inv-rose); }
 
 .brief-funds-note strong { color: var(--inv-text); font-weight: 600; }
 
+/* Milestones — horizontal time-axis diagram */
+.brief-section--timeline { margin-bottom: 1rem; }
+
+.brief-timeline {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  position: relative;
+}
+
+/* the axis line running through the dots */
+.brief-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0.35rem;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--inv-rose) 0%, var(--inv-champagne) 100%);
+}
+
+.brief-timeline-item {
+  position: relative;
+  flex: 1 1 0;
+  padding-top: 1.4rem;
+  text-align: center;
+}
+
+.brief-timeline-dot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--inv-rose);
+  border: 2px solid var(--inv-bg);
+  box-shadow: 0 0 0 1px var(--inv-rose);
+}
+
+.brief-timeline-month {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--inv-text);
+  letter-spacing: -0.01em;
+}
+
+.brief-timeline-desc {
+  font-size: 0.7rem;
+  color: var(--inv-muted);
+  line-height: 1.45;
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 38em) {
+  /* stack into a vertical timeline on narrow screens */
+  .brief-timeline { flex-direction: column; gap: 1.1rem; margin-left: 0.5rem; }
+  .brief-timeline::before {
+    top: 0; bottom: 0; left: 0.35rem; right: auto;
+    width: 2px; height: auto;
+    background: linear-gradient(180deg, var(--inv-rose) 0%, var(--inv-champagne) 100%);
+  }
+  .brief-timeline-item { padding-top: 0; padding-left: 1.4rem; text-align: left; }
+  .brief-timeline-dot { top: 0.2rem; left: 0.35rem; transform: translateX(-50%); }
+}
+
 /* =========================================================
    Responsive
    62em = 992 px: single-column phone/tablet layout
