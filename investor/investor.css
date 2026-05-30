@@ -687,7 +687,7 @@ a:hover { color: var(--inv-rose); }
 }
 
 .brief-terms-table thead th {
-  background: var(--inv-text);
+  background: var(--inv-accent);
   color: var(--inv-champagne);
   font-size: 0.59rem;
   font-weight: 700;
