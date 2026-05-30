@@ -14,6 +14,7 @@
   --inv-rose:       #d4547a;
   --inv-champagne:  #f5e6c8;
   --inv-accent:     #c0392b;
+  --inv-terracotta: #995d40;
 
   --inv-sidebar-w:  min(20vw, 20rem);
   --inv-header-h:   clamp(3.5rem, 5vw, 4rem);
@@ -687,7 +688,7 @@ a:hover { color: var(--inv-rose); }
 }
 
 .brief-terms-table thead th {
-  background: var(--inv-rose);
+  background: var(--inv-terracotta);
   color: var(--inv-champagne);
   font-size: 0.59rem;
   font-weight: 700;
