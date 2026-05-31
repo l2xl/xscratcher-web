@@ -38,13 +38,14 @@
         <li><a href="pitch-deck.html#slide-1"  data-slide="1"  class="active"><span class="deck-nav-num">01</span> <span class="deck-nav-title">Cover</span></a></li>
         <li><a href="pitch-deck.html#slide-2"  data-slide="2"><span class="deck-nav-num">02</span> <span class="deck-nav-title">Problem</span></a></li>
         <li><a href="pitch-deck.html#slide-3"  data-slide="3"><span class="deck-nav-num">03</span> <span class="deck-nav-title">Solution</span></a></li>
-        <li><a href="pitch-deck.html#slide-4"  data-slide="4"><span class="deck-nav-num">04</span> <span class="deck-nav-title">Market</span></a></li>
-        <li><a href="pitch-deck.html#slide-5"  data-slide="5"><span class="deck-nav-num">05</span> <span class="deck-nav-title">Competition</span></a></li>
-        <li><a href="pitch-deck.html#slide-6"  data-slide="6"><span class="deck-nav-num">06</span> <span class="deck-nav-title">Business Model</span></a></li>
-        <li><a href="pitch-deck.html#slide-7"  data-slide="7"><span class="deck-nav-num">07</span> <span class="deck-nav-title">Unit Economics</span></a></li>
-        <li><a href="pitch-deck.html#slide-8"  data-slide="8"><span class="deck-nav-num">08</span> <span class="deck-nav-title">Roadmap</span></a></li>
-        <li><a href="pitch-deck.html#slide-9"  data-slide="9"><span class="deck-nav-num">09</span> <span class="deck-nav-title">Team</span></a></li>
-        <li><a href="pitch-deck.html#slide-10" data-slide="10"><span class="deck-nav-num">10</span> <span class="deck-nav-title">The Ask</span></a></li>
+        <li><a href="pitch-deck.html#slide-4"  data-slide="4"><span class="deck-nav-num">04</span> <span class="deck-nav-title">Product</span></a></li>
+        <li><a href="pitch-deck.html#slide-5"  data-slide="5"><span class="deck-nav-num">05</span> <span class="deck-nav-title">Market</span></a></li>
+        <li><a href="pitch-deck.html#slide-6"  data-slide="6"><span class="deck-nav-num">06</span> <span class="deck-nav-title">Competition</span></a></li>
+        <li><a href="pitch-deck.html#slide-7"  data-slide="7"><span class="deck-nav-num">07</span> <span class="deck-nav-title">Business Model</span></a></li>
+        <li><a href="pitch-deck.html#slide-8"  data-slide="8"><span class="deck-nav-num">08</span> <span class="deck-nav-title">Unit Economics</span></a></li>
+        <li><a href="pitch-deck.html#slide-9"  data-slide="9"><span class="deck-nav-num">09</span> <span class="deck-nav-title">Roadmap</span></a></li>
+        <li><a href="pitch-deck.html#slide-10" data-slide="10"><span class="deck-nav-num">10</span> <span class="deck-nav-title">Team</span></a></li>
+        <li><a href="pitch-deck.html#slide-11" data-slide="11"><span class="deck-nav-num">11</span> <span class="deck-nav-title">The Ask</span></a></li>
       </ul>
     </aside>
 
@@ -122,7 +123,11 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 3 — SOLUTION (+ how it works + product + trust) ============ -->
+          <!-- ============================================================
+               LOCKED STRUCTURE — Problem (5) / Solution (5) / Product.
+               Keep slides 2-4 as this fixed trio in future deck edits.
+               ============================================================ -->
+          <!-- ============ SLIDE 3 — SOLUTION (5 answers to the 5 problems) ============ -->
           <section class="slide" id="slide-3">
             <div class="slide-head">
               <div class="slide-kicker">Solution</div>
@@ -132,63 +137,134 @@
             <div class="deck-grid deck-grid--2">
               <div class="deck-card">
                 <div class="deck-card-icon">&#127919;</div>
-                <div class="deck-card-title">One UI to every CEX</div>
-                <div class="deck-card-text">Chart, positions, orders &amp; controls on one screen. Auto TA markers, dynamic orders, order book synced to the price axis. <strong>MVP: Bybit, Binance, OKX</strong> &rarr; all major CEX via CCXT &rarr; DEX.</div>
+                <div class="deck-card-title">1 &middot; X&middot;Cockpit UI &mdash; one interface to every CEX</div>
+                <div class="deck-card-text">Chart, positions, orders, history &amp; controls on one screen. Auto TA markers, dynamic orders, order book synced to the price axis. <strong>MVP: Bybit, Binance, OKX</strong> &rarr; all major CEX via a CCXT-compatible layer &rarr; DEX.</div>
               </div>
               <div class="deck-card">
                 <div class="deck-card-icon">&#129302;</div>
-                <div class="deck-card-title">AI co-pilot</div>
-                <div class="deck-card-text">Writes and optimises strategies. <strong>Semi-automatic mode:</strong> the trader decides, the AI builds the strategy, supervises execution and times the entry.</div>
+                <div class="deck-card-title">2 &middot; AI Assistant &mdash; a staff co-pilot</div>
+                <div class="deck-card-text">Helps write and optimise strategies. <strong>Semi-automatic mode:</strong> the trader decides, the AI builds the strategy, supervises execution and picks the entry moment.</div>
               </div>
               <div class="deck-card">
                 <div class="deck-card-icon">&#9889;</div>
-                <div class="deck-card-title">24/7 automation + advanced orders</div>
-                <div class="deck-card-text">Strategies and dynamic orders run on our backend. The position is <strong>protected against loss the moment it opens</strong> &mdash; no chasing SL/TP by hand.</div>
+                <div class="deck-card-title">3 &middot; Server-side automation that never sleeps</div>
+                <div class="deck-card-text">Strategies and dynamic orders run 24/7 on our backend. &ldquo;AI works at night, the human reviews in the morning&rdquo; &mdash; a bridge between manual and blind automation.</div>
               </div>
               <div class="deck-card">
-                <div class="deck-card-icon">&#128273;</div>
-                <div class="deck-card-title">Open Source + keys never with us</div>
-                <div class="deck-card-text">Transparent code, zero entry barrier. <strong>Self-hosted</strong> &mdash; keys stay local (Zero Trust). <strong>Cloud</strong> &mdash; via an exchange broker sub-account; the key never leaves the exchange.</div>
+                <div class="deck-card-icon">&#128737;</div>
+                <div class="deck-card-title">4 &middot; Advanced orders out of the box</div>
+                <div class="deck-card-text">Dynamic orders recompute automatically. The position is <strong>protected against loss the moment it opens</strong> &mdash; no chasing SL/TP by hand.</div>
               </div>
             </div>
-            <div class="deck-chart-title" style="margin-top:0.9rem">How it works</div>
-            <div class="deck-arch">
-              <svg viewBox="0 0 720 430" role="img" aria-label="Architecture diagram">
-                <rect x="30" y="22" width="660" height="150" rx="14" class="arch-box"/>
-                <text x="48" y="44" class="arch-sub" text-anchor="start" style="font-weight:700;letter-spacing:0.1em">YOUR MACHINE</text>
-                <rect x="60" y="64" width="250" height="86" rx="8" class="arch-box-hi"/>
-                <text x="185" y="103" class="arch-lbl">X&middot;Cockpit UI</text>
-                <text x="185" y="122" class="arch-sub">chart &middot; orders &middot; positions</text>
-                <rect x="350" y="64" width="170" height="86" rx="8" class="arch-box-hi"/>
-                <text x="435" y="103" class="arch-lbl">AI Assistant</text>
-                <text x="435" y="122" class="arch-sub">writes &amp; supervises</text>
-                <rect x="555" y="64" width="110" height="86" rx="8" class="arch-box"/>
-                <text x="610" y="100" class="arch-lbl" style="font-size:11px">Local LLM</text>
-                <text x="610" y="118" class="arch-sub" style="font-size:9px">Ollama&middot;Llama</text>
-                <line x1="310" y1="107" x2="350" y2="107" class="arch-flow"/>
-                <line x1="520" y1="107" x2="555" y2="107" class="arch-flow"/>
-                <rect x="60" y="232" width="280" height="50" rx="8" class="arch-box"/>
-                <text x="200" y="253" class="arch-lbl" style="font-size:12px">Our server &middot; 24/7</text>
-                <text x="200" y="270" class="arch-sub">Broker sub-account &middot; key stays on exchange</text>
-                <rect x="90" y="350" width="280" height="62" rx="8" class="arch-box-acc"/>
-                <text x="230" y="378" class="arch-lbl">Exchanges</text>
-                <text x="230" y="397" class="arch-sub">Bybit &middot; OKX &middot; Binance</text>
-                <rect x="430" y="350" width="240" height="62" rx="8" class="arch-box"/>
-                <text x="550" y="378" class="arch-lbl">Cloud AI</text>
-                <text x="550" y="397" class="arch-sub">ChatGPT &middot; Claude &middot; Gemini</text>
-                <path d="M150 150 L150 232" class="arch-flow"/>
-                <text x="150" y="200" class="arch-flow-lbl">via our server</text>
-                <path d="M200 282 L200 350" class="arch-flow"/>
-                <path d="M260 150 C 360 220, 360 280, 300 350" class="arch-flow" stroke-dasharray="4 4"/>
-                <text x="372" y="250" class="arch-flow-lbl">direct &mdash; own key</text>
-                <path d="M435 150 L520 350" class="arch-flow"/>
-                <text x="500" y="250" class="arch-flow-lbl">LLM API</text>
-              </svg>
+            <div class="deck-card" style="margin-top:0.7rem">
+              <div class="deck-card-icon">&#128273;</div>
+              <div class="deck-card-title">5 &middot; Open Source + keys never with us</div>
+              <div class="deck-card-text">Transparent code, zero entry barrier &mdash; users see what works before they pay. <strong>API keys stay with the user or the exchange; the platform never gets access.</strong> Self-hosted: keys local. Cloud: via an exchange broker sub-account.</div>
             </div>
           </section>
 
-          <!-- ============ SLIDE 4 — MARKET (target audience + market size) ============ -->
+          <!-- ============ SLIDE 4 — PRODUCT (md slide 5 How It Works + md slide 6 Product) ============ -->
           <section class="slide" id="slide-4">
+            <div class="slide-head">
+              <div class="slide-kicker">Product</div>
+              <h2 class="slide-title">How it works &mdash; you choose your level of trust</h2>
+              <p class="slide-lead">One desktop app on your machine talks to exchanges and to the AI. <strong>Two connection modes</strong> and <strong>two AI options</strong> &mdash; keys stay local or on the exchange, never with us.</p>
+            </div>
+            <div class="deck-row">
+              <div class="deck-col" style="flex:1 1 340px">
+                <div class="deck-arch">
+                  <svg viewBox="0 0 720 430" role="img" aria-label="Architecture diagram">
+                    <rect x="30" y="22" width="660" height="150" rx="14" class="arch-box"/>
+                    <text x="48" y="44" class="arch-sub" text-anchor="start" style="font-weight:700;letter-spacing:0.1em">YOUR MACHINE</text>
+                    <rect x="60" y="64" width="250" height="86" rx="8" class="arch-box-hi"/>
+                    <text x="185" y="103" class="arch-lbl">X&middot;Cockpit UI</text>
+                    <text x="185" y="122" class="arch-sub">chart &middot; orders &middot; positions</text>
+                    <rect x="350" y="64" width="170" height="86" rx="8" class="arch-box-hi"/>
+                    <text x="435" y="103" class="arch-lbl">AI Assistant</text>
+                    <text x="435" y="122" class="arch-sub">writes &amp; supervises</text>
+                    <rect x="555" y="64" width="110" height="86" rx="8" class="arch-box"/>
+                    <text x="610" y="100" class="arch-lbl" style="font-size:11px">Local LLM</text>
+                    <text x="610" y="118" class="arch-sub" style="font-size:9px">Ollama&middot;Llama</text>
+                    <line x1="310" y1="107" x2="350" y2="107" class="arch-flow"/>
+                    <line x1="520" y1="107" x2="555" y2="107" class="arch-flow"/>
+                    <rect x="60" y="232" width="280" height="50" rx="8" class="arch-box"/>
+                    <text x="200" y="253" class="arch-lbl" style="font-size:12px">Our server &middot; 24/7</text>
+                    <text x="200" y="270" class="arch-sub">Broker sub-account &middot; key stays on exchange</text>
+                    <rect x="90" y="350" width="280" height="62" rx="8" class="arch-box-acc"/>
+                    <text x="230" y="378" class="arch-lbl">Exchanges</text>
+                    <text x="230" y="397" class="arch-sub">Bybit &middot; OKX &middot; Binance</text>
+                    <rect x="430" y="350" width="240" height="62" rx="8" class="arch-box"/>
+                    <text x="550" y="378" class="arch-lbl">Cloud AI</text>
+                    <text x="550" y="397" class="arch-sub">ChatGPT &middot; Claude &middot; Gemini</text>
+                    <path d="M150 150 L150 232" class="arch-flow"/>
+                    <text x="150" y="200" class="arch-flow-lbl">via our server</text>
+                    <path d="M200 282 L200 350" class="arch-flow"/>
+                    <path d="M260 150 C 360 220, 360 280, 300 350" class="arch-flow" stroke-dasharray="4 4"/>
+                    <text x="372" y="250" class="arch-flow-lbl">direct &mdash; own key</text>
+                    <path d="M435 150 L520 350" class="arch-flow"/>
+                    <text x="500" y="250" class="arch-flow-lbl">LLM API</text>
+                  </svg>
+                </div>
+              </div>
+              <div class="deck-col" style="flex:1 1 280px">
+                <div class="deck-panel" style="margin-bottom:0.6rem">
+                  <div class="deck-panel-head">&#128274; Two connection modes</div>
+                  <ul>
+                    <li><strong>Direct</strong> &mdash; client calls the exchange API; keys stored locally, Zero Trust.</li>
+                    <li><strong>Via our server</strong> &mdash; 24/7 execution through a broker sub-account; the key never leaves the exchange.</li>
+                  </ul>
+                </div>
+                <div class="deck-panel">
+                  <div class="deck-panel-head">&#129302; Two AI options</div>
+                  <ul>
+                    <li><strong>Local</strong> &mdash; open-source LLM (Ollama / Llama / Mistral); full privacy.</li>
+                    <li><strong>Cloud</strong> &mdash; ChatGPT, Claude, Gemini; more powerful, no hardware needs.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="deck-row" style="margin-top:0.7rem">
+              <div class="deck-col" style="flex:1 1 300px">
+                <div class="deck-card" style="height:100%">
+                  <div class="deck-card-title">X&middot;Cockpit UI &mdash; key features</div>
+                  <div class="deck-card-text">
+                    &bull; Automatic TA markers &mdash; levels &amp; trends drawn instantly<br>
+                    &bull; Dynamic orders tied to TA markers, auto-recomputed<br>
+                    &bull; New order types: dynamic limit, Catch the Tail, &hellip;<br>
+                    &bull; Order book synced to the chart price axis
+                  </div>
+                </div>
+              </div>
+              <div class="deck-col" style="flex:1 1 300px">
+                <div class="deck-card" style="height:100%">
+                  <div class="deck-card-title">Distribution</div>
+                  <div class="deck-card-text">
+                    <strong>Desktop:</strong> GitHub Releases, Homebrew, WinGet, Flathub<br>
+                    <strong>Mobile (Iter 3):</strong> Google Play, App Store, F-Droid<br>
+                    <strong>Web (Iter 3+):</strong> AI-agent SaaS (managed cloud)<br>
+                    Signed builds (Apple Developer ID, Windows EV).
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="brief-section" style="margin-top:0.7rem">
+              <div class="brief-section-title">Key modules</div>
+              <div class="deck-table-wrap">
+                <table class="deck-table">
+                  <thead><tr><th>Module</th><th style="text-align:left">What it does</th></tr></thead>
+                  <tbody>
+                    <tr><td>Trading terminal</td><td style="text-align:left">Orders, trade history, X&middot;Cockpit UI</td></tr>
+                    <tr><td>Exchange connectivity</td><td style="text-align:left">MVP: Bybit, OKX, Binance &rarr; universal CEX (CCXT). Roadmap: Hyperliquid, Coinbase/Kraken/Gemini, then DEX</td></tr>
+                    <tr><td>AI Assistant</td><td style="text-align:left">Prototype in MVP (n8n + local model + cloud APIs, MCP); mature versions Iter 2&ndash;5</td></tr>
+                    <tr><td>Trade simulation</td><td style="text-align:left">Backtesting on history + genetic parameter optimiser</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ SLIDE 5 — MARKET (target audience + market size) ============ -->
+          <section class="slide" id="slide-5">
             <div class="slide-head">
               <div class="slide-kicker">Market</div>
               <h2 class="slide-title">A $10.86B market growing to $17.42B</h2>
@@ -266,7 +342,7 @@
           </section>
 
           <!-- ============ SLIDE 5 — COMPETITION ============ -->
-          <section class="slide" id="slide-5">
+          <section class="slide" id="slide-6">
             <div class="slide-head">
               <div class="slide-kicker">Competition</div>
               <h2 class="slide-title">The only fee-share-primary retail GUI with AI + managed cloud</h2>
@@ -303,7 +379,7 @@
           </section>
 
           <!-- ============ SLIDE 6 — BUSINESS MODEL ============ -->
-          <section class="slide" id="slide-6">
+          <section class="slide" id="slide-7">
             <div class="slide-head">
               <div class="slide-kicker">Business Model</div>
               <h2 class="slide-title">The user pays nothing &mdash; the exchange pays us</h2>
@@ -346,7 +422,7 @@
           </section>
 
           <!-- ============ SLIDE 7 — UNIT ECONOMICS (compressed) ============ -->
-          <section class="slide" id="slide-7">
+          <section class="slide" id="slide-8">
             <div class="slide-head">
               <div class="slide-kicker">Unit Economics</div>
               <h2 class="slide-title">LTV/CAC &gt; 3&times; across every segment</h2>
@@ -421,7 +497,7 @@
           </section>
 
           <!-- ============ SLIDE 8 — ROADMAP (+ GTM) ============ -->
-          <section class="slide" id="slide-8">
+          <section class="slide" id="slide-9">
             <div class="slide-head">
               <div class="slide-kicker">Roadmap &amp; Go-to-Market</div>
               <h2 class="slide-title">Every iteration ships a working product</h2>
@@ -462,7 +538,7 @@
           </section>
 
           <!-- ============ SLIDE 9 — TEAM ============ -->
-          <section class="slide" id="slide-9">
+          <section class="slide" id="slide-10">
             <div class="slide-head">
               <div class="slide-kicker">Team</div>
               <h2 class="slide-title">AI-centric operating model &mdash; our DNA</h2>
@@ -495,7 +571,7 @@
           </section>
 
           <!-- ============ SLIDE 10 — THE ASK (+ terms + risks) ============ -->
-          <section class="slide" id="slide-10">
+          <section class="slide" id="slide-11">
             <div class="slide-head">
               <div class="slide-kicker">The Ask</div>
               <h2 class="slide-title">Raising $205,000 &mdash; 18 months to Seed</h2>
