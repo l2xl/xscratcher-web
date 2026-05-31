@@ -1114,6 +1114,93 @@ a:hover { color: var(--inv-rose); }
 .deck-tl-body { font-size: 0.78rem; color: var(--inv-muted); line-height: 1.5; margin-top: 0.2rem; }
 .deck-tl-body strong { color: var(--inv-text); }
 
+/* horizontal roadmap — iterations as dots on a line */
+.deck-roadmap {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  position: relative;
+  padding-top: 2.1rem;
+}
+.deck-roadmap::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 2.45rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--inv-rose) 0%, var(--inv-accent) 55%, var(--inv-faint) 100%);
+}
+.deck-rm-item {
+  flex: 1 1 0;
+  min-width: 0;
+  position: relative;
+  text-align: center;
+}
+.deck-rm-when {
+  position: absolute;
+  top: -1.95rem;
+  left: 0; right: 0;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--inv-faint);
+}
+.deck-rm-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--inv-rose);
+  border: 3px solid var(--inv-bg);
+  box-shadow: 0 0 0 1px var(--inv-rose);
+  margin: 0 auto 0.6rem;
+  position: relative;
+  z-index: 1;
+}
+.deck-rm-item.is-future .deck-rm-dot {
+  background: var(--inv-bg);
+  box-shadow: 0 0 0 1px var(--inv-faint);
+}
+.deck-rm-phase {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: var(--inv-accent);
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+  padding-inline: 0.2rem;
+}
+.deck-rm-item.is-future .deck-rm-phase { color: var(--inv-muted); }
+.deck-rm-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  display: inline-block;
+}
+.deck-rm-points li {
+  position: relative;
+  padding-left: 0.75rem;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--inv-muted);
+}
+.deck-rm-points li::before {
+  content: '\2022';
+  position: absolute;
+  left: 0;
+  color: var(--inv-faint);
+}
+.deck-rm-points li strong { color: var(--inv-text); font-weight: 700; }
+
+@media (max-width: 52em) {
+  .deck-roadmap { flex-direction: column; gap: 0; padding-top: 0; padding-left: 1.4rem; border-left: 2px solid var(--inv-border); }
+  .deck-roadmap::before { display: none; }
+  .deck-rm-item { text-align: left; margin-bottom: 0.9rem; }
+  .deck-rm-when { position: static; }
+  .deck-rm-dot { position: absolute; left: calc(-1.4rem - 8px); top: 1.1rem; margin: 0; }
+  .deck-rm-points { display: block; }
+}
+
 /* two-column compare panels (trust / security) */
 .deck-panel {
   border: 1px solid var(--inv-border);
