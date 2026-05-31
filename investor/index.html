@@ -20,10 +20,7 @@
         <span class="inv-nav-toggle-label">Project Brief</span>
         <span class="inv-nav-toggle-caret">&#9660;</span>
       </button>
-      <ul class="inv-nav inv-nav--header" id="inv-nav-list">
-        <li><a href="index.html" class="active"><span class="inv-nav-icon">&#9673;</span> Project Brief</a></li>
-        <li><a href="pitch-deck.html"><span class="inv-nav-icon">&#9670;</span> Pitch Deck</a></li>
-      </ul>
+      <ul class="inv-nav inv-nav--header" id="inv-nav-list"><!-- cloned from sidebar by JS --></ul>
     </div>
 
     <div class="inv-header-right">
@@ -35,9 +32,28 @@
   <div class="inv-wrapper">
 
     <aside class="inv-sidebar print-hide">
-      <ul class="inv-nav">
-        <li><a href="index.html" class="active"><span class="inv-nav-icon">&#9673;</span> Project Brief</a></li>
-        <li><a href="pitch-deck.html"><span class="inv-nav-icon">&#9670;</span> Pitch Deck</a></li>
+      <ul class="inv-nav deck-nav" id="deck-nav">
+        <li class="deck-nav-top"><a href="index.html" class="deck-brief-link active"><span class="inv-nav-icon">&#9673;</span> Project Brief</a></li>
+        <li class="deck-nav-section">Presentation</li>
+        <li><a href="pitch-deck.html#slide-1"  data-slide="1"><span class="deck-nav-num">01</span> <span class="deck-nav-title">Cover</span></a></li>
+        <li><a href="pitch-deck.html#slide-2"  data-slide="2"><span class="deck-nav-num">02</span> <span class="deck-nav-title">Problem</span></a></li>
+        <li><a href="pitch-deck.html#slide-3"  data-slide="3"><span class="deck-nav-num">03</span> <span class="deck-nav-title">Solution</span></a></li>
+        <li><a href="pitch-deck.html#slide-4"  data-slide="4"><span class="deck-nav-num">04</span> <span class="deck-nav-title">Target Audience</span></a></li>
+        <li><a href="pitch-deck.html#slide-5"  data-slide="5"><span class="deck-nav-num">05</span> <span class="deck-nav-title">How It Works</span></a></li>
+        <li><a href="pitch-deck.html#slide-6"  data-slide="6"><span class="deck-nav-num">06</span> <span class="deck-nav-title">Product</span></a></li>
+        <li><a href="pitch-deck.html#slide-7"  data-slide="7"><span class="deck-nav-num">07</span> <span class="deck-nav-title">Trust &amp; Security</span></a></li>
+        <li><a href="pitch-deck.html#slide-8"  data-slide="8"><span class="deck-nav-num">08</span> <span class="deck-nav-title">Market Size</span></a></li>
+        <li><a href="pitch-deck.html#slide-9"  data-slide="9"><span class="deck-nav-num">09</span> <span class="deck-nav-title">Competition</span></a></li>
+        <li><a href="pitch-deck.html#slide-10" data-slide="10"><span class="deck-nav-num">10</span> <span class="deck-nav-title">Business Model</span></a></li>
+        <li><a href="pitch-deck.html#slide-11" data-slide="11"><span class="deck-nav-num">11</span> <span class="deck-nav-title">Unit Economics</span></a></li>
+        <li><a href="pitch-deck.html#slide-12" data-slide="12"><span class="deck-nav-num">12</span> <span class="deck-nav-title">Roadmap</span></a></li>
+        <li><a href="pitch-deck.html#slide-13" data-slide="13"><span class="deck-nav-num">13</span> <span class="deck-nav-title">Team</span></a></li>
+        <li><a href="pitch-deck.html#slide-14" data-slide="14"><span class="deck-nav-num">14</span> <span class="deck-nav-title">Go-to-Market</span></a></li>
+        <li><a href="pitch-deck.html#slide-15" data-slide="15"><span class="deck-nav-num">15</span> <span class="deck-nav-title">Risks &amp; Mitigation</span></a></li>
+        <li><a href="pitch-deck.html#slide-16" data-slide="16"><span class="deck-nav-num">16</span> <span class="deck-nav-title">The Ask</span></a></li>
+        <li><a href="pitch-deck.html#slide-17" data-slide="17"><span class="deck-nav-num">17</span> <span class="deck-nav-title">Round Terms</span></a></li>
+        <li><a href="pitch-deck.html#slide-18" data-slide="18"><span class="deck-nav-num">18</span> <span class="deck-nav-title">Contact</span></a></li>
+        <li><a href="pitch-deck.html#slide-19" data-slide="19"><span class="deck-nav-num">&#9670;</span> <span class="deck-nav-title">Appendix</span></a></li>
       </ul>
     </aside>
 
@@ -258,6 +274,9 @@
 
   <script>
     document.querySelectorAll('.year-ref').forEach(el => el.textContent = new Date().getFullYear());
+    const sidebarNav = document.getElementById('deck-nav');
+    const headerList = document.getElementById('inv-nav-list');
+    if (sidebarNav && headerList) { headerList.innerHTML = sidebarNav.innerHTML; }
     const navToggle = document.querySelector('.inv-nav-toggle');
     if (navToggle) {
       navToggle.addEventListener('click', (e) => {

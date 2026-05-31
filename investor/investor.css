@@ -828,27 +828,20 @@ a:hover { color: var(--inv-rose); }
 .deck-doc .inv-doc-body { padding-top: 1.4rem; }
 
 /* --- sidebar slide menu --- */
-.deck-nav-back {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--inv-muted);
-  padding: 0.35rem 0.7rem;
-  margin-bottom: 0.6rem;
+.deck-nav-top {
+  margin-bottom: 0.3rem;
+  padding-bottom: 0.3rem;
   border-bottom: 1px solid var(--inv-border);
 }
-.deck-nav-back:hover { color: var(--inv-accent); }
+.deck-brief-link { font-weight: 600; color: var(--inv-text); }
 
-.deck-nav-label {
+.deck-nav-section {
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--inv-faint);
-  padding: 0 0.7rem;
-  margin-bottom: 0.4rem;
+  padding: 0.45rem 0.7rem 0.25rem;
 }
 
 .deck-nav a { gap: 0.6rem; align-items: baseline; }
