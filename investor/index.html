@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>X&middot;Cockpit &mdash; Investor Brief &middot; The Scratcher Project</title>
-  <link rel="stylesheet" href="investor.css?v=13" />
+  <link rel="stylesheet" href="investor.css?v=16" />
 </head>
 <body>
 
@@ -20,10 +20,7 @@
         <span class="inv-nav-toggle-label">Project Brief</span>
         <span class="inv-nav-toggle-caret">&#9660;</span>
       </button>
-      <ul class="inv-nav inv-nav--header" id="inv-nav-list">
-        <li><a href="index.html" class="active"><span class="inv-nav-icon">&#9673;</span> Project Brief</a></li>
-        <li><a href="pitch-deck.html"><span class="inv-nav-icon">&#9670;</span> Pitch Deck</a></li>
-      </ul>
+      <ul class="inv-nav inv-nav--header" id="inv-nav-list"><!-- cloned from sidebar by JS --></ul>
     </div>
 
     <div class="inv-header-right">
@@ -35,9 +32,20 @@
   <div class="inv-wrapper">
 
     <aside class="inv-sidebar print-hide">
-      <ul class="inv-nav">
-        <li><a href="index.html" class="active"><span class="inv-nav-icon">&#9673;</span> Project Brief</a></li>
-        <li><a href="pitch-deck.html"><span class="inv-nav-icon">&#9670;</span> Pitch Deck</a></li>
+      <ul class="inv-nav deck-nav" id="deck-nav">
+        <li class="deck-nav-top"><a href="index.html" class="deck-brief-link active"><span class="inv-nav-icon">&#9673;</span> Project Brief</a></li>
+        <li class="deck-nav-section">Presentation</li>
+        <li><a href="pitch-deck.html#slide-1"  data-slide="1"><span class="deck-nav-num">01</span> <span class="deck-nav-title">Cover</span></a></li>
+        <li><a href="pitch-deck.html#slide-2"  data-slide="2"><span class="deck-nav-num">02</span> <span class="deck-nav-title">Problem</span></a></li>
+        <li><a href="pitch-deck.html#slide-3"  data-slide="3"><span class="deck-nav-num">03</span> <span class="deck-nav-title">Solution</span></a></li>
+        <li><a href="pitch-deck.html#slide-4"  data-slide="4"><span class="deck-nav-num">04</span> <span class="deck-nav-title">Product</span></a></li>
+        <li><a href="pitch-deck.html#slide-5"  data-slide="5"><span class="deck-nav-num">05</span> <span class="deck-nav-title">Market</span></a></li>
+        <li><a href="pitch-deck.html#slide-6"  data-slide="6"><span class="deck-nav-num">06</span> <span class="deck-nav-title">Competition</span></a></li>
+        <li><a href="pitch-deck.html#slide-7"  data-slide="7"><span class="deck-nav-num">07</span> <span class="deck-nav-title">Business Model</span></a></li>
+        <li><a href="pitch-deck.html#slide-8"  data-slide="8"><span class="deck-nav-num">08</span> <span class="deck-nav-title">Unit Economics</span></a></li>
+        <li><a href="pitch-deck.html#slide-9"  data-slide="9"><span class="deck-nav-num">09</span> <span class="deck-nav-title">Roadmap</span></a></li>
+        <li><a href="pitch-deck.html#slide-10" data-slide="10"><span class="deck-nav-num">10</span> <span class="deck-nav-title">Team</span></a></li>
+        <li><a href="pitch-deck.html#slide-11" data-slide="11"><span class="deck-nav-num">11</span> <span class="deck-nav-title">The Ask</span></a></li>
       </ul>
     </aside>
 
@@ -68,19 +76,19 @@
 
           <div class="brief-metrics">
             <div class="brief-metric">
-              <div class="brief-metric-value">$1.63B</div>
+              <div class="brief-metric-value">$10.86B</div>
               <div class="brief-metric-label">TAM</div>
-              <div class="brief-metric-sub">crypto trading fees</div>
+              <div class="brief-metric-sub">crypto trading (CEX + OSS), 2024</div>
             </div>
             <div class="brief-metric">
-              <div class="brief-metric-value">16%</div>
+              <div class="brief-metric-value">~5.4%</div>
               <div class="brief-metric-label">CAGR</div>
-              <div class="brief-metric-sub">market growth</div>
+              <div class="brief-metric-sub">&rarr; $17.42B by 2033</div>
             </div>
             <div class="brief-metric">
-              <div class="brief-metric-value">$96M+</div>
-              <div class="brief-metric-label">ARR Yr&nbsp;5</div>
-              <div class="brief-metric-sub">conservative</div>
+              <div class="brief-metric-value">$6.46M</div>
+              <div class="brief-metric-label">ARR Mo.&nbsp;36</div>
+              <div class="brief-metric-sub">base &middot; $10.46M bull+scale</div>
             </div>
             <div class="brief-metric">
               <div class="brief-metric-value">$205K</div>
@@ -136,7 +144,7 @@
               <!-- Group 3 — Engineers -->
               <text x="1150" y="330" text-anchor="end" class="brief-market-num">Engineers</text>
               <text x="1250" y="375" text-anchor="end" class="brief-market-bullet">&middot; Exchange trading marginalised</text>
-              <text x="1220" y="410" text-anchor="end" class="brief-market-bullet">&middot; Know about blockchain</text>
+              <text x="1220" y="410" text-anchor="end" class="brief-market-bullet">&middot; Know about crypto</text>
               <text x="1200" y="445" text-anchor="end" class="brief-market-bullet">&middot; Sufficient income</text>
 
               <!-- Synergy 3 &rarr; 1 (upper-right, stacked) -->
@@ -184,11 +192,11 @@
             <div class="brief-section-body">
               <div class="brief-kv">
                 <span class="brief-kv-key">Phase&nbsp;1</span>
-                <span class="brief-kv-val">Exchange pays 20&ndash;30% of commission via Broker ID. Revenue from trade #1 &mdash; no trader subscription, no minimum threshold.</span>
+                <span class="brief-kv-val">From M10, revenue from trade #1 via the exchange <strong>API Broker ID</strong> &mdash; entry-tier fee share (~20&ndash;30% of fees), no minimum volume, on the user's own keys. Covers new <em>and</em> existing exchange users.</span>
               </div>
               <div class="brief-kv">
                 <span class="brief-kv-key">Phase&nbsp;2</span>
-                <span class="brief-kv-val">Fee share grows to 40&ndash;50% at $10M+/mo volume. Cloud Starter $12/mo (24/7 AI execution). Marketplace 10&ndash;20% cut on strategy sales.</span>
+                <span class="brief-kv-val">Tier rebate rises to up to 45&ndash;50% as volume grows; <strong>Broker Master</strong> (~mo.&nbsp;22&ndash;24) unlocks a broker <strong>sub-account</strong> for 24/7 cloud execution. AI Agent $50/mo + $5/mo per extra exchange.</span>
               </div>
             </div>
           </div>
@@ -203,35 +211,38 @@
               <span class="brief-kv-val">CEO &middot; CTO &middot; AI Dev &mdash; covers 100% of MVP</span>
             </div>
             <div class="brief-kv">
+              <span class="brief-kv-key">Anna Tikhvinskaya</span>
+              <span class="brief-kv-val">Co-founder &middot; Investor Relations</span>
+            </div>
+            <div class="brief-kv">
               <span class="brief-kv-key">Milestones</span>
-              <span class="brief-kv-val">Mo.&nbsp;8 MVP + Broker ID application &middot; Mo.&nbsp;10&ndash;12 first revenue &middot; Mo.&nbsp;18 Seed-ready (200+ active traders) &middot; Mo.&nbsp;30 ARR $9.5M</span>
+              <span class="brief-kv-val">Mo.&nbsp;8 MVP + Affiliate ID &middot; Mo.&nbsp;10&ndash;12 first revenue (fee share 25%) &middot; Mo.&nbsp;18 ~210 active, Seed closing ~$1.8M &middot; Mo.&nbsp;30 ARR run-rate $1.85M, Series A prep</span>
             </div>
           </div>
         </div>
 
-        <div class="brief-ask">
-          <div>
-            <div class="brief-ask-label">Round Ask</div>
-            <div class="brief-ask-amount">$205&thinsp;000</div>
-          </div>
-          <div class="brief-ask-pills">
-            <div class="brief-ask-pill">
-              <div class="brief-ask-pill-val">SAFE</div>
-              <div class="brief-ask-pill-lbl">Instrument</div>
-            </div>
-            <div class="brief-ask-pill">
-              <div class="brief-ask-pill-val">$2.05M</div>
-              <div class="brief-ask-pill-lbl">Cap</div>
-            </div>
-            <div class="brief-ask-pill">
-              <div class="brief-ask-pill-val">20%</div>
-              <div class="brief-ask-pill-lbl">Discount</div>
-            </div>
-            <div class="brief-ask-pill">
-              <div class="brief-ask-pill-val">~10%</div>
-              <div class="brief-ask-pill-lbl">Implied equity</div>
-            </div>
-          </div>
+        <div class="brief-section brief-section--full brief-section--terms">
+          <div class="brief-section-title">Round Terms</div>
+          <table class="brief-terms-table">
+            <thead>
+              <tr>
+                <th>Instrument</th>
+                <th>Ask</th>
+                <th>Cap</th>
+                <th>Discount</th>
+                <th>Equity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SAFE</td>
+                <td>$205&thinsp;000</td>
+                <td>$2.05M</td>
+                <td>20%</td>
+                <td>~10%</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
       </main>
@@ -255,6 +266,9 @@
 
   <script>
     document.querySelectorAll('.year-ref').forEach(el => el.textContent = new Date().getFullYear());
+    const sidebarNav = document.getElementById('deck-nav');
+    const headerList = document.getElementById('inv-nav-list');
+    if (sidebarNav && headerList) { headerList.innerHTML = sidebarNav.innerHTML; }
     const navToggle = document.querySelector('.inv-nav-toggle');
     if (navToggle) {
       navToggle.addEventListener('click', (e) => {
