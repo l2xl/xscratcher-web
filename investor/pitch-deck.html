@@ -290,34 +290,37 @@
               <div class="deck-col">
                 <div class="deck-chart-title">Market value, $B (2024 &rarr; 2033)</div>
                 <div class="deck-chart">
-                  <svg viewBox="0 0 660 280" role="img" aria-label="Market value 2024 vs 2033">
-                    <line x1="60" y1="250" x2="640" y2="250" class="chart-axis"/>
-                    <line x1="60" y1="191.7" x2="640" y2="191.7" class="chart-grid"/>
-                    <line x1="60" y1="133.3" x2="640" y2="133.3" class="chart-grid"/>
-                    <line x1="60" y1="75" x2="640" y2="75" class="chart-grid"/>
-                    <text x="52" y="254" text-anchor="end" class="chart-lbl">0</text>
-                    <text x="52" y="195" text-anchor="end" class="chart-lbl">5</text>
-                    <text x="52" y="137" text-anchor="end" class="chart-lbl">10</text>
-                    <text x="52" y="79" text-anchor="end" class="chart-lbl">15</text>
-                    <rect x="130" y="123.3" width="72" height="126.7" rx="4" class="cs-1" fill-opacity="0.45"/>
-                    <rect x="212" y="231"   width="72" height="19"    rx="4" class="cs-3" fill-opacity="0.45"/>
-                    <rect x="412" y="46.8"  width="72" height="203.2" rx="4" class="cs-1"/>
-                    <rect x="494" y="187"   width="72" height="63"    rx="4" class="cs-3"/>
-                    <path d="M205 118 C 290 92, 330 66, 405 51" fill="none" stroke="var(--inv-faint)" stroke-width="1.5" stroke-dasharray="4 4"/>
-                    <polygon points="405,51 396,49 401,59" fill="var(--inv-faint)"/>
-                    <text x="305" y="74" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint)">+60% &middot; CAGR 5.4%</text>
-                    <text x="166" y="115" text-anchor="middle" class="chart-val">$10.86B</text>
-                    <text x="248" y="224" text-anchor="middle" class="chart-lbl" style="fill:var(--cs-3)">$1.63B</text>
-                    <text x="448" y="38"  text-anchor="middle" class="chart-val chart-val-hi">$17.42B</text>
-                    <text x="530" y="179" text-anchor="middle" class="chart-lbl" style="fill:var(--cs-3)">$5.4B (2032)</text>
-                    <text x="207" y="268" text-anchor="middle" class="chart-lbl">2024</text>
-                    <text x="489" y="268" text-anchor="middle" class="chart-lbl">2033</text>
+                  <svg viewBox="0 0 660 280" role="img" aria-label="Market value 2024 to 2033, dumbbell chart">
+                    <line x1="120"   y1="60" x2="120"   y2="222" class="chart-grid"/>
+                    <line x1="253.3" y1="60" x2="253.3" y2="222" class="chart-grid"/>
+                    <line x1="386.7" y1="60" x2="386.7" y2="222" class="chart-grid"/>
+                    <line x1="520"   y1="60" x2="520"   y2="222" class="chart-grid"/>
+                    <text x="120"   y="240" text-anchor="middle" class="chart-lbl">$0</text>
+                    <text x="253.3" y="240" text-anchor="middle" class="chart-lbl">$5</text>
+                    <text x="386.7" y="240" text-anchor="middle" class="chart-lbl">$10</text>
+                    <text x="520"   y="240" text-anchor="middle" class="chart-lbl">$15</text>
+
+                    <text x="400" y="114" text-anchor="end" class="chart-lbl">Online-trading market</text>
+                    <line x1="409.6" y1="110" x2="584.6" y2="110" stroke="var(--cs-1)" stroke-width="6" stroke-linecap="round"/>
+                    <circle cx="409.6" cy="110" r="7" class="cs-1" fill-opacity="0.45"/>
+                    <circle cx="584.6" cy="110" r="8" class="cs-1"/>
+                    <text x="497"   y="99"  text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint)">+60% &middot; CAGR 5.4%</text>
+                    <text x="409.6" y="131" text-anchor="middle" class="chart-val">$10.86B</text>
+                    <text x="409.6" y="145" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint)">2024</text>
+                    <text x="584.6" y="131" text-anchor="middle" class="chart-val chart-val-hi">$17.42B</text>
+                    <text x="584.6" y="145" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint)">2033</text>
+
+                    <text x="155" y="184" text-anchor="end" class="chart-lbl">Crypto-bot niche</text>
+                    <line x1="163.5" y1="180" x2="264" y2="180" stroke="var(--cs-3)" stroke-width="6" stroke-linecap="round"/>
+                    <circle cx="163.5" cy="180" r="6" class="cs-3" fill-opacity="0.45"/>
+                    <circle cx="264"   cy="180" r="7" class="cs-3"/>
+                    <text x="214"   y="169" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint)">&times;3.3 &middot; CAGR 16.2%</text>
+                    <text x="163.5" y="201" text-anchor="middle" class="chart-val" style="font-size:11px">$1.63B</text>
+                    <text x="163.5" y="215" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint)">2024</text>
+                    <text x="264"   y="201" text-anchor="middle" class="chart-val" style="fill:var(--cs-3);font-size:11px">$5.4B</text>
+                    <text x="264"   y="215" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint)">2032</text>
                   </svg>
                 </div>
-                <ul class="deck-legend row" style="margin-top:0.3rem">
-                  <li><span class="dot bg-1"></span> Online-trading market &middot; CAGR 5.4%</li>
-                  <li><span class="dot bg-3"></span> Crypto-bot niche &middot; CAGR 16.2%</li>
-                </ul>
               </div>
             </div>
             <div class="deck-stats" style="margin-top:0.6rem">
