@@ -42,7 +42,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.2rem);
+  font-size: clamp(0.95rem, 0.88rem + 0.25vw, 1.06rem);
   scroll-behavior: smooth;
 }
 
@@ -825,7 +825,7 @@ a:hover { color: var(--inv-rose); }
 /* =========================================================
    Pitch deck — slide presentation
    ========================================================= */
-.deck-doc .inv-doc-body { padding-top: 1.4rem; }
+.deck-doc .inv-doc-body { padding-top: 1rem; padding-bottom: 1rem; }
 
 /* --- sidebar slide menu --- */
 .deck-nav-top {
@@ -858,15 +858,15 @@ a:hover { color: var(--inv-rose); }
 .deck-nav-title { line-height: 1.25; }
 
 /* --- slide stage --- */
-.deck-stage { position: relative; }
-.slide { display: none; }
+.deck-stage { position: relative; overflow-x: clip; }
+.slide { display: none; overflow-wrap: break-word; }
 .slide.active { display: block; animation: deck-fade 0.34s ease; }
 @keyframes deck-fade {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: none; }
 }
 
-.slide-head { margin-bottom: 1.1rem; }
+.slide-head { margin-bottom: 0.6rem; }
 .slide-kicker {
   font-size: 0.65rem;
   font-weight: 700;
@@ -886,17 +886,18 @@ a:hover { color: var(--inv-rose); }
 }
 .slide-title {
   font-family: var(--font-serif);
-  font-size: clamp(1.4rem, 3vw, 2.05rem);
+  font-size: clamp(1.15rem, 1.05rem + 0.9vw, 1.5rem);
   font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.18;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   color: var(--inv-text);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
+  overflow-wrap: break-word;
 }
 .slide-lead {
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   color: var(--inv-muted);
-  line-height: 1.65;
+  line-height: 1.5;
   max-width: 46rem;
 }
 .slide-lead strong { color: var(--inv-text); }
@@ -951,10 +952,10 @@ a:hover { color: var(--inv-rose); }
 /* --- generic layout helpers --- */
 .deck-row { display: flex; gap: clamp(0.9rem, 2.5vw, 1.75rem); align-items: stretch; flex-wrap: wrap; }
 .deck-col { flex: 1 1 0; min-width: 0; }
-.deck-grid { display: grid; gap: 0.7rem; }
-.deck-grid--2 { grid-template-columns: repeat(2, 1fr); }
-.deck-grid--3 { grid-template-columns: repeat(3, 1fr); }
-.deck-grid--4 { grid-template-columns: repeat(4, 1fr); }
+.deck-grid { display: grid; gap: 0.6rem; }
+.deck-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.deck-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.deck-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
 /* numbered / icon cards */
 .deck-card {
@@ -962,7 +963,7 @@ a:hover { color: var(--inv-rose); }
   background: rgba(255, 255, 255, 0.55);
   border: 1px solid var(--inv-border);
   border-radius: var(--inv-radius);
-  padding: 0.85rem 1rem 0.9rem;
+  padding: 0.7rem 0.85rem 0.75rem;
   overflow: hidden;
 }
 .deck-card::after {
