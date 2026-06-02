@@ -290,7 +290,7 @@
               <div class="deck-col">
                 <div class="deck-chart-title">Market value, $B (2024 &rarr; 2033)</div>
                 <div class="deck-chart">
-                  <svg viewBox="0 0 660 280" role="img" aria-label="Market growth chart">
+                  <svg viewBox="0 0 660 280" role="img" aria-label="Market value 2024 vs 2033">
                     <line x1="60" y1="250" x2="640" y2="250" class="chart-axis"/>
                     <line x1="60" y1="191.7" x2="640" y2="191.7" class="chart-grid"/>
                     <line x1="60" y1="133.3" x2="640" y2="133.3" class="chart-grid"/>
@@ -299,27 +299,24 @@
                     <text x="52" y="195" text-anchor="end" class="chart-lbl">5</text>
                     <text x="52" y="137" text-anchor="end" class="chart-lbl">10</text>
                     <text x="52" y="79" text-anchor="end" class="chart-lbl">15</text>
-                    <rect x="82"  y="123.3" width="56" height="126.7" rx="4" class="cs-1"/>
-                    <rect x="242" y="101.7" width="56" height="148.3" rx="4" class="cs-1"/>
-                    <rect x="402" y="76.4"  width="56" height="173.6" rx="4" class="cs-1"/>
-                    <rect x="562" y="46.8"  width="56" height="203.2" rx="4" class="cs-1"/>
-                    <text x="110" y="115" text-anchor="middle" class="chart-val">$10.86B</text>
-                    <text x="270" y="93"  text-anchor="middle" class="chart-val">$12.71B</text>
-                    <text x="430" y="68"  text-anchor="middle" class="chart-val">$14.88B</text>
-                    <text x="590" y="38"  text-anchor="middle" class="chart-val chart-val-hi">$17.42B</text>
-                    <polyline points="110,231 537,187" fill="none" stroke="var(--cs-3)" stroke-width="2.5" stroke-dasharray="5 4"/>
-                    <circle cx="110" cy="231" r="4" fill="var(--cs-3)"/>
-                    <circle cx="537" cy="187" r="4" fill="var(--cs-3)"/>
-                    <text x="537" y="180" text-anchor="end" class="chart-lbl" style="fill:var(--cs-3)">bot niche &rarr; $5.4B (2032)</text>
-                    <text x="110" y="268" text-anchor="middle" class="chart-lbl">2024</text>
-                    <text x="270" y="268" text-anchor="middle" class="chart-lbl">2027</text>
-                    <text x="430" y="268" text-anchor="middle" class="chart-lbl">2030</text>
-                    <text x="590" y="268" text-anchor="middle" class="chart-lbl">2033</text>
+                    <rect x="130" y="123.3" width="72" height="126.7" rx="4" class="cs-1" fill-opacity="0.45"/>
+                    <rect x="212" y="231"   width="72" height="19"    rx="4" class="cs-3" fill-opacity="0.45"/>
+                    <rect x="412" y="46.8"  width="72" height="203.2" rx="4" class="cs-1"/>
+                    <rect x="494" y="187"   width="72" height="63"    rx="4" class="cs-3"/>
+                    <path d="M205 118 C 290 92, 330 66, 405 51" fill="none" stroke="var(--inv-faint)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                    <polygon points="405,51 396,49 401,59" fill="var(--inv-faint)"/>
+                    <text x="305" y="74" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint)">+60% &middot; CAGR 5.4%</text>
+                    <text x="166" y="115" text-anchor="middle" class="chart-val">$10.86B</text>
+                    <text x="248" y="224" text-anchor="middle" class="chart-lbl" style="fill:var(--cs-3)">$1.63B</text>
+                    <text x="448" y="38"  text-anchor="middle" class="chart-val chart-val-hi">$17.42B</text>
+                    <text x="530" y="179" text-anchor="middle" class="chart-lbl" style="fill:var(--cs-3)">$5.4B (2032)</text>
+                    <text x="207" y="268" text-anchor="middle" class="chart-lbl">2024</text>
+                    <text x="489" y="268" text-anchor="middle" class="chart-lbl">2033</text>
                   </svg>
                 </div>
                 <ul class="deck-legend row" style="margin-top:0.3rem">
-                  <li><span class="dot bg-1"></span> Online-trading market &middot; $10.86B&rarr;$17.42B &middot; CAGR 5.4%</li>
-                  <li><span class="dot bg-3"></span> Crypto-bot niche &middot; $1.63B&rarr;$5.4B &middot; CAGR 16.2%</li>
+                  <li><span class="dot bg-1"></span> Online-trading market &middot; CAGR 5.4%</li>
+                  <li><span class="dot bg-3"></span> Crypto-bot niche &middot; CAGR 16.2%</li>
                 </ul>
               </div>
             </div>
