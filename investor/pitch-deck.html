@@ -380,18 +380,85 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 7 — UNIT ECONOMICS (compressed) ============ -->
+          <!-- ============ SLIDE 7 — UNIT ECONOMICS ============ -->
           <section class="slide" id="slide-8">
             <div class="slide-head">
               <div class="slide-kicker">Unit Economics</div>
-              <h2 class="slide-title">LTV/CAC &gt; 3&times; across every segment</h2>
-              <p class="slide-lead">ARR @ M36 (base): <strong>$6.46M</strong> &middot; blended ARPAU <strong>$67</strong> &middot; payback 0.9&ndash;3.1 months. <span style="color:var(--inv-faint)">Full cohort evolution, sensitivity &amp; cash-flow available on request.</span></p>
+              <h2 class="slide-title">The unit is one active trader &mdash; and it compounds</h2>
+              <p class="slide-lead">Our unit of economics is a single <strong>active user</strong>: a trader who has connected exchange keys and trades through X&middot;Cockpit. We earn a share of their exchange fee, so the metric that drives everything is <strong>ARPAU</strong> &mdash; average monthly revenue per active user. Every trader sits in one of four growth cohorts, defined by deposit size and trading maturity.</p>
             </div>
+
+            <!-- ---- cohort definitions ---- -->
+            <div class="brief-section-title">Four cohorts &mdash; a trader's growth ladder</div>
+            <div class="deck-grid deck-grid--4" style="margin-bottom:0.95rem">
+              <div class="deck-card">
+                <div class="deck-card-title"><span class="coh-chip bg-6"></span>A &middot; Beginning</div>
+                <div class="deck-card-text"><strong>$2&ndash;5K deposit.</strong> First steps &mdash; small size, occasional trades, learning the cockpit and the market.</div>
+              </div>
+              <div class="deck-card">
+                <div class="deck-card-title"><span class="coh-chip bg-4"></span>B &middot; Progressing</div>
+                <div class="deck-card-text"><strong>$5&ndash;15K deposit.</strong> Gaining confidence &mdash; trades regularly, leans on alerts and dynamic orders.</div>
+              </div>
+              <div class="deck-card">
+                <div class="deck-card-title"><span class="coh-chip bg-2"></span>C &middot; Advancing</div>
+                <div class="deck-card-text"><strong>$15&ndash;25K deposit.</strong> Semi-pro &mdash; runs multi-leg setups and lets the assistant test &amp; automate strategies.</div>
+              </div>
+              <div class="deck-card">
+                <div class="deck-card-title"><span class="coh-chip bg-1"></span>D &middot; Mastering</div>
+                <div class="deck-card-text"><strong>$30K+ deposit.</strong> Power trader &mdash; high volume, full 24/7 automation across exchanges.</div>
+              </div>
+            </div>
+
+            <!-- ---- cohort-mix shift ---- -->
+            <div class="brief-section-title">The mix shifts upward &mdash; the product pulls traders up the ladder</div>
+            <div class="deck-row" style="align-items:center;margin-bottom:0.3rem">
+              <div class="deck-col" style="flex:0 0 200px;max-width:200px">
+                <div class="deck-chart-title">User mix at launch &middot; M0&ndash;6</div>
+                <div class="deck-chart" style="max-width:180px;margin:0 auto">
+                  <svg viewBox="0 0 160 160" role="img" aria-label="User-mix donut at launch">
+                    <path d="M80.00 10.00 A70 70 0 1 1 58.37 146.57 L67.33 118.99 A41 41 0 1 0 80.00 39.00 Z" class="cs-6"/>
+                    <path d="M58.37 146.57 A70 70 0 0 1 18.66 46.28 L44.07 60.25 A41 41 0 0 0 67.33 118.99 Z" class="cs-4"/>
+                    <path d="M18.66 46.28 A70 70 0 0 1 58.37 13.43 L67.33 41.01 A41 41 0 0 0 44.07 60.25 Z" class="cs-2"/>
+                    <path d="M58.37 13.43 A70 70 0 0 1 80.00 10.00 L80.00 39.00 A41 41 0 0 0 67.33 41.01 Z" class="cs-1"/>
+                    <text x="80" y="76" text-anchor="middle" class="chart-val" style="font-size:24px">17%</text>
+                    <text x="80" y="95" text-anchor="middle" class="chart-lbl">C + D share</text>
+                  </svg>
+                </div>
+              </div>
+              <div class="deck-col" style="flex:0 0 200px;max-width:200px">
+                <div class="deck-chart-title">User mix at maturity &middot; M36</div>
+                <div class="deck-chart" style="max-width:180px;margin:0 auto">
+                  <svg viewBox="0 0 160 160" role="img" aria-label="User-mix donut at maturity">
+                    <path d="M80.00 10.00 A70 70 0 0 1 127.92 131.03 L108.07 109.89 A41 41 0 0 0 80.00 39.00 Z" class="cs-6"/>
+                    <path d="M127.92 131.03 A70 70 0 0 1 13.43 101.63 L41.01 92.67 A41 41 0 0 0 108.07 109.89 Z" class="cs-4"/>
+                    <path d="M13.43 101.63 A70 70 0 0 1 38.86 23.37 L55.90 46.83 A41 41 0 0 0 41.01 92.67 Z" class="cs-2"/>
+                    <path d="M38.86 23.37 A70 70 0 0 1 80.00 10.00 L80.00 39.00 A41 41 0 0 0 55.90 46.83 Z" class="cs-1"/>
+                    <text x="80" y="76" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:24px">30%</text>
+                    <text x="80" y="95" text-anchor="middle" class="chart-lbl">C + D share</text>
+                  </svg>
+                </div>
+              </div>
+              <div class="deck-col">
+                <p class="slide-lead" style="margin:0">As the assistant tests and runs strategies 24/7, automation lifts trading volume and visual control cuts mistakes, traders trade more and grow their deposits &mdash; so the heavy <strong>Beginning</strong> base (55%&rarr;38%) steadily migrates into <strong>Progressing</strong>, <strong>Advancing</strong> and <strong>Mastering</strong>. This upward drift is a direct result of the <strong>product's advantages</strong>, not paid acquisition &mdash; and it is what compounds ARPAU over time.</p>
+              </div>
+            </div>
+            <ul class="deck-legend row" style="margin-bottom:1rem">
+              <li><span class="dot bg-6"></span> A &middot; Beginning</li>
+              <li><span class="dot bg-4"></span> B &middot; Progressing</li>
+              <li><span class="dot bg-2"></span> C &middot; Advancing</li>
+              <li><span class="dot bg-1"></span> D &middot; Mastering</li>
+            </ul>
+
+            <!-- ---- ARPAU, LTV/CAC and ARR scenarios ---- -->
             <div class="deck-row">
               <div class="deck-col">
-                <div class="deck-chart-title">LTV / CAC by segment</div>
+                <div class="deck-chart-title">Blended ARPAU &amp; LTV / CAC</div>
+                <div class="deck-stats" style="margin-bottom:0.7rem">
+                  <div class="deck-stat"><div class="deck-stat-value">$67</div><div class="deck-stat-label">Blended ARPAU / mo</div><div class="deck-stat-sub">weighted across cohorts</div></div>
+                  <div class="deck-stat"><div class="deck-stat-value">8&times;</div><div class="deck-stat-label">Blended LTV / CAC</div><div class="deck-stat-sub">~$764 LTV / ~$90 CAC</div></div>
+                </div>
                 <div class="deck-chart">
-                  <svg viewBox="0 0 540 240" role="img" aria-label="LTV CAC bar chart">
+                  <svg viewBox="0 0 540 240" role="img" aria-label="LTV CAC bar chart by cohort">
                     <line x1="40" y1="210" x2="530" y2="210" class="chart-axis"/>
                     <line x1="40" y1="183.3" x2="530" y2="183.3" class="chart-grid"/>
                     <text x="534" y="187" class="chart-lbl">3&times;</text>
@@ -403,56 +470,55 @@
                     <text x="224" y="112" text-anchor="middle" class="chart-val">10&times;</text>
                     <text x="348" y="94"  text-anchor="middle" class="chart-val chart-val-hi">12&times;</text>
                     <text x="472" y="148" text-anchor="middle" class="chart-val">6&times;</text>
-                    <text x="100" y="226" text-anchor="middle" class="chart-lbl">A. Mini</text>
-                    <text x="224" y="226" text-anchor="middle" class="chart-lbl">B. Standard</text>
-                    <text x="348" y="226" text-anchor="middle" class="chart-lbl">&#9733; C. Dev/Pro</text>
-                    <text x="472" y="226" text-anchor="middle" class="chart-lbl">D. Power</text>
+                    <text x="100" y="226" text-anchor="middle" class="chart-lbl">A. Beginning</text>
+                    <text x="224" y="226" text-anchor="middle" class="chart-lbl">B. Progressing</text>
+                    <text x="348" y="226" text-anchor="middle" class="chart-lbl">&#9733; C. Advancing</text>
+                    <text x="472" y="226" text-anchor="middle" class="chart-lbl">D. Mastering</text>
                   </svg>
                 </div>
               </div>
               <div class="deck-col">
-                <div class="deck-chart-title">ARR scenarios, $M</div>
+                <div class="deck-chart-title">ARR scenarios @ M36, $M</div>
                 <div class="deck-chart">
-                  <svg viewBox="0 0 640 280" role="img" aria-label="ARR scenarios bar chart">
-                    <line x1="55" y1="240" x2="620" y2="240" class="chart-axis"/>
-                    <line x1="55" y1="161" x2="620" y2="161" class="chart-grid"/>
-                    <line x1="55" y1="82"  x2="620" y2="82"  class="chart-grid"/>
-                    <text x="48" y="244" text-anchor="end" class="chart-lbl">0</text>
-                    <text x="48" y="165" text-anchor="end" class="chart-lbl">5</text>
-                    <text x="48" y="86"  text-anchor="end" class="chart-lbl">10</text>
-                    <rect x="70"  y="237" width="66" height="3"   rx="2" class="cs-6"/>
-                    <rect x="162" y="211" width="66" height="29"  rx="3" class="cs-5"/>
-                    <rect x="254" y="218" width="66" height="22"  rx="3" class="cs-4"/>
-                    <rect x="346" y="138" width="66" height="102" rx="3" class="cs-1"/>
-                    <rect x="438" y="95"  width="66" height="145" rx="3" class="cs-2"/>
-                    <rect x="530" y="75"  width="66" height="165" rx="3" class="cs-3"/>
-                    <text x="103" y="230" text-anchor="middle" class="chart-lbl">$0.03</text>
-                    <text x="195" y="203" text-anchor="middle" class="chart-lbl">$1.85</text>
-                    <text x="287" y="210" text-anchor="middle" class="chart-lbl">$1.37</text>
-                    <text x="379" y="130" text-anchor="middle" class="chart-val chart-val-hi">$6.46</text>
-                    <text x="471" y="87"  text-anchor="middle" class="chart-val">$9.19</text>
-                    <text x="563" y="67"  text-anchor="middle" class="chart-val">$10.46</text>
-                    <text x="103" y="256" text-anchor="middle" class="chart-lbl">M18</text>
-                    <text x="195" y="256" text-anchor="middle" class="chart-lbl">M30</text>
-                    <text x="287" y="256" text-anchor="middle" class="chart-lbl">Pess.</text>
-                    <text x="379" y="256" text-anchor="middle" class="chart-lbl">Base</text>
-                    <text x="471" y="256" text-anchor="middle" class="chart-lbl">Bull</text>
-                    <text x="563" y="256" text-anchor="middle" class="chart-lbl">Bull+Sc.</text>
+                  <svg viewBox="0 0 640 150" role="img" aria-label="ARR scenarios range">
+                    <!-- range track + scenario markers -->
+                    <line x1="127.3" y1="64" x2="511.1" y2="64" stroke="var(--inv-border)" stroke-width="4" stroke-linecap="round"/>
+                    <line x1="377.1" y1="64" x2="511.1" y2="64" stroke="var(--cs-2)" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+                    <circle cx="127.3" cy="64" r="8"  class="cs-4"/>
+                    <circle cx="377.1" cy="64" r="13" class="cs-1"/>
+                    <circle cx="511.1" cy="64" r="8"  class="cs-2"/>
+                    <!-- labels above -->
+                    <text x="127.3" y="30" text-anchor="middle" class="chart-lbl">Pessimistic</text>
+                    <text x="127.3" y="47" text-anchor="middle" class="chart-val">$1.37M</text>
+                    <text x="377.1" y="30" text-anchor="middle" class="chart-lbl">Base</text>
+                    <text x="377.1" y="47" text-anchor="middle" class="chart-val chart-val-hi">$6.46M</text>
+                    <text x="511.1" y="30" text-anchor="middle" class="chart-lbl">Bull</text>
+                    <text x="511.1" y="47" text-anchor="middle" class="chart-val">$9.19M</text>
+                    <!-- axis -->
+                    <line x1="60" y1="98" x2="600" y2="98" class="chart-axis"/>
+                    <line x1="60" y1="95" x2="60" y2="101" class="chart-axis"/>
+                    <line x1="305.5" y1="95" x2="305.5" y2="101" class="chart-axis"/>
+                    <line x1="550.9" y1="95" x2="550.9" y2="101" class="chart-axis"/>
+                    <text x="60"  y="118" text-anchor="middle" class="chart-lbl">$0</text>
+                    <text x="305.5" y="118" text-anchor="middle" class="chart-lbl">$5M</text>
+                    <text x="550.9" y="118" text-anchor="middle" class="chart-lbl">$10M</text>
+                    <text x="320" y="140" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint)">~8K active users at M36 &middot; blended ARPAU $67/mo</text>
                   </svg>
                 </div>
               </div>
             </div>
-            <div class="deck-table-wrap" style="margin-top:0.4rem">
+            <div class="deck-table-wrap" style="margin-top:0.6rem">
               <table class="deck-table">
-                <thead><tr><th>Segment</th><th>Depo</th><th>ARPAU/mo</th><th>CAC</th><th>LTV</th><th>LTV/CAC</th></tr></thead>
+                <thead><tr><th>Cohort</th><th>Deposit</th><th>ARPAU/mo</th><th>CAC</th><th>LTV</th><th>LTV/CAC</th></tr></thead>
                 <tbody>
-                  <tr><td>A. Mini</td><td class="num">$2&ndash;5K</td><td class="num">$11</td><td class="num">$10</td><td class="num">$132</td><td class="num">13&times;</td></tr>
-                  <tr><td>B. Standard</td><td class="num">$5&ndash;15K</td><td class="num">$32</td><td class="num">$45</td><td class="num">$448</td><td class="num">10&times;</td></tr>
-                  <tr class="row-hi"><td>&#9733; C. Dev/Pro</td><td class="num">$15&ndash;25K</td><td class="num">$88</td><td class="num">$115</td><td class="num">$1.4K</td><td class="num">12&times;</td></tr>
-                  <tr><td>D. Power</td><td class="num">$30K+</td><td class="num">$163</td><td class="num">$500</td><td class="num">$2.9K</td><td class="num">6&times;</td></tr>
+                  <tr><td>A. Beginning</td><td class="num">$2&ndash;5K</td><td class="num">$11</td><td class="num">$10</td><td class="num">$132</td><td class="num">13&times;</td></tr>
+                  <tr><td>B. Progressing</td><td class="num">$5&ndash;15K</td><td class="num">$32</td><td class="num">$45</td><td class="num">$448</td><td class="num">10&times;</td></tr>
+                  <tr class="row-hi"><td>&#9733; C. Advancing</td><td class="num">$15&ndash;25K</td><td class="num">$88</td><td class="num">$115</td><td class="num">$1.4K</td><td class="num">12&times;</td></tr>
+                  <tr><td>D. Mastering</td><td class="num">$30K+</td><td class="num">$163</td><td class="num">$500</td><td class="num">$2.9K</td><td class="num">6&times;</td></tr>
                 </tbody>
               </table>
             </div>
+            <p class="slide-lead" style="margin-top:0.5rem;font-size:0.78rem;color:var(--inv-faint)">Payback 0.9&ndash;3.1 months. Full cohort evolution, sensitivity &amp; cash-flow available on request.</p>
           </section>
 
           <!-- ============ SLIDE 8 — ROADMAP (+ GTM) ============ -->
