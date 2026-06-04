@@ -380,78 +380,114 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 7 — UNIT ECONOMICS (compressed) ============ -->
+          <!-- ============ SLIDE 7 — UNIT ECONOMICS ============ -->
           <section class="slide" id="slide-8">
             <div class="slide-head">
               <div class="slide-kicker">Unit Economics</div>
-              <h2 class="slide-title">LTV/CAC &gt; 3&times; across every segment</h2>
-              <p class="slide-lead">ARR @ M36 (base): <strong>$6.46M</strong> &middot; blended ARPAU <strong>$67</strong> &middot; payback 0.9&ndash;3.1 months. <span style="color:var(--inv-faint)">Full cohort evolution, sensitivity &amp; cash-flow available on request.</span></p>
+              <h2 class="slide-title">One active trader, two revenue streams</h2>
             </div>
-            <div class="deck-row">
-              <div class="deck-col">
-                <div class="deck-chart-title">LTV / CAC by segment</div>
+
+            <!-- ===== ROW 1: cohort table | cohort-mix donuts ===== -->
+            <div class="deck-row" style="align-items:flex-start;margin-bottom:0.7rem">
+              <div class="deck-col" style="flex:1.25 1 330px">
+                <div class="brief-section-title">Four cohorts (A&ndash;D) &mdash; by deposit &amp; intensity</div>
+                <div class="deck-table-wrap">
+                  <table class="deck-table">
+                    <thead><tr><th>Cohort</th><th>Deposit</th><th>Style</th><th>Volume / mo</th><th>ARPAU</th></tr></thead>
+                    <tbody>
+                      <tr><td><span class="coh-chip bg-6"></span>A &middot; Beginning</td><td class="num">$2&ndash;5K</td><td>low-intensity</td><td class="num">$65&ndash;100K</td><td class="num">$11</td></tr>
+                      <tr><td><span class="coh-chip bg-4"></span>B &middot; Progressing</td><td class="num">$5&ndash;15K</td><td>active</td><td class="num">$150&ndash;250K</td><td class="num">$32</td></tr>
+                      <tr class="row-hi"><td><span class="coh-chip bg-2"></span>C &middot; Advancing</td><td class="num">$15&ndash;25K</td><td>active &middot; multi-leg</td><td class="num">$400&ndash;700K</td><td class="num">$88</td></tr>
+                      <tr><td><span class="coh-chip bg-1"></span>D &middot; Mastering</td><td class="num">$30K+</td><td>semi-auto 24/7</td><td class="num">$1.5M+</td><td class="num">$163</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="slide-lead" style="margin:0.35rem 0 0;font-size:0.72rem;color:var(--inv-faint)">ARPAU &asymp; volume &times; 0.035% exchange fee &times; 25&ndash;40% fee share, + subscription. Bottom-up from real user research ($2K &rarr; $65K/mo, 1,147 orders).</p>
+              </div>
+              <div class="deck-col" style="flex:1 1 260px">
+                <div class="brief-section-title">Mix shifts up &mdash; product-driven (C+D 5%&rarr;10%)</div>
+                <div class="deck-row" style="gap:0.5rem;flex-wrap:nowrap">
+                  <div class="deck-col">
+                    <div class="deck-chart-title">launch &middot; ~M8&ndash;14</div>
+                    <div class="deck-chart" style="max-width:130px;margin:0 auto">
+                      <svg viewBox="0 0 160 160" role="img" aria-label="Cohort-mix donut at launch">
+                        <path d="M80.00 10.00 A70 70 0 1 1 28.97 127.92 L50.11 108.07 A41 41 0 1 0 80.00 39.00 Z" class="cs-6"/>
+                        <path d="M28.97 127.92 A70 70 0 0 1 58.37 13.43 L67.33 41.01 A41 41 0 0 0 50.11 108.07 Z" class="cs-4"/>
+                        <path d="M58.37 13.43 A70 70 0 0 1 73.41 10.31 L76.14 39.18 A41 41 0 0 0 67.33 41.01 Z" class="cs-2"/>
+                        <path d="M73.41 10.31 A70 70 0 0 1 80.00 10.00 L80.00 39.00 A41 41 0 0 0 76.14 39.18 Z" class="cs-1"/>
+                        <text x="80" y="78" text-anchor="middle" class="chart-val" style="font-size:24px">5%</text>
+                        <text x="80" y="96" text-anchor="middle" class="chart-lbl">C+D</text>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="deck-col">
+                    <div class="deck-chart-title">maturity &middot; M36</div>
+                    <div class="deck-chart" style="max-width:130px;margin:0 auto">
+                      <svg viewBox="0 0 160 160" role="img" aria-label="Cohort-mix donut at maturity">
+                        <path d="M80.00 10.00 A70 70 0 0 1 84.83 149.83 L82.83 120.90 A41 41 0 0 0 80.00 39.00 Z" class="cs-6"/>
+                        <path d="M84.83 149.83 A70 70 0 0 1 38.86 23.37 L55.90 46.83 A41 41 0 0 0 82.83 120.90 Z" class="cs-4"/>
+                        <path d="M38.86 23.37 A70 70 0 0 1 65.59 11.50 L71.56 39.88 A41 41 0 0 0 55.90 46.83 Z" class="cs-2"/>
+                        <path d="M65.59 11.50 A70 70 0 0 1 80.00 10.00 L80.00 39.00 A41 41 0 0 0 71.56 39.88 Z" class="cs-1"/>
+                        <text x="80" y="78" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:24px">10%</text>
+                        <text x="80" y="96" text-anchor="middle" class="chart-lbl">C+D</text>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <ul class="deck-legend row" style="margin:0.4rem 0 0.35rem;font-size:0.72rem;gap:0.6rem">
+                  <li><span class="dot bg-6"></span> A</li>
+                  <li><span class="dot bg-4"></span> B</li>
+                  <li><span class="dot bg-2"></span> C</li>
+                  <li><span class="dot bg-1"></span> D</li>
+                </ul>
+                <p class="slide-lead" style="margin:0;font-size:0.74rem">Automation + multi-exchange grow share-of-volume, so the broad <strong>Beginning</strong> base migrates up the ladder &mdash; product-driven NRR, not paid acquisition.</p>
+              </div>
+            </div>
+
+            <!-- ===== ROW 2: stats | ARR growth ===== -->
+            <div class="deck-row" style="align-items:flex-start">
+              <div class="deck-col" style="flex:0 0 160px;max-width:175px">
+                <div class="deck-stats" style="flex-direction:column;gap:0.3rem">
+                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">$30</div><div class="deck-stat-label">ARPAU / mo</div><div class="deck-stat-sub">incl. ~$3 sub</div></div>
+                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">~9&times;</div><div class="deck-stat-label">LTV / CAC</div><div class="deck-stat-sub">CAC ~$50 &middot; payback 1&ndash;4 mo</div></div>
+                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">~$3.4B</div><div class="deck-stat-label">Platform vol / mo</div><div class="deck-stat-sub">~$40B/yr &middot; ~0.014% take</div></div>
+                </div>
+              </div>
+              <div class="deck-col" style="flex:1 1 340px">
+                <div class="deck-chart-title">ARR growth, $M (base: 40% activation)</div>
+                <ul class="deck-legend row" style="margin-bottom:0.25rem">
+                  <li><span class="dot bg-1"></span> Fee share</li>
+                  <li><span class="dot bg-4"></span> AI-agent subscription</li>
+                </ul>
                 <div class="deck-chart">
-                  <svg viewBox="0 0 540 240" role="img" aria-label="LTV CAC bar chart">
-                    <line x1="40" y1="210" x2="530" y2="210" class="chart-axis"/>
-                    <line x1="40" y1="183.3" x2="530" y2="183.3" class="chart-grid"/>
-                    <text x="534" y="187" class="chart-lbl">3&times;</text>
-                    <rect x="60"  y="94"  width="80" height="116" rx="4" class="cs-6"/>
-                    <rect x="184" y="121" width="80" height="89"  rx="4" class="cs-4"/>
-                    <rect x="308" y="103" width="80" height="107" rx="4" class="cs-2"/>
-                    <rect x="432" y="157" width="80" height="53"  rx="4" class="cs-1"/>
-                    <text x="100" y="85"  text-anchor="middle" class="chart-val">13&times;</text>
-                    <text x="224" y="112" text-anchor="middle" class="chart-val">10&times;</text>
-                    <text x="348" y="94"  text-anchor="middle" class="chart-val chart-val-hi">12&times;</text>
-                    <text x="472" y="148" text-anchor="middle" class="chart-val">6&times;</text>
-                    <text x="100" y="226" text-anchor="middle" class="chart-lbl">A. Mini</text>
-                    <text x="224" y="226" text-anchor="middle" class="chart-lbl">B. Standard</text>
-                    <text x="348" y="226" text-anchor="middle" class="chart-lbl">&#9733; C. Dev/Pro</text>
-                    <text x="472" y="226" text-anchor="middle" class="chart-lbl">D. Power</text>
+                  <svg viewBox="0 0 640 172" role="img" aria-label="ARR growth area chart">
+                    <line x1="55" y1="132" x2="620" y2="132" class="chart-axis"/>
+                    <line x1="55" y1="77"  x2="620" y2="77"  class="chart-grid"/>
+                    <line x1="55" y1="22"  x2="620" y2="22"  class="chart-grid"/>
+                    <text x="48" y="135" text-anchor="end" class="chart-lbl">$0</text>
+                    <text x="48" y="80"  text-anchor="end" class="chart-lbl">$3M</text>
+                    <text x="48" y="26"  text-anchor="end" class="chart-lbl">$6M</text>
+                    <path d="M70 132 L70 131.4 L200 130.9 L330 118.1 L460 90.8 L590 37.6 L590 132 Z" class="cs-1" style="fill-opacity:0.78"/>
+                    <path d="M70 131.4 L200 130.9 L330 118.1 L460 90.8 L590 37.6 L590 25.7 L460 82.5 L330 115.5 L200 130.9 L70 131.4 Z" class="cs-4" style="fill-opacity:0.85"/>
+                    <polyline points="70,131.4 200,130.9 330,115.5 460,82.5 590,25.7" fill="none" stroke="var(--cs-1)" stroke-width="2"/>
+                    <circle cx="330" cy="115.5" r="3.5" class="cs-1"/>
+                    <circle cx="460" cy="82.5"  r="3.5" class="cs-1"/>
+                    <circle cx="590" cy="25.7"  r="4"   class="cs-1"/>
+                    <text x="333" y="110" text-anchor="middle" class="chart-lbl">$0.9M</text>
+                    <text x="457" y="76"  text-anchor="middle" class="chart-lbl">$2.7M</text>
+                    <text x="585" y="19"  text-anchor="middle" class="chart-val chart-val-hi">$5.8M</text>
+                    <text x="70"  y="148" text-anchor="middle" class="chart-lbl">M12</text>
+                    <text x="200" y="148" text-anchor="middle" class="chart-lbl">M18</text>
+                    <text x="330" y="148" text-anchor="middle" class="chart-lbl">M24</text>
+                    <text x="460" y="148" text-anchor="middle" class="chart-lbl">M30</text>
+                    <text x="590" y="148" text-anchor="middle" class="chart-lbl">M36</text>
+                    <text x="48"  y="165" text-anchor="end" class="chart-lbl" style="fill:var(--inv-faint)">active</text>
+                    <text x="330" y="165" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint)">3.4K</text>
+                    <text x="460" y="165" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint)">8.7K</text>
+                    <text x="590" y="165" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-rose);font-weight:700">16K</text>
                   </svg>
                 </div>
               </div>
-              <div class="deck-col">
-                <div class="deck-chart-title">ARR scenarios, $M</div>
-                <div class="deck-chart">
-                  <svg viewBox="0 0 640 280" role="img" aria-label="ARR scenarios bar chart">
-                    <line x1="55" y1="240" x2="620" y2="240" class="chart-axis"/>
-                    <line x1="55" y1="161" x2="620" y2="161" class="chart-grid"/>
-                    <line x1="55" y1="82"  x2="620" y2="82"  class="chart-grid"/>
-                    <text x="48" y="244" text-anchor="end" class="chart-lbl">0</text>
-                    <text x="48" y="165" text-anchor="end" class="chart-lbl">5</text>
-                    <text x="48" y="86"  text-anchor="end" class="chart-lbl">10</text>
-                    <rect x="70"  y="237" width="66" height="3"   rx="2" class="cs-6"/>
-                    <rect x="162" y="211" width="66" height="29"  rx="3" class="cs-5"/>
-                    <rect x="254" y="218" width="66" height="22"  rx="3" class="cs-4"/>
-                    <rect x="346" y="138" width="66" height="102" rx="3" class="cs-1"/>
-                    <rect x="438" y="95"  width="66" height="145" rx="3" class="cs-2"/>
-                    <rect x="530" y="75"  width="66" height="165" rx="3" class="cs-3"/>
-                    <text x="103" y="230" text-anchor="middle" class="chart-lbl">$0.03</text>
-                    <text x="195" y="203" text-anchor="middle" class="chart-lbl">$1.85</text>
-                    <text x="287" y="210" text-anchor="middle" class="chart-lbl">$1.37</text>
-                    <text x="379" y="130" text-anchor="middle" class="chart-val chart-val-hi">$6.46</text>
-                    <text x="471" y="87"  text-anchor="middle" class="chart-val">$9.19</text>
-                    <text x="563" y="67"  text-anchor="middle" class="chart-val">$10.46</text>
-                    <text x="103" y="256" text-anchor="middle" class="chart-lbl">M18</text>
-                    <text x="195" y="256" text-anchor="middle" class="chart-lbl">M30</text>
-                    <text x="287" y="256" text-anchor="middle" class="chart-lbl">Pess.</text>
-                    <text x="379" y="256" text-anchor="middle" class="chart-lbl">Base</text>
-                    <text x="471" y="256" text-anchor="middle" class="chart-lbl">Bull</text>
-                    <text x="563" y="256" text-anchor="middle" class="chart-lbl">Bull+Sc.</text>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="deck-table-wrap" style="margin-top:0.4rem">
-              <table class="deck-table">
-                <thead><tr><th>Segment</th><th>Depo</th><th>ARPAU/mo</th><th>CAC</th><th>LTV</th><th>LTV/CAC</th></tr></thead>
-                <tbody>
-                  <tr><td>A. Mini</td><td class="num">$2&ndash;5K</td><td class="num">$11</td><td class="num">$10</td><td class="num">$132</td><td class="num">13&times;</td></tr>
-                  <tr><td>B. Standard</td><td class="num">$5&ndash;15K</td><td class="num">$32</td><td class="num">$45</td><td class="num">$448</td><td class="num">10&times;</td></tr>
-                  <tr class="row-hi"><td>&#9733; C. Dev/Pro</td><td class="num">$15&ndash;25K</td><td class="num">$88</td><td class="num">$115</td><td class="num">$1.4K</td><td class="num">12&times;</td></tr>
-                  <tr><td>D. Power</td><td class="num">$30K+</td><td class="num">$163</td><td class="num">$500</td><td class="num">$2.9K</td><td class="num">6&times;</td></tr>
-                </tbody>
-              </table>
             </div>
           </section>
 

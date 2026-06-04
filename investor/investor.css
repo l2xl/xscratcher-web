@@ -1039,6 +1039,9 @@ a:hover { color: var(--inv-rose); }
 .deck-legend .dot { width: 0.8rem; height: 0.8rem; border-radius: 3px; flex-shrink: 0; }
 .deck-legend .lg-val { color: var(--inv-muted); font-weight: 600; margin-left: auto; }
 
+/* inline cohort colour chip (used in card titles) */
+.coh-chip { display: inline-block; width: 0.7rem; height: 0.7rem; border-radius: 3px; vertical-align: middle; margin-right: 0.4rem; }
+
 .cs-1 { fill: var(--cs-1); } .cs-2 { fill: var(--cs-2); } .cs-3 { fill: var(--cs-3); }
 .cs-4 { fill: var(--cs-4); } .cs-5 { fill: var(--cs-5); } .cs-6 { fill: var(--cs-6); }
 .cs-7 { fill: var(--cs-7); } .cs-8 { fill: var(--cs-8); }
