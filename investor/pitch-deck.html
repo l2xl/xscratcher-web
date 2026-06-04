@@ -384,62 +384,56 @@
           <section class="slide" id="slide-8">
             <div class="slide-head">
               <div class="slide-kicker">Unit Economics</div>
-              <h2 class="slide-title">The unit is one active trader &mdash; and it compounds</h2>
-              <p class="slide-lead">Our unit of economics is a single <strong>active user</strong>: a trader who has connected exchange keys and trades through X&middot;Cockpit. We earn a share of their exchange fee, so the metric that drives everything is <strong>ARPAU</strong> &mdash; average monthly revenue per active user. Every trader sits in one of four growth cohorts, defined by deposit size and trading maturity.</p>
+              <h2 class="slide-title">One active trader, two revenue streams</h2>
+              <p class="slide-lead">Our unit is one <strong>active trader</strong> on their own keys (non-custodial). Two streams: <strong>&#9312; a share of the exchange fee</strong> (volume-based, from M10&ndash;12) and <strong>&#9313; an AI-agent subscription</strong> ($50/mo, recurring, from M22&ndash;24). The driver is <strong>ARPAU</strong> &mdash; and it compounds as the product lifts traders up the ladder.</p>
             </div>
 
-            <!-- ---- cohort definitions ---- -->
-            <div class="brief-section-title">Four cohorts &mdash; a trader's growth ladder</div>
-            <div class="deck-grid deck-grid--4" style="margin-bottom:0.95rem">
-              <div class="deck-card">
-                <div class="deck-card-title"><span class="coh-chip bg-6"></span>A &middot; Beginning</div>
-                <div class="deck-card-text"><strong>$2&ndash;5K deposit.</strong> First steps &mdash; small size, occasional trades, learning the cockpit and the market.</div>
-              </div>
-              <div class="deck-card">
-                <div class="deck-card-title"><span class="coh-chip bg-4"></span>B &middot; Progressing</div>
-                <div class="deck-card-text"><strong>$5&ndash;15K deposit.</strong> Gaining confidence &mdash; trades regularly, leans on alerts and dynamic orders.</div>
-              </div>
-              <div class="deck-card">
-                <div class="deck-card-title"><span class="coh-chip bg-2"></span>C &middot; Advancing</div>
-                <div class="deck-card-text"><strong>$15&ndash;25K deposit.</strong> Semi-pro &mdash; runs multi-leg setups and lets the assistant test &amp; automate strategies.</div>
-              </div>
-              <div class="deck-card">
-                <div class="deck-card-title"><span class="coh-chip bg-1"></span>D &middot; Mastering</div>
-                <div class="deck-card-text"><strong>$30K+ deposit.</strong> Power trader &mdash; high volume, full 24/7 automation across exchanges.</div>
-              </div>
+            <!-- ---- cohorts: volume created & revenue per trader ---- -->
+            <div class="brief-section-title">Four cohorts &mdash; volume created &amp; revenue per trader</div>
+            <div class="deck-table-wrap" style="margin-bottom:0.4rem">
+              <table class="deck-table">
+                <thead><tr><th>Cohort</th><th>Deposit</th><th>Style</th><th>Trading volume / mo</th><th>ARPAU / mo</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="coh-chip bg-6"></span>A &middot; Beginning</td><td class="num">$2&ndash;5K</td><td>low-intensity</td><td class="num">$65&ndash;100K</td><td class="num">$11</td></tr>
+                  <tr><td><span class="coh-chip bg-4"></span>B &middot; Progressing</td><td class="num">$5&ndash;15K</td><td>active</td><td class="num">$150&ndash;250K</td><td class="num">$32</td></tr>
+                  <tr class="row-hi"><td>&#9733; <span class="coh-chip bg-2"></span>C &middot; Advancing</td><td class="num">$15&ndash;25K</td><td>active &middot; multi-leg</td><td class="num">$400&ndash;700K</td><td class="num">$88</td></tr>
+                  <tr><td><span class="coh-chip bg-1"></span>D &middot; Mastering</td><td class="num">$30K+</td><td>semi-automated 24/7</td><td class="num">$1.5M+</td><td class="num">$163</td></tr>
+                </tbody>
+              </table>
             </div>
+            <p class="slide-lead" style="margin:0 0 0.95rem;font-size:0.74rem;color:var(--inv-faint)">ARPAU &asymp; monthly volume &times; 0.035% blended exchange fee &times; 25&ndash;40% fee share, + AI-agent subscription. Bottom-up from real user research ($2K deposit &rarr; $65K/mo turnover, 1,147 orders).</p>
 
             <!-- ---- cohort-mix shift ---- -->
-            <div class="brief-section-title">The mix shifts upward &mdash; the product pulls traders up the ladder</div>
+            <div class="brief-section-title">Cohorts in dynamics &mdash; the product lifts traders up the ladder</div>
             <div class="deck-row" style="align-items:center;margin-bottom:0.3rem">
               <div class="deck-col" style="flex:0 0 200px;max-width:200px">
-                <div class="deck-chart-title">User mix at launch &middot; M0&ndash;6</div>
+                <div class="deck-chart-title">At launch &middot; ~M8&ndash;14</div>
                 <div class="deck-chart" style="max-width:180px;margin:0 auto">
-                  <svg viewBox="0 0 160 160" role="img" aria-label="User-mix donut at launch">
-                    <path d="M80.00 10.00 A70 70 0 1 1 58.37 146.57 L67.33 118.99 A41 41 0 1 0 80.00 39.00 Z" class="cs-6"/>
-                    <path d="M58.37 146.57 A70 70 0 0 1 18.66 46.28 L44.07 60.25 A41 41 0 0 0 67.33 118.99 Z" class="cs-4"/>
-                    <path d="M18.66 46.28 A70 70 0 0 1 58.37 13.43 L67.33 41.01 A41 41 0 0 0 44.07 60.25 Z" class="cs-2"/>
-                    <path d="M58.37 13.43 A70 70 0 0 1 80.00 10.00 L80.00 39.00 A41 41 0 0 0 67.33 41.01 Z" class="cs-1"/>
-                    <text x="80" y="76" text-anchor="middle" class="chart-val" style="font-size:24px">17%</text>
+                  <svg viewBox="0 0 160 160" role="img" aria-label="Cohort-mix donut at launch">
+                    <path d="M80.00 10.00 A70 70 0 1 1 28.97 127.92 L50.11 108.07 A41 41 0 1 0 80.00 39.00 Z" class="cs-6"/>
+                    <path d="M28.97 127.92 A70 70 0 0 1 58.37 13.43 L67.33 41.01 A41 41 0 0 0 50.11 108.07 Z" class="cs-4"/>
+                    <path d="M58.37 13.43 A70 70 0 0 1 73.41 10.31 L76.14 39.18 A41 41 0 0 0 67.33 41.01 Z" class="cs-2"/>
+                    <path d="M73.41 10.31 A70 70 0 0 1 80.00 10.00 L80.00 39.00 A41 41 0 0 0 76.14 39.18 Z" class="cs-1"/>
+                    <text x="80" y="76" text-anchor="middle" class="chart-val" style="font-size:24px">5%</text>
                     <text x="80" y="95" text-anchor="middle" class="chart-lbl">C + D share</text>
                   </svg>
                 </div>
               </div>
               <div class="deck-col" style="flex:0 0 200px;max-width:200px">
-                <div class="deck-chart-title">User mix at maturity &middot; M36</div>
+                <div class="deck-chart-title">At maturity &middot; M36</div>
                 <div class="deck-chart" style="max-width:180px;margin:0 auto">
-                  <svg viewBox="0 0 160 160" role="img" aria-label="User-mix donut at maturity">
-                    <path d="M80.00 10.00 A70 70 0 0 1 127.92 131.03 L108.07 109.89 A41 41 0 0 0 80.00 39.00 Z" class="cs-6"/>
-                    <path d="M127.92 131.03 A70 70 0 0 1 13.43 101.63 L41.01 92.67 A41 41 0 0 0 108.07 109.89 Z" class="cs-4"/>
-                    <path d="M13.43 101.63 A70 70 0 0 1 38.86 23.37 L55.90 46.83 A41 41 0 0 0 41.01 92.67 Z" class="cs-2"/>
-                    <path d="M38.86 23.37 A70 70 0 0 1 80.00 10.00 L80.00 39.00 A41 41 0 0 0 55.90 46.83 Z" class="cs-1"/>
-                    <text x="80" y="76" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:24px">30%</text>
+                  <svg viewBox="0 0 160 160" role="img" aria-label="Cohort-mix donut at maturity">
+                    <path d="M80.00 10.00 A70 70 0 0 1 84.83 149.83 L82.83 120.90 A41 41 0 0 0 80.00 39.00 Z" class="cs-6"/>
+                    <path d="M84.83 149.83 A70 70 0 0 1 38.86 23.37 L55.90 46.83 A41 41 0 0 0 82.83 120.90 Z" class="cs-4"/>
+                    <path d="M38.86 23.37 A70 70 0 0 1 65.59 11.50 L71.56 39.88 A41 41 0 0 0 55.90 46.83 Z" class="cs-2"/>
+                    <path d="M65.59 11.50 A70 70 0 0 1 80.00 10.00 L80.00 39.00 A41 41 0 0 0 71.56 39.88 Z" class="cs-1"/>
+                    <text x="80" y="76" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:24px">10%</text>
                     <text x="80" y="95" text-anchor="middle" class="chart-lbl">C + D share</text>
                   </svg>
                 </div>
               </div>
               <div class="deck-col">
-                <p class="slide-lead" style="margin:0">As the assistant tests and runs strategies 24/7, automation lifts trading volume and visual control cuts mistakes, traders trade more and grow their deposits &mdash; so the heavy <strong>Beginning</strong> base (55%&rarr;38%) steadily migrates into <strong>Progressing</strong>, <strong>Advancing</strong> and <strong>Mastering</strong>. This upward drift is a direct result of the <strong>product's advantages</strong>, not paid acquisition &mdash; and it is what compounds ARPAU over time.</p>
+                <p class="slide-lead" style="margin:0">After launch (~M8), the assistant runs strategies 24/7, automation lifts volume and multi-exchange aggregation grows share-of-volume &mdash; so the broad <strong>Beginning</strong> base (63%&rarr;49%) migrates into <strong>Progressing</strong>, <strong>Advancing</strong> and <strong>Mastering</strong>. The top cohorts (C+D) double from <strong>5% to 10%</strong>. This is product-driven expansion (NRR), <strong>not paid acquisition</strong> &mdash; and it is what compounds ARPAU.</p>
               </div>
             </div>
             <ul class="deck-legend row" style="margin-bottom:1rem">
@@ -449,76 +443,52 @@
               <li><span class="dot bg-1"></span> D &middot; Mastering</li>
             </ul>
 
-            <!-- ---- ARPAU, LTV/CAC and ARR scenarios ---- -->
-            <div class="deck-row">
-              <div class="deck-col">
-                <div class="deck-chart-title">Blended ARPAU &amp; LTV / CAC</div>
-                <div class="deck-stats" style="margin-bottom:0.7rem">
-                  <div class="deck-stat"><div class="deck-stat-value">$67</div><div class="deck-stat-label">Blended ARPAU / mo</div><div class="deck-stat-sub">weighted across cohorts</div></div>
-                  <div class="deck-stat"><div class="deck-stat-value">8&times;</div><div class="deck-stat-label">Blended LTV / CAC</div><div class="deck-stat-sub">~$764 LTV / ~$90 CAC</div></div>
-                </div>
-                <div class="deck-chart">
-                  <svg viewBox="0 0 540 240" role="img" aria-label="LTV CAC bar chart by cohort">
-                    <line x1="40" y1="210" x2="530" y2="210" class="chart-axis"/>
-                    <line x1="40" y1="183.3" x2="530" y2="183.3" class="chart-grid"/>
-                    <text x="534" y="187" class="chart-lbl">3&times;</text>
-                    <rect x="60"  y="94"  width="80" height="116" rx="4" class="cs-6"/>
-                    <rect x="184" y="121" width="80" height="89"  rx="4" class="cs-4"/>
-                    <rect x="308" y="103" width="80" height="107" rx="4" class="cs-2"/>
-                    <rect x="432" y="157" width="80" height="53"  rx="4" class="cs-1"/>
-                    <text x="100" y="85"  text-anchor="middle" class="chart-val">13&times;</text>
-                    <text x="224" y="112" text-anchor="middle" class="chart-val">10&times;</text>
-                    <text x="348" y="94"  text-anchor="middle" class="chart-val chart-val-hi">12&times;</text>
-                    <text x="472" y="148" text-anchor="middle" class="chart-val">6&times;</text>
-                    <text x="100" y="226" text-anchor="middle" class="chart-lbl">A. Beginning</text>
-                    <text x="224" y="226" text-anchor="middle" class="chart-lbl">B. Progressing</text>
-                    <text x="348" y="226" text-anchor="middle" class="chart-lbl">&#9733; C. Advancing</text>
-                    <text x="472" y="226" text-anchor="middle" class="chart-lbl">D. Mastering</text>
-                  </svg>
-                </div>
-              </div>
-              <div class="deck-col">
-                <div class="deck-chart-title">ARR scenarios @ M36, $M</div>
-                <div class="deck-chart">
-                  <svg viewBox="0 0 640 150" role="img" aria-label="ARR scenarios range">
-                    <!-- range track + scenario markers -->
-                    <line x1="127.3" y1="64" x2="511.1" y2="64" stroke="var(--inv-border)" stroke-width="4" stroke-linecap="round"/>
-                    <line x1="377.1" y1="64" x2="511.1" y2="64" stroke="var(--cs-2)" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
-                    <circle cx="127.3" cy="64" r="8"  class="cs-4"/>
-                    <circle cx="377.1" cy="64" r="13" class="cs-1"/>
-                    <circle cx="511.1" cy="64" r="8"  class="cs-2"/>
-                    <!-- labels above -->
-                    <text x="127.3" y="30" text-anchor="middle" class="chart-lbl">Pessimistic</text>
-                    <text x="127.3" y="47" text-anchor="middle" class="chart-val">$1.37M</text>
-                    <text x="377.1" y="30" text-anchor="middle" class="chart-lbl">Base</text>
-                    <text x="377.1" y="47" text-anchor="middle" class="chart-val chart-val-hi">$6.46M</text>
-                    <text x="511.1" y="30" text-anchor="middle" class="chart-lbl">Bull</text>
-                    <text x="511.1" y="47" text-anchor="middle" class="chart-val">$9.19M</text>
-                    <!-- axis -->
-                    <line x1="60" y1="98" x2="600" y2="98" class="chart-axis"/>
-                    <line x1="60" y1="95" x2="60" y2="101" class="chart-axis"/>
-                    <line x1="305.5" y1="95" x2="305.5" y2="101" class="chart-axis"/>
-                    <line x1="550.9" y1="95" x2="550.9" y2="101" class="chart-axis"/>
-                    <text x="60"  y="118" text-anchor="middle" class="chart-lbl">$0</text>
-                    <text x="305.5" y="118" text-anchor="middle" class="chart-lbl">$5M</text>
-                    <text x="550.9" y="118" text-anchor="middle" class="chart-lbl">$10M</text>
-                    <text x="320" y="140" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint)">~8K active users at M36 &middot; blended ARPAU $67/mo</text>
-                  </svg>
-                </div>
-              </div>
+            <!-- ---- economics & ARR growth ---- -->
+            <div class="deck-stats" style="margin-bottom:0.9rem">
+              <div class="deck-stat"><div class="deck-stat-value">$30</div><div class="deck-stat-label">Blended ARPAU / mo</div><div class="deck-stat-sub">incl. ~$3 subscription (~10%)</div></div>
+              <div class="deck-stat"><div class="deck-stat-value">~9&times;</div><div class="deck-stat-label">Blended LTV / CAC</div><div class="deck-stat-sub">CAC ~$50 &middot; payback 1&ndash;4 mo</div></div>
+              <div class="deck-stat"><div class="deck-stat-value">~$1.7B</div><div class="deck-stat-label">Platform volume / mo @ M36</div><div class="deck-stat-sub">~$20B/yr &middot; we take ~0.014% of flow</div></div>
             </div>
-            <div class="deck-table-wrap" style="margin-top:0.6rem">
-              <table class="deck-table">
-                <thead><tr><th>Cohort</th><th>Deposit</th><th>ARPAU/mo</th><th>CAC</th><th>LTV</th><th>LTV/CAC</th></tr></thead>
-                <tbody>
-                  <tr><td>A. Beginning</td><td class="num">$2&ndash;5K</td><td class="num">$11</td><td class="num">$10</td><td class="num">$132</td><td class="num">13&times;</td></tr>
-                  <tr><td>B. Progressing</td><td class="num">$5&ndash;15K</td><td class="num">$32</td><td class="num">$45</td><td class="num">$448</td><td class="num">10&times;</td></tr>
-                  <tr class="row-hi"><td>&#9733; C. Advancing</td><td class="num">$15&ndash;25K</td><td class="num">$88</td><td class="num">$115</td><td class="num">$1.4K</td><td class="num">12&times;</td></tr>
-                  <tr><td>D. Mastering</td><td class="num">$30K+</td><td class="num">$163</td><td class="num">$500</td><td class="num">$2.9K</td><td class="num">6&times;</td></tr>
-                </tbody>
-              </table>
+            <div class="deck-chart-title">ARR growth &mdash; fee share + subscription, $M</div>
+            <ul class="deck-legend row" style="margin-bottom:0.4rem">
+              <li><span class="dot bg-1"></span> Fee share</li>
+              <li><span class="dot bg-4"></span> AI-agent subscription</li>
+            </ul>
+            <div class="deck-chart">
+              <svg viewBox="0 0 640 250" role="img" aria-label="ARR growth by milestone">
+                <line x1="55" y1="220"   x2="620" y2="220"   class="chart-axis"/>
+                <line x1="55" y1="156.7" x2="620" y2="156.7" class="chart-grid"/>
+                <line x1="55" y1="93.3"  x2="620" y2="93.3"  class="chart-grid"/>
+                <line x1="55" y1="30"    x2="620" y2="30"    class="chart-grid"/>
+                <text x="48" y="224" text-anchor="end" class="chart-lbl">$0</text>
+                <text x="48" y="160" text-anchor="end" class="chart-lbl">$2M</text>
+                <text x="48" y="97"  text-anchor="end" class="chart-lbl">$4M</text>
+                <text x="48" y="34"  text-anchor="end" class="chart-lbl">$6M</text>
+                <rect x="70"  y="218"   width="54" height="2"     rx="2" class="cs-1"/>
+                <text x="97"  y="212" text-anchor="middle" class="chart-lbl">$0.02M</text>
+                <rect x="158" y="218"   width="54" height="2"     rx="2" class="cs-1"/>
+                <text x="185" y="212" text-anchor="middle" class="chart-lbl">$0.05M</text>
+                <rect x="246" y="208.6" width="54" height="11.4"  rx="2" class="cs-1"/>
+                <rect x="246" y="205.8" width="54" height="2.9"   rx="2" class="cs-4"/>
+                <text x="273" y="199" text-anchor="middle" class="chart-lbl">$0.45M</text>
+                <rect x="334" y="181.4" width="54" height="38.6"  rx="2" class="cs-1"/>
+                <rect x="334" y="175.7" width="54" height="5.7"   rx="2" class="cs-4"/>
+                <text x="361" y="169" text-anchor="middle" class="chart-lbl">$1.4M</text>
+                <rect x="438" y="137.3" width="54" height="82.7"  rx="2" class="cs-1"/>
+                <rect x="438" y="128.2" width="54" height="9.2"   rx="2" class="cs-4"/>
+                <text x="465" y="122" text-anchor="middle" class="chart-val chart-val-hi">$2.9M</text>
+                <rect x="540" y="54.7"  width="54" height="165.3" rx="2" class="cs-2"/>
+                <rect x="540" y="36.3"  width="54" height="18.4"  rx="2" class="cs-4"/>
+                <text x="567" y="30"  text-anchor="middle" class="chart-val">$5.8M</text>
+                <text x="97"  y="236" text-anchor="middle" class="chart-lbl">M12</text>
+                <text x="185" y="236" text-anchor="middle" class="chart-lbl">M18</text>
+                <text x="273" y="236" text-anchor="middle" class="chart-lbl">M24</text>
+                <text x="361" y="236" text-anchor="middle" class="chart-lbl">M30</text>
+                <text x="465" y="236" text-anchor="middle" class="chart-lbl">M36 base</text>
+                <text x="567" y="236" text-anchor="middle" class="chart-lbl">M36 bull</text>
+              </svg>
             </div>
-            <p class="slide-lead" style="margin-top:0.5rem;font-size:0.78rem;color:var(--inv-faint)">Payback 0.9&ndash;3.1 months. Full cohort evolution, sensitivity &amp; cash-flow available on request.</p>
+            <p class="slide-lead" style="margin-top:0.5rem;font-size:0.78rem;color:var(--inv-faint)">First revenue M10&ndash;12 &middot; AI-agent subscription live from M22&ndash;24 &middot; M36 base ~8K active, bull ~16K (retention ~80%). Conservative cohort mix (C+D = 10% @ M36). Full model, sensitivity &amp; cash-flow on request.</p>
           </section>
 
           <!-- ============ SLIDE 8 — ROADMAP (+ GTM) ============ -->
