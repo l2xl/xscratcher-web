@@ -447,47 +447,41 @@
 
             <!-- ===== ROW 2: stats | ARR growth ===== -->
             <div class="deck-row" style="align-items:flex-start">
-              <div class="deck-col" style="flex:0 0 215px;max-width:240px">
-                <div class="deck-stats" style="flex-direction:column;gap:0.5rem">
-                  <div class="deck-stat"><div class="deck-stat-value">$30</div><div class="deck-stat-label">Blended ARPAU / mo</div><div class="deck-stat-sub">incl. ~$3 subscription (~10%)</div></div>
-                  <div class="deck-stat"><div class="deck-stat-value">~9&times;</div><div class="deck-stat-label">Blended LTV / CAC</div><div class="deck-stat-sub">CAC ~$50 &middot; payback 1&ndash;4 mo</div></div>
-                  <div class="deck-stat"><div class="deck-stat-value">~$3.4B</div><div class="deck-stat-label">Platform volume / mo @ M36</div><div class="deck-stat-sub">~$40B/yr &middot; we take ~0.014%</div></div>
+              <div class="deck-col" style="flex:0 0 180px;max-width:195px">
+                <div class="deck-stats" style="flex-direction:column;gap:0.35rem">
+                  <div class="deck-stat" style="padding:0.45rem 0.6rem"><div class="deck-stat-value" style="font-size:1.15rem">$30</div><div class="deck-stat-label">Blended ARPAU / mo</div><div class="deck-stat-sub">incl. ~$3 subscription</div></div>
+                  <div class="deck-stat" style="padding:0.45rem 0.6rem"><div class="deck-stat-value" style="font-size:1.15rem">~9&times;</div><div class="deck-stat-label">Blended LTV / CAC</div><div class="deck-stat-sub">CAC ~$50 &middot; payback 1&ndash;4 mo</div></div>
+                  <div class="deck-stat" style="padding:0.45rem 0.6rem"><div class="deck-stat-value" style="font-size:1.15rem">~$3.4B</div><div class="deck-stat-label">Platform vol / mo @ M36</div><div class="deck-stat-sub">~$40B/yr &middot; ~0.014% take</div></div>
                 </div>
               </div>
               <div class="deck-col" style="flex:1 1 340px">
                 <div class="deck-chart-title">ARR growth &mdash; fee share + subscription, $M</div>
-                <ul class="deck-legend row" style="margin-bottom:0.3rem">
+                <ul class="deck-legend row" style="margin-bottom:0.25rem">
                   <li><span class="dot bg-1"></span> Fee share</li>
                   <li><span class="dot bg-4"></span> AI-agent subscription</li>
                 </ul>
                 <div class="deck-chart">
-                  <svg viewBox="0 0 640 250" role="img" aria-label="ARR growth by milestone">
-                <line x1="55" y1="220"   x2="620" y2="220"   class="chart-axis"/>
-                <line x1="55" y1="156.7" x2="620" y2="156.7" class="chart-grid"/>
-                <line x1="55" y1="93.3"  x2="620" y2="93.3"  class="chart-grid"/>
-                <line x1="55" y1="30"    x2="620" y2="30"    class="chart-grid"/>
-                <text x="48" y="224" text-anchor="end" class="chart-lbl">$0</text>
-                <text x="48" y="160" text-anchor="end" class="chart-lbl">$2M</text>
-                <text x="48" y="97"  text-anchor="end" class="chart-lbl">$4M</text>
-                <text x="48" y="34"  text-anchor="end" class="chart-lbl">$6M</text>
-                <rect x="70"  y="218"   width="54" height="2"     rx="2" class="cs-1"/>
-                <text x="97"  y="212" text-anchor="middle" class="chart-lbl">$0.03M</text>
-                <rect x="185" y="218"   width="54" height="2"     rx="2" class="cs-1"/>
-                <text x="212" y="212" text-anchor="middle" class="chart-lbl">$0.06M</text>
-                <rect x="300" y="195.9" width="54" height="24.1"  rx="2" class="cs-1"/>
-                <rect x="300" y="191.5" width="54" height="4.4"   rx="2" class="cs-4"/>
-                <text x="327" y="185" text-anchor="middle" class="chart-lbl">$0.9M</text>
-                <rect x="415" y="148.8" width="54" height="71.2"  rx="2" class="cs-1"/>
-                <rect x="415" y="134.5" width="54" height="14.2"  rx="2" class="cs-4"/>
-                <text x="442" y="128" text-anchor="middle" class="chart-lbl">$2.7M</text>
-                <rect x="530" y="56.9"  width="54" height="163.1" rx="2" class="cs-1"/>
-                <rect x="530" y="36.3"  width="54" height="20.6"  rx="2" class="cs-4"/>
-                <text x="557" y="30"  text-anchor="middle" class="chart-val chart-val-hi">$5.8M</text>
-                <text x="97"  y="236" text-anchor="middle" class="chart-lbl">M12</text>
-                <text x="212" y="236" text-anchor="middle" class="chart-lbl">M18</text>
-                <text x="327" y="236" text-anchor="middle" class="chart-lbl">M24</text>
-                <text x="442" y="236" text-anchor="middle" class="chart-lbl">M30</text>
-                <text x="557" y="236" text-anchor="middle" class="chart-lbl">M36</text>
+                  <svg viewBox="0 0 640 160" role="img" aria-label="ARR growth area chart">
+                    <line x1="55" y1="132" x2="620" y2="132" class="chart-axis"/>
+                    <line x1="55" y1="77"  x2="620" y2="77"  class="chart-grid"/>
+                    <line x1="55" y1="22"  x2="620" y2="22"  class="chart-grid"/>
+                    <text x="48" y="135" text-anchor="end" class="chart-lbl">$0</text>
+                    <text x="48" y="80"  text-anchor="end" class="chart-lbl">$3M</text>
+                    <text x="48" y="26"  text-anchor="end" class="chart-lbl">$6M</text>
+                    <path d="M70 132 L70 131.4 L200 130.9 L330 118.1 L460 90.8 L590 37.6 L590 132 Z" class="cs-1" style="fill-opacity:0.78"/>
+                    <path d="M70 131.4 L200 130.9 L330 118.1 L460 90.8 L590 37.6 L590 25.7 L460 82.5 L330 115.5 L200 130.9 L70 131.4 Z" class="cs-4" style="fill-opacity:0.85"/>
+                    <polyline points="70,131.4 200,130.9 330,115.5 460,82.5 590,25.7" fill="none" stroke="var(--cs-1)" stroke-width="2"/>
+                    <circle cx="330" cy="115.5" r="3.5" class="cs-1"/>
+                    <circle cx="460" cy="82.5"  r="3.5" class="cs-1"/>
+                    <circle cx="590" cy="25.7"  r="4"   class="cs-1"/>
+                    <text x="333" y="110" text-anchor="middle" class="chart-lbl">$0.9M</text>
+                    <text x="457" y="76"  text-anchor="middle" class="chart-lbl">$2.7M</text>
+                    <text x="585" y="19"  text-anchor="middle" class="chart-val chart-val-hi">$5.8M</text>
+                    <text x="70"  y="150" text-anchor="middle" class="chart-lbl">M12</text>
+                    <text x="200" y="150" text-anchor="middle" class="chart-lbl">M18</text>
+                    <text x="330" y="150" text-anchor="middle" class="chart-lbl">M24</text>
+                    <text x="460" y="150" text-anchor="middle" class="chart-lbl">M30</text>
+                    <text x="590" y="150" text-anchor="middle" class="chart-lbl">M36</text>
                   </svg>
                 </div>
               </div>
