@@ -444,44 +444,12 @@ a:hover { color: var(--inv-rose); }
   margin-bottom: 0.75rem;
 }
 
-.brief-market-stack {
-  position: relative;
-  width: 100%;
-}
-
-.brief-market-arrow {
+/* Single diagram: galaxy synergy picture + AI Revolution road in one SVG.
+   No border / padding here — the road must flow straight out of the galaxy. */
+.brief-market-diagram {
   display: block;
   width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.brief-market-text {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.brief-market-text-lg {
-  font-family: var(--font-serif);
-  font-size: 44px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  fill: var(--inv-text);
-}
-
-.brief-market-text-sm {
-  font-family: var(--font-heading);
-  font-size: 22px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  fill: var(--inv-muted);
+  aspect-ratio: 1291 / 1165;
 }
 
 .brief-market-hero {
@@ -515,56 +483,48 @@ a:hover { color: var(--inv-rose); }
   fill: var(--inv-accent);
 }
 
-/* AI Revolution — perspective road rendered in-SVG */
-.brief-market-road {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1291 / 625;
-  margin-top: 0.75rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid var(--inv-border);
-  overflow: visible;
+/* AI Revolution — the two original orange-rose lane cards, rearranged into
+   a two-lane road receding in 3-D perspective below the galaxy. */
+.road-lane {
+  fill: url(#laneSurface);
+  stroke: var(--inv-border);
+  stroke-width: 1.5;
 }
-
-.road-edge {
-  stroke: var(--inv-faint);
-  stroke-width: 2.5;
-  fill: none;
-  opacity: 0.5;
-}
-
-.road-divider { fill: rgba(192, 57, 43, 0.18); }
 
 .road-mark {
-  fill: var(--inv-bg);
-  opacity: 0.85;
+  fill: var(--inv-faint);
+  opacity: 0.5;
 }
 
 .road-title {
   font-family: var(--font-heading);
-  font-size: 2.7rem;
-  font-weight: 800;
+  font-size: 2.6rem;
+  font-weight: 600;
   letter-spacing: -0.01em;
   fill: var(--inv-text);
 }
 
+/* lane heading — same look as the original card heading */
 .road-head {
   font-family: var(--font-heading);
-  font-size: 1.55rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   fill: var(--inv-accent);
 }
 
 .road-item {
   font-family: var(--font-heading);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 500;
   fill: var(--inv-text);
 }
 
-.road-item--2 { font-size: 1rem; }
-.road-item--3 { font-size: 0.85rem; }
+.road-item--2 { font-size: 0.98rem; }
+.road-item--3 { font-size: 0.82rem; }
+
+.road-dot { fill: var(--inv-faint); }
 
 /* Phone: the whole diagram scales down with its width, so its SVG text
    shrinks faster than the surrounding rem-sized page copy. Enlarge the
@@ -575,11 +535,11 @@ a:hover { color: var(--inv-rose); }
   .brief-market-bullet { font-size: 2.3rem; }
   .brief-market-dash   { font-size: 2.3rem; }
 
-  .road-title    { font-size: 3.8rem; }
-  .road-head     { font-size: 2.25rem; }
-  .road-item     { font-size: 1.75rem; }
-  .road-item--2  { font-size: 1.45rem; }
-  .road-item--3  { font-size: 1.3rem; }
+  .road-title    { font-size: 3.6rem; }
+  .road-head     { font-size: 1.75rem; }
+  .road-item     { font-size: 1.65rem; }
+  .road-item--2  { font-size: 1.4rem; }
+  .road-item--3  { font-size: 1.2rem; }
 }
 
 .brief-section--team .brief-section-body {
