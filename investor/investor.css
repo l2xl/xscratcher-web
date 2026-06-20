@@ -515,69 +515,71 @@ a:hover { color: var(--inv-rose); }
   fill: var(--inv-accent);
 }
 
-.brief-market-ai {
-  margin-top: 1.25rem;
-  padding-top: 1rem;
+/* AI Revolution — perspective road rendered in-SVG */
+.brief-market-road {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1291 / 625;
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
   border-top: 1px solid var(--inv-border);
+  overflow: visible;
 }
 
-.brief-market-ai-title {
+.road-edge {
+  stroke: var(--inv-faint);
+  stroke-width: 2.5;
+  fill: none;
+  opacity: 0.5;
+}
+
+.road-divider { fill: rgba(192, 57, 43, 0.18); }
+
+.road-mark {
+  fill: var(--inv-bg);
+  opacity: 0.85;
+}
+
+.road-title {
   font-family: var(--font-heading);
-  font-size: 1.7rem;
-  font-weight: 600;
+  font-size: 2.7rem;
+  font-weight: 800;
   letter-spacing: -0.01em;
-  text-align: center;
-  margin-bottom: 0.9rem;
-  color: var(--inv-text);
+  fill: var(--inv-text);
 }
 
-.brief-market-ai-lanes {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.brief-market-ai-lane {
-  padding: 0.85rem 1.1rem;
-  border: 1px solid var(--inv-border);
-  border-radius: var(--inv-radius-lg);
-  background: var(--inv-surface);
-}
-
-.brief-market-ai-lane-head {
+.road-head {
   font-family: var(--font-heading);
+  font-size: 1.55rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.8rem;
-  color: var(--inv-accent);
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+  fill: var(--inv-accent);
 }
 
-.brief-market-ai-lane ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.road-item {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 500;
+  fill: var(--inv-text);
 }
 
-.brief-market-ai-lane li {
-  position: relative;
-  padding-left: 1rem;
-  font-size: 0.95rem;
-  line-height: 1.45;
-  color: var(--inv-text);
-  margin-bottom: 0.25rem;
-}
+.road-item--2 { font-size: 1rem; }
+.road-item--3 { font-size: 0.85rem; }
 
-.brief-market-ai-lane li::before {
-  content: '\2022';
-  position: absolute;
-  left: 0;
-  color: var(--inv-faint);
-}
-
+/* Phone: the whole diagram scales down with its width, so its SVG text
+   shrinks faster than the surrounding rem-sized page copy. Enlarge the
+   user-unit font sizes on narrow screens to keep the diagram legible. */
 @media (max-width: 640px) {
-  .brief-market-ai-lanes { grid-template-columns: 1fr; }
+  .brief-market-hero   { font-size: 5rem; }
+  .brief-market-num    { font-size: 3.5rem; }
+  .brief-market-bullet { font-size: 2.3rem; }
+  .brief-market-dash   { font-size: 2.3rem; }
+
+  .road-title    { font-size: 3.8rem; }
+  .road-head     { font-size: 2.25rem; }
+  .road-item     { font-size: 1.75rem; }
+  .road-item--2  { font-size: 1.45rem; }
+  .road-item--3  { font-size: 1.3rem; }
 }
 
 .brief-section--team .brief-section-body {

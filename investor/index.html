@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>X&middot;Cockpit &mdash; Investor Brief &middot; The Scratcher Project</title>
-  <link rel="stylesheet" href="investor.css?v=17" />
+  <link rel="stylesheet" href="investor.css?v=18" />
 </head>
 <body>
 
@@ -152,27 +152,57 @@
             </svg>
           </div>
 
-          <div class="brief-market-ai">
-            <div class="brief-market-ai-title">AI Revolution</div>
-            <div class="brief-market-ai-lanes">
-              <div class="brief-market-ai-lane">
-                <div class="brief-market-ai-lane-head">AI in development</div>
-                <ul>
-                  <li>Programs</li>
-                  <li>Tests</li>
-                  <li>Publishes</li>
-                </ul>
-              </div>
-              <div class="brief-market-ai-lane">
-                <div class="brief-market-ai-lane-head">AI in trading</div>
-                <ul>
-                  <li>Programs (strategy code)</li>
-                  <li>Tests (runs strategies, suggests optimisation paths)</li>
-                  <li>Launches and monitors 24/7</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <!-- ============================================================
+               AI Revolution — the two AI lanes rendered as a two-lane road
+               receding in 3-D perspective to a vanishing point below the
+               galaxy. Left lane = AI in development, right lane = AI in
+               trading. "AI Revolution" sits at the near (front) end; the
+               lane items recede and shrink toward the vanishing point.
+               ============================================================ -->
+          <svg class="brief-market-road" viewBox="0 0 1291 625" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="laneDev" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0"    stop-color="#f5d9b0" stop-opacity="0" />
+                <stop offset="0.55" stop-color="#f0c79a" stop-opacity="0.35" />
+                <stop offset="1"    stop-color="#e9b079" stop-opacity="0.6" />
+              </linearGradient>
+              <linearGradient id="laneTrade" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0"    stop-color="#e2a0b4" stop-opacity="0" />
+                <stop offset="0.55" stop-color="#dd86a3" stop-opacity="0.32" />
+                <stop offset="1"    stop-color="#d4547a" stop-opacity="0.55" />
+              </linearGradient>
+            </defs>
+
+            <!-- lane surfaces (left = development, right = trading) -->
+            <polygon class="road-lane" points="645,30 645,550 70,550"   fill="url(#laneDev)" />
+            <polygon class="road-lane" points="645,30 1221,550 645,550" fill="url(#laneTrade)" />
+
+            <!-- road edges + tapering centre divider -->
+            <line class="road-edge" x1="645" y1="30" x2="70"   y2="550" />
+            <line class="road-edge" x1="645" y1="30" x2="1221" y2="550" />
+            <polygon class="road-divider" points="645,32 640,550 650,550" />
+
+            <!-- centre dashes (brighter / wider toward the viewer) -->
+            <polygon class="road-mark" points="644.2,252 645.8,252 646.1,266 643.9,266" />
+            <polygon class="road-mark" points="642.8,360 647.2,360 647.8,384 642.2,384" />
+            <polygon class="road-mark" points="640.5,492 649.5,492 650.5,524 639.5,524" />
+
+            <!-- near (front) headline -->
+            <text x="645" y="602" text-anchor="middle" class="road-title">AI Revolution</text>
+
+            <!-- left lane — AI in development -->
+            <text x="410" y="455" text-anchor="middle" class="road-head">AI in development</text>
+            <text x="444" y="392" text-anchor="middle" class="road-item">Programs</text>
+            <text x="476" y="336" text-anchor="middle" class="road-item road-item--2">Tests</text>
+            <text x="500" y="292" text-anchor="middle" class="road-item road-item--3">Publishes</text>
+
+            <!-- right lane — AI in trading -->
+            <text x="880" y="455" text-anchor="middle" class="road-head">AI in trading</text>
+            <text x="846" y="392" text-anchor="middle" class="road-item">Programs (strategy code)</text>
+            <text x="814" y="336" text-anchor="middle" class="road-item road-item--2">Tests &mdash; runs strategies,</text>
+            <text x="828" y="360" text-anchor="middle" class="road-item road-item--2">suggests optimisation paths</text>
+            <text x="790" y="292" text-anchor="middle" class="road-item road-item--3">Launches and monitors 24/7</text>
+          </svg>
         </div>
 
         <div class="brief-grid">
