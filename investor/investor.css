@@ -444,12 +444,19 @@ a:hover { color: var(--inv-rose); }
   margin-bottom: 0.75rem;
 }
 
-/* Single diagram: galaxy synergy picture + AI Revolution road in one SVG.
-   No border / padding here — the road must flow straight out of the galaxy. */
-.brief-market-diagram {
+/* Galaxy picture sits ABOVE the AI block (z-order); the AI block slides up
+   underneath it so the road's vanishing point hides inside the galaxy. */
+.brief-market-stack {
+  position: relative;
+}
+
+.brief-market-galaxy {
   display: block;
   width: 100%;
-  aspect-ratio: 1291 / 1165;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .brief-market-hero {
@@ -483,63 +490,100 @@ a:hover { color: var(--inv-rose); }
   fill: var(--inv-accent);
 }
 
-/* AI Revolution — the two original orange-rose lane cards, rearranged into
-   a two-lane road receding in 3-D perspective below the galaxy. */
-.road-lane {
-  fill: url(#laneSurface);
-  stroke: var(--inv-border);
-  stroke-width: 1.5;
+/* AI Revolution — two rectangular lanes + headline. The whole block is
+   tilted with a real CSS 3-D perspective so it recedes like a two-lane
+   road up into the galaxy. Tunables: --ai-tilt, --ai-persp, --ai-rise. */
+.brief-market-ai {
+  --ai-tilt:  46deg;   /* how steeply the road lies down                */
+  --ai-persp: 1100px;  /* smaller = stronger perspective convergence    */
+  --ai-rise:  14%;     /* how far the block slides up under the galaxy   */
+
+  position: relative;
+  z-index: 1;
+  margin-top: calc(var(--ai-rise) * -1);
+  perspective: var(--ai-persp);
+  perspective-origin: 50% 34%;
 }
 
-.road-mark {
-  fill: var(--inv-faint);
-  opacity: 0.5;
+.ai-deck {
+  transform: rotateX(var(--ai-tilt));
+  transform-origin: 50% 100%;
 }
 
-.road-title {
+.ai-lanes {
+  display: flex;
+  gap: 1.4%;
+  align-items: stretch;
+}
+
+/* the two rectangles */
+.ai-lane {
+  flex: 1 1 0;
+  background: var(--inv-surface);
+  border: 1px solid var(--inv-border);
+  border-radius: var(--inv-radius-lg);
+  padding: 1.6rem 1.9rem 1.9rem;
+}
+
+/* headings hug the inner (central) boundary of each lane */
+.ai-lane--dev   { text-align: right; }
+.ai-lane--trade { text-align: left; }
+
+/* lane heading — same visual size as the Open Source / Engineers labels */
+.ai-lane-head {
   font-family: var(--font-heading);
-  font-size: 2.6rem;
-  font-weight: 600;
+  font-size: 2.5rem;
+  font-weight: 800;
   letter-spacing: -0.01em;
-  fill: var(--inv-text);
+  line-height: 1.05;
+  color: #000;
+  margin-bottom: 0.6rem;
 }
 
-/* lane heading — same look as the original card heading */
-.road-head {
-  font-family: var(--font-heading);
-  font-size: 1.2rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  fill: var(--inv-accent);
+.ai-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.road-item {
+.ai-list li {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.6rem;
   font-weight: 500;
-  fill: var(--inv-text);
+  line-height: 1.45;
+  color: var(--inv-text);
 }
 
-.road-item--2 { font-size: 0.98rem; }
-.road-item--3 { font-size: 0.82rem; }
+.ai-list li::before {
+  content: '\00B7\00A0';
+  color: var(--inv-faint);
+}
 
-.road-dot { fill: var(--inv-faint); }
+/* headline — same size as the X·Cockpit label, at the near/front edge */
+.ai-title {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--inv-text);
+  margin-top: 1.1rem;
+}
 
-/* Phone: the whole diagram scales down with its width, so its SVG text
-   shrinks faster than the surrounding rem-sized page copy. Enlarge the
-   user-unit font sizes on narrow screens to keep the diagram legible. */
 @media (max-width: 640px) {
   .brief-market-hero   { font-size: 5rem; }
   .brief-market-num    { font-size: 3.5rem; }
   .brief-market-bullet { font-size: 2.3rem; }
   .brief-market-dash   { font-size: 2.3rem; }
 
-  .road-title    { font-size: 3.6rem; }
-  .road-head     { font-size: 1.75rem; }
-  .road-item     { font-size: 1.65rem; }
-  .road-item--2  { font-size: 1.4rem; }
-  .road-item--3  { font-size: 1.2rem; }
+  .brief-market-ai {
+    --ai-tilt: 38deg;
+    --ai-rise: 9%;
+  }
+  .ai-lane { padding: 1rem 1.1rem 1.2rem; }
+  .ai-lane-head { font-size: 1.9rem; }
+  .ai-list li   { font-size: 1.25rem; }
+  .ai-title     { font-size: 2.8rem; }
 }
 
 .brief-section--team .brief-section-body {

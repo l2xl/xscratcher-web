@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>X&middot;Cockpit &mdash; Investor Brief &middot; The Scratcher Project</title>
-  <link rel="stylesheet" href="investor.css?v=19" />
+  <link rel="stylesheet" href="investor.css?v=20" />
 </head>
 <body>
 
@@ -99,84 +99,77 @@
         <div class="brief-section brief-section--full brief-section--market">
           <div class="brief-section-title">Market Opportunity</div>
           <!-- ============================================================
-               One SVG. The galaxy synergy diagram (top) flows seamlessly,
-               with no divider or gap, into the AI Revolution two-lane road
-               that recedes in 3-D perspective to a vanishing point just
-               below the galaxy. Each lane keeps the original card look
-               (orange-rose surface, accent uppercase heading, bullet list);
-               "AI Revolution" sits at the near/front end and the lane items
-               shrink as they recede.
+               Galaxy synergy picture (single SVG, single embedded galaxy)
+               with the AI Revolution block tucked underneath it. The AI
+               block is two rectangular lanes + the headline, and the whole
+               block receives a real 3-D perspective transform (CSS, which
+               SVG cannot do) so it recedes like a two-lane road into the
+               galaxy. The galaxy sits above it in z-order; the block slides
+               up under the galaxy so its vanishing point lands between the
+               X&middot;Cockpit and "Search this way" labels — no gap.
                ============================================================ -->
-          <svg class="brief-market-diagram" viewBox="0 0 1291 1165" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-            <defs>
-              <linearGradient id="laneSurface" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0"    stop-color="#fff7f0" stop-opacity="0.2" />
-                <stop offset="0.55" stop-color="#fdeede" stop-opacity="0.7" />
-                <stop offset="1"    stop-color="#fbe6d6" stop-opacity="0.95" />
-              </linearGradient>
-            </defs>
+          <div class="brief-market-stack">
+            <svg class="brief-market-galaxy" viewBox="0 0 1291 639" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <!-- single galaxy background -->
+              <image href="assets/spiral-galaxy.png" x="0" y="0" width="1291" height="639" />
 
-            <!-- single galaxy background -->
-            <image href="assets/spiral-galaxy.png" x="0" y="0" width="1291" height="639" />
+              <text x="600" y="320" text-anchor="middle" class="brief-market-hero">X&middot;Cockpit</text>
 
-            <!-- ===== galaxy synergy labels ===== -->
-            <text x="600" y="320" text-anchor="middle" class="brief-market-hero">X&middot;Cockpit</text>
+              <!-- Group 1 — Crypto exchanges -->
+              <text x="600" y="70"  text-anchor="middle" class="brief-market-num">Crypto Exchanges</text>
+              <text x="600" y="115" text-anchor="middle" class="brief-market-bullet">&middot; Reduced regulation</text>
+              <text x="600" y="150" text-anchor="middle" class="brief-market-bullet">&middot; Low competition per trade</text>
+              <text x="600" y="185" text-anchor="middle" class="brief-market-bullet">&middot; High volatility</text>
 
-            <!-- Group 1 — Crypto exchanges -->
-            <text x="600" y="70"  text-anchor="middle" class="brief-market-num">Crypto Exchanges</text>
-            <text x="600" y="115" text-anchor="middle" class="brief-market-bullet">&middot; Reduced regulation</text>
-            <text x="600" y="150" text-anchor="middle" class="brief-market-bullet">&middot; Low competition per trade</text>
-            <text x="600" y="185" text-anchor="middle" class="brief-market-bullet">&middot; High volatility</text>
+              <!-- Synergy 1 &rarr; 2 (left mid-strip) -->
+              <text x="100" y="230" text-anchor="start" class="brief-market-dash">&middot; Broker program</text>
 
-            <!-- Synergy 1 &rarr; 2 (left mid-strip) -->
-            <text x="100" y="230" text-anchor="start" class="brief-market-dash">&middot; Broker program</text>
+              <!-- Group 2 — OpenSource -->
+              <text x="40"  y="330" text-anchor="start" class="brief-market-num">Open Source</text>
+              <text x="40"  y="375" text-anchor="start" class="brief-market-bullet">&middot; Organic marketing</text>
+              <text x="40"  y="410" text-anchor="start" class="brief-market-bullet">&middot; No competition for audience</text>
+              <text x="40"  y="445" text-anchor="start" class="brief-market-bullet">&middot; Zero entry</text>
 
-            <!-- Group 2 — OpenSource -->
-            <text x="40"  y="330" text-anchor="start" class="brief-market-num">Open Source</text>
-            <text x="40"  y="375" text-anchor="start" class="brief-market-bullet">&middot; Organic marketing</text>
-            <text x="40"  y="410" text-anchor="start" class="brief-market-bullet">&middot; No competition for audience</text>
-            <text x="40"  y="445" text-anchor="start" class="brief-market-bullet">&middot; Zero entry</text>
+              <!-- Synergy 2 &rarr; 3 (bottom-right) -->
+              <text x="600" y="470" text-anchor="middle" class="brief-market-dash">&middot; Search this way</text>
+              <text x="600" y="505" text-anchor="middle" class="brief-market-dash">&middot; Trust Open Source</text>
 
-            <!-- Synergy 2 &rarr; 3 (bottom-right) -->
-            <text x="600" y="470" text-anchor="middle" class="brief-market-dash">&middot; Search this way</text>
-            <text x="600" y="505" text-anchor="middle" class="brief-market-dash">&middot; Trust Open Source</text>
+              <!-- Group 3 — Engineers -->
+              <text x="1150" y="330" text-anchor="end" class="brief-market-num">Engineers</text>
+              <text x="1250" y="375" text-anchor="end" class="brief-market-bullet">&middot; Exchange trading marginalised</text>
+              <text x="1220" y="410" text-anchor="end" class="brief-market-bullet">&middot; Know about crypto</text>
+              <text x="1200" y="445" text-anchor="end" class="brief-market-bullet">&middot; Sufficient income</text>
 
-            <!-- Group 3 — Engineers -->
-            <text x="1150" y="330" text-anchor="end" class="brief-market-num">Engineers</text>
-            <text x="1250" y="375" text-anchor="end" class="brief-market-bullet">&middot; Exchange trading marginalised</text>
-            <text x="1220" y="410" text-anchor="end" class="brief-market-bullet">&middot; Know about crypto</text>
-            <text x="1200" y="445" text-anchor="end" class="brief-market-bullet">&middot; Sufficient income</text>
+              <!-- Synergy 3 &rarr; 1 (upper-right, stacked) -->
+              <text x="1120" y="200" text-anchor="end" class="brief-market-dash">&middot; New audience</text>
+              <text x="1150" y="235" text-anchor="end" class="brief-market-dash">&middot; Market opportunity</text>
+            </svg>
 
-            <!-- Synergy 3 &rarr; 1 (upper-right, stacked) -->
-            <text x="1120" y="200" text-anchor="end" class="brief-market-dash">&middot; New audience</text>
-            <text x="1150" y="235" text-anchor="end" class="brief-market-dash">&middot; Market opportunity</text>
-
-            <!-- ===== AI Revolution — two-lane road in 3-D perspective ===== -->
-            <!-- lane cards lying on the road, converging below the galaxy -->
-            <polygon class="road-lane" points="640,652 628,1090 45,1090" />
-            <polygon class="road-lane" points="655,652 1246,1090 667,1090" />
-
-            <!-- median dashes (wider toward the viewer) -->
-            <polygon class="road-mark" points="646.2,722 649.8,722 650.4,744 645.6,744" />
-            <polygon class="road-mark" points="644.2,862 651,862 652,890 643.2,890" />
-            <polygon class="road-mark" points="640.5,1006 655,1006 657,1048 638.5,1048" />
-
-            <!-- front headline -->
-            <text x="645" y="1142" text-anchor="middle" class="road-title">AI Revolution</text>
-
-            <!-- left lane — AI in development -->
-            <text x="373" y="1037" text-anchor="middle" class="road-head">AI in development</text>
-            <text x="428" y="959" text-anchor="middle" class="road-item"><tspan class="road-dot">&#8226;</tspan> Programs</text>
-            <text x="476" y="889" text-anchor="middle" class="road-item road-item--2"><tspan class="road-dot">&#8226;</tspan> Tests</text>
-            <text x="519" y="827" text-anchor="middle" class="road-item road-item--3"><tspan class="road-dot">&#8226;</tspan> Publishes</text>
-
-            <!-- right lane — AI in trading -->
-            <text x="920" y="1037" text-anchor="middle" class="road-head">AI in trading</text>
-            <text x="866" y="959" text-anchor="middle" class="road-item"><tspan class="road-dot">&#8226;</tspan> Programs (strategy code)</text>
-            <text x="826" y="881" text-anchor="middle" class="road-item road-item--2"><tspan class="road-dot">&#8226;</tspan> Tests &mdash; runs strategies,</text>
-            <text x="840" y="905" text-anchor="middle" class="road-item road-item--2">suggests optimisation paths</text>
-            <text x="776" y="827" text-anchor="middle" class="road-item road-item--3"><tspan class="road-dot">&#8226;</tspan> Launches and monitors 24/7</text>
-          </svg>
+            <!-- AI Revolution — two rectangular lanes + headline, tilted in 3-D -->
+            <div class="brief-market-ai">
+              <div class="ai-deck">
+                <div class="ai-lanes">
+                  <div class="ai-lane ai-lane--dev">
+                    <div class="ai-lane-head">AI in development</div>
+                    <ul class="ai-list">
+                      <li>Programs</li>
+                      <li>Tests</li>
+                      <li>Publishes</li>
+                    </ul>
+                  </div>
+                  <div class="ai-lane ai-lane--trade">
+                    <div class="ai-lane-head">AI in trading</div>
+                    <ul class="ai-list">
+                      <li>Programs (strategy code)</li>
+                      <li>Tests (runs strategies, suggests optimisation paths)</li>
+                      <li>Launches and monitors 24/7</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="ai-title">AI Revolution</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="brief-grid">
