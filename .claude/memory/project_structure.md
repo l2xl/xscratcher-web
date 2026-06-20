@@ -4,11 +4,11 @@
 | Page | File | Description |
 |---|---|---|
 | Landing | `index.html` | Hero, "Why we are building this" (4 problem cards), Roadmap, Philosophy strip |
-| The Exchange Scratchpad | `exchange-scratcher.html` | The Exchange Scratchpad - standalone exchange trading application details |
+| X·Cockpit | `x-cockpit.html` | X·Cockpit - standalone exchange trading application details |
 | The Scratcher Assistant | `scratcher-assistant.html` | The Scratcher Assistant - AI assistant details |
 | IPRL | `iprl.html` | Intellectual Property Reserve License page |
 | DataHub | `datahub.html` | DataHub library description |
-| Mission | `mission.html` | The Exchange Scratcher Mission |
+| Mission | `mission.html` | X·Cockpit Mission |
 
 ## Investor section (`investor/`)
 Self-contained subdirectory for investor relations. Uses its own stylesheet (`investor/investor.css`) and local assets — does NOT share the root `css/style.css`.
