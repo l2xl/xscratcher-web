@@ -536,7 +536,7 @@ a:hover { color: var(--inv-rose); }
   position: relative;
   width: 1291px;
   height: 220px;
-  perspective: 380px;
+  perspective: 300px;
   perspective-origin: 50% 0%;
   overflow: hidden;
 }
@@ -548,7 +548,7 @@ a:hover { color: var(--inv-rose); }
   bottom: 0;
   height: 600px;
   transform-origin: 50% 100%;
-  transform: rotateX(66deg);   /* steep tilt so the lanes taper hard to the horizon */
+  transform: rotateX(74deg);   /* steep tilt so the lanes taper hard to the horizon */
   display: flex;
   justify-content: center;
   gap: 16px;
