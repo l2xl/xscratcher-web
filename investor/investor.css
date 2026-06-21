@@ -495,8 +495,8 @@ a:hover { color: var(--inv-rose); }
    road up into the galaxy. Tunables: --ai-tilt, --ai-persp, --ai-rise. */
 .brief-market-ai {
   --ai-tilt:  72deg;   /* how steeply the road lies down                */
-  --ai-persp: 460px;   /* smaller = stronger perspective convergence    */
-  --ai-rise:  32%;     /* how far the block slides up under the galaxy   */
+  --ai-persp: 120px;   /* smaller = stronger perspective convergence    */
+  --ai-rise:  50%;     /* how far the block slides up under the galaxy   */
 
   position: relative;
   z-index: 1;
