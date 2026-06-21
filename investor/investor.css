@@ -447,14 +447,27 @@ a:hover { color: var(--inv-rose); }
 .brief-market-stack {
   position: relative;
   width: 100%;
+  aspect-ratio: 1291 / 855;
+}
+
+/* road layer — sits BEHIND the galaxy so the nebula overlaps the lanes */
+.brief-market-road-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .brief-market-arrow {
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 1;
+  height: auto;            /* galaxy fills the upper 1291×639 of the frame */
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -463,7 +476,7 @@ a:hover { color: var(--inv-rose); }
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
+  z-index: 3;
   pointer-events: none;
 }
 
@@ -515,69 +528,74 @@ a:hover { color: var(--inv-rose); }
   fill: var(--inv-accent);
 }
 
-.brief-market-ai {
-  margin-top: 1.25rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--inv-border);
-}
-
-.brief-market-ai-title {
-  font-family: var(--font-heading);
-  font-size: 1.7rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  text-align: center;
-  margin-bottom: 0.9rem;
-  color: var(--inv-text);
-}
-
-.brief-market-ai-lanes {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.brief-market-ai-lane {
-  padding: 0.85rem 1.1rem;
-  border: 1px solid var(--inv-border);
-  border-radius: var(--inv-radius-lg);
-  background: var(--inv-surface);
-}
-
-.brief-market-ai-lane-head {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.8rem;
-  color: var(--inv-accent);
-  margin-bottom: 0.5rem;
-}
-
-.brief-market-ai-lane ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.brief-market-ai-lane li {
+/* AI Revolution road — live text laid onto a receding plane via CSS 3D.
+   Lives inside the diagram's <foreignObject>, so all lengths are in SVG
+   user units (1px = 1 viewBox unit) and scale with the diagram. */
+/* keep .brief-market-road height in sync with the <foreignObject> in index.html */
+.brief-market-road {
   position: relative;
-  padding-left: 1rem;
-  font-size: 0.95rem;
-  line-height: 1.45;
-  color: var(--inv-text);
-  margin-bottom: 0.25rem;
+  width: 1291px;
+  height: 250px;
+  perspective: 300px;
+  perspective-origin: 50% 0%;
+  overflow: hidden;
 }
 
-.brief-market-ai-lane li::before {
-  content: '\2022';
+.brief-market-road-plane {
   position: absolute;
   left: 0;
-  color: var(--inv-faint);
+  right: 0;
+  bottom: 0;
+  height: 600px;
+  transform-origin: 50% 100%;
+  transform: rotateX(74deg);   /* steep tilt so the lanes taper hard to the horizon */
+  display: flex;
+  justify-content: center;
+  gap: 16px;
 }
 
-@media (max-width: 640px) {
-  .brief-market-ai-lanes { grid-template-columns: 1fr; }
+.brief-market-lane {
+  width: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 24px;
+  padding: 12px 0 18px;
+  /* champagne surface + edge (matches the former AI Revolution cards),
+     fading out toward the top (far end) so the horizon stays open */
+  background: linear-gradient(to top,
+              color-mix(in srgb, var(--inv-surface) 96%, transparent) 0%,
+              color-mix(in srgb, var(--inv-surface) 62%, transparent) 72%,
+              transparent 100%);
+  border: 1px solid var(--inv-border);
+  border-top: 0;                       /* no cap at the horizon end */
+}
+
+.brief-market-lane--dev   { align-items: flex-end;   text-align: right; padding-right: 24px; }
+.brief-market-lane--trade { align-items: flex-start; text-align: left;  padding-left: 24px; }
+
+.brief-market-step,
+.brief-market-label {
+  font-family: var(--font-heading);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.brief-market-step  { font-weight: 600; font-size: 36px; color: var(--inv-text); }
+
+.brief-market-label {
+  font-weight: 800;
+  font-size: 40px;
+  color: var(--inv-accent);
+  text-transform: uppercase;
+}
+
+.brief-market-roadtitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 3.5rem;          /* matches the X·Cockpit hero */
+  letter-spacing: -0.01em;
+  fill: #000;
 }
 
 .brief-section--team .brief-section-body {
