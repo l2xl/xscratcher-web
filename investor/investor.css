@@ -494,9 +494,9 @@ a:hover { color: var(--inv-rose); }
    tilted with a real CSS 3-D perspective so it recedes like a two-lane
    road up into the galaxy. Tunables: --ai-tilt, --ai-persp, --ai-rise. */
 .brief-market-ai {
-  --ai-tilt:  62deg;   /* how steeply the road lies down                */
-  --ai-persp: 640px;   /* smaller = stronger perspective convergence    */
-  --ai-rise:  15%;     /* how far the block slides up under the galaxy   */
+  --ai-tilt:  72deg;   /* how steeply the road lies down                */
+  --ai-persp: 460px;   /* smaller = stronger perspective convergence    */
+  --ai-rise:  32%;     /* how far the block slides up under the galaxy   */
 
   position: relative;
   z-index: 1;
@@ -582,9 +582,9 @@ a:hover { color: var(--inv-rose); }
   .brief-market-dash   { font-size: 2.3rem; }
 
   .brief-market-ai {
-    --ai-tilt: 55deg;
-    --ai-persp: 380px;
-    --ai-rise: 10%;
+    --ai-tilt: 64deg;
+    --ai-persp: 300px;
+    --ai-rise: 24%;
   }
   .ai-lane { min-height: 17rem; padding: 1rem 1.1rem 1rem; }
   .ai-lane-head { font-size: 1.9rem; }
