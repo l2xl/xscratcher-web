@@ -535,7 +535,7 @@ a:hover { color: var(--inv-rose); }
 .brief-market-road {
   position: relative;
   width: 1291px;
-  height: 220px;
+  height: 250px;
   perspective: 300px;
   perspective-origin: 50% 0%;
   overflow: hidden;
