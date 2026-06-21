@@ -525,8 +525,8 @@ a:hover { color: var(--inv-rose); }
 .brief-market-road {
   position: relative;
   width: 1291px;
-  height: 155px;
-  perspective: 560px;
+  height: 190px;
+  perspective: 620px;
   perspective-origin: 50% 0%;
   overflow: hidden;
 }
@@ -538,7 +538,7 @@ a:hover { color: var(--inv-rose); }
   bottom: 0;
   height: 600px;
   transform-origin: 50% 100%;
-  transform: rotateX(68deg);   /* lay the plane down so it recedes to the horizon */
+  transform: rotateX(56deg);   /* lay the plane down so it recedes to the horizon */
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -549,8 +549,8 @@ a:hover { color: var(--inv-rose); }
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 14px;
-  padding: 10px 0 16px;
+  gap: 18px;
+  padding: 12px 0 18px;
   /* champagne surface + edge (matches the former AI Revolution cards),
      fading out toward the top (far end) so the horizon stays open */
   background: linear-gradient(to top,
