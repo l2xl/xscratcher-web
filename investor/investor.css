@@ -521,11 +521,12 @@ a:hover { color: var(--inv-rose); }
 /* AI Revolution road — live text laid onto a receding plane via CSS 3D.
    Lives inside the diagram's <foreignObject>, so all lengths are in SVG
    user units (1px = 1 viewBox unit) and scale with the diagram. */
+/* keep .brief-market-road height in sync with the <foreignObject> in index.html */
 .brief-market-road {
   position: relative;
   width: 1291px;
-  height: 300px;
-  perspective: 640px;
+  height: 155px;
+  perspective: 560px;
   perspective-origin: 50% 0%;
   overflow: hidden;
 }
@@ -549,7 +550,7 @@ a:hover { color: var(--inv-rose); }
   flex-direction: column;
   justify-content: flex-end;
   gap: 14px;
-  padding: 14px 0 34px;
+  padding: 10px 0 16px;
   /* champagne surface + edge (matches the former AI Revolution cards),
      fading out toward the top (far end) so the horizon stays open */
   background: linear-gradient(to top,
@@ -582,7 +583,7 @@ a:hover { color: var(--inv-rose); }
 .brief-market-roadtitle {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 46px;
+  font-size: 3.5rem;          /* matches the X·Cockpit hero */
   letter-spacing: -0.01em;
   fill: #000;
 }
