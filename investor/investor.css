@@ -535,7 +535,7 @@ a:hover { color: var(--inv-rose); }
   left: 0;
   right: 0;
   bottom: 0;
-  height: 720px;
+  height: 600px;
   transform-origin: 50% 100%;
   transform: rotateX(68deg);   /* lay the plane down so it recedes to the horizon */
   display: flex;
@@ -547,13 +547,17 @@ a:hover { color: var(--inv-rose); }
   width: 468px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 14px 0 30px;
-  /* fade out toward the top (far end) so the horizon stays open */
+  justify-content: flex-end;
+  gap: 14px;
+  padding: 14px 0 34px;
+  /* champagne surface + edge (matches the former AI Revolution cards),
+     fading out toward the top (far end) so the horizon stays open */
   background: linear-gradient(to top,
-              rgba(255, 204, 170, 0.92) 0%,
-              rgba(255, 204, 170, 0.45) 58%,
-              rgba(255, 204, 170, 0)   100%);
+              color-mix(in srgb, var(--inv-surface) 96%, transparent) 0%,
+              color-mix(in srgb, var(--inv-surface) 55%, transparent) 58%,
+              transparent 100%);
+  border: 1px solid var(--inv-border);
+  border-top: 0;                       /* no cap at the horizon end */
 }
 
 .brief-market-lane--dev   { align-items: flex-end;   text-align: right; padding-right: 24px; }
@@ -566,7 +570,7 @@ a:hover { color: var(--inv-rose); }
   white-space: nowrap;
 }
 
-.brief-market-step  { font-weight: 600; font-size: 36px; color: #1c1410; }
+.brief-market-step  { font-weight: 600; font-size: 36px; color: var(--inv-text); }
 
 .brief-market-label {
   font-weight: 800;
