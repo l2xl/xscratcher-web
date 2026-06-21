@@ -444,132 +444,77 @@ a:hover { color: var(--inv-rose); }
   margin-bottom: 0.75rem;
 }
 
-/* =========================================================
-   Market Opportunity — one-point-perspective "road to the galaxy"
-   A single inline SVG: the three market forces sit at depth along a
-   road that recedes to the galaxy on the horizon, with X·Cockpit as
-   the destination beyond it. Type is sized in viewBox units so it
-   scales with the artwork and reads in true perspective (near = big,
-   far = small) instead of being stretched flat across the picture.
-   ========================================================= */
-.brief-market-figure { width: 100%; margin-top: 0.25rem; }
+.brief-market-stack {
+  position: relative;
+  width: 100%;
+}
 
-.brief-market-svg {
+.brief-market-arrow {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
 }
 
-.brief-market-svg text { font-family: var(--font-heading); }
-
-/* light halo on every label so it stays legible over the galaxy/road */
-.rd-dest, .rd-dest-sub, .rd-head, .rd-bul, .rd-syn {
-  stroke: var(--inv-bg);
-  paint-order: stroke;
-  stroke-linejoin: round;
+.brief-market-text {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.rd-dest {
-  font-weight: 800;
-  font-size: 58px;
+.brief-market-text-lg {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  font-weight: 600;
   letter-spacing: -0.02em;
   fill: var(--inv-text);
-  stroke-width: 5px;
 }
-.rd-dest-sub {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 18px;
-  fill: var(--inv-muted);
-  stroke-width: 3px;
-}
-.rd-head {
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  fill: var(--inv-text);
-  stroke-width: 3.5px;
-}
-.rd-bul {
+
+.brief-market-text-sm {
+  font-family: var(--font-heading);
+  font-size: 22px;
   font-weight: 500;
-  fill: #46352d;
-  stroke-width: 2.5px;
-}
-.rd-near.rd-head { font-size: 44px; }
-.rd-near.rd-bul  { font-size: 25px; }
-.rd-far.rd-head  { font-size: 30px; }
-.rd-far.rd-bul   { font-size: 19px; }
-.rd-syn {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 600;
-  font-size: 20px;
-  fill: var(--inv-accent);
-  stroke-width: 2.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: var(--inv-muted);
 }
 
-/* readable fallback for the road graphic — only shown on narrow screens */
-.brief-market-mobile { display: none; }
-.bmm-dest {
-  text-align: center;
+.brief-market-hero {
   font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1.5rem;
+  font-size: 3.5rem;
+  font-weight: 1000;
   letter-spacing: -0.01em;
-  color: var(--inv-text);
-  margin-bottom: 1rem;
+  fill: #000;
 }
-.bmm-dest span {
-  display: block;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 0.8rem;
-  color: var(--inv-muted);
-  letter-spacing: 0;
-}
-.bmm-grid { display: grid; gap: 0.6rem; }
-.bmm-force {
-  background: var(--inv-surface);
-  border: 1px solid var(--inv-border);
-  border-radius: var(--inv-radius);
-  padding: 0.6rem 0.85rem;
-}
-.bmm-force h4 {
+
+.brief-market-num {
   font-family: var(--font-heading);
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: var(--inv-accent);
-  margin: 0 0 0.3rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  fill: #000;
 }
-.bmm-force ul { list-style: none; padding: 0; margin: 0; }
-.bmm-force li {
-  position: relative;
-  padding-left: 0.9rem;
-  font-size: 0.82rem;
-  line-height: 1.45;
-  color: var(--inv-text);
+
+.brief-market-bullet {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 500;
+  fill: #000;
 }
-.bmm-force li::before { content: '\2022'; position: absolute; left: 0; color: var(--inv-faint); }
-.bmm-syn {
-  margin-top: 0.7rem;
-  text-align: center;
+
+.brief-market-dash {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.78rem;
-  color: var(--inv-accent);
-  line-height: 1.5;
+  font-size: 1.6rem;
+  font-weight: 600;
+  fill: var(--inv-accent);
 }
 
-@media (max-width: 44em) {
-  .brief-market-figure { display: none; }
-  .brief-market-mobile { display: block; }
-}
-
-/* =========================================================
-   AI Revolution — mirrored stage comparison (development ⟷ trading)
-   Two equal lanes joined by a central Program → Test → Ship spine,
-   so the parallel reads at a glance and both sides stay balanced.
-   ========================================================= */
 .brief-market-ai {
   margin-top: 1.25rem;
   padding-top: 1rem;
@@ -582,121 +527,57 @@ a:hover { color: var(--inv-rose); }
   font-weight: 600;
   letter-spacing: -0.01em;
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.9rem;
   color: var(--inv-text);
 }
 
-.airev-lead {
-  text-align: center;
-  color: var(--inv-muted);
-  font-size: 0.9rem;
-  line-height: 1.55;
-  max-width: 38rem;
-  margin: 0 auto 1.1rem;
-}
-.airev-lead strong { color: var(--inv-text); font-weight: 600; }
-
-.airev {
+.brief-market-ai-lanes {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  column-gap: clamp(0.6rem, 2vw, 1.4rem);
-  align-items: stretch;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
-.airev-colhead {
+.brief-market-ai-lane {
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--inv-border);
+  border-radius: var(--inv-radius-lg);
+  background: var(--inv-surface);
+}
+
+.brief-market-ai-lane-head {
   font-family: var(--font-heading);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   color: var(--inv-accent);
-  padding-bottom: 0.55rem;
-}
-.airev-colhead--dev { text-align: right; }
-.airev-colhead--trade { text-align: left; }
-.airev-colhead--mid {
-  text-align: center;
-  color: var(--inv-faint);
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
 }
 
-/* rows are transparent so their cells land directly in the 3 columns */
-.airev-row { display: contents; }
+.brief-market-ai-lane ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-.airev-cell {
-  background: var(--inv-surface);
-  border: 1px solid var(--inv-border);
-  border-radius: var(--inv-radius);
-  padding: 0.6rem 0.85rem;
-  font-size: 0.86rem;
-  line-height: 1.4;
+.brief-market-ai-lane li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
   color: var(--inv-text);
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.25rem;
 }
-.airev-cell--dev { justify-content: flex-end; text-align: right; }
-.airev-cell--trade { justify-content: flex-start; text-align: left; }
-.airev-cell .verb { font-weight: 700; }
 
-.airev-stage {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.6rem;
-  min-width: 6rem;
-}
-.airev-stage::before {            /* continuous spine through the pills */
-  content: '';
+.brief-market-ai-lane li::before {
+  content: '\2022';
   position: absolute;
-  left: 50%;
-  top: -0.6rem;
-  bottom: -0.6rem;
-  width: 2px;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, var(--inv-rose), var(--inv-accent));
-  z-index: 0;
-}
-.airev-row:first-of-type .airev-stage::before { top: 50%; }
-.airev-row:last-of-type .airev-stage::before { bottom: 50%; }
-
-.airev-pill {
-  position: relative;
-  z-index: 1;
-  background: var(--inv-bg);
-  border: 1.5px solid var(--inv-rose);
-  color: var(--inv-accent);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.02em;
-  padding: 0.3rem 0.9rem;
-  border-radius: 9999px;
-  white-space: nowrap;
+  left: 0;
+  color: var(--inv-faint);
 }
 
-/* Phones: drop the spine, stack each stage as pill → dev → trading */
-@media (max-width: 40em) {
-  .airev { display: block; }
-  .airev-colhead { display: none; }
-  .airev-row { display: flex; flex-direction: column; margin-bottom: 1rem; }
-  .airev-stage { order: -1; justify-content: flex-start; margin-bottom: 0.4rem; min-width: 0; }
-  .airev-stage::before { display: none; }
-  .airev-cell { margin-bottom: 0.4rem; justify-content: flex-start; text-align: left; }
-  .airev-cell--dev::before,
-  .airev-cell--trade::before {
-    color: var(--inv-faint);
-    font-weight: 700;
-    font-size: 0.62rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-right: 0.45rem;
-    flex-shrink: 0;
-  }
-  .airev-cell--dev::before { content: 'Dev'; }
-  .airev-cell--trade::before { content: 'Trade'; }
+@media (max-width: 640px) {
+  .brief-market-ai-lanes { grid-template-columns: 1fr; }
 }
 
 .brief-section--team .brief-section-body {
