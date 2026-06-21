@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>X&middot;Cockpit &mdash; Investor Brief &middot; The Scratcher Project</title>
-  <link rel="stylesheet" href="investor.css?v=17" />
+  <link rel="stylesheet" href="investor.css?v=18" />
 </head>
 <body>
 
@@ -99,23 +99,41 @@
         <div class="brief-section brief-section--full brief-section--market">
           <div class="brief-section-title">Market Opportunity</div>
           <div class="brief-market-stack">
+            <!-- AI Revolution road, layered BEHIND the galaxy so the nebula
+                 overlaps the far end of the lanes. The same pipeline
+                 (program &rarr; test &rarr; deploy) runs in development and in
+                 auto-trading; lanes fade to transparent toward the horizon. -->
+            <svg class="brief-market-road-bg" viewBox="0 0 1291 855" preserveAspectRatio="none" aria-hidden="true">
+              <foreignObject x="0" y="510" width="1291" height="250">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="brief-market-road">
+                  <div class="brief-market-road-plane">
+                    <div class="brief-market-lane brief-market-lane--dev">
+                      <span class="brief-market-step">Deploying &middot;</span>
+                      <span class="brief-market-step">Testing &middot;</span>
+                      <span class="brief-market-step">Programming&middot;</span>
+                      <span class="brief-market-label">In development</span>
+                    </div>
+                    <div class="brief-market-lane brief-market-lane--trade">
+                      <span class="brief-market-step">&middot; Controlling 24/7</span>
+                      <span class="brief-market-step">&middot; Testing strategies</span>
+                      <span class="brief-market-step">&middot; Programming bots</span>
+                      <span class="brief-market-label">In auto-trading</span>
+                    </div>
+                  </div>
+                </div>
+              </foreignObject>
+            </svg>
+
             <img class="brief-market-arrow" src="assets/spiral-galaxy.png" alt="" aria-hidden="true">
-            <svg class="brief-market-text" viewBox="0 0 1291 639" preserveAspectRatio="none" aria-hidden="true">
+            <svg class="brief-market-text" viewBox="0 0 1291 855" preserveAspectRatio="none" aria-hidden="true">
 
               <!-- ============================================================
-                   3 groups (numbered items + their sub-items) live in 3
-                   zones of the 1291x639 picture; 3 synergy connectors live
-                   in the 3 diagonal gaps between them.
+                   Upper zone (y 0..510): the three-element synergy — three
+                   market forces around X·Cockpit, joined by red synergy
+                   connectors. UNCHANGED; the galaxy (1291×639) sits behind it.
 
-                   Zone layout (top-left origin):
-                     Group 1 (top, centred x=400, y 50..220)
-                     Group 2 (lower-left,  x>=40,  y 380..560)
-                     Group 3 (mid-right,   x<=1251,y 250..430)
-
-                   Synergy gaps:
-                     1->2 : left strip,    y~305
-                     2->3 : bottom-right,  y~600
-                     3->1 : upper-right,   y~110 + y~155
+                   Lower zone: the "AI Revolution" title (~y796). The road
+                   itself is a separate SVG layer behind the galaxy (above).
                    ============================================================ -->
 
               <text x="600" y="320" text-anchor="middle" class="brief-market-hero">X&middot;Cockpit</text>
@@ -149,29 +167,9 @@
               <text x="1120" y="200" text-anchor="end" class="brief-market-dash">&middot; New audience</text>
               <text x="1150" y="235" text-anchor="end" class="brief-market-dash">&middot; Market opportunity</text>
 
-            </svg>
-          </div>
+              <text x="645" y="826" text-anchor="middle" class="brief-market-roadtitle">AI Revolution</text>
 
-          <div class="brief-market-ai">
-            <div class="brief-market-ai-title">AI Revolution</div>
-            <div class="brief-market-ai-lanes">
-              <div class="brief-market-ai-lane">
-                <div class="brief-market-ai-lane-head">AI in development</div>
-                <ul>
-                  <li>Programs</li>
-                  <li>Tests</li>
-                  <li>Publishes</li>
-                </ul>
-              </div>
-              <div class="brief-market-ai-lane">
-                <div class="brief-market-ai-lane-head">AI in trading</div>
-                <ul>
-                  <li>Programs (strategy code)</li>
-                  <li>Tests (runs strategies, suggests optimisation paths)</li>
-                  <li>Launches and monitors 24/7</li>
-                </ul>
-              </div>
-            </div>
+            </svg>
           </div>
         </div>
 
