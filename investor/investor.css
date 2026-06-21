@@ -450,6 +450,16 @@ a:hover { color: var(--inv-rose); }
   aspect-ratio: 1291 / 855;
 }
 
+/* road layer — sits BEHIND the galaxy so the nebula overlaps the lanes */
+.brief-market-road-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
 .brief-market-arrow {
   display: block;
   position: absolute;
@@ -457,7 +467,7 @@ a:hover { color: var(--inv-rose); }
   left: 0;
   width: 100%;
   height: auto;            /* galaxy fills the upper 1291×639 of the frame */
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -466,7 +476,7 @@ a:hover { color: var(--inv-rose); }
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
+  z-index: 3;
   pointer-events: none;
 }
 
