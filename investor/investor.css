@@ -496,7 +496,7 @@ a:hover { color: var(--inv-rose); }
 .brief-market-ai {
   --ai-tilt:  72deg;   /* how steeply the road lies down                */
   --ai-persp: 120px;   /* smaller = stronger perspective convergence    */
-  --ai-rise:  50%;     /* how far the block slides up under the galaxy   */
+  --ai-rise:  25%;     /* how far the block slides up under the galaxy   */
 
   position: relative;
   z-index: 1;
