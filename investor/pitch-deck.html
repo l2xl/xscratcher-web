@@ -402,6 +402,67 @@
                 </div>
               </div>
             </div>
+
+            <!-- ===== ROW 3: volume-by-trade-size distribution ===== -->
+            <div class="deck-chart-title" style="margin-top:0.6rem">Where the volume sits &mdash; trade size (axis) vs share of volume (curve) &middot; <span style="color:var(--inv-faint);font-weight:400">Binance BTCUSDT, 15.06.2026</span></div>
+            <div class="deck-chart">
+              <svg viewBox="0 0 760 250" role="img" aria-label="Distribution of volume by trade size, spot vs perp, with our full-fee retail cohort highlighted">
+                <!-- cohort bands -->
+                <rect x="60"  y="30" width="185" height="170" fill="rgba(176,152,136,0.07)"/>
+                <rect x="245" y="30" width="210" height="170" fill="rgba(212,84,122,0.14)"/>
+                <rect x="455" y="30" width="265" height="170" fill="rgba(207,124,82,0.07)"/>
+                <line x1="245" y1="30" x2="245" y2="200" class="chart-grid"/>
+                <line x1="455" y1="30" x2="455" y2="200" class="chart-grid"/>
+                <!-- y gridlines + labels -->
+                <line x1="60" y1="143.3" x2="720" y2="143.3" class="chart-grid"/>
+                <line x1="60" y1="86.7"  x2="720" y2="86.7"  class="chart-grid"/>
+                <line x1="60" y1="30"    x2="720" y2="30"    class="chart-grid"/>
+                <text x="52" y="203" text-anchor="end" class="chart-lbl">0%</text>
+                <text x="52" y="147" text-anchor="end" class="chart-lbl">15%</text>
+                <text x="52" y="90"  text-anchor="end" class="chart-lbl">30%</text>
+                <text x="52" y="34"  text-anchor="end" class="chart-lbl">45%</text>
+                <!-- baseline (trade-size axis) -->
+                <line x1="60" y1="200" x2="725" y2="200" class="chart-axis" style="stroke-width:1.5"/>
+                <path d="M725 200 l-7 -3.5 v7 z" fill="var(--inv-muted)"/>
+                <!-- band captions -->
+                <text x="152" y="44" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint);font-size:9px">Dust &middot; &lt;$100</text>
+                <text x="152" y="55" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint);font-size:9px">full fee, ~0 vol</text>
+                <text x="350" y="44" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:12px">FULL-FEE RETAIL</text>
+                <text x="350" y="56" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-rose);font-weight:700;font-size:9.5px">$100&ndash;$5K &middot; our unit &#10003;</text>
+                <text x="588" y="44" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-muted);font-size:9px">Whales / pro &middot; &gt;$5K</text>
+                <text x="588" y="55" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-muted);font-size:9px">most volume, VIP-discounted</text>
+                <!-- perp curve -->
+                <polyline points="70,200 140,200 210,198.3 280,194.7 350,196.4 420,175.6 490,179.3 560,104.0 630,140.0 700,33.9" style="fill:none;stroke:var(--inv-accent);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round"/>
+                <!-- spot curve -->
+                <polyline points="70,199.6 140,197.1 210,197.8 280,188.1 350,185.6 420,122.7 490,159.2 560,76.5 630,142.1 700,153.6" style="fill:none;stroke:var(--cs-4);stroke-width:2.6;stroke-dasharray:5 3;stroke-linejoin:round;stroke-linecap:round"/>
+                <!-- data dots -->
+                <g fill="var(--inv-accent)"><circle cx="210" cy="198.3" r="2.4"/><circle cx="280" cy="194.7" r="2.4"/><circle cx="350" cy="196.4" r="2.4"/><circle cx="420" cy="175.6" r="2.4"/><circle cx="490" cy="179.3" r="2.4"/><circle cx="560" cy="104.0" r="2.4"/><circle cx="630" cy="140.0" r="2.4"/><circle cx="700" cy="33.9" r="3"/></g>
+                <g fill="var(--cs-4)"><circle cx="280" cy="188.1" r="2.4"/><circle cx="420" cy="122.7" r="2.4"/><circle cx="490" cy="159.2" r="2.4"/><circle cx="560" cy="76.5" r="3"/><circle cx="630" cy="142.1" r="2.4"/><circle cx="700" cy="153.6" r="2.4"/></g>
+                <!-- peak callouts -->
+                <text x="560" y="69"  text-anchor="middle" class="chart-lbl" style="fill:var(--cs-4);font-weight:700;font-size:9px">33%</text>
+                <text x="700" y="27"  text-anchor="middle" class="chart-lbl" style="fill:var(--inv-accent);font-weight:700;font-size:9px">44%</text>
+                <!-- x-axis bucket labels -->
+                <g class="chart-lbl" style="font-size:8.5px">
+                  <text x="70"  y="212" transform="rotate(-32 70 212)"  text-anchor="end">&lt;$10</text>
+                  <text x="140" y="212" transform="rotate(-32 140 212)" text-anchor="end">$10&ndash;50</text>
+                  <text x="210" y="212" transform="rotate(-32 210 212)" text-anchor="end">$50&ndash;100</text>
+                  <text x="280" y="212" transform="rotate(-32 280 212)" text-anchor="end">$100&ndash;500</text>
+                  <text x="350" y="212" transform="rotate(-32 350 212)" text-anchor="end">$500&ndash;1K</text>
+                  <text x="420" y="212" transform="rotate(-32 420 212)" text-anchor="end">$1K&ndash;5K</text>
+                  <text x="490" y="212" transform="rotate(-32 490 212)" text-anchor="end">$5K&ndash;10K</text>
+                  <text x="560" y="212" transform="rotate(-32 560 212)" text-anchor="end">$10K&ndash;50K</text>
+                  <text x="630" y="212" transform="rotate(-32 630 212)" text-anchor="end">$50K&ndash;100K</text>
+                  <text x="700" y="212" transform="rotate(-32 700 212)" text-anchor="end">&gt;$100K</text>
+                </g>
+                <text x="725" y="244" text-anchor="end" class="chart-lbl" style="fill:var(--inv-faint);font-size:9px">larger trade size &#8594;</text>
+                <!-- legend -->
+                <line x1="470" y1="240" x2="492" y2="240" style="stroke:var(--inv-accent);stroke-width:2.6"/>
+                <text x="497" y="243" class="chart-lbl" style="font-size:9px">perp</text>
+                <line x1="540" y1="240" x2="562" y2="240" style="stroke:var(--cs-4);stroke-width:2.6;stroke-dasharray:5 3"/>
+                <text x="567" y="243" class="chart-lbl" style="font-size:9px">spot</text>
+              </svg>
+            </div>
+            <p class="slide-lead" style="margin:0.3rem 0 0;font-size:0.7rem;color:var(--inv-faint)">Volume climbs toward big tickets (right) &mdash; but those trade on VIP discounts and aren&rsquo;t our users. We monetize the highlighted full-fee retail band at the centre. <span style="white-space:nowrap">Source: exchange-liquidity-research &sect;4.</span></p>
           </section>
 
           <!-- ============ SLIDE 8 — ROADMAP (+ GTM) ============ -->
