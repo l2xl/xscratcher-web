@@ -336,32 +336,33 @@
           <section class="slide" id="slide-7">
             <div class="slide-head">
               <div class="slide-kicker">Unit Economics</div>
-              <h2 class="slide-title">One active trader, priced by trade size</h2>
+              <h2 class="slide-title">Our unit is the trade &mdash; we earn the full fee on retail tickets</h2>
             </div>
 
-            <!-- ===== ROW 1: cohort table | rationale ===== -->
+            <!-- ===== ROW 1: trade-size cohorts | rationale ===== -->
             <div class="deck-row" style="align-items:flex-start;margin-bottom:0.7rem">
-              <div class="deck-col" style="flex:1.25 1 330px">
-                <div class="brief-section-title">Three cohorts (A&ndash;C) &mdash; by average trade size &middot; full-fee retail</div>
+              <div class="deck-col" style="flex:1.4 1 360px">
+                <div class="brief-section-title">Trades split by size &mdash; only full-fee retail pays us in full <span style="font-weight:400;color:var(--inv-faint)">(Binance BTCUSDT, 15.06.2026)</span></div>
                 <div class="deck-table-wrap">
                   <table class="deck-table">
-                    <thead><tr><th>Cohort</th><th>Avg trade</th><th>Trades / mo</th><th>Volume / mo</th><th>ARPAU</th></tr></thead>
+                    <thead><tr><th>Cohort</th><th>Trade size</th><th>Vol&nbsp;spot</th><th>Vol&nbsp;perp</th><th>Exch.&nbsp;fee</th><th>Revenue&nbsp;to&nbsp;us</th></tr></thead>
                     <tbody>
-                      <tr><td><span class="coh-chip bg-6"></span>A &middot; Beginning</td><td class="num">$500</td><td class="num">150</td><td class="num">$75K</td><td class="num">$13</td></tr>
-                      <tr><td><span class="coh-chip bg-4"></span>B &middot; Progressing</td><td class="num">$4.5K</td><td class="num">100</td><td class="num">$450K</td><td class="num">$69</td></tr>
-                      <tr class="row-hi"><td><span class="coh-chip bg-2"></span>C &middot; Advancing</td><td class="num">$22K</td><td class="num">70</td><td class="num">$1.54M</td><td class="num">$228</td></tr>
+                      <tr><td><span class="coh-chip bg-6"></span>Small &middot; Dust</td><td class="num">&lt;&#8201;$100</td><td class="num">1.5%</td><td class="num">0.5%</td><td class="num">Full</td><td>full fee &middot; <span class="mk-no">~$0 vol</span></td></tr>
+                      <tr class="row-hi"><td><span class="coh-chip bg-2"></span>Medium &middot; Retail core &#9733;</td><td class="num">$100&ndash;$5K</td><td class="num">27%</td><td class="num">9 / ~40%<sup>1</sup></td><td class="num">Full</td><td><span class="mk-yes">&#10003; our unit</span></td></tr>
+                      <tr><td><span class="coh-chip bg-4"></span>Large &middot; Whale / pro</td><td class="num">&gt;&#8201;$5K</td><td class="num">71%</td><td class="num">91%</td><td class="num">VIP&nbsp;disc.</td><td><span class="mk-no">cut take &middot; off-ICP</span></td></tr>
                     </tbody>
                   </table>
                 </div>
-                <p class="slide-lead" style="margin:0.35rem 0 0;font-size:0.72rem;color:var(--inv-faint)">ARPAU &asymp; avg trade size &times; trades/mo &times; 0.014% full take + subscription.</p>
+                <p class="slide-lead" style="margin:0.35rem 0 0;font-size:0.7rem;color:var(--inv-faint)"><sup>1</sup> Perp ~9% by raw notional, but <strong>~40% risk-adjusted</strong>: a $2K deposit at 5&ndash;20&times; shows as a $10&ndash;50K ticket, still VIP0. Full take = 0.035% exchange fee &times; 40% share = <strong>0.014%</strong>.</p>
               </div>
-              <div class="deck-col" style="flex:1 1 260px">
-                <div class="brief-section-title">Unit = trade size</div>
+              <div class="deck-col" style="flex:1 1 240px">
+                <div class="brief-section-title">Unit = the trade, not the deposit</div>
                 <div class="brief-section">
-                  <div class="brief-section-body" style="font-size:0.8rem">Revenue = <strong>trade size &times; frequency</strong>. On derivatives, leverage lifts notional far above the deposit, so a small-deposit retail trader bills like a large one &mdash; <strong>at full commission</strong>.</div>
+                  <div class="brief-section-body" style="font-size:0.79rem">Revenue = <strong>trade size &times; frequency &times; full fee share</strong>. We monetize the <strong>$100&ndash;$5K retail ticket at full commission (VIP0)</strong>. On perp, leverage lifts its notional like a whale's &mdash; still at full fee. Whales own the volume but trade on VIP discounts; dust pays full fee but moves nothing.</div>
                 </div>
-                <div class="deck-stats" style="margin-top:0.5rem">
-                  <div class="deck-stat"><div class="deck-stat-value">~88%</div><div class="deck-stat-label">volume is perp</div><div class="deck-stat-sub">measured, 8 exchanges</div></div>
+                <div class="deck-stats" style="margin-top:0.5rem;flex-wrap:wrap;gap:0.3rem">
+                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">~88%</div><div class="deck-stat-label">volume is perp</div><div class="deck-stat-sub">measured, 8 exchanges</div></div>
+                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">$24&rarr;$98</div><div class="deck-stat-label">ARPAU spot&rarr;perp&nbsp;@5&times;</div><div class="deck-stat-sub">same retail trader</div></div>
                 </div>
               </div>
             </div>
