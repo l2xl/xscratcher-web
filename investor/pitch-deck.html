@@ -404,15 +404,15 @@
             </div>
 
             <!-- ===== ROW 3: our-revenue vs volume by trade size ===== -->
-            <div class="deck-chart-title" style="margin-top:0.6rem">Volume is on the right &mdash; our revenue is in the middle &middot; <span style="color:var(--inv-faint);font-weight:400">by trade size</span></div>
+            <div class="deck-chart-title" style="margin-top:0.6rem">Our fees sit in full-fee retail &mdash; whales own the volume &middot; <span style="color:var(--inv-faint);font-weight:400">blended at market 12:88 spot:perp</span></div>
             <div class="deck-chart">
-              <svg viewBox="0 0 760 250" role="img" aria-label="Distribution of volume by trade size, spot vs perp, with our full-fee retail cohort highlighted">
-                <!-- cohort bands -->
-                <rect x="60"  y="30" width="185" height="170" fill="rgba(176,152,136,0.07)"/>
-                <rect x="245" y="30" width="210" height="170" fill="rgba(212,84,122,0.14)"/>
-                <rect x="455" y="30" width="265" height="170" fill="rgba(207,124,82,0.07)"/>
-                <line x1="245" y1="30" x2="245" y2="200" class="chart-grid"/>
-                <line x1="455" y1="30" x2="455" y2="200" class="chart-grid"/>
+              <svg viewBox="0 0 760 250" role="img" aria-label="Our revenue vs trade volume across a logarithmic trade-size axis, with the full-fee retail cohort highlighted">
+                <!-- cohort bands (log-positioned: $100 and $5K boundaries) -->
+                <rect x="60"  y="30" width="199" height="170" fill="rgba(176,152,136,0.07)"/>
+                <rect x="259" y="30" width="340" height="170" fill="rgba(212,84,122,0.14)"/>
+                <rect x="599" y="30" width="121" height="170" fill="rgba(207,124,82,0.07)"/>
+                <line x1="259" y1="30" x2="259" y2="200" class="chart-grid"/>
+                <line x1="599" y1="30" x2="599" y2="200" class="chart-grid"/>
                 <!-- y gridlines + labels -->
                 <line x1="60" y1="143.3" x2="720" y2="143.3" class="chart-grid"/>
                 <line x1="60" y1="86.7"  x2="720" y2="86.7"  class="chart-grid"/>
@@ -421,39 +421,44 @@
                 <text x="52" y="147" text-anchor="end" class="chart-lbl">15%</text>
                 <text x="52" y="90"  text-anchor="end" class="chart-lbl">30%</text>
                 <text x="52" y="34"  text-anchor="end" class="chart-lbl">45%</text>
-                <!-- baseline (trade-size axis) -->
+                <!-- decade gridlines (log) -->
+                <line x1="133" y1="30" x2="133" y2="200" class="chart-grid"/>
+                <line x1="385" y1="30" x2="385" y2="200" class="chart-grid"/>
+                <line x1="511" y1="30" x2="511" y2="200" class="chart-grid"/>
+                <line x1="637" y1="30" x2="637" y2="200" class="chart-grid"/>
+                <!-- baseline (logarithmic trade-size axis) -->
                 <line x1="60" y1="200" x2="725" y2="200" class="chart-axis" style="stroke-width:1.5"/>
                 <path d="M725 200 l-7 -3.5 v7 z" fill="var(--inv-muted)"/>
+                <!-- minor ticks at x5 boundaries ($50/$500/$5K/$50K) -->
+                <g class="chart-axis"><line x1="221" y1="200" x2="221" y2="204"/><line x1="347" y1="200" x2="347" y2="204"/><line x1="473" y1="200" x2="473" y2="204"/><line x1="599" y1="200" x2="599" y2="204"/></g>
+                <!-- decade ticks + labels -->
+                <g style="stroke:var(--inv-muted)"><line x1="133" y1="200" x2="133" y2="207"/><line x1="259" y1="200" x2="259" y2="207"/><line x1="385" y1="200" x2="385" y2="207"/><line x1="511" y1="200" x2="511" y2="207"/><line x1="637" y1="200" x2="637" y2="207"/></g>
+                <g class="chart-lbl" style="font-size:10px">
+                  <text x="133" y="218" text-anchor="middle">$10</text>
+                  <text x="259" y="218" text-anchor="middle">$100</text>
+                  <text x="385" y="218" text-anchor="middle">$1K</text>
+                  <text x="511" y="218" text-anchor="middle">$10K</text>
+                  <text x="637" y="218" text-anchor="middle">$100K</text>
+                </g>
+                <text x="725" y="231" text-anchor="end" class="chart-lbl" style="fill:var(--inv-faint);font-size:9px">trade size, log scale &#8594;</text>
                 <!-- band captions -->
-                <text x="152" y="44" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint);font-size:9px">Dust &middot; &lt;$100</text>
-                <text x="152" y="55" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint);font-size:9px">full fee, ~0 vol</text>
-                <text x="251" y="44" text-anchor="start" class="chart-val chart-val-hi" style="font-size:12px">FULL-FEE RETAIL</text>
-                <text x="251" y="56" text-anchor="start" class="chart-lbl" style="fill:var(--inv-rose);font-weight:700;font-size:9.5px">$100&ndash;$5K &middot; our unit &#10003;</text>
-                <text x="588" y="44" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-muted);font-size:9px">Whales / pro &middot; &gt;$5K</text>
-                <text x="588" y="55" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-muted);font-size:9px">volume lives here &mdash; but VIP-discounted, off-ICP</text>
+                <text x="160" y="44" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint);font-size:9px">Dust &middot; &lt;$100</text>
+                <text x="160" y="55" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint);font-size:9px">full fee, ~0 vol</text>
+                <text x="263" y="44" text-anchor="start" class="chart-val chart-val-hi" style="font-size:12px">FULL-FEE RETAIL</text>
+                <text x="263" y="56" text-anchor="start" class="chart-lbl" style="fill:var(--inv-rose);font-weight:700;font-size:9.5px">$100&ndash;$50K notional &middot; incl. perp leverage &middot; our unit &#10003;</text>
+                <text x="660" y="44" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-muted);font-size:9px">True whales &middot; &gt;$50K</text>
+                <text x="660" y="55" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-muted);font-size:9px">volume, not our fees &middot; VIP-disc.</text>
                 <!-- trade-volume ghost (reference) -->
-                <path d="M 70.0 200.0 C 81.7 200.0 116.7 200.3 140.0 200.0 C 163.3 199.7 186.7 199.2 210.0 198.3 C 233.3 197.4 256.7 195.0 280.0 194.7 C 303.3 194.4 326.7 199.6 350.0 196.4 C 373.3 193.2 396.7 178.4 420.0 175.6 C 443.3 172.8 466.7 191.2 490.0 179.3 C 513.3 167.4 536.7 110.5 560.0 104.0 C 583.3 97.5 606.7 151.7 630.0 140.0 C 653.3 128.3 688.3 51.6 700.0 33.9" style="fill:none;stroke:var(--inv-faint);stroke-width:1.8;stroke-dasharray:4 4;stroke-linejoin:round;stroke-linecap:round;opacity:0.7"/>
+                <path d="M 70.0 200.0 C 87.8 200.0 148.7 200.3 177.0 200.0 C 205.3 199.7 219.0 199.2 240.0 198.3 C 261.0 197.4 282.0 195.0 303.0 194.7 C 324.0 194.4 345.0 199.6 366.0 196.4 C 387.0 193.2 408.0 178.4 429.0 175.6 C 450.0 172.8 471.0 191.2 492.0 179.3 C 513.0 167.4 534.0 110.5 555.0 104.0 C 576.0 97.5 593.8 151.7 618.0 140.0 C 642.2 128.3 686.3 51.6 700.0 33.9" style="fill:none;stroke:var(--inv-faint);stroke-width:1.8;stroke-dasharray:4 4;stroke-linejoin:round;stroke-linecap:round;opacity:0.7"/>
                 <text x="700" y="27" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint);font-weight:700;font-size:9px">vol 44%</text>
                 <!-- our-revenue curve -->
-                <path d="M 70.0 198.5 C 81.7 197.8 116.7 195.3 140.0 194.0 C 163.3 192.7 186.7 196.5 210.0 190.6 C 233.3 184.7 256.7 166.3 280.0 158.4 C 303.3 150.5 326.7 162.8 350.0 143.3 C 373.3 123.8 396.7 41.9 420.0 41.3 C 443.3 40.7 466.7 118.2 490.0 139.6 C 513.3 161.0 536.7 161.3 560.0 169.8 C 583.3 178.3 606.7 186.2 630.0 190.6 C 653.3 195.0 688.3 195.3 700.0 196.2" style="fill:none;stroke:var(--inv-accent);stroke-width:3;stroke-linejoin:round;stroke-linecap:round"/>
+                <path d="M 70.0 200.0 C 87.8 200.0 148.7 200.2 177.0 199.8 C 205.3 199.4 219.0 201.0 240.0 197.7 C 261.0 194.4 282.0 182.4 303.0 180.1 C 324.0 177.8 345.0 197.5 366.0 184.1 C 387.0 170.7 408.0 106.6 429.0 99.5 C 450.0 92.4 471.0 148.3 492.0 141.7 C 513.0 135.1 534.0 53.5 555.0 59.7 C 576.0 65.9 593.8 158.7 618.0 178.9 C 642.2 199.1 686.3 180.4 700.0 180.7" style="fill:none;stroke:var(--inv-accent);stroke-width:3;stroke-linejoin:round;stroke-linecap:round"/>
                 <!-- revenue dots -->
-                <g fill="var(--inv-accent)"><circle cx="210" cy="190.6" r="2.4"/><circle cx="280" cy="158.4" r="2.4"/><circle cx="350" cy="143.3" r="2.4"/><circle cx="420" cy="41.3" r="3.4"/><circle cx="490" cy="139.6" r="2.4"/><circle cx="560" cy="169.8" r="2.4"/><circle cx="630" cy="190.6" r="2.4"/><circle cx="700" cy="196.2" r="2.4"/></g>
-                <!-- revenue peak callout -->
-                <text x="420" y="33" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:12px">~42% of revenue</text>
-                <!-- x-axis bucket labels -->
-                <g class="chart-lbl" style="font-size:8.5px">
-                  <text x="70"  y="212" transform="rotate(-32 70 212)"  text-anchor="end">&lt;$10</text>
-                  <text x="140" y="212" transform="rotate(-32 140 212)" text-anchor="end">$10&ndash;50</text>
-                  <text x="210" y="212" transform="rotate(-32 210 212)" text-anchor="end">$50&ndash;100</text>
-                  <text x="280" y="212" transform="rotate(-32 280 212)" text-anchor="end">$100&ndash;500</text>
-                  <text x="350" y="212" transform="rotate(-32 350 212)" text-anchor="end">$500&ndash;1K</text>
-                  <text x="420" y="212" transform="rotate(-32 420 212)" text-anchor="end">$1K&ndash;5K</text>
-                  <text x="490" y="212" transform="rotate(-32 490 212)" text-anchor="end">$5K&ndash;10K</text>
-                  <text x="560" y="212" transform="rotate(-32 560 212)" text-anchor="end">$10K&ndash;50K</text>
-                  <text x="630" y="212" transform="rotate(-32 630 212)" text-anchor="end">$50K&ndash;100K</text>
-                  <text x="700" y="212" transform="rotate(-32 700 212)" text-anchor="end">&gt;$100K</text>
-                </g>
-                <text x="725" y="244" text-anchor="end" class="chart-lbl" style="fill:var(--inv-faint);font-size:9px">larger trade size &#8594;</text>
+                <g fill="var(--inv-accent)"><circle cx="240" cy="197.7" r="2.4"/><circle cx="303" cy="180.1" r="2.4"/><circle cx="366" cy="184.1" r="2.4"/><circle cx="429" cy="99.5" r="2.8"/><circle cx="492" cy="141.7" r="2.4"/><circle cx="555" cy="59.7" r="3.4"/><circle cx="618" cy="178.9" r="2.4"/><circle cx="700" cy="180.7" r="2.4"/></g>
+                <!-- revenue peak callouts -->
+                <text x="555" y="44" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:12px">~37% of fees</text>
+                <text x="555" y="54" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-accent);font-weight:700;font-size:8px">perp leverage-retail</text>
+                <text x="429" y="91" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-accent);font-weight:700;font-size:9px">~27%</text>
                 <!-- legend -->
                 <line x1="420" y1="240" x2="442" y2="240" style="stroke:var(--inv-accent);stroke-width:3"/>
                 <text x="447" y="243" class="chart-lbl" style="font-size:9px">our revenue</text>
@@ -461,7 +466,7 @@
                 <text x="567" y="243" class="chart-lbl" style="font-size:9px">trade volume</text>
               </svg>
             </div>
-            <p class="slide-lead" style="margin:0.3rem 0 0;font-size:0.7rem;color:var(--inv-faint)">Our revenue inverts the volume curve: it peaks in the full-fee retail band and collapses where the volume is (whales &mdash; VIP-discounted &amp; off-ICP). Revenue&nbsp;&prop;&nbsp;volume &times; full fee (VIP0) &times; in-ICP share &mdash; modeled attribution. <span style="white-space:nowrap">Volume: exchange-liquidity-research &sect;4; capture: fee-share-model &sect;4.</span></p>
+            <p class="slide-lead" style="margin:0.3rem 0 0;font-size:0.7rem;color:var(--inv-faint)">Single curve blended at the market <strong>spot:perp = 12:88</strong> (8-exchange weighted aggregate, &sect;6). ICP ticket is $100&ndash;$5K, but on perp 5&ndash;20&times; leverage lifts the notional to ~$50K (&sect;4.1) &mdash; so full-fee retail spans $100&ndash;$50K by notional, holding <strong>~89%</strong> of our fees. True whales (&gt;$50K) own the volume but pay VIP-discounted fees off-ICP. <span style="white-space:nowrap">Volume: research &sect;4; capture: fee-share-model &sect;4 &mdash; modeled.</span></p>
           </section>
 
           <!-- ============ SLIDE 8 — ROADMAP (+ GTM) ============ -->
