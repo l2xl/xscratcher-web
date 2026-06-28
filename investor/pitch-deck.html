@@ -339,26 +339,27 @@
               <h2 class="slide-title">Our unit is the trade &mdash; we earn the full fee on retail tickets</h2>
             </div>
 
-            <!-- ===== ROW 1: trade-size cohorts | rationale ===== -->
+            <!-- ===== ROW 1: trade cohorts (ARPAU) | rationale ===== -->
             <div class="deck-row" style="align-items:flex-start;margin-bottom:0.7rem">
               <div class="deck-col" style="flex:1.4 1 360px">
-                <div class="brief-section-title">Trades split by size &mdash; only full-fee retail pays us in full <span style="font-weight:400;color:var(--inv-faint)">(Binance BTCUSDT, 15.06.2026)</span></div>
+                <div class="brief-section-title">Three trade cohorts &mdash; unit = the trade &middot; full-fee retail $50&ndash;$50K</div>
                 <div class="deck-table-wrap">
                   <table class="deck-table">
-                    <thead><tr><th>Cohort</th><th>Trade size</th><th>Vol&nbsp;spot</th><th>Vol&nbsp;perp</th><th>Exch.&nbsp;fee</th><th>Revenue&nbsp;to&nbsp;us</th></tr></thead>
+                    <thead><tr><th>Cohort</th><th>Avg&nbsp;trade</th><th>Rev&nbsp;/&nbsp;trade</th><th>ARPAU&nbsp;/&nbsp;mo</th><th>%&nbsp;fees</th></tr></thead>
                     <tbody>
-                      <tr><td><span class="coh-chip bg-6"></span>Small &middot; Dust</td><td class="num">&lt;&#8201;$100</td><td class="num">1.5%</td><td class="num">0.5%</td><td class="num">Full</td><td>full fee &middot; <span class="mk-no">~$0 vol</span></td></tr>
-                      <tr class="row-hi"><td><span class="coh-chip bg-2"></span>Medium &middot; Retail core &#9733;</td><td class="num">$100&ndash;$5K</td><td class="num">27%</td><td class="num">9 / ~40%<sup>1</sup></td><td class="num">Full</td><td><span class="mk-yes">&#10003; our unit</span></td></tr>
-                      <tr><td><span class="coh-chip bg-4"></span>Large &middot; Whale / pro</td><td class="num">&gt;&#8201;$5K</td><td class="num">71%</td><td class="num">91%</td><td class="num">VIP&nbsp;disc.</td><td><span class="mk-no">cut take &middot; off-ICP</span></td></tr>
+                      <tr><td><span class="coh-chip bg-6"></span>$50&ndash;$500</td><td class="num">$190</td><td class="num">$0.03</td><td class="num">~$7</td><td class="num">5%</td></tr>
+                      <tr><td><span class="coh-chip bg-4"></span>$500&ndash;$5K</td><td class="num">$2K</td><td class="num">$0.28</td><td class="num">~$40</td><td class="num">21%</td></tr>
+                      <tr class="row-hi"><td><span class="coh-chip bg-2"></span>$5K&ndash;$50K &#9733;</td><td class="num">$19.5K</td><td class="num">$2.73</td><td class="num">~$285</td><td class="num">74%</td></tr>
+                      <tr><td><strong>Blended avg</strong></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num"><strong>~$65</strong></td><td class="num">100%</td></tr>
                     </tbody>
                   </table>
                 </div>
-                <p class="slide-lead" style="margin:0.35rem 0 0;font-size:0.7rem;color:var(--inv-faint)"><sup>1</sup> Perp ~9% by raw notional, but <strong>~40% risk-adjusted</strong>: a $2K deposit at 5&ndash;20&times; shows as a $10&ndash;50K ticket, still VIP0. Full take = 0.035% exchange fee &times; 40% share = <strong>0.014%</strong>.</p>
+                <p class="slide-lead" style="margin:0.35rem 0 0;font-size:0.7rem;color:var(--inv-faint)">ARPAU = avg trade &times; trades/mo &times; <strong>0.014%</strong> full take + subscription. Trades/mo: 150 / 120 / 100 &middot; blended <strong>~$65/mo</strong> across cohort mix. Above $50K = institutional, excluded.</p>
               </div>
               <div class="deck-col" style="flex:1 1 240px">
                 <div class="brief-section-title">Unit = the trade, not the deposit</div>
                 <div class="brief-section">
-                  <div class="brief-section-body" style="font-size:0.79rem">Revenue = <strong>trade size &times; frequency &times; full fee share</strong>. We monetize the <strong>$100&ndash;$5K retail ticket at full commission (VIP0)</strong>. On perp, leverage lifts its notional like a whale's &mdash; still at full fee. Whales own the volume but trade on VIP discounts; dust pays full fee but moves nothing.</div>
+                  <div class="brief-section-body" style="font-size:0.79rem">Revenue = <strong>trade size &times; frequency &times; full fee (0.014%)</strong>. We monetize the <strong>$50&ndash;$50K full-fee retail ticket (VIP0)</strong>. The top cohort <strong>$5K&ndash;$50K is ~10% of trades but ~74% of fees</strong> &mdash; on perp, leverage lifts a retail deposit's notional there, still at full fee. Above $50K = institutional, off-ICP.</div>
                 </div>
                 <div class="deck-stats" style="margin-top:0.5rem;flex-wrap:wrap;gap:0.3rem">
                   <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">~88%</div><div class="deck-stat-label">volume is perp</div><div class="deck-stat-sub">measured, 8 exchanges</div></div>
