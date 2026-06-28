@@ -620,6 +620,12 @@ a:hover { color: var(--inv-rose); }
   min-width: 0;
 }
 
+/* Traction — reuses the pitch-deck roadmap timeline, trimmed to just the
+   iteration title and its single bold highlight (no detail bullets). */
+.brief-section--traction .brief-roadmap { margin-top: 0.4rem; }
+.brief-roadmap .deck-rm-points li { padding-left: 0; font-size: 0.74rem; }
+.brief-roadmap .deck-rm-points li::before { content: none; }
+
 .brief-metric {
   background: rgba(255, 243, 232, 0.5);
   border: 1px solid var(--inv-border);
