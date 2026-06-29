@@ -291,6 +291,13 @@ a:hover { color: var(--inv-rose); }
   flex-shrink: 0;
 }
 
+/* Footer note & contacts wrap only between bullet-separated items —
+   each item stays whole, never broken mid-phrase. */
+.inv-doc-footer-note .ft-item,
+.inv-doc-footer-contact .ft-item {
+  white-space: nowrap;
+}
+
 .inv-title-block { padding-bottom: 1.5rem; }
 
 .inv-doc--with-planet .inv-title-block {
