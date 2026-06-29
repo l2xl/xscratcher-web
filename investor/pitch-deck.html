@@ -37,13 +37,14 @@
         <li><a href="pitch-deck.html#slide-1"  data-slide="1"  class="active"><span class="deck-nav-num">01</span> <span class="deck-nav-title">Problem</span></a></li>
         <li><a href="pitch-deck.html#slide-2"  data-slide="2"><span class="deck-nav-num">02</span> <span class="deck-nav-title">Solution</span></a></li>
         <li><a href="pitch-deck.html#slide-3"  data-slide="3"><span class="deck-nav-num">03</span> <span class="deck-nav-title">Product</span></a></li>
-        <li><a href="pitch-deck.html#slide-4"  data-slide="4"><span class="deck-nav-num">04</span> <span class="deck-nav-title">Market</span></a></li>
-        <li><a href="pitch-deck.html#slide-5"  data-slide="5"><span class="deck-nav-num">05</span> <span class="deck-nav-title">Competition</span></a></li>
-        <li><a href="pitch-deck.html#slide-6"  data-slide="6"><span class="deck-nav-num">06</span> <span class="deck-nav-title">Business Model</span></a></li>
-        <li><a href="pitch-deck.html#slide-7"  data-slide="7"><span class="deck-nav-num">07</span> <span class="deck-nav-title">Unit Economics</span></a></li>
-        <li><a href="pitch-deck.html#slide-8"  data-slide="8"><span class="deck-nav-num">08</span> <span class="deck-nav-title">Roadmap</span></a></li>
-        <li><a href="pitch-deck.html#slide-9"  data-slide="9"><span class="deck-nav-num">09</span> <span class="deck-nav-title">Team</span></a></li>
-        <li><a href="pitch-deck.html#slide-10" data-slide="10"><span class="deck-nav-num">10</span> <span class="deck-nav-title">The Ask</span></a></li>
+        <li><a href="pitch-deck.html#slide-4"  data-slide="4"><span class="deck-nav-num">04</span> <span class="deck-nav-title">Insight</span></a></li>
+        <li><a href="pitch-deck.html#slide-5"  data-slide="5"><span class="deck-nav-num">05</span> <span class="deck-nav-title">Market</span></a></li>
+        <li><a href="pitch-deck.html#slide-6"  data-slide="6"><span class="deck-nav-num">06</span> <span class="deck-nav-title">Competition</span></a></li>
+        <li><a href="pitch-deck.html#slide-7"  data-slide="7"><span class="deck-nav-num">07</span> <span class="deck-nav-title">Business Model</span></a></li>
+        <li><a href="pitch-deck.html#slide-8"  data-slide="8"><span class="deck-nav-num">08</span> <span class="deck-nav-title">Unit Economics</span></a></li>
+        <li><a href="pitch-deck.html#slide-9"  data-slide="9"><span class="deck-nav-num">09</span> <span class="deck-nav-title">Roadmap</span></a></li>
+        <li><a href="pitch-deck.html#slide-10" data-slide="10"><span class="deck-nav-num">10</span> <span class="deck-nav-title">Team</span></a></li>
+        <li><a href="pitch-deck.html#slide-11" data-slide="11"><span class="deck-nav-num">11</span> <span class="deck-nav-title">The Ask</span></a></li>
       </ul>
     </aside>
 
@@ -174,8 +175,61 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 4 — MARKET (target audience + market size) ============ -->
+          <!-- ============ SLIDE 4 — INSIGHT ============ -->
           <section class="slide" id="slide-4">
+            <div class="slide-head">
+              <div class="slide-kicker">Insight</div>
+              <h2 class="slide-title">The bottleneck is attention, not capital</h2>
+              <p class="slide-lead">Retail turnover is capped by how many trades one person can watch &mdash; not by deposit. <strong>X&middot;Cockpit lifts that ceiling</strong>, so the same capital generates more turnover &mdash; and more fee share.</p>
+            </div>
+            <div class="deck-row" style="align-items:stretch;margin-bottom:0.7rem">
+              <div class="deck-col" style="flex:1.1 1 320px">
+                <div style="display:flex;flex-direction:column;gap:0.6rem">
+                  <div class="deck-card">
+                    <div class="deck-card-title">Manual today</div>
+                    <div class="deck-card-text">One pair of eyes &rarr; <strong>~2&ndash;3 positions, daytime only</strong>. A big-deposit retail trader makes <strong>few large trades</strong> &mdash; no tool to split capital and watch many at once. &rarr; turnover stays under-filled.</div>
+                  </div>
+                  <div class="deck-card" style="border-color:var(--inv-rose)">
+                    <div class="deck-card-title" style="color:var(--inv-accent)">With X&middot;Cockpit</div>
+                    <div class="deck-card-text">AI + automation watch <strong>dozens of positions 24/7</strong> &mdash; more simultaneous positions, higher frequency. &rarr; <strong>more turnover from the same deposit</strong>, all at full fee (VIP0).</div>
+                  </div>
+                </div>
+              </div>
+              <div class="deck-col" style="flex:1 1 300px">
+                <div class="deck-chart-title">Same deposit &mdash; attention ceiling lifted</div>
+                <div class="deck-chart">
+                  <svg viewBox="0 0 400 250" role="img" aria-label="Attention ceiling: manual vs X-Cockpit positions and turnover">
+                    <line x1="55" y1="32" x2="55" y2="212" class="chart-axis"/>
+                    <line x1="55" y1="212" x2="385" y2="212" class="chart-axis"/>
+                    <text x="50" y="22" class="chart-lbl" style="font-weight:700">GMV / trader &middot; same deposit &uarr;</text>
+                    <rect x="105" y="152" width="78" height="60" rx="4" fill="var(--inv-faint)" opacity="0.55"/>
+                    <g fill="var(--inv-muted)"><circle cx="128" cy="178" r="3.5"/><circle cx="147" cy="178" r="3.5"/><circle cx="166" cy="178" r="3.5"/></g>
+                    <text x="144" y="145" text-anchor="middle" class="chart-lbl">~3 positions</text>
+                    <text x="144" y="228" text-anchor="middle" class="chart-lbl" style="font-weight:700">Manual</text>
+                    <rect x="262" y="58" width="78" height="154" rx="4" fill="var(--inv-accent)"/>
+                    <g fill="#fff" opacity="0.85"><circle cx="278" cy="78" r="2.6"/><circle cx="278" cy="98" r="2.6"/><circle cx="278" cy="118" r="2.6"/><circle cx="278" cy="138" r="2.6"/><circle cx="278" cy="158" r="2.6"/><circle cx="278" cy="178" r="2.6"/><circle cx="301" cy="78" r="2.6"/><circle cx="301" cy="98" r="2.6"/><circle cx="301" cy="118" r="2.6"/><circle cx="301" cy="138" r="2.6"/><circle cx="301" cy="158" r="2.6"/><circle cx="301" cy="178" r="2.6"/><circle cx="324" cy="78" r="2.6"/><circle cx="324" cy="98" r="2.6"/><circle cx="324" cy="118" r="2.6"/><circle cx="324" cy="138" r="2.6"/><circle cx="324" cy="158" r="2.6"/><circle cx="324" cy="178" r="2.6"/></g>
+                    <text x="301" y="50" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:12px">dozens</text>
+                    <text x="301" y="228" text-anchor="middle" class="chart-lbl" style="font-weight:700">X&middot;Cockpit</text>
+                    <path d="M188 150 C 224 96 240 70 258 63" fill="none" stroke="var(--inv-rose)" stroke-width="2.2" stroke-dasharray="5 3"/>
+                    <path d="M258 63 l-10 2 l5.5 6.5 z" fill="var(--inv-rose)"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="brief-section">
+              <div class="brief-section-body" style="font-size:0.85rem;text-align:center">attention ceiling lifted &rarr; <strong>+ simultaneous positions &middot; + frequency &middot; + 24/7</strong> &rarr; <strong>+ GMV / trader</strong> &rarr; <strong style="color:var(--inv-accent)">+ fee share</strong></div>
+            </div>
+            <div class="deck-stats" style="margin-top:0.6rem">
+              <div class="deck-stat"><div class="deck-stat-value">~3 &rarr; dozens</div><div class="deck-stat-label">positions managed</div></div>
+              <div class="deck-stat"><div class="deck-stat-value">tooling</div><div class="deck-stat-label">gates turnover, not deposit</div></div>
+              <div class="deck-stat"><div class="deck-stat-value">demand</div><div class="deck-stat-label">creation, not zero-sum</div></div>
+            </div>
+            <p class="slide-lead" style="margin:0.6rem 0 0;font-size:0.72rem;color:var(--inv-faint)">Market trade-size data reflects the <strong>tool-constrained status quo</strong> &mdash; our users can exceed it &rarr; upside to the model. Measured per user via API (GMV/trader before vs after automation).</p>
+          </section>
+
+
+          <!-- ============ SLIDE 5 — MARKET (target audience + market size) ============ -->
+          <section class="slide" id="slide-5">
             <div class="slide-head">
               <div class="slide-kicker">Market</div>
               <h2 class="slide-title">A $10.86B market growing to $17.42B</h2>
@@ -256,8 +310,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 5 — COMPETITION ============ -->
-          <section class="slide" id="slide-5">
+          <!-- ============ SLIDE 6 — COMPETITION ============ -->
+          <section class="slide" id="slide-6">
             <div class="slide-head">
               <div class="slide-kicker">Competition</div>
               <h2 class="slide-title">The only trader UI with an AI assistant and managed cloud, earning primarily from exchange fee share</h2>
@@ -297,8 +351,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 6 — BUSINESS MODEL ============ -->
-          <section class="slide" id="slide-6">
+          <!-- ============ SLIDE 7 — BUSINESS MODEL ============ -->
+          <section class="slide" id="slide-7">
             <div class="slide-head">
               <div class="slide-kicker">Business Model</div>
               <h2 class="slide-title">Revenue from the trader's first trade &mdash; the user pays nothing</h2>
@@ -332,8 +386,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 7 — UNIT ECONOMICS ============ -->
-          <section class="slide" id="slide-7">
+          <!-- ============ SLIDE 8 — UNIT ECONOMICS ============ -->
+          <section class="slide" id="slide-8">
             <div class="slide-head">
               <div class="slide-kicker">Unit Economics</div>
               <h2 class="slide-title">Our unit is the trade &mdash; we earn the full fee on retail tickets</h2>
@@ -467,8 +521,8 @@
             <p class="slide-lead" style="margin:0.3rem 0 0;font-size:0.7rem;color:var(--inv-faint)">Equal log-decade buckets ($1/$10/$100/$1K/$10K/$100K) &mdash; removes the bin-width artefact. Fees blended at the market <strong>spot:perp = 12:88</strong> (8-exchange weighted aggregate, &sect;6). ICP ticket is $100&ndash;$5K, but on perp 5&ndash;20&times; leverage lifts the notional to ~$50K (&sect;4.1) &mdash; so full-fee retail spans $100&ndash;$50K by notional, holding <strong>~89%</strong> of our fees. True whales (&gt;$50K) own the volume but pay VIP-discounted fees off-ICP. <span style="white-space:nowrap">Volume: research &sect;4; capture: fee-share-model &sect;4 &mdash; modeled.</span></p>
           </section>
 
-          <!-- ============ SLIDE 8 — ROADMAP (+ GTM) ============ -->
-          <section class="slide" id="slide-8">
+          <!-- ============ SLIDE 9 — ROADMAP (+ GTM) ============ -->
+          <section class="slide" id="slide-9">
             <div class="slide-head">
               <div class="slide-kicker">Roadmap &amp; Go-to-Market</div>
               <h2 class="slide-title">Every iteration ships a working product</h2>
@@ -551,8 +605,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 9 — TEAM ============ -->
-          <section class="slide" id="slide-9">
+          <!-- ============ SLIDE 10 — TEAM ============ -->
+          <section class="slide" id="slide-10">
             <div class="slide-head">
               <div class="slide-kicker">Team</div>
               <h2 class="slide-title">AI-centric operating model &mdash; our DNA</h2>
@@ -584,8 +638,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 10 — THE ASK (+ terms + risks) ============ -->
-          <section class="slide" id="slide-10">
+          <!-- ============ SLIDE 11 — THE ASK (+ terms + risks) ============ -->
+          <section class="slide" id="slide-11">
             <div class="slide-head">
               <div class="slide-kicker">The Ask</div>
               <h2 class="slide-title">Raising $205,000 &mdash; 18 months to Seed</h2>
