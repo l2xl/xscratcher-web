@@ -271,24 +271,42 @@ a:hover { color: var(--inv-rose); }
 
 .inv-doc-footer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  align-items: flex-start;
+  gap: 0.4rem 1.4rem;
   padding: 0.8rem var(--inv-doc-pad-x);
   border-top: 1px solid var(--inv-border);
 }
 
+/* Two equal halves: copyright/disclaimer | contacts. Each half wraps
+   only between bullet items (see .ft-item below). */
 .inv-doc-footer-note {
   font-size: 0.61rem;
   color: var(--inv-faint);
   line-height: 1.55;
+  min-width: 0;
+  flex: 1 1 0;
 }
 
 .inv-doc-footer-contact {
   font-size: 0.61rem;
   color: var(--inv-faint);
+  line-height: 1.55;
   text-align: right;
-  flex-shrink: 0;
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+/* Footer note & contacts wrap only between bullet-separated items —
+   each item stays whole, never broken mid-phrase. */
+.inv-doc-footer-note .ft-item,
+.inv-doc-footer-contact .ft-item {
+  white-space: nowrap;
+}
+
+/* …except an item longer than its half-column (the disclaimer sentence),
+   which is allowed to reflow rather than overflow into the other half. */
+.inv-doc-footer-note .ft-item--flow {
+  white-space: normal;
 }
 
 .inv-title-block { padding-bottom: 1.5rem; }
@@ -803,7 +821,21 @@ a:hover { color: var(--inv-rose); }
 
   .inv-doc-footer {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+  }
+
+  .deck-footer-meta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  /* stacked on phones — each part spans the full content width, left-aligned */
+  .inv-doc-footer-note,
+  .inv-doc-footer-contact {
+    flex: 0 0 auto;
+    width: 100%;
+    text-align: left;
   }
 
   .inv-doc--with-planet .inv-title-block { max-width: 100%; }
@@ -933,6 +965,16 @@ a:hover { color: var(--inv-rose); }
 .slide-lead strong { color: var(--inv-text); }
 
 /* --- footer slide controls --- */
+.deck-doc-footer {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.8rem;
+}
+.deck-footer-meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem 1.4rem;
+}
 .deck-footer-nav {
   display: flex;
   align-items: center;
