@@ -474,38 +474,74 @@
             <div class="slide-head">
               <div class="slide-kicker">Insight</div>
               <h2 class="slide-title">The limit is attention, not deposit amount</h2>
-              <p class="slide-lead">Traders rarely split large deposits &mdash; <strong>running many positions at once is operationally hard</strong>. <strong style="color:var(--inv-accent)">X&middot;Cockpit makes it practical.</strong></p>
+              <p class="slide-lead">Volume concentrates where deposits are larger &mdash; <strong>big accounts already run automation</strong>. Retail doesn&rsquo;t: no convenient, affordable tool exists for them. <strong style="color:var(--inv-accent)">X&middot;Cockpit is that tool</strong> &mdash; and unlocks the missing retail volume.</p>
             </div>
-            <div class="deck-chart-title">Same deposit, more turnover &mdash; tooling fragments &amp; grows volume</div>
+            <div class="deck-chart-title">Volume grows where deposits are larger &mdash; retail is under-automated &middot; <span style="color:var(--inv-faint);font-weight:400">blended at market 12:88 spot:perp</span></div>
             <div class="deck-chart">
-              <svg viewBox="0 0 760 250" role="img" aria-label="Trading volume by trade size, today vs with X-Cockpit (our traders, capped at $50K)">
-                <rect x="60" y="28" width="220" height="172" fill="rgba(176,152,136,0.06)"/>
-                <rect x="280" y="28" width="283" height="172" fill="rgba(212,84,122,0.10)"/>
-                <rect x="563" y="28" width="157" height="172" fill="rgba(120,96,88,0.12)"/>
-                <text x="170" y="40" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint);font-size:9px;font-weight:700">BELOW ICP &middot; &lt;$100</text>
-                <text x="421" y="40" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:10px">OUR TRADERS &middot; $100&ndash;$50K</text>
-                <text x="641" y="38" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-muted);font-size:9px;font-weight:700">INSTITUTIONAL &middot; &gt;$50K</text>
-                <text x="641" y="50" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint);font-size:8px">not our traders &middot; no fees</text>
-                <path d="M 122.5 200 L 122.5 200.0 C 157.5 195.4 192.5 197.0 227.5 186.3 C 262.5 175.6 297.5 156.6 332.5 136.0 C 367.5 115.4 402.5 62.9 437.5 62.9 C 466.7 62.9 495.8 62.9 525.0 72.0 C 537.7 76.0 550.3 90.3 563.0 99.4 L 563 200 Z" fill="rgba(192,57,43,0.18)"/>
-                <path d="M 122.5 200 L 122.5 200.0 C 157.5 198.5 192.5 198.5 227.5 195.4 C 262.5 192.3 297.5 190.1 332.5 181.7 C 367.5 173.3 402.5 158.5 437.5 145.1 C 466.7 133.9 495.8 108.6 525.0 108.6 C 537.7 108.6 550.3 117.7 563.0 122.3 L 563 200 Z" fill="rgba(122,96,88,0.26)"/>
-                <path d="M 122.5 200.0 C 157.5 195.4 192.5 197.0 227.5 186.3 C 262.5 175.6 297.5 156.6 332.5 136.0 C 367.5 115.4 402.5 62.9 437.5 62.9 C 466.7 62.9 495.8 62.9 525.0 72.0 C 537.7 76.0 550.3 90.3 563.0 99.4" fill="none" stroke="var(--inv-accent)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-                <path d="M 122.5 200.0 C 157.5 198.5 192.5 198.5 227.5 195.4 C 262.5 192.3 297.5 190.1 332.5 181.7 C 367.5 173.3 402.5 158.5 437.5 145.1 C 466.7 133.9 495.8 108.6 525.0 108.6 C 537.7 108.6 550.3 117.7 563.0 122.3" fill="none" stroke="var(--inv-muted)" stroke-width="2" stroke-dasharray="5 3" stroke-linejoin="round" stroke-linecap="round"/>
-                <path d="M 122.5 200.0 C 157.5 197.5 192.5 198.4 227.5 192.5 C 262.5 186.6 297.5 176.1 332.5 164.8 C 367.5 153.5 402.5 124.6 437.5 124.6 C 466.7 124.6 495.8 124.6 525.0 129.6 C 537.7 131.8 550.3 139.7 563.0 144.7" fill="none" stroke="var(--cs-4)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-                <line x1="563" y1="40" x2="563" y2="200" stroke="var(--inv-muted)" stroke-width="1.2" stroke-dasharray="3 3"/>
-                <text x="563" y="62" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-muted);font-size:9px;font-weight:700">$50K</text>
+              <svg viewBox="0 0 760 250" role="img" aria-label="Our fees vs trade volume across a logarithmic trade-size axis; retail volume upside highlighted">
+                <!-- cohort header strip -->
+                <text x="170" y="16" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint);font-size:9px">BELOW ICP &middot; &lt;$100</text>
+                <text x="421" y="16" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:11px">FULL-FEE RETAIL &middot; $100&ndash;$50K &middot; our unit &#10003;</text>
+                <text x="641" y="16" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-muted);font-size:9px">TRUE WHALES &middot; &gt;$50K</text>
+                <!-- cohort bands ($100 and $50K boundaries) -->
+                <rect x="60"  y="30" width="220" height="170" fill="rgba(176,152,136,0.07)"/>
+                <rect x="280" y="30" width="283" height="170" fill="rgba(212,84,122,0.14)"/>
+                <rect x="563" y="30" width="157" height="170" fill="rgba(207,124,82,0.07)"/>
+                <line x1="280" y1="30" x2="280" y2="200" class="chart-grid"/>
+                <line x1="563" y1="30" x2="563" y2="200" style="stroke:var(--inv-muted);stroke-width:1;stroke-dasharray:3 3;opacity:0.6"/>
+                <!-- y gridlines + labels -->
+                <line x1="60" y1="143.3" x2="720" y2="143.3" class="chart-grid"/>
+                <line x1="60" y1="86.7"  x2="720" y2="86.7"  class="chart-grid"/>
+                <text x="52" y="203" text-anchor="end" class="chart-lbl">0%</text>
+                <text x="52" y="147" text-anchor="end" class="chart-lbl">15%</text>
+                <text x="52" y="90"  text-anchor="end" class="chart-lbl">30%</text>
+                <text x="52" y="34"  text-anchor="end" class="chart-lbl">45%</text>
+                <!-- decade gridlines (log) -->
+                <line x1="175" y1="30" x2="175" y2="200" class="chart-grid"/>
+                <line x1="385" y1="30" x2="385" y2="200" class="chart-grid"/>
+                <line x1="490" y1="30" x2="490" y2="200" class="chart-grid"/>
+                <line x1="595" y1="30" x2="595" y2="200" class="chart-grid"/>
+                <!-- baseline (logarithmic trade-size axis) -->
                 <line x1="60" y1="200" x2="725" y2="200" class="chart-axis" style="stroke-width:1.5"/>
                 <path d="M725 200 l-7 -3.5 v7 z" fill="var(--inv-muted)"/>
-                <text x="60" y="20" class="chart-lbl" style="fill:var(--inv-muted);font-size:11px;font-weight:700">Trading volume (turnover) &uarr;</text>
-                <g class="chart-lbl" style="font-size:10px"><text x="70" y="216" text-anchor="middle">$1</text><text x="175" y="216" text-anchor="middle">$10</text><text x="280" y="216" text-anchor="middle">$100</text><text x="385" y="216" text-anchor="middle">$1K</text><text x="490" y="216" text-anchor="middle">$10K</text><text x="595" y="216" text-anchor="middle">$100K</text><text x="700" y="216" text-anchor="middle">$1M</text></g>
-                <text x="725" y="231" text-anchor="end" class="chart-lbl" style="fill:var(--inv-faint);font-size:9px">trade size, log &rarr;</text>
-                <text x="478" y="60" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:11px">With X&middot;Cockpit</text>
-                <path d="M300 240 h22" stroke="var(--inv-accent)" stroke-width="3"/><text x="327" y="243" class="chart-lbl" style="font-size:9px">with X&middot;Cockpit</text><path d="M450 240 h22" stroke="var(--inv-muted)" stroke-width="2" stroke-dasharray="5 3"/><text x="477" y="243" class="chart-lbl" style="font-size:9px">today</text><path d="M560 240 h22" stroke="var(--cs-4)" stroke-width="2.5"/><text x="587" y="243" class="chart-lbl" style="font-size:9px">our fees (&times;0.017%)</text>
+                <!-- trade-volume curve (reference) -->
+                <path d="M 122.5 200.0 C 157.5 199.3 192.5 199.7 227.5 197.9 C 262.5 196.1 297.5 197.6 332.5 189.0 C 367.5 180.4 402.5 170.8 437.5 146.1 C 472.5 121.4 507.5 41.0 542.5 41.0 C 577.5 41.0 612.5 45.9 647.5 48.3" style="fill:none;stroke:var(--inv-faint);stroke-width:1.8;stroke-dasharray:4 4;stroke-linejoin:round;stroke-linecap:round;opacity:0.75"/>
+                <!-- our-fees curve -->
+                <path d="M 122.5 200.0 C 157.5 199.7 192.5 200.0 227.5 197.5 C 262.5 195.0 297.5 190.2 332.5 164.2 C 367.5 138.1 402.5 43.9 437.5 41.2 C 472.5 38.5 507.5 38.5 542.5 38.5 C 577.5 38.5 612.5 133.3 647.5 180.7" style="fill:none;stroke:var(--inv-accent);stroke-width:3;stroke-linejoin:round;stroke-linecap:round"/>
+                <g fill="var(--inv-accent)"><circle cx="227.5" cy="197.5" r="2.6"/><circle cx="332.5" cy="164.2" r="2.6"/><circle cx="437.5" cy="41.2" r="3.4"/><circle cx="542.5" cy="38.5" r="3.4"/><circle cx="647.5" cy="180.7" r="2.6"/></g>
+                <!-- value labels -->
+                <text x="332.5" y="159" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-accent);font-weight:700;font-size:9px">9%</text>
+                <text x="437.5" y="35"  text-anchor="middle" class="chart-val chart-val-hi" style="font-size:11px">42%</text>
+                <text x="542.5" y="32"  text-anchor="middle" class="chart-val chart-val-hi" style="font-size:11px">43%</text>
+                <text x="647.5" y="176" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-accent);font-weight:700;font-size:9px">5%</text>
+                <text x="600" y="60" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint);font-weight:700;font-size:9px">40% vol</text>
+                <!-- UPSIDE: retail volume should grow (X-Cockpit) -->
+                <path d="M 300 178 L 300 96" stroke="var(--inv-accent)" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M 300 84 l -8 15 h 16 z" fill="var(--inv-accent)"/>
+                <text x="300" y="76" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:10px">retail volume &#8593;</text>
+                <text x="300" y="66" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint);font-size:8px">with X&middot;Cockpit automation</text>
+                <!-- decade tick labels (powers of ten) -->
+                <g class="chart-lbl" style="font-size:10px">
+                  <text x="70"  y="216" text-anchor="middle">$1</text>
+                  <text x="175" y="216" text-anchor="middle">$10</text>
+                  <text x="280" y="216" text-anchor="middle">$100</text>
+                  <text x="385" y="216" text-anchor="middle">$1K</text>
+                  <text x="490" y="216" text-anchor="middle">$10K</text>
+                  <text x="595" y="216" text-anchor="middle">$100K</text>
+                  <text x="700" y="216" text-anchor="middle">$1M</text>
+                </g>
+                <text x="725" y="231" text-anchor="end" class="chart-lbl" style="fill:var(--inv-faint);font-size:9px">trade size, log scale &#8594;</text>
+                <!-- legend -->
+                <line x1="424" y1="240" x2="446" y2="240" style="stroke:var(--inv-accent);stroke-width:3"/>
+                <text x="451" y="243" class="chart-lbl" style="font-size:9px">our fees</text>
+                <line x1="528" y1="240" x2="550" y2="240" style="stroke:var(--inv-faint);stroke-width:1.8;stroke-dasharray:4 4"/>
+                <text x="555" y="243" class="chart-lbl" style="font-size:9px">trade volume</text>
               </svg>
             </div>
             <div class="brief-section" style="margin-top:0.5rem">
-              <div class="brief-section-body" style="font-size:0.82rem;text-align:center">X&middot;Cockpit lets a trader run <strong>dozens of positions 24/7</strong> &rarr; higher turnover on the same deposit &rarr; <strong style="color:var(--inv-accent)">+ fee share</strong>.</div>
+              <div class="brief-section-body" style="font-size:0.82rem;text-align:center">Private traders skip automation &mdash; no convenient, affordable tool exists for them. <strong style="color:var(--inv-accent)">X&middot;Cockpit fills that gap</strong> &rarr; retail turnover rises where it is structurally missing.</div>
             </div>
-            <p class="slide-lead" style="margin:0.45rem 0 0;font-size:0.72rem;color:var(--inv-faint)">&ldquo;With X&middot;Cockpit&rdquo; line is an <strong>illustrative projection</strong>.</p>
+            <p class="slide-lead" style="margin:0.45rem 0 0;font-size:0.72rem;color:var(--inv-faint)">Trade-size distribution &mdash; 8-exchange blend (spot:perp 12:88, &sect;6). Volume: research &sect;4; modeled. Arrow = structural upside as retail adopts automation.</p>
           </section>
 
           <!-- ============ SLIDE 9 — ROADMAP (+ GTM) ============ -->
