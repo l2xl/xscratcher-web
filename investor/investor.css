@@ -44,6 +44,10 @@
 html {
   font-size: clamp(0.95rem, 0.88rem + 0.25vw, 1.06rem);
   scroll-behavior: smooth;
+  /* Decorative bleed elements (e.g. the fixed planet) extend past the right
+     edge; clip horizontally so iOS Safari doesn't widen the page beyond the
+     viewport. `clip` (not `hidden`) keeps the sticky header working. */
+  overflow-x: clip;
 }
 
 body {
@@ -54,6 +58,7 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  overflow-x: clip;
 }
 
 img { max-width: 100%; display: block; }
@@ -266,24 +271,42 @@ a:hover { color: var(--inv-rose); }
 
 .inv-doc-footer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  align-items: flex-start;
+  gap: 0.4rem 1.4rem;
   padding: 0.8rem var(--inv-doc-pad-x);
   border-top: 1px solid var(--inv-border);
 }
 
+/* Two equal halves: copyright/disclaimer | contacts. Each half wraps
+   only between bullet items (see .ft-item below). */
 .inv-doc-footer-note {
   font-size: 0.61rem;
   color: var(--inv-faint);
   line-height: 1.55;
+  min-width: 0;
+  flex: 1 1 0;
 }
 
 .inv-doc-footer-contact {
   font-size: 0.61rem;
   color: var(--inv-faint);
+  line-height: 1.55;
   text-align: right;
-  flex-shrink: 0;
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+/* Footer note & contacts wrap only between bullet-separated items —
+   each item stays whole, never broken mid-phrase. */
+.inv-doc-footer-note .ft-item,
+.inv-doc-footer-contact .ft-item {
+  white-space: nowrap;
+}
+
+/* …except an item longer than its half-column (the disclaimer sentence),
+   which is allowed to reflow rather than overflow into the other half. */
+.inv-doc-footer-note .ft-item--flow {
+  white-space: normal;
 }
 
 .inv-title-block { padding-bottom: 1.5rem; }
@@ -615,6 +638,12 @@ a:hover { color: var(--inv-rose); }
   min-width: 0;
 }
 
+/* Traction — reuses the pitch-deck roadmap timeline, trimmed to just the
+   iteration title and its single bold highlight (no detail bullets). */
+.brief-section--traction .brief-roadmap { margin-top: 0.4rem; }
+.brief-roadmap .deck-rm-points li { padding-left: 0; font-size: 0.74rem; }
+.brief-roadmap .deck-rm-points li::before { content: none; }
+
 .brief-metric {
   background: rgba(255, 243, 232, 0.5);
   border: 1px solid var(--inv-border);
@@ -688,19 +717,21 @@ a:hover { color: var(--inv-rose); }
   line-height: 1.6;
 }
 
+/* Sub-header (key) stacks ABOVE its content rather than sitting to the left.
+   Saves horizontal space on phones and keeps a consistent rhythm everywhere. */
 .brief-kv {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 0.2rem;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin-bottom: 0.6rem;
   font-size: 0.78rem;
   line-height: 1.5;
 }
+.brief-kv:last-child { margin-bottom: 0; }
 
 .brief-kv-key {
   font-weight: 600;
   color: var(--inv-text);
-  flex-shrink: 0;
-  min-width: 4.5rem;
 }
 
 .brief-kv-val { color: var(--inv-muted); }
@@ -790,7 +821,21 @@ a:hover { color: var(--inv-rose); }
 
   .inv-doc-footer {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+  }
+
+  .deck-footer-meta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  /* stacked on phones — each part spans the full content width, left-aligned */
+  .inv-doc-footer-note,
+  .inv-doc-footer-contact {
+    flex: 0 0 auto;
+    width: 100%;
+    text-align: left;
   }
 
   .inv-doc--with-planet .inv-title-block { max-width: 100%; }
@@ -805,8 +850,7 @@ a:hover { color: var(--inv-rose); }
 
   .brief-hero-row { flex-direction: column; gap: 1rem; }
   .brief-hero-row .brief-metrics { width: 100%; }
-  .brief-section--team .brief-section-body { flex-direction: column; gap: 0.4rem; }
-  .brief-section--team .brief-kv { flex-direction: row; gap: 0.5rem; }
+  .brief-section--team .brief-section-body { flex-direction: column; gap: 0.9rem; }
 }
 
 @media (max-width: 30em) {
@@ -921,6 +965,16 @@ a:hover { color: var(--inv-rose); }
 .slide-lead strong { color: var(--inv-text); }
 
 /* --- footer slide controls --- */
+.deck-doc-footer {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.8rem;
+}
+.deck-footer-meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem 1.4rem;
+}
 .deck-footer-nav {
   display: flex;
   align-items: center;
