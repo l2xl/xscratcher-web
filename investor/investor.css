@@ -1063,8 +1063,6 @@ a:hover { color: var(--inv-rose); }
 }
 .deck-card-text { font-size: 0.78rem; color: var(--inv-muted); line-height: 1.5; }
 .deck-card-text strong { color: var(--inv-text); }
-/* single card centered under a 2-column grid (matches one column's width) */
-.deck-card--center { margin-left: auto; margin-right: auto; max-width: calc(50% - 0.3rem); }
 
 /* big stat callouts */
 .deck-stats { display: flex; gap: 0.7rem; flex-wrap: wrap; }
@@ -1323,6 +1321,5 @@ a:hover { color: var(--inv-rose); }
 }
 @media (max-width: 40em) {
   .deck-grid--2, .deck-grid--3, .deck-grid--4 { grid-template-columns: 1fr; }
-  .deck-card--center { max-width: 100%; }
   .deck-counter { display: none; }
 }
