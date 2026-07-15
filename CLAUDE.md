@@ -11,7 +11,6 @@ The next word sequences are project's trade marks. It must be always and strictl
 - The Scratcher Project
 - The Exchange Scrathpad
 - The Scratcher Assistant
-- Trader Cockpit
 - DataHub
 
 ## Dev stack
