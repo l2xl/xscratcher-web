@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Open Trader — an open-source crypto trading terminal with dynamic orders and full exchange isolation." />
+  <title>Open Trader — The Scratcher Project</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/i18n.js"></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.svg" alt="The Scratcher Project" width="32" height="32" />
+        <span>The Scratcher Project</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="open-trader.html" class="active">Open Trader</a></li>
+        <li><a href="scratcher-assistant.html">The Scratcher Assistant</a></li>
+        <li><a href="datahub.html">DataHub</a></li>
+        <li><a href="iprl.html">IPRL</a></li>
+        <li><a href="mission.html">Mission</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <h1>Open Trader</h1>
+        <p class="page-hero-sub">
+          Open-source trading terminal for crypto exchanges with an
+          AI-powered assistant. Your keys stay local, your code is auditable,
+          your trust level is your choice.
+        </p>
+        <div class="hero-cta" style="margin-top:1.5rem;">
+          <a href="https://github.com/l2xl/extools" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+          <a href="index.html#roadmap" class="btn btn-ghost">Back to roadmap</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container content-prose">
+
+        <!-- ── Problems ──────────────────────────────────── -->
+        <h2>The problem</h2>
+        <p>
+          Exchange UIs are too simple and limited — losses are built into the UX.
+          Professional platforms like Hummingbot or HaasOnline are overloaded and require
+          deep expertise. There is a massive population of IT professionals who would
+          never pay upfront, but could start trading if the right tools existed.
+        </p>
+
+        <div class="problem-grid">
+          <div class="problem-card">
+            <div class="problem-card-number">01</div>
+            <h3>You sleep — the market does not</h3>
+            <p>The market runs 24/7. A missed signal at night is a missed trade or an unprotected position. Manual monitoring is physically impossible.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card-number">02</div>
+            <h3>Speed decides — manual trading is from a pre-computer era</h3>
+            <p>While you enter parameters manually, the trade conditions are already gone. Manual trading means built-in losses on every deal.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card-number">03</div>
+            <h3>Pay before you know if it works</h3>
+            <p>Most solutions charge $15–100/month before delivering any real result. That barrier cuts off exactly the people who could become loyal users.</p>
+          </div>
+        </div>
+
+        <!-- ── Solution ──────────────────────────────────── -->
+        <h2>The solution</h2>
+        <p>
+          <strong>Open Trader</strong> is an open-source platform for crypto exchange
+          trading with a trading terminal and The Scratcher Assistant.
+          Open source means free entry and an audience where no competitors exist yet.
+        </p>
+
+        <div class="chart-wrap">
+          <svg id="chart-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+            <rect width="1200" height="700" fill="#1a1a1a"/>
+            <g id="grid"></g>
+            <g id="candles"></g>
+            <g id="overlay"></g>
+          </svg>
+          <div class="chart-controls">
+            <div id="chart-status" class="chart-status"></div>
+            <div class="chart-selectors">
+              <label for="chart-sym">Symbol</label>
+              <select id="chart-sym">
+                <option value="BTCUSDC" selected>BTCUSDC</option>
+                <option value="ETHUSDC">ETHUSDC</option>
+                <option value="SOLUSDC">SOLUSDC</option>
+              </select>
+              <label for="chart-ivl">Interval</label>
+              <select id="chart-ivl">
+                <option value="1">1m</option>
+                <option value="5">5m</option>
+                <option value="15" selected>15m</option>
+                <option value="60">1h</option>
+                <option value="240">4h</option>
+                <option value="D">1D</option>
+              </select>
+              <label for="chart-lim">Candles</label>
+              <input id="chart-lim" type="number" value="300" min="10" max="1000" style="width:4rem" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ── How it works ──────────────────────────────── -->
+        <h2>How it works</h2>
+
+        <div class="arch-diagram">
+<pre>
+┌──────────────────── User's machine ──────────────────────────────────────────┐
+│                                                                              │
+│ <span class="hl">[ Open Trader ]</span>◄──────────►<span class="hl-blue">[ AI assistant ]</span>◄─────► local model                 │
+│           │                                    │            Ollama / Llama   │
+│           │                                    │            Mistral          │
+└───────────│────────────────────────────────────│──────────────────────────────┘
+            │ exchange API                       │ LLM API
+            │                                    │
+     ┌──────┴──────┐                             │
+     │             │                             ▼
+  directly   via our                       <span class="hl-blue">[ AI servers ]</span>
+             server                       ChatGPT, Claude,
+                                             Gemini, ...
+             │
+             ▼
+      <span class="hl-green">[ Exchanges ]</span>
+     Bybit, Binance...
+</pre>
+        </div>
+
+        <p>
+          <strong>Trading terminal &rarr; exchange:</strong>
+          <strong>Directly</strong> — the client connects to the exchange via API; keys are stored locally, Zero Trust.
+          <strong>Via our server</strong> — for server-side 24/7 strategy execution.
+        </p>
+        <p>
+          <strong>AI assistant &rarr; model:</strong>
+          <strong>Local orchestration</strong> — open-source LLM (Ollama / Llama / Mistral); Controls privacy, reviews external requests.
+          <strong>Cloud AI servers</strong> — ChatGPT, Claude, Gemini; utilize the full AI power, no hardware requirements.
+        </p>
+
+        <div class="callout callout-accent">
+          "Choose your trust level: want everything local — it stays local. Want the cloud — it's there for you."
+        </div>
+
+        <!-- ── Trading terminal ────────────────────────────── -->
+        <h2>Trading terminal</h2>
+        <p>
+          The interface is like a pilot's cockpit: chart, positions, orders, history, and
+          controls — all on one screen. After connecting an exchange via API, the platform
+          <strong>instantly</strong> displays everything a computer can calculate and automate.
+        </p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">&#128200;</div>
+            <div>
+              <strong>Automatic TA markers</strong>
+              <p>
+                Support and resistance levels, trends, channels — calculated and rendered on the
+                chart automatically. Nothing needs to be configured manually.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#128279;</div>
+            <div>
+              <strong>Orders linked to TA markers — dynamic by default</strong>
+              <p>
+                The key feature: out-of-the-box binding between technical analysis markers and order
+                management. Order parameters are computed from the linked indicator and recalculate
+                automatically when it changes.
+              </p><p>
+                <strong>Dynamic Limit Order</strong> — a limit order whose price automatically follows
+                a selected indicator.
+              </p><p>
+                <strong>Catch the Tail</strong> — optimal execution during sharp price moves: the order
+                picks the best entry mode while the deviation stays within an acceptable range.
+              </p><p>
+                <strong>Smart trailing stop</strong> - trailing stop order where its parameters may be automatically adjusted depending on market conditions,
+                like have less activation threshold while price is near to open price and then smartly adjust the threshold depending on actual volatility.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#128240;</div>
+            <div>
+              <strong>Order book synchronized with the price chart</strong>
+              <p>
+                Market depth and the current spread are displayed alongside the chart, aligned to the
+                same price axis. The most convenient and complete visualization — out of the box.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#127760;</div>
+            <div>
+              <strong>Cumulative multi-exchange view</strong>
+              <p>
+                Connect multiple exchanges via API and see TA markers and market context in a single
+                trading environment.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#128274;</div>
+            <div>
+              <strong>Exchange isolation</strong>
+              <p>
+                Orders can be held locally and not sent to the exchange "until the last moment" —
+                preventing the exchange from trading against your position.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Product modules ───────────────────────────── -->
+        <h2>Product modules</h2>
+
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>Module</th>
+              <th>What it does</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Trading terminal</td>
+              <td>Limit, market, and stop orders, trade history</td>
+            </tr>
+            <tr>
+              <td>Exchange connections</td>
+              <td>MVP: Bybit; roadmap: Binance, OKX, Hyperliquid</td>
+            </tr>
+            <tr>
+              <td>The Scratcher Assistant</td>
+              <td>Strategy development and parametrisation, result analysis; explainable recommendations</td>
+            </tr>
+            <tr>
+              <td>Strategy marketplace</td>
+              <td>Copy, rate, and sell algorithms; monetisation for authors</td>
+            </tr>
+            <tr>
+              <td>Backtest &amp; optimiser</td>
+              <td>Test strategies on historical data, genetic parameter optimiser</td>
+            </tr>
+            <tr>
+              <td>Telegram integration</td>
+              <td>Notifications, quick commands, monitoring without opening the app</td>
+            </tr>
+            <tr>
+              <td>API</td>
+              <td>Developers build their own modules and integrations</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- ── GitHub callout ────────────────────────────── -->
+        <div class="callout">
+          <strong>Open Trader is planned to be open source.</strong> Temporarily available under IPRL.<br/>
+          <a href="https://github.com/l2xl/extools" target="_blank" rel="noopener">Source code on GitHub &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> The Scratcher Project. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="market/candles-browser.js"></script>
+  <script>
+    (function () {
+      var svg      = document.getElementById('chart-svg');
+      var statusEl = document.getElementById('chart-status');
+
+      function doLoad() {
+        statusEl.textContent = '';
+        statusEl.className = 'chart-status';
+        CandleChart.load(svg, {
+          symbol:   document.getElementById('chart-sym').value,
+          interval: document.getElementById('chart-ivl').value,
+          limit:    parseInt(document.getElementById('chart-lim').value, 10) || 100
+        }, function (msg, isError) {
+          if (isError) {
+            statusEl.textContent = msg;
+            statusEl.className = 'chart-status error';
+          }
+        });
+      }
+
+      document.getElementById('chart-sym').addEventListener('change', doLoad);
+      document.getElementById('chart-ivl').addEventListener('change', doLoad);
+      document.getElementById('chart-lim').addEventListener('change', doLoad);
+      doLoad();
+    }());
+  </script>
+  <script src="js/nav.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
