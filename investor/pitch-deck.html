@@ -130,7 +130,50 @@
               <p class="slide-lead"><em>MVP in active development.</em></p>
             </div>
 
-            <div class="deck-grid deck-grid--2" style="margin-top:0.2rem">
+            <div class="deck-card" style="margin-top:0.2rem">
+              <svg viewBox="0 0 1200 370" role="img" aria-label="Product architecture: exchange data flows into Trader Data, then Trader Engine, which feeds Trader HUD (UI) and the AI section — Trader Assistant, Trader Strateg, Trader Sandbox — powered by Public AI and/or a Local LLM" style="width:100%;height:auto;display:block" font-family="'DM Sans', system-ui, sans-serif" font-size="19">
+                <defs>
+                  <marker id="pd-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M0,0 L10,5 L0,10 z" fill="#7a6058"/>
+                  </marker>
+                </defs>
+                <!-- data pipeline -->
+                <rect x="20" y="30" width="170" height="54" rx="8" fill="#fff3e8" stroke="#e8d4c4"/>
+                <text x="105" y="63" text-anchor="middle" fill="#1c1410">Exchange data</text>
+                <line x1="190" y1="57" x2="252" y2="57" stroke="#7a6058" stroke-width="1.5" marker-end="url(#pd-arrow)"/>
+                <rect x="260" y="30" width="170" height="54" rx="8" fill="#fff3e8" stroke="#e8d4c4"/>
+                <text x="345" y="63" text-anchor="middle" fill="#1c1410">Trader Data</text>
+                <line x1="430" y1="57" x2="492" y2="57" stroke="#7a6058" stroke-width="1.5" marker-end="url(#pd-arrow)"/>
+                <rect x="500" y="30" width="170" height="54" rx="8" fill="#fff3e8" stroke="#c0392b" stroke-width="1.5"/>
+                <text x="585" y="63" text-anchor="middle" fill="#1c1410">Trader Engine</text>
+                <!-- branch 1: Trader HUD -->
+                <line x1="670" y1="57" x2="972" y2="57" stroke="#7a6058" stroke-width="1.5" marker-end="url(#pd-arrow)"/>
+                <rect x="980" y="30" width="190" height="54" rx="8" fill="#fff3e8" stroke="#e8d4c4"/>
+                <text x="1075" y="63" text-anchor="middle" fill="#1c1410">Trader HUD (UI)</text>
+                <!-- branch 2: AI section -->
+                <line x1="585" y1="84" x2="585" y2="152" stroke="#7a6058" stroke-width="1.5" marker-end="url(#pd-arrow)"/>
+                <rect x="430" y="160" width="740" height="180" rx="10" fill="#f5e6c8" fill-opacity="0.35" stroke="#e8d4c4"/>
+                <text x="460" y="192" fill="#7a6058" font-size="16" letter-spacing="1">AI SECTION</text>
+                <rect x="460" y="240" width="190" height="54" rx="8" fill="#fff3e8" stroke="#e8d4c4"/>
+                <text x="555" y="273" text-anchor="middle" fill="#1c1410">Trader Assistant</text>
+                <line x1="650" y1="267" x2="702" y2="267" stroke="#7a6058" stroke-width="1.5" marker-end="url(#pd-arrow)"/>
+                <rect x="710" y="240" width="180" height="54" rx="8" fill="#fff3e8" stroke="#e8d4c4"/>
+                <text x="800" y="273" text-anchor="middle" fill="#1c1410">Trader Strateg</text>
+                <line x1="890" y1="267" x2="942" y2="267" stroke="#7a6058" stroke-width="1.5" marker-end="url(#pd-arrow)"/>
+                <rect x="950" y="240" width="190" height="54" rx="8" fill="#fff3e8" stroke="#e8d4c4"/>
+                <text x="1045" y="273" text-anchor="middle" fill="#1c1410">Trader Sandbox</text>
+                <!-- AI backends -->
+                <rect x="40" y="180" width="150" height="50" rx="8" fill="#fffaf5" stroke="#e8d4c4" stroke-dasharray="4 3"/>
+                <text x="115" y="211" text-anchor="middle" fill="#7a6058">Public AI</text>
+                <rect x="40" y="280" width="150" height="50" rx="8" fill="#fffaf5" stroke="#e8d4c4" stroke-dasharray="4 3"/>
+                <text x="115" y="311" text-anchor="middle" fill="#7a6058">Local LLM</text>
+                <line x1="190" y1="205" x2="422" y2="230" stroke="#7a6058" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#pd-arrow)"/>
+                <line x1="190" y1="305" x2="422" y2="280" stroke="#7a6058" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#pd-arrow)"/>
+                <text x="300" y="262" text-anchor="middle" fill="#7a6058" font-size="16" font-style="italic">and / or</text>
+              </svg>
+            </div>
+
+            <div class="deck-grid deck-grid--2" style="margin-top:0.6rem">
               <div class="deck-card">
                 <div><div class="deck-card-title" style="margin-top:0">Auto technical-analysis markers</div><div class="deck-card-text">Support, resistance and trends drawn the moment price moves.</div></div>
               </div>
