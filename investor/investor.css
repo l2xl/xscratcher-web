@@ -616,7 +616,7 @@ a:hover { color: var(--inv-rose); }
 .brief-market-roadtitle {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 3.5rem;          /* matches the X·Cockpit hero */
+  font-size: 3.5rem;          /* matches the Open Trader hero */
   letter-spacing: -0.01em;
   fill: #000;
 }
@@ -1322,4 +1322,11 @@ a:hover { color: var(--inv-rose); }
 @media (max-width: 40em) {
   .deck-grid--2, .deck-grid--3, .deck-grid--4 { grid-template-columns: 1fr; }
   .deck-counter { display: none; }
+}
+
+/* Product slide diagram: desktop vs mobile variants */
+.pd-diagram--mobile { display: none; }
+@media (max-width: 640px) {
+  .pd-diagram--desktop { display: none; }
+  .pd-diagram--mobile { display: block; max-width: 26rem; margin: 0 auto; }
 }
