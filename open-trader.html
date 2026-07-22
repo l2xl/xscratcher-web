@@ -127,23 +127,17 @@
 │           │                                    │            Mistral          │
 └───────────│────────────────────────────────────│──────────────────────────────┘
             │ exchange API                       │ LLM API
-            │                                    │
-     ┌──────┴──────┐                             │
-     │             │                             ▼
-  directly   via our                       <span class="hl-blue">[ AI servers ]</span>
-             server                       ChatGPT, Claude,
+            │ keys stored locally                │
+            ▼                                    ▼
+      <span class="hl-green">[ Exchanges ]</span>                        <span class="hl-blue">[ AI servers ]</span>
+     Bybit, Binance...                    ChatGPT, Claude,
                                              Gemini, ...
-             │
-             ▼
-      <span class="hl-green">[ Exchanges ]</span>
-     Bybit, Binance...
 </pre>
         </div>
 
         <p>
           <strong>Trading terminal &rarr; exchange:</strong>
-          <strong>Directly</strong> — the client connects to the exchange via API; keys are stored locally, Zero Trust.
-          <strong>Via our server</strong> — for server-side 24/7 strategy execution.
+          <strong>Directly</strong> — the client connects to the exchange via API; keys are stored locally, Zero Trust. No server sits between you and the exchange — everything runs on your machine.
         </p>
         <p>
           <strong>AI assistant &rarr; model:</strong>
@@ -250,16 +244,8 @@
               <td>Strategy development and parametrisation, result analysis; explainable recommendations</td>
             </tr>
             <tr>
-              <td>Strategy marketplace</td>
-              <td>Copy, rate, and sell algorithms; monetisation for authors</td>
-            </tr>
-            <tr>
               <td>Backtest &amp; optimiser</td>
               <td>Test strategies on historical data, genetic parameter optimiser</td>
-            </tr>
-            <tr>
-              <td>Telegram integration</td>
-              <td>Notifications, quick commands, monitoring without opening the app</td>
             </tr>
             <tr>
               <td>API</td>

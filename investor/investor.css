@@ -779,6 +779,15 @@ a:hover { color: var(--inv-rose); }
 @media (max-width: 62em) {
   .inv-wrapper { flex-direction: column; }
 
+  /* Keep the deck within the viewport on mobile: a wide element (e.g. the
+     competition table's min-width) must scroll inside its own container
+     instead of stretching the whole slide past the screen edge. */
+  .inv-doc.deck-doc,
+  .deck-doc .inv-doc-header,
+  .deck-doc .inv-doc-body,
+  .deck-stage,
+  .slide { max-width: 100%; min-width: 0; }
+
   /* Sidebar removed on phones; section nav moves into the top header */
   .inv-sidebar { display: none; }
   .inv-right-space { display: none; }
@@ -1127,7 +1136,17 @@ a:hover { color: var(--inv-rose); }
 .chart-val-hi { fill: var(--inv-accent); }
 
 /* comparison matrix */
-.deck-compare-wrap { overflow-x: auto; }
+.deck-compare-wrap { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y; }
+.deck-scroll-hint { display: none; }
+@media (max-width: 680px) {
+  .deck-scroll-hint {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--inv-rose);
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+  }
+}
 .deck-compare { width: 100%; border-collapse: collapse; font-size: 0.72rem; min-width: 40rem; }
 .deck-compare th, .deck-compare td {
   border: 1px solid var(--inv-border);
@@ -1156,7 +1175,7 @@ a:hover { color: var(--inv-rose); }
 .mk-warn { color: var(--cs-3); font-weight: 600; }
 
 /* data tables */
-.deck-table-wrap { overflow-x: auto; }
+.deck-table-wrap { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y; }
 .deck-table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
 .deck-table th, .deck-table td {
   border-bottom: 1px solid var(--inv-border);
