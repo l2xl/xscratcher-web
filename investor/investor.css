@@ -693,13 +693,6 @@ a:hover { color: var(--inv-rose); }
   overflow: hidden;
 }
 
-.brief-section--accent {
-  background: linear-gradient(180deg, rgba(212, 84, 122, 0.1), rgba(192, 57, 43, 0.05));
-  border-color: var(--inv-rose);
-  border-left-width: 3px;
-}
-.brief-section--accent .brief-section-title { color: var(--inv-rose); }
-
 .brief-section::after {
   content: '';
   position: absolute;
