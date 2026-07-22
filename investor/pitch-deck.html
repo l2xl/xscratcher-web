@@ -330,51 +330,18 @@
               <div class="deck-card"><div class="deck-card-text"><strong>Fee share</strong> <em>(revenue)</em> &middot; exchange pays via <strong>API Broker ID</strong> &middot; from the first trade &middot; <span style="white-space:nowrap">20&ndash;30%</span>, up to <span style="white-space:nowrap">45&ndash;50%</span> with volume<br>no subscription, no min volume</div></div>
               <div class="deck-card"><div class="deck-card-text"><strong>Open Source</strong> <em>(distribution)</em> &middot; open, auditable code &middot; <strong>free entry, user trust</strong> &middot; viral funnel, more volume, more fee share</div></div>
             </div>
-            <div style="margin-top:0.6rem">
-              <div class="deck-chart-title">How revenue forms &mdash; Open Source feeds the funnel, fee share is the take</div>
-              <div class="deck-chart">
-                <svg viewBox="0 0 660 150" role="img" aria-label="Revenue flow: Open Source is distribution that drives free users, active traders and trades; the exchange fee share is 100% of revenue." font-family="'DM Sans', system-ui, sans-serif">
-                  <defs>
-                    <marker id="rev-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7a6058"/></marker>
-                  </defs>
-
-                  <!-- flow arrows -->
-                  <line x1="150" y1="58" x2="190" y2="58" stroke="#7a6058" stroke-width="2" marker-end="url(#rev-arrow)"/>
-                  <line x1="310" y1="58" x2="350" y2="58" stroke="#7a6058" stroke-width="2" marker-end="url(#rev-arrow)"/>
-                  <line x1="470" y1="58" x2="510" y2="58" stroke="#7a6058" stroke-width="2" marker-end="url(#rev-arrow)"/>
-
-                  <!-- 1 · Open Source -->
-                  <rect x="30" y="20" width="120" height="76" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
-                  <text x="90" y="48" text-anchor="middle" fill="#1c1410" font-size="15" font-weight="600">Open Source</text>
-                  <text x="90" y="66" text-anchor="middle" class="chart-lbl">free &middot; auditable</text>
-                  <text x="90" y="82" text-anchor="middle" class="chart-lbl">viral funnel</text>
-
-                  <!-- 2 · Traders -->
-                  <rect x="190" y="20" width="120" height="76" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
-                  <text x="250" y="48" text-anchor="middle" fill="#1c1410" font-size="15" font-weight="600">Traders</text>
-                  <text x="250" y="66" text-anchor="middle" class="chart-lbl">free entry</text>
-                  <text x="250" y="82" text-anchor="middle" class="chart-lbl">own API keys</text>
-
-                  <!-- 3 · Trades -->
-                  <rect x="350" y="20" width="120" height="76" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
-                  <text x="410" y="48" text-anchor="middle" fill="#1c1410" font-size="15" font-weight="600">Trades</text>
-                  <text x="410" y="66" text-anchor="middle" class="chart-lbl">from trade #1</text>
-                  <text x="410" y="82" text-anchor="middle" class="chart-lbl">full-fee retail</text>
-
-                  <!-- 4 · Fee share (revenue) -->
-                  <rect x="510" y="20" width="120" height="76" rx="10" fill="#fffaf5" stroke="#c0392b" stroke-width="2.5"/>
-                  <text x="570" y="44" text-anchor="middle" fill="#1c1410" font-size="15" font-weight="600">Fee share</text>
-                  <text x="570" y="72" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:22px">100%</text>
-                  <text x="570" y="89" text-anchor="middle" class="chart-lbl">of revenue &middot; 20&ndash;50%</text>
-
-                  <!-- grouping brackets -->
-                  <path d="M30,110 v7 H470 v-7" fill="none" stroke="#b09888" stroke-width="1.5"/>
-                  <text x="250" y="137" text-anchor="middle" class="chart-lbl" style="fill:#7a6058">Distribution &mdash; feeds the funnel, earns nothing directly</text>
-                  <path d="M510,110 v7 H630 v-7" fill="none" stroke="#c0392b" stroke-width="1.5"/>
-                  <text x="570" y="137" text-anchor="middle" class="chart-lbl" style="fill:#c0392b;font-weight:600">Revenue</text>
-                </svg>
+            <div class="deck-row" style="margin-top:0.6rem;align-items:center">
+              <div class="deck-col" style="flex:0 0 240px;max-width:240px">
+                <div class="deck-card" style="text-align:center;border-color:#c0392b;padding:1rem 1.1rem">
+                  <div class="chart-val chart-val-hi" style="font-size:2.6rem;line-height:1;font-weight:700">100%</div>
+                  <div class="deck-card-title" style="margin-top:0.35rem">Exchange fee share</div>
+                  <div class="deck-card-text" style="margin-top:0.25rem">from trade #1 &middot; 20&ndash;50% rebate<br>no subscription, no min volume</div>
+                </div>
+                <div style="font-size:0.68rem;color:var(--inv-faint);margin-top:0.4rem;text-align:center">Snapshot at month&nbsp;36 &mdash; our model horizon (the product's early stage).</div>
               </div>
-              <p class="slide-lead" style="margin:0.5rem 0 0"><strong>At month&nbsp;36:</strong> fee share is the whole model &mdash; on derivatives, leverage bills the full notional from the first trade. Open Source earns nothing directly &mdash; it feeds the funnel. <span style="color:var(--inv-faint)">Snapshot at our model horizon (the product's early stage).</span></p>
+              <div class="deck-col">
+                <p class="slide-lead" style="margin:0"><strong>At month&nbsp;36:</strong> fee share is the whole model &mdash; on derivatives, leverage bills the full notional from the first trade; Open Source earns nothing directly &mdash; it feeds the funnel.</p>
+              </div>
             </div>
           </section>
 
