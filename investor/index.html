@@ -17,7 +17,7 @@
 
     <div class="inv-header-nav">
       <button class="inv-nav-toggle" aria-expanded="false" aria-controls="inv-nav-list">
-        <span class="inv-nav-toggle-label">Open Trader</span>
+        <span class="inv-nav-toggle-label">Slide 1 &middot; Open Trader</span>
         <span class="inv-nav-toggle-caret">&#9660;</span>
       </button>
       <ul class="inv-nav inv-nav--header" id="inv-nav-list"><!-- cloned from sidebar by JS --></ul>
@@ -33,18 +33,18 @@
 
     <aside class="inv-sidebar print-hide">
       <ul class="inv-nav deck-nav" id="deck-nav">
-        <li><a href="index.html" class="active"><span class="deck-nav-num">&#9673;</span> <span class="deck-nav-title">Open Trader</span></a></li>
-        <li><a href="pitch-deck.html#slide-1"  data-slide="1"><span class="deck-nav-num">01</span> <span class="deck-nav-title">Problem</span></a></li>
-        <li><a href="pitch-deck.html#slide-2"  data-slide="2"><span class="deck-nav-num">02</span> <span class="deck-nav-title">Solution</span></a></li>
-        <li><a href="pitch-deck.html#slide-3"  data-slide="3"><span class="deck-nav-num">03</span> <span class="deck-nav-title">Product</span></a></li>
-        <li><a href="pitch-deck.html#slide-4"  data-slide="4"><span class="deck-nav-num">04</span> <span class="deck-nav-title">Market</span></a></li>
-        <li><a href="pitch-deck.html#slide-5"  data-slide="5"><span class="deck-nav-num">05</span> <span class="deck-nav-title">Competition</span></a></li>
-        <li><a href="pitch-deck.html#slide-6"  data-slide="6"><span class="deck-nav-num">06</span> <span class="deck-nav-title">Business Model</span></a></li>
-        <li><a href="pitch-deck.html#slide-7"  data-slide="7"><span class="deck-nav-num">07</span> <span class="deck-nav-title">Unit Economics</span></a></li>
-        <li><a href="pitch-deck.html#slide-8"  data-slide="8"><span class="deck-nav-num">08</span> <span class="deck-nav-title">Insight</span></a></li>
-        <li><a href="pitch-deck.html#slide-9"  data-slide="9"><span class="deck-nav-num">09</span> <span class="deck-nav-title">Roadmap</span></a></li>
-        <li><a href="pitch-deck.html#slide-10" data-slide="10"><span class="deck-nav-num">10</span> <span class="deck-nav-title">Team</span></a></li>
-        <li><a href="pitch-deck.html#slide-11" data-slide="11"><span class="deck-nav-num">11</span> <span class="deck-nav-title">The Ask</span></a></li>
+        <li><a href="index.html" class="active"><span class="deck-nav-num">01</span> <span class="deck-nav-title">Open Trader</span></a></li>
+        <li><a href="pitch-deck.html#slide-1"  data-slide="1"><span class="deck-nav-num">02</span> <span class="deck-nav-title">Problem</span></a></li>
+        <li><a href="pitch-deck.html#slide-2"  data-slide="2"><span class="deck-nav-num">03</span> <span class="deck-nav-title">Solution</span></a></li>
+        <li><a href="pitch-deck.html#slide-3"  data-slide="3"><span class="deck-nav-num">04</span> <span class="deck-nav-title">Product</span></a></li>
+        <li><a href="pitch-deck.html#slide-4"  data-slide="4"><span class="deck-nav-num">05</span> <span class="deck-nav-title">Market</span></a></li>
+        <li><a href="pitch-deck.html#slide-5"  data-slide="5"><span class="deck-nav-num">06</span> <span class="deck-nav-title">Competition</span></a></li>
+        <li><a href="pitch-deck.html#slide-6"  data-slide="6"><span class="deck-nav-num">07</span> <span class="deck-nav-title">Business Model</span></a></li>
+        <li><a href="pitch-deck.html#slide-7"  data-slide="7"><span class="deck-nav-num">08</span> <span class="deck-nav-title">Unit Economics</span></a></li>
+        <li><a href="pitch-deck.html#slide-8"  data-slide="8"><span class="deck-nav-num">09</span> <span class="deck-nav-title">Insight</span></a></li>
+        <li><a href="pitch-deck.html#slide-9"  data-slide="9"><span class="deck-nav-num">10</span> <span class="deck-nav-title">Roadmap</span></a></li>
+        <li><a href="pitch-deck.html#slide-10" data-slide="10"><span class="deck-nav-num">11</span> <span class="deck-nav-title">Team</span></a></li>
+        <li><a href="pitch-deck.html#slide-11" data-slide="11"><span class="deck-nav-num">12</span> <span class="deck-nav-title">The Ask</span></a></li>
       </ul>
     </aside>
 
@@ -330,6 +330,48 @@
         }
       });
     }
+
+    // --- Touch swipe navigation (mobile) ---
+    // The brief is slide 1 of the deck: swiping left flips forward to the
+    // first deck slide (slide 2). A swipe that starts inside a horizontally
+    // scrollable element scrolls that element first, flipping only at its edge.
+    (function () {
+      var body = document.querySelector('.inv-doc-body');
+      if (!body || !('ontouchstart' in window)) { return; }
+      var tStartX = null, tStartY = null, tScroller = null;
+
+      function findHScroller(el) {
+        while (el && el !== body && el.nodeType === 1) {
+          if (el.scrollWidth - el.clientWidth > 4) {
+            var ox = window.getComputedStyle(el).overflowX;
+            if (ox === 'auto' || ox === 'scroll') { return el; }
+          }
+          el = el.parentNode;
+        }
+        return null;
+      }
+
+      body.addEventListener('touchstart', function (e) {
+        if (e.touches.length !== 1) { tStartX = null; return; }
+        tStartX = e.touches[0].clientX;
+        tStartY = e.touches[0].clientY;
+        tScroller = findHScroller(e.target);
+      }, { passive: true });
+
+      body.addEventListener('touchend', function (e) {
+        if (tStartX === null) { return; }
+        var dx = e.changedTouches[0].clientX - tStartX;
+        var dy = e.changedTouches[0].clientY - tStartY;
+        tStartX = null;
+        if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.4) { return; }
+        if (dx > 0) { return; } // no slide before the brief
+        if (tScroller) {
+          var atEnd = tScroller.scrollLeft + tScroller.clientWidth >= tScroller.scrollWidth - 1;
+          if (!atEnd) { return; } // let the inner element finish scrolling right first
+        }
+        window.location.href = 'pitch-deck.html#slide-1';
+      }, { passive: true });
+    })();
   </script>
 </body>
 </html>
