@@ -784,6 +784,45 @@
         }, { passive: true });
       }
 
+      // The brief (index.html) is slide 1 of the deck: keep scrolling up past
+      // the first slide (Problem) and it flows back to the brief, mirroring the
+      // Prev button. A small threshold avoids a stray tick tripping the jump.
+      var briefLock = false;
+      function toBrief() {
+        if (briefLock) { return; }
+        briefLock = true;
+        window.location.href = 'index.html';
+      }
+      if (scroller) {
+        var upAccum = 0;
+        scroller.addEventListener('wheel', function (e) {
+          if (e.deltaY < 0 && scroller.scrollTop <= 0) {
+            upAccum += -e.deltaY;
+            if (upAccum > 120) { toBrief(); }
+          } else {
+            upAccum = 0;
+          }
+        }, { passive: true });
+
+        var tY = null, tX = null, tTop = false;
+        scroller.addEventListener('touchstart', function (e) {
+          if (e.touches.length !== 1) { tY = null; return; }
+          tY = e.touches[0].clientY;
+          tX = e.touches[0].clientX;
+          tTop = scroller.scrollTop <= 0;
+        }, { passive: true });
+        scroller.addEventListener('touchend', function (e) {
+          if (tY === null) { return; }
+          var dy = e.changedTouches[0].clientY - tY;
+          var dx = e.changedTouches[0].clientX - tX;
+          tY = null;
+          // Finger dragged down while already at the top = pull to the brief.
+          if (tTop && scroller.scrollTop <= 0 && dy > 70 && Math.abs(dy) > Math.abs(dx) * 1.2) {
+            toBrief();
+          }
+        }, { passive: true });
+      }
+
       document.addEventListener('click', function (e) {
         var link = e.target.closest ? e.target.closest('a[data-slide]') : null;
         if (link) {
