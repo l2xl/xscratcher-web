@@ -893,20 +893,24 @@ a:hover { color: var(--inv-rose); }
   .brief-metrics { break-inside: avoid; }
   .brief-section { box-shadow: none; }
 
-  /* deck: undo the fixed-height scroll pane; print every slide, one per page */
+  /* deck: undo the fixed-height flip pane; print every slide, one per page */
   .deck-doc { height: auto; display: block; }
-  .deck-doc .inv-doc-body { overflow: visible; height: auto; scroll-snap-type: none; }
-  .deck-stage { height: auto; }
-  .slide { display: block !important; min-height: 0; break-after: page; }
+  .deck-doc .inv-doc-body { overflow: visible; height: auto; perspective: none; }
+  .deck-stage { height: auto; transform-style: flat; }
+  .slide {
+    position: static; inset: auto; overflow: visible;
+    transform: none !important; opacity: 1 !important; visibility: visible !important;
+    display: block !important; break-after: page;
+  }
   .deck-footer-nav { display: none !important; }
 }
 
 /* =========================================================
    Pitch deck — slide presentation
    ========================================================= */
-/* The deck reads as a vertical, scroll-snapping presentation: the document
-   turns into a fixed-height pane (brand header + scrolling body + footer nav)
-   and the body scrolls internally, snapping each slide into view. */
+/* The deck is a one-page-at-a-time presentation: the document becomes a
+   fixed-height pane (brand header + flip stage + footer nav). Slides are
+   stacked pages that turn over with a vertical 3D flip (rotateX). */
 .deck-doc {
   display: flex;
   flex-direction: column;
@@ -917,13 +921,9 @@ a:hover { color: var(--inv-rose); }
 .deck-doc .inv-doc-body {
   flex: 1 1 auto;
   min-height: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-  overflow-y: auto;
-  scroll-snap-type: y proximity;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
+  padding: 0;
+  overflow: hidden;                 /* the page itself never scrolls */
+  perspective: 2200px;              /* depth for the page-turn */
 }
 
 /* --- sidebar slide menu --- */
@@ -956,24 +956,44 @@ a:hover { color: var(--inv-rose); }
 .deck-nav a.active .deck-nav-num { color: var(--inv-rose); }
 .deck-nav-title { line-height: 1.25; }
 
-/* --- slide stage --- */
-.deck-stage { position: relative; overflow-x: clip; height: 100%; }
-/* Every slide is a full-height snap page, stacked vertically. */
+/* --- flip stage --- */
+.deck-stage { position: relative; height: 100%; transform-style: preserve-3d; }
+
+/* Each slide is an absolutely-stacked page. Pages start folded away
+   (rotateX 90deg); the active one lies flat. A page taller than the pane
+   scrolls inside itself, so the flip still works with long slides. */
 .slide {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
   overflow-wrap: break-word;
-  min-height: 100%;
+  padding: clamp(1rem, 3vh, 2.25rem) var(--inv-doc-pad-x);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding-block: clamp(1rem, 3vh, 2.25rem);
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  justify-content: safe center;     /* short pages center; tall ones top-align + scroll */
+  transform-origin: 50% 50%;
+  transform: rotateX(90deg);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, opacity;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.25, 1), opacity 0.42s ease;
 }
-/* Soft entrance when a slide becomes the current one in view. */
-.slide.active { animation: deck-fade 0.4s ease; }
-@keyframes deck-fade {
-  from { opacity: 0.35; transform: translateY(8px); }
-  to   { opacity: 1; transform: none; }
+.slide.is-active {
+  transform: rotateX(0deg);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 2;                        /* the arriving page turns in over the leaving one */
+}
+.slide.is-leaving { z-index: 1; visibility: visible; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slide { transition: opacity 0.2s ease; transform: none; }
+  .slide:not(.is-active) { transform: none; }
 }
 
 .slide-head { margin-bottom: 0.6rem; }
