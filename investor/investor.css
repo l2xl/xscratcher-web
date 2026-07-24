@@ -916,14 +916,17 @@ a:hover { color: var(--inv-rose); }
   flex-direction: column;
   height: calc(100dvh - var(--inv-header-h));
 }
-.deck-doc .inv-doc-header,
 .deck-doc .deck-doc-footer { flex-shrink: 0; }
+/* A page-turn deck lets the page itself dominate: drop the branding strip on
+   top and the copyright/contacts band at the bottom, giving the flip its full
+   height. The site header (nav) and the Prev/Next controls stay. */
+.deck-doc .inv-doc-header { display: none; }
+.deck-doc .deck-footer-meta { display: none; }
 .deck-doc .inv-doc-body {
   flex: 1 1 auto;
   min-height: 0;
   padding: 0;
   overflow: hidden;                 /* the page itself never scrolls */
-  perspective: 2200px;              /* depth for the page-turn */
 }
 
 /* --- sidebar slide menu --- */
@@ -957,11 +960,15 @@ a:hover { color: var(--inv-rose); }
 .deck-nav-title { line-height: 1.25; }
 
 /* --- flip stage --- */
-.deck-stage { position: relative; height: 100%; transform-style: preserve-3d; }
+/* Perspective lives on the slides' direct parent so each page's rotateX has
+   depth. No preserve-3d: the settled active page then carries no transform,
+   which keeps it a normal, wheel-scrollable container. */
+.deck-stage { position: relative; height: 100%; perspective: 2200px; }
 
-/* Each slide is an absolutely-stacked page. Pages start folded away
-   (rotateX 90deg); the active one lies flat. A page taller than the pane
-   scrolls inside itself, so the flip still works with long slides. */
+/* Each slide is an absolutely-stacked page. Hidden pages just sit invisible;
+   the folded rotateX only exists during a flip (applied inline by JS). The
+   active page has no transform, so a page taller than the pane scrolls
+   normally inside itself. */
 .slide {
   position: absolute;
   inset: 0;
@@ -971,9 +978,8 @@ a:hover { color: var(--inv-rose); }
   padding: clamp(1rem, 3vh, 2.25rem) var(--inv-doc-pad-x);
   display: flex;
   flex-direction: column;
-  justify-content: safe center;     /* short pages center; tall ones top-align + scroll */
+  justify-content: flex-start;      /* flow from the top so scrolling works both ways */
   transform-origin: 50% 50%;
-  transform: rotateX(90deg);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -983,7 +989,6 @@ a:hover { color: var(--inv-rose); }
   transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.25, 1), opacity 0.42s ease;
 }
 .slide.is-active {
-  transform: rotateX(0deg);
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -992,8 +997,7 @@ a:hover { color: var(--inv-rose); }
 .slide.is-leaving { z-index: 1; visibility: visible; }
 
 @media (prefers-reduced-motion: reduce) {
-  .slide { transition: opacity 0.2s ease; transform: none; }
-  .slide:not(.is-active) { transform: none; }
+  .slide { transition: opacity 0.2s ease; }
 }
 
 .slide-head { margin-bottom: 0.6rem; }
