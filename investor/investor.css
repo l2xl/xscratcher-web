@@ -1232,6 +1232,16 @@ a:hover { color: var(--inv-rose); }
 .deck-table .row-hi td { background: rgba(212, 84, 122, 0.08); font-weight: 700; color: var(--inv-text); }
 .deck-table .num { font-variant-numeric: tabular-nums; }
 
+/* Unit Economics cohort table: fixed layout with equal-width numeric
+   columns, so the number columns sit on an even rhythm instead of each
+   being sized to its own content. Headers may wrap to two lines. */
+#slide-8 .deck-table { table-layout: fixed; }
+#slide-8 .deck-table th,
+#slide-8 .deck-table td { width: 17%; }
+#slide-8 .deck-table th:first-child,
+#slide-8 .deck-table td:first-child { width: 32%; }
+#slide-8 .deck-table th { vertical-align: bottom; white-space: normal; }
+
 /* On phones, tighten the cohort/economics tables so they fit the slide
    width without a sideways scroll. Placed after the base rules above so it
    wins on equal specificity. */
