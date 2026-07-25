@@ -1232,6 +1232,16 @@ a:hover { color: var(--inv-rose); }
 .deck-table .row-hi td { background: rgba(212, 84, 122, 0.08); font-weight: 700; color: var(--inv-text); }
 .deck-table .num { font-variant-numeric: tabular-nums; }
 
+/* On phones, tighten the cohort/economics tables so they fit the slide
+   width without a sideways scroll. Placed after the base rules above so it
+   wins on equal specificity. */
+@media (max-width: 30em) {
+  .deck-table { font-size: 0.7rem; }
+  .deck-table th, .deck-table td { padding: 0.38rem 0.22rem; }
+  .deck-table th { font-size: 0.54rem; letter-spacing: 0.02em; }
+  .deck-table .coh-chip { width: 0.55rem; height: 0.55rem; margin-right: 0.2rem; }
+}
+
 /* timeline (roadmap) */
 .deck-timeline { position: relative; margin-left: 0.4rem; padding-left: 1.4rem; border-left: 2px solid var(--inv-border); display: flex; flex-direction: column; gap: 0.85rem; }
 .deck-tl-item { position: relative; }
