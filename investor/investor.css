@@ -1400,6 +1400,13 @@ a:hover { color: var(--inv-rose); }
 @media (max-width: 62em) {
   .deck-grid--3, .deck-grid--4 { grid-template-columns: repeat(2, 1fr); }
   .deck-col { flex-basis: 100%; }
+
+  /* Unit Economics: the narrow "stats sidebar" column and its vertical stack
+     are a desktop-only shape. On phones, override the inline sizing so both
+     stat groups span the full width and lay the cards out 2-up — no lopsided
+     narrow column with empty space beside it. */
+  #slide-8 .deck-row > .deck-col { flex: 1 1 100% !important; max-width: none !important; }
+  #slide-8 .deck-stats { flex-direction: row !important; }
 }
 @media (max-width: 40em) {
   .deck-grid--2, .deck-grid--3, .deck-grid--4 { grid-template-columns: 1fr; }
