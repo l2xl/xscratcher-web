@@ -912,8 +912,12 @@ a:hover { color: var(--inv-rose); }
   flex-direction: column;
   height: calc(100dvh - var(--inv-header-h));
 }
-.deck-doc .inv-doc-header,
 .deck-doc .deck-doc-footer { flex-shrink: 0; }
+/* Give the deck more room: drop the branding strip on top and the
+   copyright/contacts band at the bottom. The site header (nav) and the
+   Prev/Next controls stay. */
+.deck-doc .inv-doc-header { display: none; }
+.deck-doc .deck-footer-meta { display: none; }
 .deck-doc .inv-doc-body {
   flex: 1 1 auto;
   min-height: 0;
