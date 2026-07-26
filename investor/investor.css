@@ -913,11 +913,10 @@ a:hover { color: var(--inv-rose); }
   height: calc(100dvh - var(--inv-header-h));
 }
 .deck-doc .deck-doc-footer { flex-shrink: 0; }
-/* Give the deck more room: drop the branding strip on top and the
-   copyright/contacts band at the bottom. The site header (nav) and the
-   Prev/Next controls stay. */
+/* Give the deck more room: drop the branding strip on top. The
+   copyright/contacts now live on the final (The Ask) slide instead of a
+   footer band; the site header (nav) and Prev/Next controls stay. */
 .deck-doc .inv-doc-header { display: none; }
-.deck-doc .deck-footer-meta { display: none; }
 .deck-doc .inv-doc-body {
   flex: 1 1 auto;
   min-height: 0;
@@ -1026,6 +1025,17 @@ a:hover { color: var(--inv-rose); }
   display: flex;
   align-items: flex-start;
   gap: 0.4rem 1.4rem;
+}
+/* Copyright + contacts strip closing the final (The Ask) slide. Reuses the
+   footer note/contact styles: note on the left, contacts on the right. */
+.deck-ask-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.4rem 1.4rem;
+  margin-top: 1rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--inv-border);
 }
 .deck-footer-nav {
   display: flex;
