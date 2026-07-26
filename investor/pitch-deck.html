@@ -916,7 +916,41 @@
       var sectionCount = slides.length;
       var OFFSET = 0;                        // the brief is now slide 1 inside the deck
       var total = sectionCount;
-      var scroller = document.querySelector('.deck-doc .inv-doc-body');
+      var pane = document.querySelector('.deck-doc .inv-doc-body');
+      var siteHeader = document.querySelector('.inv-header');
+      // The deck scrolls its inner pane on desktop, but on phones the pane is
+      // unwrapped (see investor.css) and the whole document scrolls — reliable
+      // on Android, where a nested dvh-sized scroller swallows touch gestures.
+      // Pick whichever element is actually scrollable right now.
+      function paneScrolls() {
+        if (!pane) { return false; }
+        var oy = getComputedStyle(pane).overflowY;
+        return (oy === 'auto' || oy === 'scroll') && pane.scrollHeight > pane.clientHeight + 1;
+      }
+      function headerOffset() {
+        // when the document scrolls, the sticky site header overlaps the top
+        return paneScrolls() ? 0 : (siteHeader ? siteHeader.offsetHeight : 0);
+      }
+      // Top edge (viewport y) of the scroll viewport, minus the sticky header.
+      function viewAnchor() {
+        return paneScrolls() ? pane.getBoundingClientRect().top : headerOffset();
+      }
+      function getScrollTop() {
+        return paneScrolls() ? pane.scrollTop
+          : (window.pageYOffset || document.documentElement.scrollTop || 0);
+      }
+      // Scroll offset that brings `target`'s top to the viewport anchor.
+      function slideScrollTarget(target) {
+        var rectTop = target.getBoundingClientRect().top;
+        return paneScrolls()
+          ? pane.scrollTop + (rectTop - pane.getBoundingClientRect().top)
+          : getScrollTop() + rectTop - headerOffset();
+      }
+      function scrollToY(top, instant) {
+        var target = paneScrolls() ? pane : window;
+        if (target.scrollTo) { target.scrollTo({ top: top, behavior: instant ? 'auto' : 'smooth' }); }
+        else { target.scrollTop = top; }
+      }
       var sidebar = document.getElementById('deck-nav');
       var counter = document.getElementById('deck-counter');
       var progress = document.getElementById('deck-progress');
@@ -972,40 +1006,39 @@
         if (!target) { return; }
         navTarget = n;
         setCurrent(n);
-        if (scroller) {
-          guardScroll(instant ? 250 : 700);
-          scroller.scrollTo({ top: target.offsetTop, behavior: instant ? 'auto' : 'smooth' });
-        } else {
-          target.scrollIntoView({ block: 'start' });
-        }
+        guardScroll(instant ? 250 : 700);
+        scrollToY(slideScrollTarget(target), instant);
       }
 
-      // Track the slide nearest the top of the scroll pane as the user scrolls.
+      // Track the slide nearest the top of the scroll viewport as it scrolls.
       function currentFromScroll() {
-        if (!scroller) { return current; }
-        var st = scroller.scrollTop;
+        var anchor = viewAnchor();
         var best = 1, bestDist = Infinity;
         for (var i = 0; i < slides.length; i++) {
-          var d = Math.abs(slides[i].offsetTop - st);
+          var d = Math.abs(slides[i].getBoundingClientRect().top - anchor);
           if (d < bestDist) { bestDist = d; best = i + 1; }
         }
         return best;
       }
 
-      if (scroller) {
-        var ticking = false;
-        scroller.addEventListener('scroll', function () {
-          if (ticking) { return; }
-          ticking = true;
-          window.requestAnimationFrame(function () {
-            if (!suppress) { setCurrent(currentFromScroll()); }
-            ticking = false;
-          });
-        }, { passive: true });
-        // Real input (not layout-shift scroll) means the user is in control now.
-        scroller.addEventListener('wheel', function () { userScrolled = true; }, { passive: true });
-        scroller.addEventListener('touchstart', function () { userScrolled = true; }, { passive: true });
+      var ticking = false;
+      function onScroll() {
+        if (ticking) { return; }
+        ticking = true;
+        window.requestAnimationFrame(function () {
+          if (!suppress) { setCurrent(currentFromScroll()); }
+          ticking = false;
+        });
       }
+      function markUser() { userScrolled = true; }
+      // Listen on both the pane and the window so the same handlers work whether
+      // the inner pane (desktop) or the document (mobile) is the live scroller.
+      [pane, window].forEach(function (t) {
+        if (!t) { return; }
+        t.addEventListener('scroll', onScroll, { passive: true });
+        t.addEventListener('wheel', markUser, { passive: true });
+        t.addEventListener('touchstart', markUser, { passive: true });
+      });
 
       document.addEventListener('click', function (e) {
         var link = e.target.closest ? e.target.closest('a[data-slide]') : null;
