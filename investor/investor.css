@@ -788,6 +788,11 @@ a:hover { color: var(--inv-rose); }
   .deck-stage,
   .slide { max-width: 100%; min-width: 0; }
 
+  /* In the stacked (column) wrapper the inherited `flex:1` would zero the
+     deck pane's flex-basis and ignore its fixed height. Pin it back so the
+     body keeps scroll-snapping instead of stretching to fit every slide. */
+  .inv-doc.deck-doc { flex: none; width: 100%; }
+
   /* Sidebar removed on phones; section nav moves into the top header */
   .inv-sidebar { display: none; }
   .inv-right-space { display: none; }
@@ -888,15 +893,41 @@ a:hover { color: var(--inv-rose); }
   .brief-metrics { break-inside: avoid; }
   .brief-section { box-shadow: none; }
 
-  /* deck: print every slide, one per page */
-  .slide { display: block !important; break-after: page; }
+  /* deck: undo the fixed-height scroll pane; print every slide, one per page */
+  .deck-doc { height: auto; display: block; }
+  .deck-doc .inv-doc-body { overflow: visible; height: auto; scroll-snap-type: none; }
+  .deck-stage { height: auto; }
+  .slide { display: block !important; min-height: 0; break-after: page; }
   .deck-footer-nav { display: none !important; }
 }
 
 /* =========================================================
    Pitch deck — slide presentation
    ========================================================= */
-.deck-doc .inv-doc-body { padding-top: 1rem; padding-bottom: 1rem; }
+/* The deck reads as a vertical, scroll-snapping presentation: the document
+   turns into a fixed-height pane (brand header + scrolling body + footer nav)
+   and the body scrolls internally, snapping each slide into view. */
+.deck-doc {
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - var(--inv-header-h));
+}
+.deck-doc .deck-doc-footer { flex-shrink: 0; }
+/* Give the deck more room: drop the branding strip on top. The
+   copyright/contacts now live on the final (The Ask) slide instead of a
+   footer band; the site header (nav) and Prev/Next controls stay. */
+.deck-doc .inv-doc-header { display: none; }
+.deck-doc .inv-doc-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow-y: auto;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
 
 /* --- sidebar slide menu --- */
 .deck-nav-top {
@@ -929,11 +960,22 @@ a:hover { color: var(--inv-rose); }
 .deck-nav-title { line-height: 1.25; }
 
 /* --- slide stage --- */
-.deck-stage { position: relative; overflow-x: clip; }
-.slide { display: none; overflow-wrap: break-word; }
-.slide.active { display: block; animation: deck-fade 0.34s ease; }
+.deck-stage { position: relative; overflow-x: clip; height: 100%; }
+/* Every slide is a full-height snap page, stacked vertically. */
+.slide {
+  overflow-wrap: break-word;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(1rem, 3vh, 2.25rem);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+/* Soft entrance when a slide becomes the current one in view. */
+.slide.active { animation: deck-fade 0.4s ease; }
 @keyframes deck-fade {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0.35; transform: translateY(8px); }
   to   { opacity: 1; transform: none; }
 }
 
@@ -983,6 +1025,17 @@ a:hover { color: var(--inv-rose); }
   display: flex;
   align-items: flex-start;
   gap: 0.4rem 1.4rem;
+}
+/* Copyright + contacts strip closing the final (The Ask) slide. Reuses the
+   footer note/contact styles: note on the left, contacts on the right. */
+.deck-ask-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.4rem 1.4rem;
+  margin-top: 1rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--inv-border);
 }
 .deck-footer-nav {
   display: flex;
@@ -1189,6 +1242,26 @@ a:hover { color: var(--inv-rose); }
 .deck-table .row-hi td { background: rgba(212, 84, 122, 0.08); font-weight: 700; color: var(--inv-text); }
 .deck-table .num { font-variant-numeric: tabular-nums; }
 
+/* Unit Economics cohort table: fixed layout with equal-width numeric
+   columns, so the number columns sit on an even rhythm instead of each
+   being sized to its own content. Headers may wrap to two lines. */
+#slide-8 .deck-table { table-layout: fixed; }
+#slide-8 .deck-table th,
+#slide-8 .deck-table td { width: 17%; }
+#slide-8 .deck-table th:first-child,
+#slide-8 .deck-table td:first-child { width: 32%; }
+#slide-8 .deck-table th { vertical-align: bottom; white-space: normal; }
+
+/* On phones, tighten the cohort/economics tables so they fit the slide
+   width without a sideways scroll. Placed after the base rules above so it
+   wins on equal specificity. */
+@media (max-width: 30em) {
+  .deck-table { font-size: 0.7rem; }
+  .deck-table th, .deck-table td { padding: 0.38rem 0.22rem; }
+  .deck-table th { font-size: 0.54rem; letter-spacing: 0.02em; }
+  .deck-table .coh-chip { width: 0.55rem; height: 0.55rem; margin-right: 0.2rem; }
+}
+
 /* timeline (roadmap) */
 .deck-timeline { position: relative; margin-left: 0.4rem; padding-left: 1.4rem; border-left: 2px solid var(--inv-border); display: flex; flex-direction: column; gap: 0.85rem; }
 .deck-tl-item { position: relative; }
@@ -1337,6 +1410,13 @@ a:hover { color: var(--inv-rose); }
 @media (max-width: 62em) {
   .deck-grid--3, .deck-grid--4 { grid-template-columns: repeat(2, 1fr); }
   .deck-col { flex-basis: 100%; }
+
+  /* Unit Economics: the narrow "stats sidebar" column and its vertical stack
+     are a desktop-only shape. On phones, override the inline sizing so both
+     stat groups span the full width and lay the cards out 2-up — no lopsided
+     narrow column with empty space beside it. */
+  #slide-8 .deck-row > .deck-col { flex: 1 1 100% !important; max-width: none !important; }
+  #slide-8 .deck-stats { flex-direction: row !important; }
 }
 @media (max-width: 40em) {
   .deck-grid--2, .deck-grid--3, .deck-grid--4 { grid-template-columns: 1fr; }
