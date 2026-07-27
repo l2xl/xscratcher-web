@@ -788,9 +788,6 @@ a:hover { color: var(--inv-rose); }
   .deck-stage,
   .slide { max-width: 100%; min-width: 0; }
 
-  /* In the stacked (column) wrapper the inherited `flex:1` would zero the
-     deck pane's flex-basis and ignore its fixed height. Pin it back so the
-     body keeps scroll-snapping instead of stretching to fit every slide. */
   .inv-doc.deck-doc { flex: none; width: 100%; }
 
   /* Sidebar removed on phones; section nav moves into the top header */
@@ -1428,4 +1425,51 @@ a:hover { color: var(--inv-rose); }
 @media (max-width: 640px) {
   .pd-diagram--desktop { display: none; }
   .pd-diagram--mobile { display: block; max-width: 26rem; margin: 0 auto; }
+}
+
+/* =========================================================
+   Pitch deck — mobile scroll (Android reliability)
+   =========================================================
+   On desktop the deck lives inside a nested pane sized to
+   `calc(100dvh - header)` that scrolls internally and snaps each slide.
+   On phones that model breaks on Android Chrome: the root document owns the
+   URL-bar hide/show and the first touch-drag, so when the only scrollable
+   area is a nested dvh-sized pane the gesture is consumed by the (no-op)
+   document scroll and the pane never moves — the deck reads as frozen.
+   Here we unwrap the pane so the whole document scrolls (Android always
+   drives the root scroller), and drop scroll-snap: free scrolling is what
+   reliably works on touch. This block sits at end-of-file so it overrides
+   the base deck rules (media queries add no specificity — source order wins).
+   Kept in sync with the JS in pitch-deck.html, which scrolls whichever
+   element is actually scrollable (inner pane on desktop, document here). */
+@media (max-width: 62em) {
+  .deck-doc { height: auto; display: block; }
+  .deck-doc .inv-doc-body {
+    overflow: visible;
+    height: auto;
+    min-height: 0;
+    scroll-snap-type: none;
+    -webkit-overflow-scrolling: auto;
+    overscroll-behavior: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .deck-doc .deck-stage { height: auto; }
+  .deck-doc .slide {
+    /* full-screen feel without the dvh trap: svh never exceeds the smallest
+       viewport, so slides don't overflow and the document scrolls smoothly */
+    min-height: calc(100svh - var(--inv-header-h));
+    justify-content: flex-start;   /* tall slides (e.g. the brief) start at the top, not centered off-screen */
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+    scroll-margin-top: var(--inv-header-h);
+  }
+  /* Keep Prev / Next / progress reachable while the page scrolls */
+  .deck-doc .deck-doc-footer {
+    position: sticky;
+    bottom: 0;
+    background: var(--inv-bg);
+    border-top: 1px solid var(--inv-border);
+    z-index: 100;
+  }
 }
