@@ -1123,6 +1123,32 @@ a:hover { color: var(--inv-rose); }
 .deck-card-text { font-size: 0.78rem; color: var(--inv-muted); line-height: 1.5; }
 .deck-card-text strong { color: var(--inv-text); }
 
+/* Plain bullet list for enumerations that carry no weight of their own —
+   a frame per item would add borders without adding meaning. */
+.deck-bullets {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  columns: 2;
+  column-gap: 1.6rem;
+}
+.deck-bullets li {
+  position: relative;
+  padding-left: 0.85rem;
+  margin-bottom: 0.4rem;
+  break-inside: avoid;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--inv-muted);
+}
+.deck-bullets li::before {
+  content: '\2022';
+  position: absolute;
+  left: 0;
+  color: var(--inv-rose);
+}
+.deck-bullets li strong { color: var(--inv-text); }
+
 /* big stat callouts */
 .deck-stats { display: flex; gap: 0.7rem; flex-wrap: wrap; }
 .deck-stat {
@@ -1420,6 +1446,7 @@ a:hover { color: var(--inv-rose); }
 }
 @media (max-width: 40em) {
   .deck-grid--2, .deck-grid--3, .deck-grid--4 { grid-template-columns: 1fr; }
+  .deck-bullets { columns: 1; }
   .deck-counter { display: none; }
 }
 
