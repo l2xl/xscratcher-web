@@ -904,6 +904,14 @@ a:hover { color: var(--inv-rose); }
   margin: 1.4cm 1.6cm 1.2cm;
 }
 
+/* The deck prints as 16:9 landscape pages (13.333in x 7.5in — the standard
+   slide canvas), matching the on-screen slide proportions. The brief keeps
+   the A4 portrait default above. */
+@page deck-slide {
+  size: 338.667mm 190.5mm;
+  margin: 9mm 11mm;
+}
+
 @media print {
   html { font-size: 9pt; }
   body { background: #fff !important; }
@@ -919,10 +927,12 @@ a:hover { color: var(--inv-rose); }
   .brief-section { box-shadow: none; }
 
   /* deck: undo the fixed-height scroll pane; print every slide, one per page */
-  .deck-doc { height: auto; display: block; }
-  .deck-doc .inv-doc-body { overflow: visible; height: auto; scroll-snap-type: none; }
+  .deck-doc { height: auto; display: block; page: deck-slide; }
+  .deck-doc .inv-doc-body { overflow: visible; height: auto; scroll-snap-type: none; padding: 0; }
   .deck-stage { height: auto; }
-  .slide { display: block !important; min-height: 0; break-after: page; }
+  .slide { display: block !important; min-height: 0; break-after: page; padding-block: 0; }
+  /* break-after on the final slide would emit a trailing blank page */
+  .slide:last-child { break-after: auto; }
   .deck-footer-nav { display: none !important; }
 }
 
