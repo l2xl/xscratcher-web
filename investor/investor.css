@@ -916,6 +916,12 @@ a:hover { color: var(--inv-rose); }
   html { font-size: 9pt; }
   body { background: #fff !important; }
 
+  /* Viewport units resolve against the page box in paged media, so the
+     screen layout's `min-height: 100dvh` makes the body taller than the
+     printable area (page box minus margins) and pushes a second page out
+     of every single slide. Release the height constraints for print. */
+  html, body { min-height: 0; height: auto; }
+
   .print-hide { display: none !important; }
 
   .brief-planet { position: absolute; transform: none; right: -1.2cm; }
@@ -934,6 +940,43 @@ a:hover { color: var(--inv-rose); }
   /* break-after on the final slide would emit a trailing blank page */
   .slide:last-child { break-after: auto; }
   .deck-footer-nav { display: none !important; }
+
+  /* --- keep every slide inside its page ------------------------------
+     On screen a slide is a scrollable full-viewport pane, so its figures
+     can be as tall as they like; on a fixed 16:9 page they cannot, and the
+     tallest of them pushed most slides onto a second page. Cap the figures
+     by width and let height follow the aspect ratio — the artwork stays
+     undistorted and the type is untouched. */
+  .deck-doc .brief-market-stack,
+  .deck-doc .pd-diagram svg,
+  .deck-doc .deck-chart svg { margin-inline: auto; }
+
+  .deck-doc .brief-market-stack { width: 45%; }
+  .deck-doc .pd-diagram svg { width: 55%; }
+  .deck-doc .deck-chart svg { width: 52%; }
+
+  /* A slide is laid out for a scrollable pane, so at full size its content
+     runs taller than a 16:9 page. One scale factor for every slide keeps the
+     type identical from page to page. */
+  .deck-doc .slide { zoom: 0.8; }
+
+  /* Whatever still has to move to the next page must move whole: a break is
+     only ever allowed between blocks, never through one. */
+  .deck-doc .deck-card,
+  .deck-doc .deck-row,
+  .deck-doc .deck-chart,
+  .deck-doc .deck-col,
+  .deck-doc .pd-diagram,
+  .deck-doc .brief-section,
+  .deck-doc .brief-grid,
+  .deck-doc .brief-metrics,
+  .deck-doc .brief-terms-table { break-inside: avoid; }
+
+  /* Slide 1 carries the whole investor brief and cannot fit one page at a
+     legible size. Break it between its two natural halves — headline plus
+     market picture, then the brief sections — so nothing is dropped and no
+     block is ever split down the middle. */
+  .deck-doc .deck-brief-slide .brief-grid { break-before: page; }
 }
 
 /* =========================================================
@@ -1489,6 +1532,9 @@ a:hover { color: var(--inv-rose); }
 }
 
 /* Product slide diagram: desktop vs mobile variants */
+/* Sizing lives here rather than in a style="" on the SVG, so the print
+   stylesheet can scale the diagram down to fit a page. */
+.pd-diagram svg { width: 100%; height: auto; display: block; }
 .pd-diagram--mobile { display: none; }
 @media (max-width: 640px) {
   .pd-diagram--desktop { display: none; }
