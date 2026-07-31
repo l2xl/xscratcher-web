@@ -1,0 +1,90 @@
+/* =========================================================
+   Pitch deck — single-slide print documents
+   =========================================================
+   Loaded on top of investor.css by the standalone slide documents in this
+   folder (slide-01.html … slide-12.html). Each of those documents holds one
+   deck slide and is meant to be printed as exactly one sheet.
+
+   The deck's own print block in investor.css flattens every slide into a
+   text-flow page (display:block, 9pt root). Here we put the desktop-browser
+   presentation back: the slide keeps its flex layout, its on-screen type
+   scale, and stretches over the full sheet edge to edge.
+   ========================================================= */
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+/* --- sheet-filling slide ------------------------------------------------ */
+
+/* Extra magnification on top of the print scale, set by the build script on
+   slides whose layout has already run out of reflow but still leave paper
+   empty. 1 = the slide is printed exactly as the browser lays it out. */
+:root { --print-zoom: 1; }
+
+html { overflow-x: clip; }
+
+body {
+  min-height: 0;
+  display: block;
+  background-color: var(--inv-bg);
+  zoom: var(--print-zoom);
+}
+
+.inv-wrapper { display: block; }
+
+/* Undo the fixed-height scroll pane: nothing scrolls here, the sheet is the
+   viewport. */
+.deck-doc { height: auto; display: block; }
+.deck-doc .inv-doc-body {
+  flex: none;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  scroll-snap-type: none;
+  padding-block: 0;
+}
+.deck-stage { height: auto; overflow: visible; }
+
+/* One slide == one sheet: fill the page height so the layout spreads over the
+   whole sheet instead of sitting in the top corner. */
+.deck-doc .slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* one slide == one sheet; the zoom does not apply to viewport units, so
+     the sheet height has to be brought back into the zoomed coordinates */
+  min-height: calc(100vh / var(--print-zoom));
+  scroll-snap-align: none;
+  animation: none;
+}
+
+/* Nothing scrolls sideways on paper. The wide tables carry a min-width and a
+   swipe hint so a phone can pan them; on a sheet that would simply cut the
+   right-hand columns off, so let them reflow to the page width instead. */
+.deck-compare-wrap,
+.deck-table-wrap { overflow: visible; }
+.deck-compare { min-width: 0; }
+.deck-compare tbody th { white-space: normal; }
+.deck-scroll-hint { display: none; }
+
+/* --- print ------------------------------------------------------------- */
+
+@media print {
+  /* Keep the desktop type scale — investor.css drops the root to 9pt for the
+     flowing-document print, which is not what a slide sheet wants. */
+  html { font-size: clamp(0.95rem, 0.88rem + 0.25vw, 1.06rem); }
+
+  body { background-color: var(--inv-bg) !important; }
+
+  .deck-doc .inv-doc-body { padding-block: 0; }
+
+  .deck-doc .slide {
+    display: flex !important;
+    min-height: calc(100vh / var(--print-zoom));
+    break-before: auto;
+    break-after: auto;
+    break-inside: auto;
+  }
+}

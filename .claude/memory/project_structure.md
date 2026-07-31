@@ -20,6 +20,13 @@ Self-contained subdirectory for investor relations. Uses its own stylesheet (`in
 | Investor Brief | `investor/index.html` | Open Trader investor brief landing page |
 | Pitch Deck | `investor/pitch-deck.html` | Investor relations pitch deck |
 
+### Printable deck (`investor/print/`, `investor/pitch-deck.pdf`)
+`investor/pitch-deck.pdf` is the deck as a print-ready PDF — one slide per page, A4 portrait.
+It is generated, not hand-made: `tools/build-pitch-deck-pdf.py` splits `investor/pitch-deck.html`
+into one standalone document per slide (`investor/print/slide-NN.html`, styled by
+`investor/print/print-page.css` on top of `investor.css`), prints each as a single page, and
+merges them. Re-run it after editing the deck — never edit the generated files by hand.
+
 ### Investor-local assets (`investor/assets/`)
 - `sci-fi-planet.png` — decorative hero illustration
 - `triple-arrow.png` — icon/graphic used in the deck
