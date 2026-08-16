@@ -186,9 +186,18 @@
     return el.getBoundingClientRect().top + window.pageYOffset - headerH();
   }
 
+  /* Older Safari (< 15.4) ignores the options form of scrollTo entirely —
+     fall back to an instant jump so navigation always works. */
+  var smoothOk = 'scrollBehavior' in document.documentElement.style;
+
   function goTo(n, instant) {
     n = Math.max(1, Math.min(total, n));
-    window.scrollTo({ top: targetY(n - 1), behavior: instant ? 'auto' : 'smooth' });
+    var y = targetY(n - 1);
+    if (smoothOk) {
+      window.scrollTo({ top: y, behavior: instant ? 'auto' : 'smooth' });
+    } else {
+      window.scrollTo(0, y);
+    }
   }
 
   function setCurrent(n) {
