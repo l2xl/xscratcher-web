@@ -17,7 +17,7 @@ Self-contained subdirectory for investor relations. Uses its own stylesheet (`in
 
 | Page | File | Description |
 |---|---|---|
-| Investor Deck | `investor/index.html` | Single-page deck: investor brief (slide 1, with the sci-fi-planet hero) + pitch-deck slides 2–12. Russian mirror: `investor/ru/index.html`. |
+| Investor Deck | `investor/index.html` | Single-page deck: investor brief (slide 1) + pitch-deck slides 2–12. Russian mirror: `investor/ru/index.html`. |
 
 There is deliberately NO separate brief page and NO `pitch-deck.html` — the brief exists only once, as slide 1 of the deck (it used to be duplicated across two files and drifted).
 
@@ -27,7 +27,7 @@ There is deliberately NO separate brief page and NO `pitch-deck.html` — the br
 To add/remove/reorder slides: edit only the `<section class="slide" id="slide-N" data-nav="Title">` markup — nav, transitions and counters adapt automatically. Keep EN (`investor/index.html`) and RU (`investor/ru/index.html`) in sync.
 
 ### Investor-local assets (`investor/assets/`)
-- `sci-fi-planet.png` — decorative hero illustration (slide 1 background)
+- `sci-fi-planet.png` — global fixed viewport backdrop behind all deck pages
 - `spiral-galaxy.png` — market-opportunity artwork (slide 1)
 - `x-fighter.png` — illustration used in the deck
 - `triple-arrow.png` — icon/graphic used in the deck
