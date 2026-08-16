@@ -985,19 +985,19 @@ a:hover { color: var(--inv-rose); }
 
 /* --- slide stage --- */
 .deck-stage { position: relative; overflow-x: clip; }
-/* Every slide is a full-screen page (svh, not dvh, so mobile URL-bar
-   collapse doesn't resize every page mid-scroll), top-aligned and
-   transparent so the fixed planet backdrop shows through them all;
-   transitions read as a pure dissolve between pages over it. deck.js
+/* Every slide is exactly as tall as its content plus a viewport-relative
+   breathing gap below (10svh scales with any screen factor) — the next
+   page enters right after this page's content end, not from the window
+   bottom. Slides are transparent so the fixed planet backdrop shows
+   through them all; transitions read as a pure dissolve over it. deck.js
    assigns rising z-indexes so incoming pages overlap outgoing ones. */
 .slide {
   position: relative;
   overflow-wrap: break-word;
-  min-height: calc(100svh - var(--inv-header-h));
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding-block: clamp(1rem, 3vh, 2.25rem);
+  padding-top: clamp(1rem, 3vh, 2.25rem);
+  padding-bottom: max(2.5rem, 10svh);
 }
 /* The brief's inline footer drops the doc-level padding it had as a
    direct article child on the old standalone page. */

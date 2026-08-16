@@ -97,9 +97,27 @@
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var engineOn = !reduceMotion &&
     typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
-  var transitions = [];
+  var pins = [];
 
   function zoneH() { return Math.max(1, window.innerHeight - headerH()); }
+
+  /* Flow geometry (pinSpacing:false keeps it constant; during a refresh
+     ScrollTrigger reverts pins before these are re-evaluated).
+     Pages are as tall as their content, so the next page sits in flow
+     right after this page's content end (plus the slide's own bottom
+     padding) — that is exactly where it appears from. A page taller than
+     the view zone scrolls internally first and pins when its bottom edge
+     reaches the window bottom; a shorter one pins as soon as it is the
+     current page, so any further scroll starts its transition. */
+  function docTop(el) {
+    return el.getBoundingClientRect().top +
+      (window.pageYOffset || document.documentElement.scrollTop || 0);
+  }
+  function alignYOf(el) { return docTop(el) - headerH(); }
+  function pinStartOf(el) {
+    return alignYOf(el) + Math.max(0, el.offsetHeight - zoneH());
+  }
+  function transLenOf(el) { return Math.min(zoneH(), el.offsetHeight); }
 
   if (engineOn) {
     gsap.registerPlugin(ScrollTrigger);
@@ -108,30 +126,40 @@
        scrolls during refresh; navigation smooth-scrolls per call instead. */
     document.documentElement.style.scrollBehavior = 'auto';
 
+    /* Every page's opacity is written by this one function, combining the
+       progress of the transition INTO the page and the one OUT of it:
+       fade-in over the middle 90% of the incoming zone, fade-out over the
+       first 70% of the outgoing zone, invisible before it arrives. Being
+       the single writer (driven by pin onUpdate + refresh) makes the state
+       correct for any scroll position — deep links, reverse swipes,
+       resizes — with no tween-ownership conflicts. */
+    function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+    function applyFades() {
+      slides.forEach(function (slide, i) {
+        var aIn = (i > 0 && pins[i - 1]) ?
+          clamp01((pins[i - 1].progress - 0.05) / 0.90) : 1;
+        var aOut = (i < total - 1 && pins[i]) ?
+          1 - clamp01(pins[i].progress / 0.70) : 1;
+        gsap.set(slide, { autoAlpha: Math.min(aIn, aOut) });
+      });
+    }
+
     slides.forEach(function (slide, i) {
       if (i === total - 1) { return; }
-      var next = slides[i + 1];
-      var tl = gsap.timeline({
-        defaults: { ease: 'none' },
-        scrollTrigger: {
-          trigger: slide,
-          start: 'bottom bottom',
-          end: function () { return '+=' + zoneH(); },
-          pin: true,
-          pinSpacing: false,
-          scrub: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true
-        }
+      pins[i] = ScrollTrigger.create({
+        trigger: slide,
+        start: function () { return pinStartOf(slide); },
+        end: function () { return pinStartOf(slide) + transLenOf(slide); },
+        pin: true,
+        pinSpacing: false,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: applyFades
       });
-      /* Outgoing page holds still and dissolves over the first ~70% of the
-         zone; the incoming one is carried up by the document flow itself and
-         only its opacity is scrubbed here. */
-      tl.to(slide, { autoAlpha: 0, duration: 0.7 }, 0)
-        .fromTo(next, { autoAlpha: 0.05 },
-          { autoAlpha: 1, duration: 0.9, immediateRender: false }, 0.05);
-      transitions[i] = tl.scrollTrigger;
     });
+
+    ScrollTrigger.addEventListener('refresh', applyFades);
+    applyFades();
 
     window.addEventListener('load', function () { ScrollTrigger.refresh(); });
 
@@ -153,7 +181,7 @@
      of the transition INTO a slide is exactly that alignment point. */
   function targetY(i) {
     if (i <= 0) { return 0; }
-    if (transitions[i - 1]) { return transitions[i - 1].end; }
+    if (pins[i - 1]) { return pins[i - 1].end; }
     var el = slides[i];
     return el.getBoundingClientRect().top + window.pageYOffset - headerH();
   }
@@ -179,10 +207,12 @@
   }
 
   function currentFromScroll() {
-    var y = window.pageYOffset + zoneH() / 2;
+    var y = window.pageYOffset;
     var n = 1;
     for (var i = 1; i < total; i++) {
-      if (y >= targetY(i)) { n = i + 1; }
+      var half = pins[i - 1] ?
+        (pins[i - 1].end - pins[i - 1].start) / 2 : zoneH() / 2;
+      if (y + half >= targetY(i)) { n = i + 1; }
     }
     return n;
   }
