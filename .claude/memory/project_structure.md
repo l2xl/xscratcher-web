@@ -17,11 +17,19 @@ Self-contained subdirectory for investor relations. Uses its own stylesheet (`in
 
 | Page | File | Description |
 |---|---|---|
-| Investor Brief | `investor/index.html` | Open Trader investor brief landing page |
-| Pitch Deck | `investor/pitch-deck.html` | Investor relations pitch deck |
+| Investor Deck | `investor/index.html` | Single-page deck: investor brief (slide 1, with the sci-fi-planet hero) + pitch-deck slides 2–12. Russian mirror: `investor/ru/index.html`. |
+
+There is deliberately NO separate brief page and NO `pitch-deck.html` — the brief exists only once, as slide 1 of the deck (it used to be duplicated across two files and drifted).
+
+### Deck engine (`investor/deck.js` + `investor/vendor/`)
+`deck.js` is a content-agnostic pinned cross-fade transition engine shared by all deck language versions. It discovers `.deck-stage .slide` sections at runtime (any count/content), builds the sidebar + mobile nav from each section's `data-nav` attribute, and drives the footer counter/progress/Prev-Next. Per page: scroll natively until the page bottom is on screen → the page pins and fades out while the next page rises from below, fading in (scrubbed by real scroll position; wheel/touch keep native physics). Powered by vendored GSAP + ScrollTrigger (`investor/vendor/gsap.min.js`, `investor/vendor/ScrollTrigger.min.js` — free license, self-hosted, no CDN). Falls back to a plain stacked scrolling document without JS or under `prefers-reduced-motion`; print CSS + beforeprint handler neutralize the engine so PDF export prints one slide per page.
+
+To add/remove/reorder slides: edit only the `<section class="slide" id="slide-N" data-nav="Title">` markup — nav, transitions and counters adapt automatically. Keep EN (`investor/index.html`) and RU (`investor/ru/index.html`) in sync.
 
 ### Investor-local assets (`investor/assets/`)
-- `sci-fi-planet.png` — decorative hero illustration
+- `sci-fi-planet.png` — decorative hero illustration (slide 1 background)
+- `spiral-galaxy.png` — market-opportunity artwork (slide 1)
+- `x-fighter.png` — illustration used in the deck
 - `triple-arrow.png` — icon/graphic used in the deck
 - `x-logo.png` — Open Trader logo
 

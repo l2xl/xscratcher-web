@@ -429,8 +429,14 @@ a:hover { color: var(--inv-rose); }
   padding: 0.25em 0.85em;
 }
 
+/* Decorative planet, slide-local: anchored to the top-right of the page
+   (slide) that carries it, so it scrolls and fades away with that page.
+   The page's content is lifted above it (as the old standalone brief did
+   via the body's z-index), keeping the text readable over the artwork. */
+.deck-brief-slide > * { position: relative; z-index: 1; }
+.deck-brief-slide > .brief-planet { z-index: 0; }
 .brief-planet {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   width: max(82vw, 32rem);
@@ -918,40 +924,36 @@ a:hover { color: var(--inv-rose); }
   .brief-metrics { break-inside: avoid; }
   .brief-section { box-shadow: none; }
 
-  /* deck: undo the fixed-height scroll pane; print every slide, one per page */
-  .deck-doc { height: auto; display: block; }
-  .deck-doc .inv-doc-body { overflow: visible; height: auto; scroll-snap-type: none; }
-  .deck-stage { height: auto; }
-  .slide { display: block !important; min-height: 0; break-after: page; }
+  /* deck: neutralise the transition engine (deck.js also reverts it on
+     beforeprint — these are the CSS belt to that suspender); print every
+     slide, one per page */
+  .slide {
+    display: block !important;
+    min-height: 0;
+    break-after: page;
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    background: none;
+  }
+  .pin-spacer { position: static !important; }
+  .deck-doc-footer { position: static; }
   .deck-footer-nav { display: none !important; }
 }
 
 /* =========================================================
    Pitch deck — slide presentation
    ========================================================= */
-/* The deck reads as a vertical, scroll-snapping presentation: the document
-   turns into a fixed-height pane (brand header + scrolling body + footer nav)
-   and the body scrolls internally, snapping each slide into view. */
-.deck-doc {
-  display: flex;
-  flex-direction: column;
-  height: calc(100dvh - var(--inv-header-h));
-}
-.deck-doc .deck-doc-footer { flex-shrink: 0; }
-/* Give the deck more room: drop the branding strip on top. The
-   copyright/contacts now live on the final (The Ask) slide instead of a
-   footer band; the site header (nav) and Prev/Next controls stay. */
-.deck-doc .inv-doc-header { display: none; }
+/* The deck is a plain vertically stacked document; deck.js (GSAP
+   ScrollTrigger) layers the pinned cross-fade page transitions on top.
+   The root scroller drives everything — the one model that behaves
+   natively for wheel, trackpad and touch on every platform. Without
+   JS (or under prefers-reduced-motion) it stays a readable document. */
+.deck-doc { display: block; }
 .deck-doc .inv-doc-body {
-  flex: 1 1 auto;
-  min-height: 0;
   padding-top: 0;
   padding-bottom: 0;
-  overflow-y: auto;
-  scroll-snap-type: y proximity;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
 }
 
 /* --- sidebar slide menu --- */
@@ -985,23 +987,22 @@ a:hover { color: var(--inv-rose); }
 .deck-nav-title { line-height: 1.25; }
 
 /* --- slide stage --- */
-.deck-stage { position: relative; overflow-x: clip; height: 100%; }
-/* Every slide is a full-height snap page, stacked vertically. */
+.deck-stage { position: relative; overflow-x: clip; }
+/* Every slide is a full-screen page (svh, not dvh, so mobile URL-bar
+   collapse doesn't resize every page mid-scroll). Each carries an opaque
+   page-colour background: during a transition the incoming page
+   progressively covers the pinned outgoing one, and the planet's
+   mix-blend-mode keeps blending against the cream tone it was tuned for.
+   deck.js assigns rising z-indexes so incoming pages overlap outgoing. */
 .slide {
+  position: relative;
   overflow-wrap: break-word;
-  min-height: 100%;
+  min-height: calc(100svh - var(--inv-header-h));
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-block: clamp(1rem, 3vh, 2.25rem);
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-/* Soft entrance when a slide becomes the current one in view. */
-.slide.active { animation: deck-fade 0.4s ease; }
-@keyframes deck-fade {
-  from { opacity: 0.35; transform: translateY(8px); }
-  to   { opacity: 1; transform: none; }
+  background: var(--inv-bg);
 }
 
 .slide-head { margin-bottom: 0.6rem; }
@@ -1041,10 +1042,16 @@ a:hover { color: var(--inv-rose); }
 .slide-lead strong { color: var(--inv-text); }
 
 /* --- footer slide controls --- */
+/* Sticks to the viewport bottom while the deck scrolls, settling into its
+   natural flow position at the end of the document. */
 .deck-doc-footer {
   flex-direction: column;
   align-items: stretch;
   gap: 0.8rem;
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  background: var(--inv-bg);
 }
 .deck-footer-meta {
   display: flex;
@@ -1486,49 +1493,6 @@ a:hover { color: var(--inv-rose); }
   .pd-diagram--mobile { display: block; max-width: 26rem; margin: 0 auto; }
 }
 
-/* =========================================================
-   Pitch deck — mobile scroll (Android reliability)
-   =========================================================
-   On desktop the deck lives inside a nested pane sized to
-   `calc(100dvh - header)` that scrolls internally and snaps each slide.
-   On phones that model breaks on Android Chrome: the root document owns the
-   URL-bar hide/show and the first touch-drag, so when the only scrollable
-   area is a nested dvh-sized pane the gesture is consumed by the (no-op)
-   document scroll and the pane never moves — the deck reads as frozen.
-   Here we unwrap the pane so the whole document scrolls (Android always
-   drives the root scroller), and drop scroll-snap: free scrolling is what
-   reliably works on touch. This block sits at end-of-file so it overrides
-   the base deck rules (media queries add no specificity — source order wins).
-   Kept in sync with the JS in pitch-deck.html, which scrolls whichever
-   element is actually scrollable (inner pane on desktop, document here). */
-@media (max-width: 62em) {
-  .deck-doc { height: auto; display: block; }
-  .deck-doc .inv-doc-body {
-    overflow: visible;
-    height: auto;
-    min-height: 0;
-    scroll-snap-type: none;
-    -webkit-overflow-scrolling: auto;
-    overscroll-behavior: auto;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-  .deck-doc .deck-stage { height: auto; }
-  .deck-doc .slide {
-    /* full-screen feel without the dvh trap: svh never exceeds the smallest
-       viewport, so slides don't overflow and the document scrolls smoothly */
-    min-height: calc(100svh - var(--inv-header-h));
-    justify-content: flex-start;   /* tall slides (e.g. the brief) start at the top, not centered off-screen */
-    scroll-snap-align: none;
-    scroll-snap-stop: normal;
-    scroll-margin-top: var(--inv-header-h);
-  }
-  /* Keep Prev / Next / progress reachable while the page scrolls */
-  .deck-doc .deck-doc-footer {
-    position: sticky;
-    bottom: 0;
-    background: var(--inv-bg);
-    border-top: 1px solid var(--inv-border);
-    z-index: 100;
-  }
-}
+/* The deck previously needed a mobile-only override block here (nested
+   scroll pane vs Android root-scroller); the document-scroll model above
+   works identically on all platforms, so no per-device fork remains. */
