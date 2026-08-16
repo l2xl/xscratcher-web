@@ -101,6 +101,15 @@
 
   function zoneH() { return Math.max(1, window.innerHeight - headerH()); }
 
+  /* A slide may declare data-backdrop="<selector>" naming an element that
+     lives outside the slide (e.g. a viewport-fixed artwork like the brief's
+     planet). The engine fades that element in lock-step with the slide's
+     own transitions, so it appears only while its slide is current. */
+  function backdropOf(slide) {
+    var sel = slide.getAttribute('data-backdrop');
+    return (sel && document.querySelector(sel)) || null;
+  }
+
   if (engineOn) {
     gsap.registerPlugin(ScrollTrigger);
     ScrollTrigger.config({ ignoreMobileResize: true });
@@ -126,9 +135,14 @@
       });
       /* Outgoing page holds still and dissolves over the first ~70% of the
          zone; the incoming one is carried up by the document flow itself and
-         only its opacity is scrubbed here. */
-      tl.to(slide, { autoAlpha: 0, duration: 0.7 }, 0)
-        .fromTo(next, { autoAlpha: 0.05 },
+         only its opacity is scrubbed here. Declared backdrops ride along. */
+      var outTargets = [slide], inTargets = [next];
+      var outBd = backdropOf(slide);
+      var inBd = backdropOf(next);
+      if (outBd) { outTargets.push(outBd); }
+      if (inBd) { inTargets.push(inBd); }
+      tl.to(outTargets, { autoAlpha: 0, duration: 0.7 }, 0)
+        .fromTo(inTargets, { autoAlpha: 0.05 },
           { autoAlpha: 1, duration: 0.9, immediateRender: false }, 0.05);
       transitions[i] = tl.scrollTrigger;
     });

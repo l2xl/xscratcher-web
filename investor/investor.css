@@ -429,14 +429,12 @@ a:hover { color: var(--inv-rose); }
   padding: 0.25em 0.85em;
 }
 
-/* Decorative planet, slide-local: anchored to the top-right of the page
-   (slide) that carries it, so it scrolls and fades away with that page.
-   The page's content is lifted above it (as the old standalone brief did
-   via the body's z-index), keeping the text readable over the artwork. */
-.deck-brief-slide > * { position: relative; z-index: 1; }
-.deck-brief-slide > .brief-planet { z-index: 0; }
+/* Decorative planet: fixed to the viewport top-right — identical to the
+   original standalone brief, holding its place while page 1 scrolls
+   (body content stays above it via .inv-doc-body's z-index). deck.js
+   fades it out with page 1's exit transition (data-backdrop hook). */
 .brief-planet {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   width: max(82vw, 32rem);
@@ -1004,6 +1002,12 @@ a:hover { color: var(--inv-rose); }
   padding-block: clamp(1rem, 3vh, 2.25rem);
   background: var(--inv-bg);
 }
+/* Page 1 (the brief) keeps the original standalone page's transparent
+   background: the viewport-fixed planet sits below the body's z-index
+   and must show through it. Its inline footer drops the doc-level
+   padding it had as a direct article child. */
+.deck-brief-slide { background: transparent; }
+.deck-brief-slide .inv-doc-footer { padding-inline: 0; }
 
 .slide-head { margin-bottom: 0.6rem; }
 .slide-kicker {
