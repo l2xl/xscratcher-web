@@ -126,6 +126,25 @@
        scrolls during refresh; navigation smooth-scrolls per call instead. */
     document.documentElement.style.scrollBehavior = 'auto';
 
+    /* On a tall window the document can end before the last page's
+       transition zone does — there is nothing left to scroll, so the last
+       page would hang at the window bottom stuck mid-fade. This spacer
+       extends the document exactly enough for the maximum scroll offset
+       to reach the last page's aligned position. Sized on refreshInit so
+       every refresh measures against the corrected geometry. */
+    var endSpacer = document.createElement('div');
+    endSpacer.className = 'deck-end-spacer print-hide';
+    endSpacer.setAttribute('aria-hidden', 'true');
+    stage.appendChild(endSpacer);
+    function sizeEndSpacer() {
+      endSpacer.style.height = '0px';
+      var lack = alignYOf(slides[total - 1]) + window.innerHeight -
+        document.documentElement.scrollHeight;
+      endSpacer.style.height = Math.max(0, Math.ceil(lack)) + 'px';
+    }
+    ScrollTrigger.addEventListener('refreshInit', sizeEndSpacer);
+    sizeEndSpacer();
+
     /* Every page's opacity is written by this one function, combining the
        progress of the transition INTO the page and the one OUT of it:
        fade-in over the middle 90% of the incoming zone, fade-out over the
@@ -158,7 +177,25 @@
       });
     });
 
-    ScrollTrigger.addEventListener('refresh', applyFades);
+    /* Every pin's start/end depends on the view-zone height, so a vertical
+       resize moves all of them while the scroll offset stays put — the same
+       offset suddenly lands mid-transition elsewhere and pages appear to
+       flip on their own. Re-anchor after each refresh: keep the current
+       page aligned, preserving any in-page scroll it had (clamped to the
+       page's own scrollable extent under the new geometry). Both snapshot
+       and restore use targetY(), so each side is consistent with its own
+       generation of pin positions. */
+    var keepN = current, keepDy = 0;
+    ScrollTrigger.addEventListener('refreshInit', function () {
+      keepN = current;
+      keepDy = (window.pageYOffset || 0) - targetY(keepN - 1);
+    });
+    ScrollTrigger.addEventListener('refresh', function () {
+      applyFades();
+      var inPage = Math.max(0, slides[keepN - 1].offsetHeight - zoneH());
+      window.scrollTo(0, targetY(keepN - 1) +
+        Math.max(0, Math.min(keepDy, inPage)));
+    });
     applyFades();
 
     window.addEventListener('load', function () { ScrollTrigger.refresh(); });
