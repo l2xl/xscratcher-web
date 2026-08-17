@@ -309,6 +309,48 @@
       ScrollTrigger.getAll().forEach(function (t) { t.enable(); });
       ScrollTrigger.refresh();
     });
+  } else if (stage.getAttribute('data-flyer')) {
+    /* Engine off (no GSAP, or prefers-reduced-motion): the deck is a
+       plain stacked document — still place a static ship in every page
+       gap (plus the trailing one) so the visual language survives. The
+       reduced-motion media rule already stops the CSS waggle when that
+       is the reason the engine is off. */
+    (function () {
+      var src = stage.getAttribute('data-flyer');
+      var els = [];
+      for (var i = 1; i <= total; i++) {
+        var wrap = document.createElement('div');
+        wrap.className = 'deck-flyer print-hide';
+        wrap.setAttribute('aria-hidden', 'true');
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = '';
+        wrap.appendChild(img);
+        stage.appendChild(wrap);
+        els.push(wrap);
+      }
+      function place() {
+        var stageTop = docTop(stage);
+        els.forEach(function (el, k) {
+          var i = k + 1; /* ship sits above slide i; the last is the tail */
+          var y;
+          if (i < total) {
+            y = docTop(slides[i]) - stageTop -
+              el.offsetHeight - headerH() - 20;
+          } else {
+            var last = slides[total - 1];
+            var pad = parseFloat(getComputedStyle(last).paddingBottom) || 0;
+            y = docTop(last) - stageTop + last.offsetHeight - pad +
+              headerH() + 20;
+          }
+          el.style.top = Math.round(y) + 'px';
+        });
+      }
+      els[0].firstChild.addEventListener('load', place);
+      window.addEventListener('load', place);
+      window.addEventListener('resize', place);
+      place();
+    })();
   }
 
   /* ---- navigation ---- */
