@@ -98,7 +98,6 @@
   var engineOn = !reduceMotion &&
     typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
   var pins = [];
-  var updateShipsRef = null;
 
   function zoneH() { return Math.max(1, window.innerHeight - headerH()); }
 
@@ -196,23 +195,22 @@
        the single writer (driven by pin onUpdate + refresh) makes the state
        correct for any scroll position — deep links, reverse swipes,
        resizes — with no tween-ownership conflicts. */
-    /* Ship visibility is a timed animation, not the scroll scrub: once
-       the current page has fully landed (top of content at the top of
-       the view zone), the NEXT page's ship fades in below it and idles
-       with the CSS "waggle in space" loop. A ship mid-flight (its
-       arrival transition between 0 and 1) always stays visible, so
-       reversals never blank it; every other ship is hidden, so nothing
-       shows through the empty space under a short page on a tall
-       window. */
+    /* One rule: the active page is the one whose arrival transition is
+       complete and whose departure is not, and only the NEXT page's ship
+       is shown. It fades in (then idles with the CSS waggle loop) the
+       moment the active page reaches its default position, stays shown
+       through its whole flight — it is still the not-yet-arrived next
+       page — and once it lands it is above the top window border and
+       the rule moves on to the following ship. Every other ship is
+       hidden, so no two ships are ever on screen. */
     var shipShown = [];
     function updateShips() {
-      var cur0 = current - 1;
-      var arrived = cur0 === 0 ||
-        (pins[cur0 - 1] && pins[cur0 - 1].progress >= 1);
+      var active = total - 1;
+      for (var p = 0; p < pins.length; p++) {
+        if (pins[p] && pins[p].progress < 1) { active = p; break; }
+      }
       flyers.forEach(function (el, i) {
-        var pin = i > 0 ? pins[i - 1] : null;
-        var flying = pin && pin.progress > 0 && pin.progress < 1;
-        var show = flying || (i === cur0 + 1 && arrived);
+        var show = (i === active + 1);
         if (show === !!shipShown[i]) { return; }
         shipShown[i] = show;
         gsap.killTweensOf(el);
@@ -221,7 +219,6 @@
           { autoAlpha: 0, duration: 0.35, ease: 'power1.out' });
       });
     }
-    updateShipsRef = updateShips;
 
     function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
     function applyFades() {
@@ -345,7 +342,6 @@
     window.requestAnimationFrame(function () {
       ticking = false;
       setCurrent(currentFromScroll());
-      if (updateShipsRef) { updateShipsRef(); }
     });
   }, { passive: true });
 
