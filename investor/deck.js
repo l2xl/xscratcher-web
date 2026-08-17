@@ -147,11 +147,9 @@
        its own page's top border and moves only by native scroll, always
        synchronous with its page. The distance includes the header height,
        so with the page aligned under the header the ship has fully left
-       through the top window border. While the page before it is on
-       screen, the ship shows in that page's breathing gap below; during
-       the transition it leads its rising page over the pinned, fading
-       one. It never fades itself — only binary hidden when neither of
-       its two pages is in play (see applyFades). */
+       through the top window border. Hidden by default, it fades in with
+       its rising page during the transition (sharing the page's opacity,
+       see applyFades), leading it over the pinned, fading one. */
     var flyerSrc = stage.getAttribute('data-flyer');
     var flyers = [];
     if (flyerSrc) {
@@ -204,19 +202,13 @@
       slides.forEach(function (slide, i) {
         gsap.set(slide, { autoAlpha: alphas[i] });
       });
-      /* Ship i never fades — it only scrolls with its page. Shown while
-         the page before it is visible (the ship sits in that page's gap
-         below) or while its own transition (pins[i-1]) is mid-flight;
-         binary hidden otherwise, so ships of pages further down don't
-         show through the empty space under a short page on a tall
-         window, and a landed ship — already fully above the top window
-         border — stays gone. Ship 0 has no page above it to appear
-         under, and page 1 needs no lead-in. */
+      /* Ship i shares its page's opacity: hidden by default, it fades in
+         together with its rising page during the transition and is fully
+         above the top window border by the time the page lands. Ships of
+         pages not in play have alpha 0, so nothing shows through the
+         empty space under a short page on a tall window. */
       flyers.forEach(function (img, i) {
-        var pin = i > 0 ? pins[i - 1] : null;
-        var flying = pin && pin.progress > 0 && pin.progress < 1;
-        var shown = flying || (i > 0 && alphas[i - 1] > 0);
-        gsap.set(img, { autoAlpha: shown ? 1 : 0 });
+        gsap.set(img, { autoAlpha: alphas[i] });
       });
     }
 
