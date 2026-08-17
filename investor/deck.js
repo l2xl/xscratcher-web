@@ -138,9 +138,17 @@
     stage.appendChild(endSpacer);
     function sizeEndSpacer() {
       endSpacer.style.height = '0px';
-      var lack = alignYOf(slides[total - 1]) + window.innerHeight -
-        document.documentElement.scrollHeight;
+      var need = alignYOf(slides[total - 1]) + window.innerHeight;
+      var lack = need - document.documentElement.scrollHeight;
       endSpacer.style.height = Math.max(0, Math.ceil(lack)) + 'px';
+      /* Absolutely-positioned ships can stick out past the flow bottom;
+         where the spacer and that overhang overlap, the first pass
+         under-counts — top up against a fresh measurement. */
+      lack = need - document.documentElement.scrollHeight;
+      if (lack > 0) {
+        endSpacer.style.height =
+          (parseFloat(endSpacer.style.height) + Math.ceil(lack)) + 'px';
+      }
     }
     /* Page starship (the stage's data-flyer attribute): every page IS
        "starship, then content" — the ship rides a fixed distance above
@@ -167,6 +175,14 @@
         gsap.set(wrap, { autoAlpha: 0 });
         flyers.push(wrap);
       });
+      /* One extra ship after the last page — the "fake empty next page"
+         with nothing but its starship, so the last real page also gets a
+         ship idling below. The active-page rule shows it (flyers[total])
+         exactly while the last page is active. */
+      var tail = flyers[0].cloneNode(true);
+      stage.appendChild(tail);
+      gsap.set(tail, { autoAlpha: 0 });
+      flyers.push(tail);
       flyers[0].firstChild.addEventListener('load', function () { ScrollTrigger.refresh(); });
     }
     /* Stage-relative via document rects: ScrollTrigger wraps pinned
@@ -174,10 +190,20 @@
     function placeFlyers() {
       var lead = 20;
       var stageTop = docTop(stage);
-      flyers.forEach(function (img, i) {
-        var y = docTop(slides[i]) - stageTop -
-          img.offsetHeight - headerH() - lead;
-        img.style.top = Math.round(y) + 'px';
+      flyers.forEach(function (el, i) {
+        var y;
+        if (i < total) {
+          y = docTop(slides[i]) - stageTop -
+            el.offsetHeight - headerH() - lead;
+        } else {
+          /* Trailing ship: below the last page's content, at the same
+             content-to-ship distance every other gap uses. */
+          var last = slides[total - 1];
+          var pad = parseFloat(getComputedStyle(last).paddingBottom) || 0;
+          y = docTop(last) - stageTop + last.offsetHeight - pad +
+            headerH() + lead;
+        }
+        el.style.top = Math.round(y) + 'px';
       });
     }
 
@@ -205,9 +231,11 @@
        hidden, so no two ships are ever on screen. */
     var shipShown = [];
     function updateShips() {
+      /* "Arrived" tolerates the 2px goTo undershoot (see goTo): anything
+         past 99% of a transition counts as landed. */
       var active = total - 1;
       for (var p = 0; p < pins.length; p++) {
-        if (pins[p] && pins[p].progress < 1) { active = p; break; }
+        if (pins[p] && pins[p].progress < 0.99) { active = p; break; }
       }
       flyers.forEach(function (el, i) {
         var show = (i === active + 1);
@@ -301,7 +329,12 @@
 
   function goTo(n, instant) {
     n = Math.max(1, Math.min(total, n));
-    var y = targetY(n - 1);
+    /* Land 2px short of the alignment point: for short pages that exact
+       pixel is also where their own departure pin starts, and settling
+       on the shared boundary lets sub-pixel scroll flutter (fractional
+       DPI scaling) toggle the pin on/off — a visible shake instead of a
+       clean stop. */
+    var y = Math.max(0, targetY(n - 1) - 2);
     if (smoothOk) {
       window.scrollTo({ top: y, behavior: instant ? 'auto' : 'smooth' });
     } else {
