@@ -15,9 +15,8 @@
    ScrollTrigger), so wheel, trackpad and touch all keep native
    physics and every transition is reversible mid-gesture.
 
-   Also generates the slide nav (sidebar + mobile header dropdown)
-   from each section's data-nav attribute, and drives the footer
-   counter / progress bar / Prev-Next buttons.
+   Also generates the slide nav (desktop sidebar) from each
+   section's data-nav attribute.
 
    Fallbacks: without GSAP, or under prefers-reduced-motion, the
    deck is a plain vertically stacked document — everything stays
@@ -32,14 +31,6 @@
 
   var header = document.querySelector('.inv-header');
   var sidebarNav = document.getElementById('deck-nav');
-  var headerList = document.getElementById('inv-nav-list');
-  var counter = document.getElementById('deck-counter');
-  var progress = document.getElementById('deck-progress');
-  var prevBtn = document.getElementById('deck-prev');
-  var nextBtn = document.getElementById('deck-next');
-  var navToggle = document.querySelector('.inv-nav-toggle');
-  var toggleLabel = document.querySelector('.inv-nav-toggle-label');
-  var slideWord = (document.documentElement.lang || 'en').indexOf('ru') === 0 ? 'Слайд' : 'Slide';
 
   var total = slides.length;
   var current = 1;
@@ -68,7 +59,6 @@
       li.appendChild(a);
       sidebarNav.appendChild(li);
     });
-    if (headerList) { headerList.innerHTML = sidebarNav.innerHTML; }
   }
 
   /* Later slides overlap earlier ones while they rise in. */
@@ -78,20 +68,6 @@
     el.textContent = String(new Date().getFullYear());
   });
 
-  /* ---- mobile header dropdown ---- */
-  if (navToggle) {
-    navToggle.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var open = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', String(!open));
-    });
-    document.addEventListener('click', function () {
-      if (navToggle.getAttribute('aria-expanded') === 'true') {
-        navToggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
-
   /* ---- transition engine ---- */
   var reduceMotion = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -99,7 +75,32 @@
     typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
   var pins = [];
 
-  function zoneH() { return Math.max(1, window.innerHeight - headerH()); }
+  /* Stable viewport heights, measured (not hardcoded) from the CSS
+     small/large viewport units via hidden probe elements. On phones
+     window.innerHeight swings with the browser chrome (URL bar) in the
+     middle of a scroll, which silently invalidates any geometry derived
+     from it — the historical cause of ships appearing over content or
+     not at all. The probes give fixed, screen-derived values: svh for
+     the view zone (chrome visible — nothing ever hides behind the URL
+     bar), lvh for the end spacer (the document must stay reachable at
+     maximum scroll). Falls back to innerHeight where the units are
+     unsupported (those browsers have static chrome). */
+  var vhProbes = null;
+  if (window.CSS && CSS.supports && CSS.supports('height', '100svh')) {
+    vhProbes = {};
+    ['svh', 'lvh'].forEach(function (unit) {
+      var el = document.createElement('div');
+      el.setAttribute('aria-hidden', 'true');
+      el.style.cssText = 'position:fixed;top:0;left:0;width:0;' +
+        'height:100' + unit + ';pointer-events:none;visibility:hidden;';
+      document.body.appendChild(el);
+      vhProbes[unit] = el;
+    });
+  }
+  function svH() { return vhProbes ? vhProbes.svh.offsetHeight : window.innerHeight; }
+  function lvH() { return vhProbes ? vhProbes.lvh.offsetHeight : window.innerHeight; }
+
+  function zoneH() { return Math.max(1, svH() - headerH()); }
 
   /* Flow geometry (pinSpacing:false keeps it constant; during a refresh
      ScrollTrigger reverts pins before these are re-evaluated).
@@ -121,6 +122,11 @@
 
   if (engineOn) {
     gsap.registerPlugin(ScrollTrigger);
+    /* Mobile URL-bar show/hide fires resize events mid-scroll; refreshing
+       on them would visibly re-anchor the page under the user's finger.
+       Safe to ignore: no geometry here depends on window.innerHeight —
+       everything derives from the svh/lvh probes, which those resizes
+       don't change. */
     ScrollTrigger.config({ ignoreMobileResize: true });
     /* CSS smooth scrolling would animate ScrollTrigger's own measurement
        scrolls during refresh; navigation smooth-scrolls per call instead. */
@@ -138,7 +144,7 @@
     stage.appendChild(endSpacer);
     function sizeEndSpacer() {
       endSpacer.style.height = '0px';
-      var need = alignYOf(slides[total - 1]) + window.innerHeight;
+      var need = alignYOf(slides[total - 1]) + lvH();
       var lack = need - document.documentElement.scrollHeight;
       endSpacer.style.height = Math.max(0, Math.ceil(lack)) + 'px';
       /* Absolutely-positioned ships can stick out past the flow bottom;
@@ -183,18 +189,52 @@
       stage.appendChild(tail);
       gsap.set(tail, { autoAlpha: 0 });
       flyers.push(tail);
-      flyers[0].firstChild.addEventListener('load', function () { ScrollTrigger.refresh(); });
+      /* Until the image loads its box is 0 high and every measurement
+         below is wrong — remeasure once real dimensions exist. Checking
+         `complete` first: a cached image may never fire `load` after
+         this listener attaches. */
+      var img0 = flyers[0].firstChild;
+      if (!img0.complete) {
+        img0.addEventListener('load', function () { ScrollTrigger.refresh(); });
+      }
     }
+
+    /* All flyer geometry is measured, never assumed: the ship's height
+       comes from its CSS-resolved width times the image's natural aspect
+       ratio (correct even before first paint), and the clearance around
+       it scales with the actual view zone. */
+    function shipH() {
+      if (!flyers.length) { return 0; }
+      var img = flyers[0].firstChild;
+      if (img.naturalWidth > 0) {
+        return flyers[0].offsetWidth * img.naturalHeight / img.naturalWidth;
+      }
+      return flyers[0].offsetHeight;
+    }
+    function shipLead() { return zoneH() * 0.03; }
+
+    /* The breathing gap below each page hosts the NEXT page's ship plus
+       symmetric clearance (header + lead on both sides of the ship, see
+       placeFlyers). Published as a custom property so the CSS padding
+       and the JS ship placement share one measured source of truth —
+       the stylesheet keeps only a JS-free fallback gap. */
+    function sizeSlideGaps() {
+      if (!flyers.length) { return; }
+      var gap = 2 * (headerH() + shipLead()) + shipH();
+      stage.style.setProperty('--deck-flyer-gap', Math.round(gap) + 'px');
+    }
+
     /* Stage-relative via document rects: ScrollTrigger wraps pinned
        slides in pin-spacer divs, so slide offsetTop is useless here. */
     function placeFlyers() {
-      var lead = 20;
+      if (!flyers.length) { return; }
+      var lead = shipLead();
+      var h = shipH();
       var stageTop = docTop(stage);
       flyers.forEach(function (el, i) {
         var y;
         if (i < total) {
-          y = docTop(slides[i]) - stageTop -
-            el.offsetHeight - headerH() - lead;
+          y = docTop(slides[i]) - stageTop - h - headerH() - lead;
         } else {
           /* Trailing ship: below the last page's content, at the same
              content-to-ship distance every other gap uses. */
@@ -208,9 +248,11 @@
     }
 
     ScrollTrigger.addEventListener('refreshInit', function () {
+      sizeSlideGaps();
       placeFlyers();
       sizeEndSpacer();
     });
+    sizeSlideGaps();
     placeFlyers();
     sizeEndSpacer();
 
@@ -350,11 +392,6 @@
       a.classList.toggle('active', Number(a.getAttribute('data-slide')) === n);
     });
     slides.forEach(function (s, i) { s.classList.toggle('active', (i + 1) === n); });
-    if (counter) { counter.textContent = pad(n) + ' / ' + pad(total); }
-    if (progress) { progress.style.width = (n / total * 100) + '%'; }
-    if (toggleLabel) { toggleLabel.textContent = slideWord + ' ' + n + ' · ' + navTitle(n - 1); }
-    if (prevBtn) { prevBtn.disabled = (n === 1); }
-    if (nextBtn) { nextBtn.disabled = (n === total); }
   }
 
   function currentFromScroll() {
@@ -389,9 +426,6 @@
     goTo(n);
   });
 
-  if (prevBtn) { prevBtn.addEventListener('click', function () { goTo(current - 1); }); }
-  if (nextBtn) { nextBtn.addEventListener('click', function () { goTo(current + 1); }); }
-
   document.addEventListener('keydown', function (e) {
     if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) { return; }
     var t = e.target;
@@ -412,6 +446,4 @@
   window.addEventListener('load', function () { jumpToHash(); });
 
   setCurrent(currentFromScroll() || 1);
-  prevBtn && (prevBtn.disabled = (current === 1));
-  nextBtn && (nextBtn.disabled = (current === total));
 })();

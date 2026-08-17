@@ -126,9 +126,6 @@ a:hover { color: var(--inv-rose); }
 }
 .inv-back-link:hover { color: var(--inv-muted); }
 
-/* Header-mounted section nav (mobile only) */
-.inv-header-nav { display: none; }
-
 .inv-wrapper {
   flex: 1;
   display: flex;
@@ -183,34 +180,6 @@ a:hover { color: var(--inv-rose); }
   flex-shrink: 0;
   line-height: 1;
   opacity: 0.75;
-}
-
-.inv-nav-toggle {
-  display: none;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.4rem 0.7rem;
-  background: var(--inv-surface);
-  border: 1px solid var(--inv-border);
-  border-radius: var(--inv-radius);
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--inv-text);
-  cursor: pointer;
-  gap: 0.5rem;
-  white-space: nowrap;
-  transition: background var(--inv-transition);
-}
-.inv-nav-toggle:hover { background: var(--inv-champagne); }
-.inv-nav-toggle-label { flex: 1; text-align: left; }
-.inv-nav-toggle-caret {
-  font-size: 0.65rem;
-  color: var(--inv-muted);
-  transition: transform var(--inv-transition);
-}
-.inv-nav-toggle[aria-expanded="true"] .inv-nav-toggle-caret {
-  transform: rotate(180deg);
 }
 
 .inv-right-space {
@@ -829,32 +798,6 @@ a:hover { color: var(--inv-rose); }
   /* Free room in the header strip */
   .inv-header-label { display: none; }
 
-  /* Header-mounted nav container (anchor for the absolute dropdown) */
-  .inv-header-nav {
-    display: block;
-    position: relative;
-    flex-shrink: 0;
-  }
-
-  .inv-nav-toggle { display: flex; min-width: 8.5rem; }
-
-  /* Dropdown panel, anchored to the toggle, opens downward from the header */
-  .inv-nav--header {
-    display: none;
-    position: absolute;
-    top: calc(100% + 0.4rem);
-    right: 0;
-    min-width: 13rem;
-    background: var(--inv-bg);
-    border: 1px solid var(--inv-border);
-    border-radius: var(--inv-radius);
-    box-shadow: 0 6px 20px rgba(28, 20, 16, 0.12);
-    flex-direction: column;
-    padding: 0.25rem;
-    gap: 0.1rem;
-  }
-  .inv-nav-toggle[aria-expanded="true"] + .inv-nav--header { display: flex; }
-
   /* doc-header stacks brand + (formerly meta) on phones */
   .inv-doc-header {
     flex-direction: column;
@@ -865,12 +808,6 @@ a:hover { color: var(--inv-rose); }
   .inv-doc-footer {
     flex-direction: column;
     align-items: stretch;
-  }
-
-  .deck-footer-meta {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
   }
 
   /* stacked on phones — each part spans the full content width, left-aligned */
@@ -935,8 +872,6 @@ a:hover { color: var(--inv-rose); }
     transform: none !important;
   }
   .pin-spacer { position: static !important; }
-  .deck-doc-footer { position: static; }
-  .deck-footer-nav { display: none !important; }
 }
 
 /* =========================================================
@@ -1033,18 +968,12 @@ a:hover { color: var(--inv-rose); }
   flex-direction: column;
   padding-top: clamp(1rem, 3vh, 2.25rem);
   padding-bottom: 2.5rem; /* fallback where svh is unsupported (Safari < 15.4) */
-  /* The gap also hosts the next page's starship plus its header-height
-     clearance (see .deck-flyer). The formula tracks the ship's height: the
-     image is 45% as tall as wide (800x360, shown at min(800px, 50%)), and
-     percentage padding is width-relative like the ship's own width, so the
-     ship's height is min(360px, 45% x 50% = 22.5%). The header height +
-     20px clearance appears twice so the space between this page's content
-     and the ship equals the space between the ship and its page top. */
-  padding-bottom: max(2.5rem, 10svh, calc(2 * (var(--inv-header-h) + 20px) + min(360px, 22.5%)));
-}
-@media (max-width: 40em) {
-  /* Same clearance formula, for the wider phone ship: 45% x 75% = 33.75%. */
-  .slide { padding-bottom: max(2.5rem, 10svh, calc(2 * (var(--inv-header-h) + 20px) + min(360px, 33.75%))); }
+  /* The gap also hosts the next page's starship plus its clearance.
+     deck.js measures the real ship, header and view zone at runtime and
+     publishes the exact required height as --deck-flyer-gap — no
+     geometry is assumed here. Without JS (or under reduced motion)
+     there are no ships, so the plain breathing gap is all that's kept. */
+  padding-bottom: max(2.5rem, 10svh, var(--deck-flyer-gap, 0px));
 }
 /* No ship follows the last page — keep only the plain breathing gap, so the
    document can't scroll far past the last page's aligned position. */
@@ -1092,23 +1021,6 @@ a:hover { color: var(--inv-rose); }
 }
 .slide-lead strong { color: var(--inv-text); }
 
-/* --- footer slide controls --- */
-/* Sticks to the viewport bottom while the deck scrolls, settling into its
-   natural flow position at the end of the document. */
-.deck-doc-footer {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0.8rem;
-  position: sticky;
-  bottom: 0;
-  z-index: 100;
-  background: var(--inv-bg);
-}
-.deck-footer-meta {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.4rem 1.4rem;
-}
 /* Copyright + contacts strip closing the final (The Ask) slide. Reuses the
    footer note/contact styles: note on the left, contacts on the right. */
 .deck-ask-footer {
@@ -1119,51 +1031,6 @@ a:hover { color: var(--inv-rose); }
   margin-top: 1rem;
   padding-top: 0.7rem;
   border-top: 1px solid var(--inv-border);
-}
-.deck-footer-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  width: 100%;
-}
-.deck-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--inv-text);
-  background: var(--inv-surface);
-  border: 1px solid var(--inv-border);
-  border-radius: var(--inv-radius);
-  padding: 0.4rem 0.9rem;
-  cursor: pointer;
-  transition: background var(--inv-transition), color var(--inv-transition);
-}
-.deck-btn:hover:not(:disabled) { background: var(--inv-champagne); color: var(--inv-accent); }
-.deck-btn:disabled { opacity: 0.35; cursor: default; }
-.deck-progress {
-  flex: 1;
-  height: 4px;
-  background: var(--inv-surface);
-  border-radius: 9999px;
-  overflow: hidden;
-  max-width: 18rem;
-}
-.deck-progress-bar {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, var(--inv-rose), var(--inv-accent));
-  transition: width 0.3s ease;
-}
-.deck-counter {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--inv-muted);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
 }
 
 /* --- generic layout helpers --- */
@@ -1534,7 +1401,6 @@ a:hover { color: var(--inv-rose); }
 @media (max-width: 40em) {
   .deck-grid--2, .deck-grid--3, .deck-grid--4 { grid-template-columns: 1fr; }
   .deck-bullets { columns: 1; }
-  .deck-counter { display: none; }
 }
 
 /* Product slide diagram: desktop vs mobile variants */
