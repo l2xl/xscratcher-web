@@ -142,7 +142,47 @@
         document.documentElement.scrollHeight;
       endSpacer.style.height = Math.max(0, Math.ceil(lack)) + 'px';
     }
-    ScrollTrigger.addEventListener('refreshInit', sizeEndSpacer);
+    /* Page starship (the stage's data-flyer attribute): every page IS
+       "starship, then content" — the ship rides a fixed distance above
+       its own page's top border and moves only by native scroll, always
+       synchronous with its page. The distance includes the header height,
+       so with the page aligned under the header the ship has fully left
+       through the top window border. While the page before it is on
+       screen, the ship shows in that page's breathing gap below; during
+       the transition it leads its rising page over the pinned, fading
+       one. It never fades itself — only binary hidden when neither of
+       its two pages is in play (see applyFades). */
+    var flyerSrc = stage.getAttribute('data-flyer');
+    var flyers = [];
+    if (flyerSrc) {
+      slides.forEach(function () {
+        var img = document.createElement('img');
+        img.className = 'deck-flyer print-hide';
+        img.src = flyerSrc;
+        img.alt = '';
+        img.setAttribute('aria-hidden', 'true');
+        stage.appendChild(img);
+        flyers.push(img);
+      });
+      flyers[0].addEventListener('load', function () { ScrollTrigger.refresh(); });
+    }
+    /* Stage-relative via document rects: ScrollTrigger wraps pinned
+       slides in pin-spacer divs, so slide offsetTop is useless here. */
+    function placeFlyers() {
+      var lead = 20;
+      var stageTop = docTop(stage);
+      flyers.forEach(function (img, i) {
+        var y = docTop(slides[i]) - stageTop -
+          img.offsetHeight - headerH() - lead;
+        img.style.top = Math.round(y) + 'px';
+      });
+    }
+
+    ScrollTrigger.addEventListener('refreshInit', function () {
+      placeFlyers();
+      sizeEndSpacer();
+    });
+    placeFlyers();
     sizeEndSpacer();
 
     /* Every page's opacity is written by this one function, combining the
@@ -154,12 +194,29 @@
        resizes — with no tween-ownership conflicts. */
     function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
     function applyFades() {
-      slides.forEach(function (slide, i) {
+      var alphas = slides.map(function (slide, i) {
         var aIn = (i > 0 && pins[i - 1]) ?
           clamp01((pins[i - 1].progress - 0.05) / 0.90) : 1;
         var aOut = (i < total - 1 && pins[i]) ?
           1 - clamp01(pins[i].progress / 0.70) : 1;
-        gsap.set(slide, { autoAlpha: Math.min(aIn, aOut) });
+        return Math.min(aIn, aOut);
+      });
+      slides.forEach(function (slide, i) {
+        gsap.set(slide, { autoAlpha: alphas[i] });
+      });
+      /* Ship i never fades — it only scrolls with its page. Shown while
+         the page before it is visible (the ship sits in that page's gap
+         below) or while its own transition (pins[i-1]) is mid-flight;
+         binary hidden otherwise, so ships of pages further down don't
+         show through the empty space under a short page on a tall
+         window, and a landed ship — already fully above the top window
+         border — stays gone. Ship 0 has no page above it to appear
+         under, and page 1 needs no lead-in. */
+      flyers.forEach(function (img, i) {
+        var pin = i > 0 ? pins[i - 1] : null;
+        var flying = pin && pin.progress > 0 && pin.progress < 1;
+        var shown = flying || (i > 0 && alphas[i - 1] > 0);
+        gsap.set(img, { autoAlpha: shown ? 1 : 0 });
       });
     }
 
