@@ -1022,12 +1022,14 @@ a:hover { color: var(--inv-rose); }
      clearance (see .deck-flyer). The formula tracks the ship's height: the
      image is 45% as tall as wide (800x360, shown at min(800px, 50%)), and
      percentage padding is width-relative like the ship's own width, so the
-     ship's height is min(360px, 45% x 50% = 22.5%). */
-  padding-bottom: max(2.5rem, 10svh, calc(var(--inv-header-h) + min(360px, 22.5%) + 40px));
+     ship's height is min(360px, 45% x 50% = 22.5%). The header height +
+     20px clearance appears twice so the space between this page's content
+     and the ship equals the space between the ship and its page top. */
+  padding-bottom: max(2.5rem, 10svh, calc(2 * (var(--inv-header-h) + 20px) + min(360px, 22.5%)));
 }
 @media (max-width: 40em) {
   /* Same clearance formula, for the wider phone ship: 45% x 75% = 33.75%. */
-  .slide { padding-bottom: max(2.5rem, 10svh, calc(var(--inv-header-h) + 33.75% + 40px)); }
+  .slide { padding-bottom: max(2.5rem, 10svh, calc(2 * (var(--inv-header-h) + 20px) + min(360px, 33.75%))); }
 }
 /* No ship follows the last page — keep only the plain breathing gap, so the
    document can't scroll far past the last page's aligned position. */
