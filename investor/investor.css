@@ -995,9 +995,9 @@ a:hover { color: var(--inv-rose); }
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  /* Native image size (800px) wherever the column allows — never upscaled,
-     shrunk only when the column is narrower. */
-  width: min(800px, 100%);
+  /* Half the column on PC/tablet, capped at the image's native 800px so it
+     is never upscaled. */
+  width: min(800px, 50%);
   height: auto;
   z-index: 50;
   pointer-events: none;
@@ -1020,10 +1020,10 @@ a:hover { color: var(--inv-rose); }
   padding-bottom: 2.5rem; /* fallback where svh is unsupported (Safari < 15.4) */
   /* The gap also hosts the next page's starship plus its header-height
      clearance (see .deck-flyer). The formula tracks the ship's height: the
-     image is 45% as tall as wide (800x360, shown at min(800px, 100%)), and
+     image is 45% as tall as wide (800x360, shown at min(800px, 50%)), and
      percentage padding is width-relative like the ship's own width, so the
-     ship's height is min(360px, 45%). */
-  padding-bottom: max(2.5rem, 10svh, calc(var(--inv-header-h) + min(360px, 45%) + 40px));
+     ship's height is min(360px, 45% x 50% = 22.5%). */
+  padding-bottom: max(2.5rem, 10svh, calc(var(--inv-header-h) + min(360px, 22.5%) + 40px));
 }
 @media (max-width: 40em) {
   /* Same clearance formula, for the wider phone ship: 45% x 75% = 33.75%. */
