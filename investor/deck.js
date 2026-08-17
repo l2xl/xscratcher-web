@@ -98,6 +98,7 @@
   var engineOn = !reduceMotion &&
     typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
   var pins = [];
+  var updateShipsRef = null;
 
   function zoneH() { return Math.max(1, window.innerHeight - headerH()); }
 
@@ -154,15 +155,20 @@
     var flyers = [];
     if (flyerSrc) {
       slides.forEach(function () {
+        /* Wrapper carries flow position + fade (GSAP); the inner image
+           carries the CSS waggle loop — transforms stay un-conflicted. */
+        var wrap = document.createElement('div');
+        wrap.className = 'deck-flyer print-hide';
+        wrap.setAttribute('aria-hidden', 'true');
         var img = document.createElement('img');
-        img.className = 'deck-flyer print-hide';
         img.src = flyerSrc;
         img.alt = '';
-        img.setAttribute('aria-hidden', 'true');
-        stage.appendChild(img);
-        flyers.push(img);
+        wrap.appendChild(img);
+        stage.appendChild(wrap);
+        gsap.set(wrap, { autoAlpha: 0 });
+        flyers.push(wrap);
       });
-      flyers[0].addEventListener('load', function () { ScrollTrigger.refresh(); });
+      flyers[0].firstChild.addEventListener('load', function () { ScrollTrigger.refresh(); });
     }
     /* Stage-relative via document rects: ScrollTrigger wraps pinned
        slides in pin-spacer divs, so slide offsetTop is useless here. */
@@ -190,6 +196,33 @@
        the single writer (driven by pin onUpdate + refresh) makes the state
        correct for any scroll position — deep links, reverse swipes,
        resizes — with no tween-ownership conflicts. */
+    /* Ship visibility is a timed animation, not the scroll scrub: once
+       the current page has fully landed (top of content at the top of
+       the view zone), the NEXT page's ship fades in below it and idles
+       with the CSS "waggle in space" loop. A ship mid-flight (its
+       arrival transition between 0 and 1) always stays visible, so
+       reversals never blank it; every other ship is hidden, so nothing
+       shows through the empty space under a short page on a tall
+       window. */
+    var shipShown = [];
+    function updateShips() {
+      var cur0 = current - 1;
+      var arrived = cur0 === 0 ||
+        (pins[cur0 - 1] && pins[cur0 - 1].progress >= 1);
+      flyers.forEach(function (el, i) {
+        var pin = i > 0 ? pins[i - 1] : null;
+        var flying = pin && pin.progress > 0 && pin.progress < 1;
+        var show = flying || (i === cur0 + 1 && arrived);
+        if (show === !!shipShown[i]) { return; }
+        shipShown[i] = show;
+        gsap.killTweensOf(el);
+        gsap.to(el, show ?
+          { autoAlpha: 1, duration: 1.2, ease: 'power2.out' } :
+          { autoAlpha: 0, duration: 0.35, ease: 'power1.out' });
+      });
+    }
+    updateShipsRef = updateShips;
+
     function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
     function applyFades() {
       var alphas = slides.map(function (slide, i) {
@@ -202,14 +235,7 @@
       slides.forEach(function (slide, i) {
         gsap.set(slide, { autoAlpha: alphas[i] });
       });
-      /* Ship i shares its page's opacity: hidden by default, it fades in
-         together with its rising page during the transition and is fully
-         above the top window border by the time the page lands. Ships of
-         pages not in play have alpha 0, so nothing shows through the
-         empty space under a short page on a tall window. */
-      flyers.forEach(function (img, i) {
-        gsap.set(img, { autoAlpha: alphas[i] });
-      });
+      updateShips();
     }
 
     slides.forEach(function (slide, i) {
@@ -319,6 +345,7 @@
     window.requestAnimationFrame(function () {
       ticking = false;
       setCurrent(currentFromScroll());
+      if (updateShipsRef) { updateShipsRef(); }
     });
   }, { passive: true });
 

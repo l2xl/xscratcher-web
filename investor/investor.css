@@ -998,12 +998,27 @@ a:hover { color: var(--inv-rose); }
   /* Half the column on PC/tablet, capped at the image's native 800px so it
      is never upscaled. */
   width: min(800px, 50%);
-  height: auto;
   z-index: 50;
   pointer-events: none;
 }
 @media (max-width: 40em) {
   .deck-flyer { width: 75%; }
+}
+/* "Waggle in space" idle: a slow multi-phase drift (bob + sway + slight
+   roll), transform-only so it stays off the layout/paint path. It runs on
+   the inner image while deck.js fades the wrapper, so the two transforms
+   never conflict. */
+.deck-flyer img { width: 100%; height: auto; display: block;
+  animation: deck-flyer-waggle 9s ease-in-out infinite; }
+@keyframes deck-flyer-waggle {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  22%  { transform: translate(6px, -10px) rotate(0.9deg); }
+  48%  { transform: translate(-5px, 4px) rotate(-0.7deg); }
+  74%  { transform: translate(7px, -6px) rotate(0.5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .deck-flyer img { animation: none; }
 }
 /* Every slide is exactly as tall as its content plus a viewport-relative
    breathing gap below (10svh scales with any screen factor) — the next
