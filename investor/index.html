@@ -560,7 +560,7 @@
             </div>
 
             <!-- ===== ROW 1: trade cohorts (ARPAU) | rationale ===== -->
-            <div class="deck-row" style="align-items:flex-start;margin-bottom:0.7rem">
+            <div class="deck-row" style="align-items:stretch;margin-bottom:0.7rem">
               <div class="deck-col" style="flex:1.4 1 360px">
                 <div class="brief-section-title">Three trade cohorts &mdash; unit = the trade &middot; full-fee retail $50&ndash;$50K</div>
                 <div class="deck-table-wrap">
@@ -576,14 +576,10 @@
                 </div>
                 <p class="slide-lead" style="margin:0.35rem 0 0;font-size:0.7rem;color:var(--inv-faint)">ARPAU = trades/mo &times; average ICP trade &times; <strong>0.017%</strong> full take. Base case &mdash; <strong>153 trades/mo</strong> (7.3 per trading day). A <strong>5%</strong> haircut is applied to the top cohort for possible institutional flow &rarr; average trade $2&#8239;666, <strong>ARPAU ~$69/mo</strong>. The size mix is measured on 14 days of tick data (14.5M orders), cross-checked on Binance. Above $50K = institutional, excluded.</p>
               </div>
-              <div class="deck-col" style="flex:1 1 240px">
-                <div class="brief-section-title">Unit = the trade, not the deposit</div>
-                <div class="brief-section">
-                  <div class="brief-section-body" style="font-size:0.79rem">Revenue = <strong>trade size &times; frequency &times; full fee (0.017%)</strong>. We monetize the <strong>$50&ndash;$50K full-fee retail ticket (base fee tier)</strong>. The top cohort <strong>$5K&ndash;$50K is 13.8% of trades but 70% of fees</strong> &mdash; on perp, leverage lifts a retail deposit's notional there, still at full fee. Above $50K = institutional, off-ICP.</div>
-                </div>
-                <div class="deck-stats" style="margin-top:0.5rem;flex-wrap:wrap;gap:0.3rem">
-                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">~88%</div><div class="deck-stat-label">volume is perp</div><div class="deck-stat-sub">measured, 8 exchanges</div></div>
-                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">$29&rarr;$119</div><div class="deck-stat-label">ARPAU spot&rarr;perp, 5&times; leverage</div><div class="deck-stat-sub">same retail trader</div></div>
+              <div class="deck-col" style="flex:1 1 240px;display:flex">
+                <div class="deck-stats" style="flex:1;flex-direction:column;justify-content:center;gap:0.6rem">
+                  <div class="deck-stat" style="flex:0 0 auto;padding:0.8rem 0.9rem"><div class="deck-stat-value" style="font-size:1.35rem">~88%</div><div class="deck-stat-label">volume is perp</div><div class="deck-stat-sub">measured, 8 exchanges</div></div>
+                  <div class="deck-stat" style="flex:0 0 auto;padding:0.8rem 0.9rem"><div class="deck-stat-value" style="font-size:1.35rem">$29&rarr;$119</div><div class="deck-stat-label">ARPAU spot&rarr;perp, 5&times; leverage</div><div class="deck-stat-sub">same retail trader</div></div>
                 </div>
               </div>
             </div>
