@@ -453,69 +453,46 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 6 — ADOPTION FUNNEL (engineers on top) ============ -->
-          <section class="slide" id="slide-6" data-nav="Проникновение">
+          <!-- ============ SLIDE 6 — USER PYRAMID (entry via the OSS audience) ============ -->
+          <section class="slide" id="slide-6" data-nav="Аудитория">
             <div class="slide-head">
-              <div class="slide-kicker">Проникновение</div>
-              <h2 class="slide-title">Инженеры &mdash; верхушка воронки: остальные узнают о нас через них</h2>
-              <p class="slide-lead">Наша воронка перевёрнута: она начинается с <strong>самой узкой и самой требовательной</strong> аудитории и расширяется вниз. Инженеры &mdash; единственный сегмент, способный проверить open-source продукт, просто прочитав его код, и тот сегмент, у которого все остальные трейдеры спрашивают, каким инструментом пользоваться.</p>
+              <div class="slide-kicker">Аудитория</div>
+              <h2 class="slide-title">Вход через OSS-аудиторию &mdash; инженеров open source</h2>
+              <p class="slide-lead">Все категории трейдеров лежат в одной пирамиде. Мы входим не в основание, а в вершину &mdash; через единственный сегмент, способный проверить open-source продукт, просто прочитав его код. Дальше продукт идёт вниз, слой за слоем.</p>
             </div>
-            <div class="deck-row">
-              <div class="deck-col" style="flex:1 1 340px">
-                <div class="deck-chart-title">Как продукт доходит до каждой категории трейдеров</div>
-                <div class="deck-chart">
-                  <svg viewBox="0 0 660 352" role="img" aria-label="Перевёрнутая воронка проникновения: инженеры сверху, более широкие категории трейдеров ниже">
-                    <polygon points="225,24 435,24 480,92 180,92" class="cs-1"/>
-                    <polygon points="170,104 490,104 535,172 125,172" class="cs-2"/>
-                    <polygon points="115,184 545,184 590,252 70,252" class="cs-4"/>
-                    <polygon points="60,264 600,264 645,332 15,332" class="cs-7"/>
+            <div class="deck-chart">
+              <svg viewBox="0 0 900 372" role="img" aria-label="Пирамида пользователей: OSS-инженеры на вершине как точка входа, ниже — алго-трейдеры, retail-трейдеры и все пользователи бирж">
+                <polygon points="350,44 590,44 620,108 320,108" class="cs-1"/>
+                <polygon points="310,114 630,114 660,178 280,178" class="cs-2"/>
+                <polygon points="270,184 670,184 700,248 240,248" class="cs-4"/>
+                <polygon points="230,254 710,254 750,324 190,324" class="cs-7"/>
 
-                    <polyline points="318,94 330,102 342,94" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
-                    <polyline points="318,174 330,182 342,174" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
-                    <polyline points="318,254 330,262 342,254" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
+                <polyline points="458,110 470,118 482,110" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
+                <polyline points="458,180 470,188 482,180" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
+                <polyline points="458,250 470,258 482,250" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
 
-                    <text x="330" y="52"  text-anchor="middle" class="chart-val" style="fill:#fff">Инженеры и OSS-разработчики &middot; 7.5M</text>
-                    <text x="330" y="74"  text-anchor="middle" class="chart-lbl" style="fill:#fff">Читают код &middot; доверяют open source</text>
-                    <text x="330" y="132" text-anchor="middle" class="chart-val" style="fill:#fff">Алго- и бот-трейдеры</text>
-                    <text x="330" y="154" text-anchor="middle" class="chart-lbl" style="fill:#fff">Форкают стратегии &middot; автоматизируют &middot; делятся пресетами</text>
-                    <text x="330" y="212" text-anchor="middle" class="chart-val" style="fill:#fff">Активные retail-трейдеры &middot; 41M</text>
-                    <text x="330" y="234" text-anchor="middle" class="chart-lbl" style="fill:#fff">Приходят за Trader HUD и Trader Assistant</text>
-                    <text x="330" y="292" text-anchor="middle" class="chart-val">Все пользователи CEX &middot; 500M</text>
-                    <text x="330" y="314" text-anchor="middle" class="chart-lbl">Нулевой порог входа &middot; без paywall &middot; приходят последними и самой большой массой</text>
-                  </svg>
-                </div>
-                <ul class="deck-legend row" style="margin-top:0.3rem">
-                  <li><span class="dot bg-1"></span> Плацдарм &middot; SOM ~40K за 3 года</li>
-                  <li><span class="dot bg-2"></span> Ранние последователи</li>
-                  <li><span class="dot bg-4"></span> Ядро SAM</li>
-                </ul>
-              </div>
-              <div class="deck-col" style="flex:1 1 300px">
-                <div class="brief-section">
-                  <div class="brief-section-title">Почему верхний слой &mdash; инженеры</div>
-                  <ul class="deck-bullets">
-                    <li><strong>Только они могут нас проверить</strong> &mdash; открытый код и есть доказательство; их одобрение превращается в доверие для всех слоёв ниже.</li>
-                    <li><strong>У них уже есть крипта и доход</strong>, но биржевая торговля для них маргинализована &mdash; инструмент на их языке приводит их в неё.</li>
-                    <li><strong>Они производят контент</strong> &mdash; репозитории, форки, туториалы, обзоры. Наша дистрибуция &mdash; это их результат, а не наш рекламный бюджет.</li>
-                    <li><strong>Каждый слой спрашивает слой выше</strong>, чем торговать. Retail-трейдеры не читают GitHub &mdash; они повторяют за алго-трейдерами.</li>
-                  </ul>
-                </div>
-                <div class="brief-section" style="margin-top:0.6rem">
-                  <div class="brief-section-title">Как сообщение идёт вниз</div>
-                  <ul class="deck-bullets">
-                    <li><strong>Инженеры</strong> &rarr; звёзды и форки на GitHub, Hacker News, Reddit, ревью кода</li>
-                    <li><strong>Алго- и бот-трейдеры</strong> &rarr; общие стратегии и пресеты Trader Strateg, Telegram, Discord</li>
-                    <li><strong>Активные трейдеры</strong> &rarr; YouTube, X, крипто-медиа, скриншоты Trader HUD</li>
-                    <li><strong>Все остальные</strong> &rarr; сторы приложений, SEO, витрины бирж-партнёров</li>
-                  </ul>
-                </div>
-              </div>
+                <line x1="40" y1="76" x2="318" y2="76" stroke="var(--inv-accent)" stroke-width="3"/>
+                <path d="M334 76 l-16 -8 v16 z" fill="var(--inv-accent)"/>
+                <text x="40" y="62" class="chart-val chart-val-hi" style="font-size:13px">ТОЧКА ВХОДА</text>
+                <text x="40" y="96" class="chart-lbl" style="font-size:11px">GitHub &middot; Hacker News &middot; Reddit</text>
+                <text x="40" y="112" class="chart-lbl" style="font-size:11px">бесплатная дистрибуция, без бюджета</text>
+
+                <text x="470" y="72"  text-anchor="middle" class="chart-val" style="fill:#fff;font-size:13px">OSS-инженеры &middot; 7.5M</text>
+                <text x="470" y="92"  text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:10px">Читают код и ручаются за продукт</text>
+                <text x="470" y="142" text-anchor="middle" class="chart-val" style="fill:#fff;font-size:13px">Алго- и бот-трейдеры</text>
+                <text x="470" y="162" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:10px">Форки, стратегии и пресеты Trader Strateg &middot; Telegram</text>
+                <text x="470" y="212" text-anchor="middle" class="chart-val" style="fill:#fff;font-size:13px">Активные retail-трейдеры &middot; 41M</text>
+                <text x="470" y="232" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:10px">YouTube, X, крипто-медиа &middot; скриншоты Trader HUD</text>
+                <text x="470" y="286" text-anchor="middle" class="chart-val" style="font-size:13px">Все пользователи CEX &middot; 500M</text>
+                <text x="470" y="306" text-anchor="middle" class="chart-lbl" style="font-size:10px">Сторы приложений, SEO, витрины бирж-партнёров &middot; нулевой порог входа</text>
+
+                <text x="845" y="200" text-anchor="middle" class="chart-lbl" style="font-size:10px;fill:var(--inv-faint)" transform="rotate(90 845 200)">каждый слой узнаёт от слоя выше</text>
+              </svg>
             </div>
-            <div class="deck-stats" style="margin-top:0.6rem">
-              <div class="deck-stat"><div class="deck-stat-value">7.5M</div><div class="deck-stat-label">Верх воронки</div><div class="deck-stat-sub">OSS-разработчики &middot; fintech/trading</div></div>
-              <div class="deck-stat"><div class="deck-stat-value">41M</div><div class="deck-stat-label">Активные retail-трейдеры</div><div class="deck-stat-sub">слой, которому нас передают</div></div>
-              <div class="deck-stat"><div class="deck-stat-value">$0</div><div class="deck-stat-label">Платная retail-реклама</div><div class="deck-stat-sub">органическая дистрибуция</div></div>
-              <div class="deck-stat"><div class="deck-stat-value">40&ndash;50%</div><div class="deck-stat-label">Удержание M3</div><div class="deck-stat-sub">90 дней &middot; цель</div></div>
+            <div class="deck-grid deck-grid--3" style="margin-top:0.6rem">
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.74rem">Только они могут нас проверить</div><div class="deck-card-text">Открытый код и есть доказательство &mdash; их одобрение становится доверием для всех слоёв ниже.</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.74rem">У них уже есть крипта</div><div class="deck-card-text">Доход и биржевые аккаунты на месте; биржевая торговля для них просто маргинализована.</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.74rem">Они производят контент</div><div class="deck-card-text">Репозитории, форки, туториалы, обзоры &mdash; наша дистрибуция это их результат, а не рекламный бюджет.</div></div>
             </div>
           </section>
 

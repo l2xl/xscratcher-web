@@ -454,69 +454,46 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 6 — ADOPTION FUNNEL (engineers on top) ============ -->
-          <section class="slide" id="slide-6" data-nav="Adoption">
+          <!-- ============ SLIDE 6 — USER PYRAMID (entry via the OSS audience) ============ -->
+          <section class="slide" id="slide-6" data-nav="Audience">
             <div class="slide-head">
-              <div class="slide-kicker">Adoption</div>
-              <h2 class="slide-title">Engineers are the top of the funnel &mdash; everyone else hears about us through them</h2>
-              <p class="slide-lead">Our funnel is inverted: it starts with the <strong>narrowest and most demanding</strong> audience and widens downward. Engineers are the only segment that can verify an open-source product by reading it &mdash; and the segment every other trader asks which tool to use.</p>
+              <div class="slide-kicker">Audience</div>
+              <h2 class="slide-title">We enter through the OSS audience &mdash; open-source engineers</h2>
+              <p class="slide-lead">Every trader category sits in one pyramid. We do not enter at the base &mdash; we enter at the apex, through the only segment that can verify an open-source product by reading it. From there the product travels downward, layer by layer.</p>
             </div>
-            <div class="deck-row">
-              <div class="deck-col" style="flex:1 1 340px">
-                <div class="deck-chart-title">How the product reaches each trader category</div>
-                <div class="deck-chart">
-                  <svg viewBox="0 0 660 352" role="img" aria-label="Inverted adoption funnel: engineers at the top, wider trader categories below">
-                    <polygon points="225,24 435,24 480,92 180,92" class="cs-1"/>
-                    <polygon points="170,104 490,104 535,172 125,172" class="cs-2"/>
-                    <polygon points="115,184 545,184 590,252 70,252" class="cs-4"/>
-                    <polygon points="60,264 600,264 645,332 15,332" class="cs-7"/>
+            <div class="deck-chart">
+              <svg viewBox="0 0 900 372" role="img" aria-label="User pyramid: OSS engineers at the apex as the entry point, widening down through algo traders and retail traders to all exchange users">
+                <polygon points="350,44 590,44 620,108 320,108" class="cs-1"/>
+                <polygon points="310,114 630,114 660,178 280,178" class="cs-2"/>
+                <polygon points="270,184 670,184 700,248 240,248" class="cs-4"/>
+                <polygon points="230,254 710,254 750,324 190,324" class="cs-7"/>
 
-                    <polyline points="318,94 330,102 342,94" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
-                    <polyline points="318,174 330,182 342,174" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
-                    <polyline points="318,254 330,262 342,254" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
+                <polyline points="458,110 470,118 482,110" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
+                <polyline points="458,180 470,188 482,180" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
+                <polyline points="458,250 470,258 482,250" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
 
-                    <text x="330" y="52"  text-anchor="middle" class="chart-val" style="fill:#fff">Engineers &amp; OSS devs &middot; 7.5M</text>
-                    <text x="330" y="74"  text-anchor="middle" class="chart-lbl" style="fill:#fff">Read the code &middot; trust open source</text>
-                    <text x="330" y="132" text-anchor="middle" class="chart-val" style="fill:#fff">Algo &amp; bot traders</text>
-                    <text x="330" y="154" text-anchor="middle" class="chart-lbl" style="fill:#fff">Fork strategies &middot; run automation &middot; share presets</text>
-                    <text x="330" y="212" text-anchor="middle" class="chart-val" style="fill:#fff">Active retail traders &middot; 41M</text>
-                    <text x="330" y="234" text-anchor="middle" class="chart-lbl" style="fill:#fff">Come for the Trader HUD and the Trader Assistant</text>
-                    <text x="330" y="292" text-anchor="middle" class="chart-val">All CEX users &middot; 500M</text>
-                    <text x="330" y="314" text-anchor="middle" class="chart-lbl">Zero entry &middot; no paywall &middot; arrive last, in the largest number</text>
-                  </svg>
-                </div>
-                <ul class="deck-legend row" style="margin-top:0.3rem">
-                  <li><span class="dot bg-1"></span> Beachhead &middot; SOM ~40K in 3 years</li>
-                  <li><span class="dot bg-2"></span> Early adopters</li>
-                  <li><span class="dot bg-4"></span> SAM core</li>
-                </ul>
-              </div>
-              <div class="deck-col" style="flex:1 1 300px">
-                <div class="brief-section">
-                  <div class="brief-section-title">Why the top layer is engineers</div>
-                  <ul class="deck-bullets">
-                    <li><strong>Only they can verify us</strong> &mdash; open code is the proof; their approval converts into trust for every layer below.</li>
-                    <li><strong>They already hold crypto and have income</strong>, but exchange trading is marginalised for them &mdash; a tool built in their language brings them in.</li>
-                    <li><strong>They produce the content</strong> &mdash; repos, forks, tutorials, reviews. Our distribution is their output, not our ad budget.</li>
-                    <li><strong>Every layer asks the layer above</strong> which tool to run. Retail traders do not read GitHub &mdash; they copy what algo traders use.</li>
-                  </ul>
-                </div>
-                <div class="brief-section" style="margin-top:0.6rem">
-                  <div class="brief-section-title">How the message travels down</div>
-                  <ul class="deck-bullets">
-                    <li><strong>Engineers</strong> &rarr; GitHub stars &amp; forks, Hacker News, Reddit, code review</li>
-                    <li><strong>Algo &amp; bot traders</strong> &rarr; shared strategies and Trader Strateg presets, Telegram, Discord</li>
-                    <li><strong>Active traders</strong> &rarr; YouTube, X, crypto media, screenshots of the Trader HUD</li>
-                    <li><strong>Everyone else</strong> &rarr; app stores, SEO, exchange partner listings</li>
-                  </ul>
-                </div>
-              </div>
+                <line x1="60" y1="76" x2="318" y2="76" stroke="var(--inv-accent)" stroke-width="3"/>
+                <path d="M334 76 l-16 -8 v16 z" fill="var(--inv-accent)"/>
+                <text x="60" y="62" class="chart-val chart-val-hi" style="font-size:13px">ENTRY POINT</text>
+                <text x="60" y="96" class="chart-lbl" style="font-size:11px">GitHub &middot; Hacker News &middot; Reddit</text>
+                <text x="60" y="112" class="chart-lbl" style="font-size:11px">free distribution, no ad budget</text>
+
+                <text x="470" y="72"  text-anchor="middle" class="chart-val" style="fill:#fff;font-size:13px">OSS engineers &middot; 7.5M</text>
+                <text x="470" y="92"  text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:10px">They read the code, trust open source and vouch for it</text>
+                <text x="470" y="142" text-anchor="middle" class="chart-val" style="fill:#fff;font-size:13px">Algo &amp; bot traders</text>
+                <text x="470" y="162" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:10px">Forks, shared strategies and Trader Strateg presets &middot; Telegram, Discord</text>
+                <text x="470" y="212" text-anchor="middle" class="chart-val" style="fill:#fff;font-size:13px">Active retail traders &middot; 41M</text>
+                <text x="470" y="232" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:10px">YouTube, X, crypto media &middot; screenshots of the Trader HUD</text>
+                <text x="470" y="286" text-anchor="middle" class="chart-val" style="font-size:13px">All CEX users &middot; 500M</text>
+                <text x="470" y="306" text-anchor="middle" class="chart-lbl" style="font-size:10px">App stores, SEO, exchange partner listings &middot; zero entry, no paywall</text>
+
+                <text x="840" y="200" text-anchor="middle" class="chart-lbl" style="font-size:10px;fill:var(--inv-faint)" transform="rotate(90 840 200)">each layer hears it from the layer above</text>
+              </svg>
             </div>
-            <div class="deck-stats" style="margin-top:0.6rem">
-              <div class="deck-stat"><div class="deck-stat-value">7.5M</div><div class="deck-stat-label">Top of funnel</div><div class="deck-stat-sub">OSS devs &middot; fintech/trading</div></div>
-              <div class="deck-stat"><div class="deck-stat-value">41M</div><div class="deck-stat-label">Active retail traders</div><div class="deck-stat-sub">the layer they hand us to</div></div>
-              <div class="deck-stat"><div class="deck-stat-value">$0</div><div class="deck-stat-label">Paid retail ads</div><div class="deck-stat-sub">organic-led distribution</div></div>
-              <div class="deck-stat"><div class="deck-stat-value">40&ndash;50%</div><div class="deck-stat-label">M3 retention</div><div class="deck-stat-sub">90-day &middot; target</div></div>
+            <div class="deck-grid deck-grid--3" style="margin-top:0.6rem">
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.74rem">Only they can verify us</div><div class="deck-card-text">Open code is the proof &mdash; their approval becomes trust for every layer below.</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.74rem">They already hold crypto</div><div class="deck-card-text">Income and exchange accounts are there; exchange trading is simply marginalised for them.</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.74rem">They produce the content</div><div class="deck-card-text">Repos, forks, tutorials, reviews &mdash; our distribution is their output, not an ad budget.</div></div>
             </div>
           </section>
 
