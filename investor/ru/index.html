@@ -453,8 +453,74 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 6 — COMPETITION ============ -->
-          <section class="slide" id="slide-6" data-nav="Конкуренты">
+          <!-- ============ SLIDE 6 — ADOPTION FUNNEL (engineers on top) ============ -->
+          <section class="slide" id="slide-6" data-nav="Проникновение">
+            <div class="slide-head">
+              <div class="slide-kicker">Проникновение</div>
+              <h2 class="slide-title">Инженеры &mdash; верхушка воронки: остальные узнают о нас через них</h2>
+              <p class="slide-lead">Наша воронка перевёрнута: она начинается с <strong>самой узкой и самой требовательной</strong> аудитории и расширяется вниз. Инженеры &mdash; единственный сегмент, способный проверить open-source продукт, просто прочитав его код, и тот сегмент, у которого все остальные трейдеры спрашивают, каким инструментом пользоваться.</p>
+            </div>
+            <div class="deck-row">
+              <div class="deck-col" style="flex:1 1 340px">
+                <div class="deck-chart-title">Как продукт доходит до каждой категории трейдеров</div>
+                <div class="deck-chart">
+                  <svg viewBox="0 0 660 352" role="img" aria-label="Перевёрнутая воронка проникновения: инженеры сверху, более широкие категории трейдеров ниже">
+                    <polygon points="225,24 435,24 480,92 180,92" class="cs-1"/>
+                    <polygon points="170,104 490,104 535,172 125,172" class="cs-2"/>
+                    <polygon points="115,184 545,184 590,252 70,252" class="cs-4"/>
+                    <polygon points="60,264 600,264 645,332 15,332" class="cs-7"/>
+
+                    <polyline points="318,94 330,102 342,94" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
+                    <polyline points="318,174 330,182 342,174" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
+                    <polyline points="318,254 330,262 342,254" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
+
+                    <text x="330" y="52"  text-anchor="middle" class="chart-val" style="fill:#fff">Инженеры и OSS-разработчики &middot; 7.5M</text>
+                    <text x="330" y="74"  text-anchor="middle" class="chart-lbl" style="fill:#fff">Читают код &middot; доверяют open source</text>
+                    <text x="330" y="132" text-anchor="middle" class="chart-val" style="fill:#fff">Алго- и бот-трейдеры</text>
+                    <text x="330" y="154" text-anchor="middle" class="chart-lbl" style="fill:#fff">Форкают стратегии &middot; автоматизируют &middot; делятся пресетами</text>
+                    <text x="330" y="212" text-anchor="middle" class="chart-val" style="fill:#fff">Активные retail-трейдеры &middot; 41M</text>
+                    <text x="330" y="234" text-anchor="middle" class="chart-lbl" style="fill:#fff">Приходят за Trader HUD и Trader Assistant</text>
+                    <text x="330" y="292" text-anchor="middle" class="chart-val">Все пользователи CEX &middot; 500M</text>
+                    <text x="330" y="314" text-anchor="middle" class="chart-lbl">Нулевой порог входа &middot; без paywall &middot; приходят последними и самой большой массой</text>
+                  </svg>
+                </div>
+                <ul class="deck-legend row" style="margin-top:0.3rem">
+                  <li><span class="dot bg-1"></span> Плацдарм &middot; SOM ~40K за 3 года</li>
+                  <li><span class="dot bg-2"></span> Ранние последователи</li>
+                  <li><span class="dot bg-4"></span> Ядро SAM</li>
+                </ul>
+              </div>
+              <div class="deck-col" style="flex:1 1 300px">
+                <div class="brief-section">
+                  <div class="brief-section-title">Почему верхний слой &mdash; инженеры</div>
+                  <ul class="deck-bullets">
+                    <li><strong>Только они могут нас проверить</strong> &mdash; открытый код и есть доказательство; их одобрение превращается в доверие для всех слоёв ниже.</li>
+                    <li><strong>У них уже есть крипта и доход</strong>, но биржевая торговля для них маргинализована &mdash; инструмент на их языке приводит их в неё.</li>
+                    <li><strong>Они производят контент</strong> &mdash; репозитории, форки, туториалы, обзоры. Наша дистрибуция &mdash; это их результат, а не наш рекламный бюджет.</li>
+                    <li><strong>Каждый слой спрашивает слой выше</strong>, чем торговать. Retail-трейдеры не читают GitHub &mdash; они повторяют за алго-трейдерами.</li>
+                  </ul>
+                </div>
+                <div class="brief-section" style="margin-top:0.6rem">
+                  <div class="brief-section-title">Как сообщение идёт вниз</div>
+                  <ul class="deck-bullets">
+                    <li><strong>Инженеры</strong> &rarr; звёзды и форки на GitHub, Hacker News, Reddit, ревью кода</li>
+                    <li><strong>Алго- и бот-трейдеры</strong> &rarr; общие стратегии и пресеты Trader Strateg, Telegram, Discord</li>
+                    <li><strong>Активные трейдеры</strong> &rarr; YouTube, X, крипто-медиа, скриншоты Trader HUD</li>
+                    <li><strong>Все остальные</strong> &rarr; сторы приложений, SEO, витрины бирж-партнёров</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="deck-stats" style="margin-top:0.6rem">
+              <div class="deck-stat"><div class="deck-stat-value">7.5M</div><div class="deck-stat-label">Верх воронки</div><div class="deck-stat-sub">OSS-разработчики &middot; fintech/trading</div></div>
+              <div class="deck-stat"><div class="deck-stat-value">41M</div><div class="deck-stat-label">Активные retail-трейдеры</div><div class="deck-stat-sub">слой, которому нас передают</div></div>
+              <div class="deck-stat"><div class="deck-stat-value">$0</div><div class="deck-stat-label">Платная retail-реклама</div><div class="deck-stat-sub">органическая дистрибуция</div></div>
+              <div class="deck-stat"><div class="deck-stat-value">40&ndash;50%</div><div class="deck-stat-label">Удержание M3</div><div class="deck-stat-sub">90 дней &middot; цель</div></div>
+            </div>
+          </section>
+
+          <!-- ============ SLIDE 7 — COMPETITION ============ -->
+          <section class="slide" id="slide-7" data-nav="Конкуренты">
             <div class="slide-head">
               <div class="slide-kicker">Конкуренты</div>
               <h2 class="slide-title">Единственный интерфейс трейдера с AI-ассистентом, зарабатывающий в первую очередь на доле от биржевой комиссии</h2>
@@ -494,8 +560,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 7 — BUSINESS MODEL ============ -->
-          <section class="slide" id="slide-7" data-nav="Бизнес-модель">
+          <!-- ============ SLIDE 8 — BUSINESS MODEL ============ -->
+          <section class="slide" id="slide-8" data-nav="Бизнес-модель">
             <div class="slide-head">
               <div class="slide-kicker">Бизнес-модель</div>
               <h2 class="slide-title">Доход с первой же сделки трейдера</h2>
@@ -514,8 +580,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 8 — UNIT ECONOMICS ============ -->
-          <section class="slide" id="slide-8" data-nav="Юнит-экономика">
+          <!-- ============ SLIDE 9 — UNIT ECONOMICS ============ -->
+          <section class="slide" id="slide-9" data-nav="Юнит-экономика">
             <div class="slide-head">
               <div class="slide-kicker">Юнит-экономика</div>
               <h2 class="slide-title">Наш юнит &mdash; сделка: мы получаем часть комиссии с каждой проведённой сделки</h2>
@@ -588,8 +654,8 @@
               </div>
             </div>
           </section>
-          <!-- ============ SLIDE 9 — INSIGHT ============ -->
-          <section class="slide" id="slide-9" data-nav="Инсайт">
+          <!-- ============ SLIDE 10 — INSIGHT ============ -->
+          <section class="slide" id="slide-10" data-nav="Инсайт">
             <div class="slide-head">
               <div class="slide-kicker">Инсайт</div>
               <h2 class="slide-title">Ограничение &mdash; внимание, а не размер депозита</h2>
@@ -664,8 +730,8 @@
             <p class="slide-lead" style="margin:0.45rem 0 0;font-size:0.72rem;color:var(--inv-faint)">Распределение по размеру сделки &mdash; объём и комиссии на основе <a href="https://github.com/l2xl/papers/blob/main/exchange-liquidity-research.md" target="_blank" rel="noopener">нашего исследования</a>.</p>
           </section>
 
-          <!-- ============ SLIDE 10 — ROADMAP (+ GTM) ============ -->
-          <section class="slide" id="slide-10" data-nav="План развития">
+          <!-- ============ SLIDE 11 — ROADMAP (+ GTM) ============ -->
+          <section class="slide" id="slide-11" data-nav="План развития">
             <div class="slide-head">
               <div class="slide-kicker">План развития и выхода на рынок</div>
             </div>
@@ -722,8 +788,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 11 — TEAM ============ -->
-          <section class="slide" id="slide-11" data-nav="Команда">
+          <!-- ============ SLIDE 12 — TEAM ============ -->
+          <section class="slide" id="slide-12" data-nav="Команда">
             <div class="slide-head">
               <div class="slide-kicker">Команда</div>
               <h2 class="slide-title">Операционная модель, ориентированная на AI</h2>
@@ -756,8 +822,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 12 — THE ASK (+ terms + risks) ============ -->
-          <section class="slide" id="slide-12" data-nav="Раунд">
+          <!-- ============ SLIDE 13 — THE ASK (+ terms + risks) ============ -->
+          <section class="slide" id="slide-13" data-nav="Раунд">
             <div class="slide-head">
               <div class="slide-kicker">Раунд</div>
               <h2 class="slide-title">Pre-seed $110,000 &mdash; цель Seed на 12-й месяц</h2>

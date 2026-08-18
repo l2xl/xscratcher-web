@@ -454,8 +454,74 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 6 — COMPETITION ============ -->
-          <section class="slide" id="slide-6" data-nav="Competition">
+          <!-- ============ SLIDE 6 — ADOPTION FUNNEL (engineers on top) ============ -->
+          <section class="slide" id="slide-6" data-nav="Adoption">
+            <div class="slide-head">
+              <div class="slide-kicker">Adoption</div>
+              <h2 class="slide-title">Engineers are the top of the funnel &mdash; everyone else hears about us through them</h2>
+              <p class="slide-lead">Our funnel is inverted: it starts with the <strong>narrowest and most demanding</strong> audience and widens downward. Engineers are the only segment that can verify an open-source product by reading it &mdash; and the segment every other trader asks which tool to use.</p>
+            </div>
+            <div class="deck-row">
+              <div class="deck-col" style="flex:1 1 340px">
+                <div class="deck-chart-title">How the product reaches each trader category</div>
+                <div class="deck-chart">
+                  <svg viewBox="0 0 660 352" role="img" aria-label="Inverted adoption funnel: engineers at the top, wider trader categories below">
+                    <polygon points="225,24 435,24 480,92 180,92" class="cs-1"/>
+                    <polygon points="170,104 490,104 535,172 125,172" class="cs-2"/>
+                    <polygon points="115,184 545,184 590,252 70,252" class="cs-4"/>
+                    <polygon points="60,264 600,264 645,332 15,332" class="cs-7"/>
+
+                    <polyline points="318,94 330,102 342,94" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
+                    <polyline points="318,174 330,182 342,174" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
+                    <polyline points="318,254 330,262 342,254" fill="none" stroke="var(--cs-1)" stroke-width="2.5"/>
+
+                    <text x="330" y="52"  text-anchor="middle" class="chart-val" style="fill:#fff">Engineers &amp; OSS devs &middot; 7.5M</text>
+                    <text x="330" y="74"  text-anchor="middle" class="chart-lbl" style="fill:#fff">Read the code &middot; trust open source</text>
+                    <text x="330" y="132" text-anchor="middle" class="chart-val" style="fill:#fff">Algo &amp; bot traders</text>
+                    <text x="330" y="154" text-anchor="middle" class="chart-lbl" style="fill:#fff">Fork strategies &middot; run automation &middot; share presets</text>
+                    <text x="330" y="212" text-anchor="middle" class="chart-val" style="fill:#fff">Active retail traders &middot; 41M</text>
+                    <text x="330" y="234" text-anchor="middle" class="chart-lbl" style="fill:#fff">Come for the Trader HUD and the Trader Assistant</text>
+                    <text x="330" y="292" text-anchor="middle" class="chart-val">All CEX users &middot; 500M</text>
+                    <text x="330" y="314" text-anchor="middle" class="chart-lbl">Zero entry &middot; no paywall &middot; arrive last, in the largest number</text>
+                  </svg>
+                </div>
+                <ul class="deck-legend row" style="margin-top:0.3rem">
+                  <li><span class="dot bg-1"></span> Beachhead &middot; SOM ~40K in 3 years</li>
+                  <li><span class="dot bg-2"></span> Early adopters</li>
+                  <li><span class="dot bg-4"></span> SAM core</li>
+                </ul>
+              </div>
+              <div class="deck-col" style="flex:1 1 300px">
+                <div class="brief-section">
+                  <div class="brief-section-title">Why the top layer is engineers</div>
+                  <ul class="deck-bullets">
+                    <li><strong>Only they can verify us</strong> &mdash; open code is the proof; their approval converts into trust for every layer below.</li>
+                    <li><strong>They already hold crypto and have income</strong>, but exchange trading is marginalised for them &mdash; a tool built in their language brings them in.</li>
+                    <li><strong>They produce the content</strong> &mdash; repos, forks, tutorials, reviews. Our distribution is their output, not our ad budget.</li>
+                    <li><strong>Every layer asks the layer above</strong> which tool to run. Retail traders do not read GitHub &mdash; they copy what algo traders use.</li>
+                  </ul>
+                </div>
+                <div class="brief-section" style="margin-top:0.6rem">
+                  <div class="brief-section-title">How the message travels down</div>
+                  <ul class="deck-bullets">
+                    <li><strong>Engineers</strong> &rarr; GitHub stars &amp; forks, Hacker News, Reddit, code review</li>
+                    <li><strong>Algo &amp; bot traders</strong> &rarr; shared strategies and Trader Strateg presets, Telegram, Discord</li>
+                    <li><strong>Active traders</strong> &rarr; YouTube, X, crypto media, screenshots of the Trader HUD</li>
+                    <li><strong>Everyone else</strong> &rarr; app stores, SEO, exchange partner listings</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="deck-stats" style="margin-top:0.6rem">
+              <div class="deck-stat"><div class="deck-stat-value">7.5M</div><div class="deck-stat-label">Top of funnel</div><div class="deck-stat-sub">OSS devs &middot; fintech/trading</div></div>
+              <div class="deck-stat"><div class="deck-stat-value">41M</div><div class="deck-stat-label">Active retail traders</div><div class="deck-stat-sub">the layer they hand us to</div></div>
+              <div class="deck-stat"><div class="deck-stat-value">$0</div><div class="deck-stat-label">Paid retail ads</div><div class="deck-stat-sub">organic-led distribution</div></div>
+              <div class="deck-stat"><div class="deck-stat-value">40&ndash;50%</div><div class="deck-stat-label">M3 retention</div><div class="deck-stat-sub">90-day &middot; target</div></div>
+            </div>
+          </section>
+
+          <!-- ============ SLIDE 7 — COMPETITION ============ -->
+          <section class="slide" id="slide-7" data-nav="Competition">
             <div class="slide-head">
               <div class="slide-kicker">Competition</div>
               <h2 class="slide-title">The only trader UI with an AI assistant, earning primarily from exchange fee share</h2>
@@ -495,8 +561,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 7 — BUSINESS MODEL ============ -->
-          <section class="slide" id="slide-7" data-nav="Business Model">
+          <!-- ============ SLIDE 8 — BUSINESS MODEL ============ -->
+          <section class="slide" id="slide-8" data-nav="Business Model">
             <div class="slide-head">
               <div class="slide-kicker">Business Model</div>
               <h2 class="slide-title">Revenue from the trader's first trade</h2>
@@ -515,8 +581,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 8 — UNIT ECONOMICS ============ -->
-          <section class="slide" id="slide-8" data-nav="Unit Economics">
+          <!-- ============ SLIDE 9 — UNIT ECONOMICS ============ -->
+          <section class="slide" id="slide-9" data-nav="Unit Economics">
             <div class="slide-head">
               <div class="slide-kicker">Unit Economics</div>
               <h2 class="slide-title">Our unit is the trade &mdash; we earn a share of the exchange fee on every trade</h2>
@@ -589,8 +655,8 @@
               </div>
             </div>
           </section>
-          <!-- ============ SLIDE 9 — INSIGHT ============ -->
-          <section class="slide" id="slide-9" data-nav="Insight">
+          <!-- ============ SLIDE 10 — INSIGHT ============ -->
+          <section class="slide" id="slide-10" data-nav="Insight">
             <div class="slide-head">
               <div class="slide-kicker">Insight</div>
               <h2 class="slide-title">The limit is attention, not deposit amount</h2>
@@ -665,8 +731,8 @@
             <p class="slide-lead" style="margin:0.45rem 0 0;font-size:0.72rem;color:var(--inv-faint)">Trade-size distribution &mdash; volume &amp; fees based on <a href="https://github.com/l2xl/papers/blob/main/exchange-liquidity-research.md" target="_blank" rel="noopener">our research</a>.</p>
           </section>
 
-          <!-- ============ SLIDE 10 — ROADMAP (+ GTM) ============ -->
-          <section class="slide" id="slide-10" data-nav="Roadmap">
+          <!-- ============ SLIDE 11 — ROADMAP (+ GTM) ============ -->
+          <section class="slide" id="slide-11" data-nav="Roadmap">
             <div class="slide-head">
               <div class="slide-kicker">Roadmap &amp; Go-to-Market</div>
             </div>
@@ -724,8 +790,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 11 — TEAM ============ -->
-          <section class="slide" id="slide-11" data-nav="Team">
+          <!-- ============ SLIDE 12 — TEAM ============ -->
+          <section class="slide" id="slide-12" data-nav="Team">
             <div class="slide-head">
               <div class="slide-kicker">Team</div>
               <h2 class="slide-title">AI-centric operating model</h2>
@@ -759,8 +825,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 12 — THE ASK (+ terms + risks) ============ -->
-          <section class="slide" id="slide-12" data-nav="The Ask">
+          <!-- ============ SLIDE 13 — THE ASK (+ terms + risks) ============ -->
+          <section class="slide" id="slide-13" data-nav="The Ask">
             <div class="slide-head">
               <div class="slide-kicker">The Ask</div>
               <h2 class="slide-title">Pre-seed $110,000 &mdash; Seed target month 12</h2>
