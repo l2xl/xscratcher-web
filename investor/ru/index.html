@@ -371,8 +371,61 @@
 
 
 
-          <!-- ============ SLIDE 5 — MARKET (target audience + market size) ============ -->
-          <section class="slide" id="slide-5" data-nav="Рынок">
+          <!-- ============ SLIDE 5 — TRADER ASSISTANT ============ -->
+          <section class="slide" id="slide-5" data-nav="Ассистент">
+            <div class="slide-head">
+              <div class="slide-kicker">Trader Assistant</div>
+              <h2 class="slide-title">Trader Assistant &mdash; чёткая структура вокруг модели</h2>
+              <p class="slide-lead">Мы не строим свою модель &mdash; мы строим кабину вокруг неё. Ценность в структуре: понятные роли, управляемое трейдером окно контекста и переиспользуемая библиотека промптов.</p>
+            </div>
+            <div class="deck-chart">
+              <svg viewBox="0 0 900 336" role="img" aria-label="Trader Assistant structure: the trader on top, the assistant as orchestrator with the prompt library and context-window control, specialised AI agents below it, platform tools via MCP, and the user-chosen model at the bottom; safety rails run alongside">
+                <rect x="10" y="8"    width="670" height="42" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="66"   width="670" height="66" rx="10" fill="#fff3e8" stroke="var(--inv-accent)" stroke-width="2.5"/>
+                <rect x="10" y="148"  width="670" height="66" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="230"  width="670" height="52" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="288"  width="670" height="42" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
+                <rect x="700" y="8"   width="190" height="322" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
+
+                <g stroke="#7a6058" stroke-width="2" marker-start="url(#ta-arrow)" marker-end="url(#ta-arrow)">
+                  <line x1="345" y1="50" x2="345" y2="66"/>
+                  <line x1="345" y1="132" x2="345" y2="148"/>
+                  <line x1="345" y1="214" x2="345" y2="230"/>
+                  <line x1="345" y1="282" x2="345" y2="288"/>
+                </g>
+                <defs><marker id="ta-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7a6058"/></marker></defs>
+
+                <text x="345" y="35"  text-anchor="middle" class="chart-val" style="font-size:13px">ТРЕЙДЕР &mdash; решение всегда за человеком</text>
+                <text x="345" y="93"  text-anchor="middle" class="chart-val chart-val-hi" style="font-size:14px">TRADER ASSISTANT &mdash; оркестратор</text>
+                <text x="345" y="115" text-anchor="middle" class="chart-lbl" style="font-size:11px">Библиотека промптов &middot; управление окном контекста &middot; память сессии &middot; распределение задач</text>
+                <text x="345" y="175" text-anchor="middle" class="chart-val" style="font-size:13px">AI-АГЕНТЫ ПОД АССИСТЕНТОМ</text>
+                <text x="345" y="197" text-anchor="middle" class="chart-lbl" style="font-size:11px">Аналитик рынка &middot; Конструктор стратегий &middot; Риск-контролёр &middot; Бэктест-агент</text>
+                <text x="345" y="252" text-anchor="middle" class="chart-val" style="font-size:13px">ИНСТРУМЕНТЫ ЧЕРЕЗ MCP</text>
+                <text x="345" y="271" text-anchor="middle" class="chart-lbl" style="font-size:11px">Позиции, стакан, история, ордера, Trader Strateg, Trader Sandbox</text>
+                <text x="345" y="305" text-anchor="middle" class="chart-val" style="font-size:12px">МОДЕЛЬ ПОД КАПОТОМ &mdash; выбирает пользователь</text>
+                <text x="345" y="322" text-anchor="middle" class="chart-lbl" style="font-size:10px">Локальная: Ollama, Llama, Mistral &nbsp;&middot;&nbsp; Облачная: Claude, GPT, Gemini</text>
+
+                <text x="795" y="112"  text-anchor="middle" class="chart-val chart-val-hi" style="font-size:12px">SAFETY-РЕЛЬСЫ</text>
+                <text x="795" y="150"  text-anchor="middle" class="chart-lbl" style="font-size:11px">Ключи остаются на</text>
+                <text x="795" y="170" text-anchor="middle" class="chart-lbl" style="font-size:11px">машине &middot; каждое</text>
+                <text x="795" y="190" text-anchor="middle" class="chart-lbl" style="font-size:11px">действие подтверждает</text>
+                <text x="795" y="210" text-anchor="middle" class="chart-lbl" style="font-size:11px">человек &middot; исполнение</text>
+                <text x="795" y="230" text-anchor="middle" class="chart-lbl" style="font-size:11px">в песочнице &middot; полный</text>
+                <text x="795" y="250" text-anchor="middle" class="chart-lbl" style="font-size:11px">аудит действий</text>
+              </svg>
+            </div>
+            <div class="deck-grid deck-grid--3" style="margin-top:0.7rem">
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Библиотека промптов</div><div class="deck-card-text">Готовые сценарии на каждый рабочий случай &mdash; разобрать ситуацию по инструменту, собрать стратегию, проверить риск, объяснить уже совершённую сделку. Промпты версионируются, редактируются и публикуются: открытая библиотека, которую пополняет сообщество. Трейдер не пишет промпт с чистого листа &mdash; он берёт проверенный и правит под себя.</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Управление окном контекста</div><div class="deck-card-text">Трейдер точно решает, что видит модель: какие инструменты, какие таймфреймы, какая глубина истории, какие позиции и лимиты риска попадают в окно. Контекст можно закреплять, очищать, разделять по задачам и переносить между сессиями. Одна эта настройка управляет сразу качеством ответа, стоимостью запроса и приватностью &mdash; в окно не попадает ничего, чего трейдер туда не положил.</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Агенты под ассистентом</div><div class="deck-card-text">Ассистент &mdash; не одна модель, а оркестратор специализированных агентов: аналитик рынка, конструктор стратегий, риск-контролёр, бэктест-агент. Каждый работает со своим набором инструментов и своим окном контекста; ассистент распределяет задачу и сводит результат.</div></div>
+            </div>
+            <div class="deck-card" style="margin-top:0.55rem">
+              <div class="deck-card-text" style="text-align:center"><strong>Нашего сервера в цепочке нет.</strong> Торговый контур всегда локальный: API-ключи не покидают машину, облачная модель &mdash; если выбрана &mdash; вызывается пользователем напрямую с его же машины, и каждое действие подтверждает трейдер.</div>
+            </div>
+          </section>
+
+          <!-- ============ SLIDE 6 — MARKET (target audience + market size) ============ -->
+          <section class="slide" id="slide-6" data-nav="Рынок">
             <div class="slide-head">
               <div class="slide-kicker">Рынок</div>
               <h2 class="slide-title">Рынок объёмом $10.86B, растущий до $17.42B</h2>
@@ -454,8 +507,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 6 — USER PYRAMID (entry via the OSS audience) ============ -->
-          <section class="slide" id="slide-6" data-nav="Аудитория">
+          <!-- ============ SLIDE 7 — USER PYRAMID (entry via the OSS audience) ============ -->
+          <section class="slide" id="slide-7" data-nav="Аудитория">
             <div class="slide-head">
               <div class="slide-kicker">Аудитория</div>
               <h2 class="slide-title">Вход через OSS-аудиторию &mdash; инженеров open source</h2>
@@ -491,8 +544,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 7 — COMPETITION ============ -->
-          <section class="slide" id="slide-7" data-nav="Конкуренты">
+          <!-- ============ SLIDE 8 — COMPETITION ============ -->
+          <section class="slide" id="slide-8" data-nav="Конкуренты">
             <div class="slide-head">
               <div class="slide-kicker">Конкуренты</div>
               <h2 class="slide-title">Единственный интерфейс трейдера с AI-ассистентом, зарабатывающий в первую очередь на доле от биржевой комиссии</h2>
@@ -532,8 +585,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 8 — BUSINESS MODEL ============ -->
-          <section class="slide" id="slide-8" data-nav="Бизнес-модель">
+          <!-- ============ SLIDE 9 — BUSINESS MODEL ============ -->
+          <section class="slide" id="slide-9" data-nav="Бизнес-модель">
             <div class="slide-head">
               <div class="slide-kicker">Бизнес-модель</div>
               <h2 class="slide-title">Доход с первой же сделки трейдера</h2>
@@ -552,8 +605,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 9 — UNIT ECONOMICS ============ -->
-          <section class="slide" id="slide-9" data-nav="Юнит-экономика">
+          <!-- ============ SLIDE 10 — UNIT ECONOMICS ============ -->
+          <section class="slide" id="slide-10" data-nav="Юнит-экономика">
             <div class="slide-head">
               <div class="slide-kicker">Юнит-экономика</div>
               <h2 class="slide-title">Наш юнит &mdash; сделка: мы получаем часть комиссии с каждой проведённой сделки</h2>
@@ -621,8 +674,8 @@
               </div>
             </div>
           </section>
-          <!-- ============ SLIDE 10 — INSIGHT ============ -->
-          <section class="slide" id="slide-10" data-nav="Инсайт">
+          <!-- ============ SLIDE 11 — INSIGHT ============ -->
+          <section class="slide" id="slide-11" data-nav="Инсайт">
             <div class="slide-head">
               <div class="slide-kicker">Инсайт</div>
               <h2 class="slide-title">Ограничение &mdash; внимание, а не размер депозита</h2>
@@ -697,8 +750,8 @@
             <p class="slide-lead" style="margin:0.45rem 0 0;font-size:0.72rem;color:var(--inv-faint)">Распределение по размеру сделки &mdash; объём и комиссии на основе <a href="https://github.com/l2xl/papers/blob/main/exchange-liquidity-research.md" target="_blank" rel="noopener">нашего исследования</a>.</p>
           </section>
 
-          <!-- ============ SLIDE 11 — ROADMAP (+ GTM) ============ -->
-          <section class="slide" id="slide-11" data-nav="План развития">
+          <!-- ============ SLIDE 12 — ROADMAP (+ GTM) ============ -->
+          <section class="slide" id="slide-12" data-nav="План развития">
             <div class="slide-head">
               <div class="slide-kicker">План развития и выхода на рынок</div>
             </div>
@@ -755,8 +808,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 12 — TEAM ============ -->
-          <section class="slide" id="slide-12" data-nav="Команда">
+          <!-- ============ SLIDE 13 — TEAM ============ -->
+          <section class="slide" id="slide-13" data-nav="Команда">
             <div class="slide-head">
               <div class="slide-kicker">Команда</div>
               <h2 class="slide-title">Операционная модель, ориентированная на AI</h2>
@@ -789,8 +842,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 13 — THE ASK (+ terms + risks) ============ -->
-          <section class="slide" id="slide-13" data-nav="Раунд">
+          <!-- ============ SLIDE 14 — THE ASK (+ terms + risks) ============ -->
+          <section class="slide" id="slide-14" data-nav="Раунд">
             <div class="slide-head">
               <div class="slide-kicker">Раунд</div>
               <h2 class="slide-title">Pre-seed $110,000 &mdash; цель Seed на 12-й месяц</h2>

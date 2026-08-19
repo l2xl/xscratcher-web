@@ -372,8 +372,61 @@
 
 
 
-          <!-- ============ SLIDE 5 — MARKET (target audience + market size) ============ -->
-          <section class="slide" id="slide-5" data-nav="Market">
+          <!-- ============ SLIDE 5 — TRADER ASSISTANT ============ -->
+          <section class="slide" id="slide-5" data-nav="Assistant">
+            <div class="slide-head">
+              <div class="slide-kicker">Trader Assistant</div>
+              <h2 class="slide-title">Trader Assistant &mdash; a clear structure around the model</h2>
+              <p class="slide-lead">We do not build our own model &mdash; we build the cockpit around it. The value is the structure: defined roles, a context window the trader controls, and a reusable prompt library.</p>
+            </div>
+            <div class="deck-chart">
+              <svg viewBox="0 0 900 336" role="img" aria-label="Trader Assistant structure: the trader on top, the assistant as orchestrator with the prompt library and context-window control, specialised AI agents below it, platform tools via MCP, and the user-chosen model at the bottom; safety rails run alongside">
+                <rect x="10" y="8"    width="670" height="42" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="66"   width="670" height="66" rx="10" fill="#fff3e8" stroke="var(--inv-accent)" stroke-width="2.5"/>
+                <rect x="10" y="148"  width="670" height="66" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="230"  width="670" height="52" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="288"  width="670" height="42" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
+                <rect x="700" y="8"   width="190" height="322" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
+
+                <g stroke="#7a6058" stroke-width="2" marker-start="url(#ta-arrow)" marker-end="url(#ta-arrow)">
+                  <line x1="345" y1="50" x2="345" y2="66"/>
+                  <line x1="345" y1="132" x2="345" y2="148"/>
+                  <line x1="345" y1="214" x2="345" y2="230"/>
+                  <line x1="345" y1="282" x2="345" y2="288"/>
+                </g>
+                <defs><marker id="ta-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7a6058"/></marker></defs>
+
+                <text x="345" y="35"  text-anchor="middle" class="chart-val" style="font-size:13px">TRADER &mdash; the decision is always human</text>
+                <text x="345" y="93"  text-anchor="middle" class="chart-val chart-val-hi" style="font-size:14px">TRADER ASSISTANT &mdash; the orchestrator</text>
+                <text x="345" y="115" text-anchor="middle" class="chart-lbl" style="font-size:11px">Prompt library &middot; context-window control &middot; session memory &middot; task routing</text>
+                <text x="345" y="175" text-anchor="middle" class="chart-val" style="font-size:13px">AI AGENTS UNDER THE ASSISTANT</text>
+                <text x="345" y="197" text-anchor="middle" class="chart-lbl" style="font-size:11px">Market analyst &middot; Strategy builder &middot; Risk controller &middot; Backtest agent</text>
+                <text x="345" y="252" text-anchor="middle" class="chart-val" style="font-size:13px">TOOLS VIA MCP</text>
+                <text x="345" y="271" text-anchor="middle" class="chart-lbl" style="font-size:11px">Positions, order book, history, orders, Trader Strateg, Trader Sandbox</text>
+                <text x="345" y="305" text-anchor="middle" class="chart-val" style="font-size:12px">THE MODEL UNDER THE HOOD &mdash; the user picks it</text>
+                <text x="345" y="322" text-anchor="middle" class="chart-lbl" style="font-size:10px">Local: Ollama, Llama, Mistral &nbsp;&middot;&nbsp; Cloud: Claude, GPT, Gemini</text>
+
+                <text x="795" y="112"  text-anchor="middle" class="chart-val chart-val-hi" style="font-size:12px">SAFETY RAILS</text>
+                <text x="795" y="150"  text-anchor="middle" class="chart-lbl" style="font-size:11px">Keys stay on the</text>
+                <text x="795" y="170" text-anchor="middle" class="chart-lbl" style="font-size:11px">machine &middot; human</text>
+                <text x="795" y="190" text-anchor="middle" class="chart-lbl" style="font-size:11px">confirms every</text>
+                <text x="795" y="210" text-anchor="middle" class="chart-lbl" style="font-size:11px">action &middot; sandbox</text>
+                <text x="795" y="230" text-anchor="middle" class="chart-lbl" style="font-size:11px">execution &middot; full</text>
+                <text x="795" y="250" text-anchor="middle" class="chart-lbl" style="font-size:11px">action audit</text>
+              </svg>
+            </div>
+            <div class="deck-grid deck-grid--3" style="margin-top:0.7rem">
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Prompt library</div><div class="deck-card-text">Ready-made scenarios for the everyday cases &mdash; read the situation on an instrument, assemble a strategy, check risk, explain a trade that already happened. Prompts are versioned, editable and publishable: an open library the community keeps filling. The trader never starts from a blank prompt &mdash; they take a proven one and adjust it.</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Context-window control</div><div class="deck-card-text">The trader decides exactly what the model sees: which instruments, which timeframes, how deep the history goes, which positions and risk limits enter the window. Context can be pinned, cleared, split per task and carried between sessions. That single control governs answer quality, request cost and privacy at once &mdash; nothing enters the window that the trader did not put there.</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Agents under the assistant</div><div class="deck-card-text">The assistant is not one model but an orchestrator of specialised agents: a market analyst, a strategy builder, a risk controller, a backtest agent. Each runs with its own tools and its own context window; the assistant routes the task and assembles the result.</div></div>
+            </div>
+            <div class="deck-card" style="margin-top:0.55rem">
+              <div class="deck-card-text" style="text-align:center"><strong>No server of ours in the loop.</strong> The trading circuit is always local: API keys never leave the machine, the cloud model &mdash; if chosen &mdash; is called by the user directly from their own machine, and every action is confirmed by the trader.</div>
+            </div>
+          </section>
+
+          <!-- ============ SLIDE 6 — MARKET (target audience + market size) ============ -->
+          <section class="slide" id="slide-6" data-nav="Market">
             <div class="slide-head">
               <div class="slide-kicker">Market</div>
               <h2 class="slide-title">A $10.86B market growing to $17.42B</h2>
@@ -455,8 +508,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 6 — USER PYRAMID (entry via the OSS audience) ============ -->
-          <section class="slide" id="slide-6" data-nav="Audience">
+          <!-- ============ SLIDE 7 — USER PYRAMID (entry via the OSS audience) ============ -->
+          <section class="slide" id="slide-7" data-nav="Audience">
             <div class="slide-head">
               <div class="slide-kicker">Audience</div>
               <h2 class="slide-title">We enter through the OSS audience &mdash; open-source engineers</h2>
@@ -492,8 +545,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 7 — COMPETITION ============ -->
-          <section class="slide" id="slide-7" data-nav="Competition">
+          <!-- ============ SLIDE 8 — COMPETITION ============ -->
+          <section class="slide" id="slide-8" data-nav="Competition">
             <div class="slide-head">
               <div class="slide-kicker">Competition</div>
               <h2 class="slide-title">The only trader UI with an AI assistant, earning primarily from exchange fee share</h2>
@@ -533,8 +586,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 8 — BUSINESS MODEL ============ -->
-          <section class="slide" id="slide-8" data-nav="Business Model">
+          <!-- ============ SLIDE 9 — BUSINESS MODEL ============ -->
+          <section class="slide" id="slide-9" data-nav="Business Model">
             <div class="slide-head">
               <div class="slide-kicker">Business Model</div>
               <h2 class="slide-title">Revenue from the trader's first trade</h2>
@@ -553,8 +606,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 9 — UNIT ECONOMICS ============ -->
-          <section class="slide" id="slide-9" data-nav="Unit Economics">
+          <!-- ============ SLIDE 10 — UNIT ECONOMICS ============ -->
+          <section class="slide" id="slide-10" data-nav="Unit Economics">
             <div class="slide-head">
               <div class="slide-kicker">Unit Economics</div>
               <h2 class="slide-title">Our unit is the trade &mdash; we earn a share of the exchange fee on every trade</h2>
@@ -622,8 +675,8 @@
               </div>
             </div>
           </section>
-          <!-- ============ SLIDE 10 — INSIGHT ============ -->
-          <section class="slide" id="slide-10" data-nav="Insight">
+          <!-- ============ SLIDE 11 — INSIGHT ============ -->
+          <section class="slide" id="slide-11" data-nav="Insight">
             <div class="slide-head">
               <div class="slide-kicker">Insight</div>
               <h2 class="slide-title">The limit is attention, not deposit amount</h2>
@@ -698,8 +751,8 @@
             <p class="slide-lead" style="margin:0.45rem 0 0;font-size:0.72rem;color:var(--inv-faint)">Trade-size distribution &mdash; volume &amp; fees based on <a href="https://github.com/l2xl/papers/blob/main/exchange-liquidity-research.md" target="_blank" rel="noopener">our research</a>.</p>
           </section>
 
-          <!-- ============ SLIDE 11 — ROADMAP (+ GTM) ============ -->
-          <section class="slide" id="slide-11" data-nav="Roadmap">
+          <!-- ============ SLIDE 12 — ROADMAP (+ GTM) ============ -->
+          <section class="slide" id="slide-12" data-nav="Roadmap">
             <div class="slide-head">
               <div class="slide-kicker">Roadmap &amp; Go-to-Market</div>
             </div>
@@ -757,8 +810,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 12 — TEAM ============ -->
-          <section class="slide" id="slide-12" data-nav="Team">
+          <!-- ============ SLIDE 13 — TEAM ============ -->
+          <section class="slide" id="slide-13" data-nav="Team">
             <div class="slide-head">
               <div class="slide-kicker">Team</div>
               <h2 class="slide-title">AI-centric operating model</h2>
@@ -792,8 +845,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 13 — THE ASK (+ terms + risks) ============ -->
-          <section class="slide" id="slide-13" data-nav="The Ask">
+          <!-- ============ SLIDE 14 — THE ASK (+ terms + risks) ============ -->
+          <section class="slide" id="slide-14" data-nav="The Ask">
             <div class="slide-head">
               <div class="slide-kicker">The Ask</div>
               <h2 class="slide-title">Pre-seed $110,000 &mdash; Seed target month 12</h2>
