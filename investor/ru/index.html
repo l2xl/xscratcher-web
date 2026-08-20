@@ -375,52 +375,56 @@
           <section class="slide" id="slide-5" data-nav="Ассистент">
             <div class="slide-head">
               <div class="slide-kicker">Trader Assistant</div>
-              <h2 class="slide-title">Trader Assistant &mdash; чёткая структура вокруг модели</h2>
-              <p class="slide-lead">Мы не строим свою модель &mdash; мы строим кабину вокруг неё. Ценность в структуре: понятные роли, управляемое трейдером окно контекста и переиспользуемая библиотека промптов.</p>
+              <h2 class="slide-title">Встроен в терминал: видит то же, что трейдер, и исполняет его решение</h2>
+              <p class="slide-lead">Не приставленное сбоку окно чата. Ассистент предобучен под задачи трейдера, собирает контекст под конкретную задачу и живёт внутри интерфейса &mdash; на всём круге работы, от разбора ситуации до выставления ордера. <strong>Трейдер принимает решение, ассистент его исполняет.</strong></p>
             </div>
             <div class="deck-chart">
-              <svg viewBox="0 0 900 336" role="img" aria-label="Trader Assistant structure: the trader on top, the assistant as orchestrator with the prompt library and context-window control, specialised AI agents below it, platform tools via MCP, and the user-chosen model at the bottom; safety rails run alongside">
-                <rect x="10" y="8"    width="670" height="42" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
-                <rect x="10" y="66"   width="670" height="66" rx="10" fill="#fff3e8" stroke="var(--inv-accent)" stroke-width="2.5"/>
-                <rect x="10" y="148"  width="670" height="66" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
-                <rect x="10" y="230"  width="670" height="52" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
-                <rect x="10" y="288"  width="670" height="42" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
-                <rect x="700" y="8"   width="190" height="322" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
+              <svg viewBox="0 0 900 392" role="img" aria-label="Trader Assistant inside the product: the trader decides, the Trader HUD screen is what the assistant sees, the assistant is pre-trained for trading tasks and builds its context, specialised agents work under it, execution runs through MCP tools, and the user picks the model; safety rails run alongside">
+                <defs><marker id="ta-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7a6058"/></marker></defs>
+                <rect x="10" y="8"   width="670" height="42" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="60"  width="670" height="58" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="128" width="670" height="68" rx="10" fill="#fff3e8" stroke="var(--inv-accent)" stroke-width="2.5"/>
+                <rect x="10" y="206" width="670" height="58" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="274" width="670" height="58" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="342" width="670" height="42" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
+                <rect x="700" y="8"  width="190" height="376" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
 
                 <g stroke="#7a6058" stroke-width="2" marker-start="url(#ta-arrow)" marker-end="url(#ta-arrow)">
-                  <line x1="345" y1="50" x2="345" y2="66"/>
-                  <line x1="345" y1="132" x2="345" y2="148"/>
-                  <line x1="345" y1="214" x2="345" y2="230"/>
-                  <line x1="345" y1="282" x2="345" y2="288"/>
+                  <line x1="345" y1="50"  x2="345" y2="60"/>
+                  <line x1="345" y1="118" x2="345" y2="128"/>
+                  <line x1="345" y1="196" x2="345" y2="206"/>
+                  <line x1="345" y1="264" x2="345" y2="274"/>
+                  <line x1="345" y1="332" x2="345" y2="342"/>
                 </g>
-                <defs><marker id="ta-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7a6058"/></marker></defs>
 
-                <text x="345" y="35"  text-anchor="middle" class="chart-val" style="font-size:13px">ТРЕЙДЕР &mdash; решение всегда за человеком</text>
-                <text x="345" y="93"  text-anchor="middle" class="chart-val chart-val-hi" style="font-size:14px">TRADER ASSISTANT &mdash; оркестратор</text>
-                <text x="345" y="115" text-anchor="middle" class="chart-lbl" style="font-size:11px">Библиотека промптов &middot; управление окном контекста &middot; память сессии &middot; распределение задач</text>
-                <text x="345" y="175" text-anchor="middle" class="chart-val" style="font-size:13px">AI-АГЕНТЫ ПОД АССИСТЕНТОМ</text>
-                <text x="345" y="197" text-anchor="middle" class="chart-lbl" style="font-size:11px">Аналитик рынка &middot; Конструктор стратегий &middot; Риск-контролёр &middot; Бэктест-агент</text>
-                <text x="345" y="252" text-anchor="middle" class="chart-val" style="font-size:13px">ИНСТРУМЕНТЫ ЧЕРЕЗ MCP</text>
-                <text x="345" y="271" text-anchor="middle" class="chart-lbl" style="font-size:11px">Позиции, стакан, история, ордера, Trader Strateg, Trader Sandbox</text>
-                <text x="345" y="305" text-anchor="middle" class="chart-val" style="font-size:12px">МОДЕЛЬ ПОД КАПОТОМ &mdash; выбирает пользователь</text>
-                <text x="345" y="322" text-anchor="middle" class="chart-lbl" style="font-size:10px">Локальная: Ollama, Llama, Mistral &nbsp;&middot;&nbsp; Облачная: Claude, GPT, Gemini</text>
+                <text x="345" y="35"  text-anchor="middle" class="chart-val" style="font-size:13px">ТРЕЙДЕР &mdash; принимает решение</text>
+                <text x="345" y="84"  text-anchor="middle" class="chart-val" style="font-size:13px">TRADER HUD &mdash; экран трейдера</text>
+                <text x="345" y="104" text-anchor="middle" class="chart-lbl" style="font-size:11px">График, стакан, позиции, ордера &mdash; ассистент видит ровно то же, что и трейдер</text>
+                <text x="345" y="155" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:14px">TRADER ASSISTANT</text>
+                <text x="345" y="178" text-anchor="middle" class="chart-lbl" style="font-size:11px">Предобучен под задачи трейдера &middot; конструктор контекста &middot; библиотека промптов &middot; память сессии</text>
+                <text x="345" y="230" text-anchor="middle" class="chart-val" style="font-size:13px">AI-АГЕНТЫ ПОД АССИСТЕНТОМ</text>
+                <text x="345" y="250" text-anchor="middle" class="chart-lbl" style="font-size:11px">Аналитик рынка &middot; Конструктор стратегий &middot; Риск-контролёр &middot; Бэктест-агент</text>
+                <text x="345" y="298" text-anchor="middle" class="chart-val" style="font-size:13px">ИСПОЛНЕНИЕ ЧЕРЕЗ ИНСТРУМЕНТЫ MCP</text>
+                <text x="345" y="318" text-anchor="middle" class="chart-lbl" style="font-size:11px">Ордера, позиции, Trader Strateg, Trader Sandbox, история</text>
+                <text x="345" y="362" text-anchor="middle" class="chart-val" style="font-size:12px">МОДЕЛЬ ПОД КАПОТОМ &mdash; выбирает пользователь</text>
+                <text x="345" y="378" text-anchor="middle" class="chart-lbl" style="font-size:10px">Локальная: Ollama, Llama, Mistral &nbsp;&middot;&nbsp; Облачная: Claude, GPT, Gemini</text>
 
-                <text x="795" y="112"  text-anchor="middle" class="chart-val chart-val-hi" style="font-size:12px">SAFETY-РЕЛЬСЫ</text>
-                <text x="795" y="150"  text-anchor="middle" class="chart-lbl" style="font-size:11px">Ключи остаются на</text>
-                <text x="795" y="170" text-anchor="middle" class="chart-lbl" style="font-size:11px">машине &middot; каждое</text>
-                <text x="795" y="190" text-anchor="middle" class="chart-lbl" style="font-size:11px">действие подтверждает</text>
-                <text x="795" y="210" text-anchor="middle" class="chart-lbl" style="font-size:11px">человек &middot; исполнение</text>
-                <text x="795" y="230" text-anchor="middle" class="chart-lbl" style="font-size:11px">в песочнице &middot; полный</text>
-                <text x="795" y="250" text-anchor="middle" class="chart-lbl" style="font-size:11px">аудит действий</text>
+                <text x="795" y="170" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:12px">SAFETY-РЕЛЬСЫ</text>
+                <text x="795" y="200" text-anchor="middle" class="chart-lbl" style="font-size:11px">Ключи остаются</text>
+                <text x="795" y="220" text-anchor="middle" class="chart-lbl" style="font-size:11px">на машине &middot; каждое</text>
+                <text x="795" y="240" text-anchor="middle" class="chart-lbl" style="font-size:11px">действие подтверждает</text>
+                <text x="795" y="260" text-anchor="middle" class="chart-lbl" style="font-size:11px">трейдер &middot; исполнение</text>
+                <text x="795" y="280" text-anchor="middle" class="chart-lbl" style="font-size:11px">в песочнице &middot; полный</text>
+                <text x="795" y="300" text-anchor="middle" class="chart-lbl" style="font-size:11px">аудит действий</text>
               </svg>
             </div>
             <div class="deck-grid deck-grid--3" style="margin-top:0.7rem">
-              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Библиотека промптов</div><div class="deck-card-text">Готовые сценарии на каждый рабочий случай &mdash; разобрать ситуацию по инструменту, собрать стратегию, проверить риск, объяснить уже совершённую сделку. Промпты версионируются, редактируются и публикуются: открытая библиотека, которую пополняет сообщество. Трейдер не пишет промпт с чистого листа &mdash; он берёт проверенный и правит под себя.</div></div>
-              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Управление окном контекста</div><div class="deck-card-text">Трейдер точно решает, что видит модель: какие инструменты, какие таймфреймы, какая глубина истории, какие позиции и лимиты риска попадают в окно. Контекст можно закреплять, очищать, разделять по задачам и переносить между сессиями. Одна эта настройка управляет сразу качеством ответа, стоимостью запроса и приватностью &mdash; в окно не попадает ничего, чего трейдер туда не положил.</div></div>
-              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Агенты под ассистентом</div><div class="deck-card-text">Ассистент &mdash; не одна модель, а оркестратор специализированных агентов: аналитик рынка, конструктор стратегий, риск-контролёр, бэктест-агент. Каждый работает со своим набором инструментов и своим окном контекста; ассистент распределяет задачу и сводит результат.</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Предобучен под задачи трейдера</div><div class="deck-card-text">Он уже владеет предметной областью: типы ордеров, ТА-маркеры, арифметика позиции и риска, механика биржи. Не нужно каждую сессию объяснять, что такое стоп. Поверх этого &mdash; библиотека промптов: готовые сценарии на типовые случаи, с версионированием, редактированием и публикацией, которую пополняет сообщество. Трейдер не пишет промпт с чистого листа.</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Конструктор контекста</div><div class="deck-card-text">Трейдер собирает окно контекста как приборную панель: какие инструменты, какие таймфреймы, какая глубина истории, какие позиции и лимиты риска в него входят. Контекст можно закреплять, очищать, разделять по задачам и переносить между сессиями. Одна настройка управляет сразу качеством ответа, стоимостью запроса и приватностью &mdash; в окно не попадает ничего, чего трейдер туда не положил.</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Интегрирован в интерфейс</div><div class="deck-card-text">Ассистент работает от живого экрана: выделенный участок графика, открытый стакан, подсвеченная позиция, готовящийся ордер. Отсюда и широта задач &mdash; объяснить, что происходит, разметить график, собрать и прогнать стратегию на истории, рассчитать объём ордера, разобрать уже совершённую сделку. Он предлагает и исполняет; решение остаётся за трейдером.</div></div>
             </div>
-            <div class="deck-card" style="margin-top:0.55rem">
-              <div class="deck-card-text" style="text-align:center"><strong>Нашего сервера в цепочке нет.</strong> Торговый контур всегда локальный: API-ключи не покидают машину, облачная модель &mdash; если выбрана &mdash; вызывается пользователем напрямую с его же машины, и каждое действие подтверждает трейдер.</div>
+            <div class="deck-card" style="margin-top:0.55rem;border-color:#c0392b">
+              <div class="deck-card-text" style="text-align:center"><strong>Трейдер принимает решение &mdash; ассистент его исполняет.</strong> Торговый контур всегда локальный: наших серверов в цепочке нет, API-ключи не покидают машину, а облачная модель &mdash; если выбрана &mdash; вызывается пользователем напрямую с его же машины.</div>
             </div>
           </section>
 

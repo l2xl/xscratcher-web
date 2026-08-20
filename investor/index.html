@@ -376,52 +376,56 @@
           <section class="slide" id="slide-5" data-nav="Assistant">
             <div class="slide-head">
               <div class="slide-kicker">Trader Assistant</div>
-              <h2 class="slide-title">Trader Assistant &mdash; a clear structure around the model</h2>
-              <p class="slide-lead">We do not build our own model &mdash; we build the cockpit around it. The value is the structure: defined roles, a context window the trader controls, and a reusable prompt library.</p>
+              <h2 class="slide-title">Built into the terminal: it sees what the trader sees and carries out their decision</h2>
+              <p class="slide-lead">Not a chat window bolted on the side. The assistant is pre-trained on the trader&rsquo;s own task set, assembles its context per task, and lives inside the interface &mdash; across the whole range of work, from reading the situation to placing the order. <strong>The trader decides, the assistant executes.</strong></p>
             </div>
             <div class="deck-chart">
-              <svg viewBox="0 0 900 336" role="img" aria-label="Trader Assistant structure: the trader on top, the assistant as orchestrator with the prompt library and context-window control, specialised AI agents below it, platform tools via MCP, and the user-chosen model at the bottom; safety rails run alongside">
-                <rect x="10" y="8"    width="670" height="42" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
-                <rect x="10" y="66"   width="670" height="66" rx="10" fill="#fff3e8" stroke="var(--inv-accent)" stroke-width="2.5"/>
-                <rect x="10" y="148"  width="670" height="66" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
-                <rect x="10" y="230"  width="670" height="52" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
-                <rect x="10" y="288"  width="670" height="42" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
-                <rect x="700" y="8"   width="190" height="322" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
+              <svg viewBox="0 0 900 392" role="img" aria-label="Trader Assistant inside the product: the trader decides, the Trader HUD screen is what the assistant sees, the assistant is pre-trained for trading tasks and builds its context, specialised agents work under it, execution runs through MCP tools, and the user picks the model; safety rails run alongside">
+                <defs><marker id="ta-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7a6058"/></marker></defs>
+                <rect x="10" y="8"   width="670" height="42" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="60"  width="670" height="58" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="128" width="670" height="68" rx="10" fill="#fff3e8" stroke="var(--inv-accent)" stroke-width="2.5"/>
+                <rect x="10" y="206" width="670" height="58" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="274" width="670" height="58" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="342" width="670" height="42" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
+                <rect x="700" y="8"  width="190" height="376" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
 
                 <g stroke="#7a6058" stroke-width="2" marker-start="url(#ta-arrow)" marker-end="url(#ta-arrow)">
-                  <line x1="345" y1="50" x2="345" y2="66"/>
-                  <line x1="345" y1="132" x2="345" y2="148"/>
-                  <line x1="345" y1="214" x2="345" y2="230"/>
-                  <line x1="345" y1="282" x2="345" y2="288"/>
+                  <line x1="345" y1="50"  x2="345" y2="60"/>
+                  <line x1="345" y1="118" x2="345" y2="128"/>
+                  <line x1="345" y1="196" x2="345" y2="206"/>
+                  <line x1="345" y1="264" x2="345" y2="274"/>
+                  <line x1="345" y1="332" x2="345" y2="342"/>
                 </g>
-                <defs><marker id="ta-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7a6058"/></marker></defs>
 
-                <text x="345" y="35"  text-anchor="middle" class="chart-val" style="font-size:13px">TRADER &mdash; the decision is always human</text>
-                <text x="345" y="93"  text-anchor="middle" class="chart-val chart-val-hi" style="font-size:14px">TRADER ASSISTANT &mdash; the orchestrator</text>
-                <text x="345" y="115" text-anchor="middle" class="chart-lbl" style="font-size:11px">Prompt library &middot; context-window control &middot; session memory &middot; task routing</text>
-                <text x="345" y="175" text-anchor="middle" class="chart-val" style="font-size:13px">AI AGENTS UNDER THE ASSISTANT</text>
-                <text x="345" y="197" text-anchor="middle" class="chart-lbl" style="font-size:11px">Market analyst &middot; Strategy builder &middot; Risk controller &middot; Backtest agent</text>
-                <text x="345" y="252" text-anchor="middle" class="chart-val" style="font-size:13px">TOOLS VIA MCP</text>
-                <text x="345" y="271" text-anchor="middle" class="chart-lbl" style="font-size:11px">Positions, order book, history, orders, Trader Strateg, Trader Sandbox</text>
-                <text x="345" y="305" text-anchor="middle" class="chart-val" style="font-size:12px">THE MODEL UNDER THE HOOD &mdash; the user picks it</text>
-                <text x="345" y="322" text-anchor="middle" class="chart-lbl" style="font-size:10px">Local: Ollama, Llama, Mistral &nbsp;&middot;&nbsp; Cloud: Claude, GPT, Gemini</text>
+                <text x="345" y="35"  text-anchor="middle" class="chart-val" style="font-size:13px">TRADER &mdash; makes the decision</text>
+                <text x="345" y="84"  text-anchor="middle" class="chart-val" style="font-size:13px">TRADER HUD &mdash; the trader&rsquo;s screen</text>
+                <text x="345" y="104" text-anchor="middle" class="chart-lbl" style="font-size:11px">Chart, order book, positions, orders &mdash; the assistant sees exactly what the trader sees</text>
+                <text x="345" y="155" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:14px">TRADER ASSISTANT</text>
+                <text x="345" y="178" text-anchor="middle" class="chart-lbl" style="font-size:11px">Pre-trained for trading tasks &middot; context builder &middot; prompt library &middot; session memory</text>
+                <text x="345" y="230" text-anchor="middle" class="chart-val" style="font-size:13px">AI AGENTS UNDER THE ASSISTANT</text>
+                <text x="345" y="250" text-anchor="middle" class="chart-lbl" style="font-size:11px">Market analyst &middot; Strategy builder &middot; Risk controller &middot; Backtest agent</text>
+                <text x="345" y="298" text-anchor="middle" class="chart-val" style="font-size:13px">EXECUTION VIA MCP TOOLS</text>
+                <text x="345" y="318" text-anchor="middle" class="chart-lbl" style="font-size:11px">Orders, positions, Trader Strateg, Trader Sandbox, history</text>
+                <text x="345" y="362" text-anchor="middle" class="chart-val" style="font-size:12px">THE MODEL UNDER THE HOOD &mdash; the user picks it</text>
+                <text x="345" y="378" text-anchor="middle" class="chart-lbl" style="font-size:10px">Local: Ollama, Llama, Mistral &nbsp;&middot;&nbsp; Cloud: Claude, GPT, Gemini</text>
 
-                <text x="795" y="112"  text-anchor="middle" class="chart-val chart-val-hi" style="font-size:12px">SAFETY RAILS</text>
-                <text x="795" y="150"  text-anchor="middle" class="chart-lbl" style="font-size:11px">Keys stay on the</text>
-                <text x="795" y="170" text-anchor="middle" class="chart-lbl" style="font-size:11px">machine &middot; human</text>
-                <text x="795" y="190" text-anchor="middle" class="chart-lbl" style="font-size:11px">confirms every</text>
-                <text x="795" y="210" text-anchor="middle" class="chart-lbl" style="font-size:11px">action &middot; sandbox</text>
-                <text x="795" y="230" text-anchor="middle" class="chart-lbl" style="font-size:11px">execution &middot; full</text>
-                <text x="795" y="250" text-anchor="middle" class="chart-lbl" style="font-size:11px">action audit</text>
+                <text x="795" y="170" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:12px">SAFETY RAILS</text>
+                <text x="795" y="200" text-anchor="middle" class="chart-lbl" style="font-size:11px">Keys stay on the</text>
+                <text x="795" y="220" text-anchor="middle" class="chart-lbl" style="font-size:11px">machine &middot; the trader</text>
+                <text x="795" y="240" text-anchor="middle" class="chart-lbl" style="font-size:11px">confirms every</text>
+                <text x="795" y="260" text-anchor="middle" class="chart-lbl" style="font-size:11px">action &middot; sandbox</text>
+                <text x="795" y="280" text-anchor="middle" class="chart-lbl" style="font-size:11px">execution &middot; full</text>
+                <text x="795" y="300" text-anchor="middle" class="chart-lbl" style="font-size:11px">action audit</text>
               </svg>
             </div>
             <div class="deck-grid deck-grid--3" style="margin-top:0.7rem">
-              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Prompt library</div><div class="deck-card-text">Ready-made scenarios for the everyday cases &mdash; read the situation on an instrument, assemble a strategy, check risk, explain a trade that already happened. Prompts are versioned, editable and publishable: an open library the community keeps filling. The trader never starts from a blank prompt &mdash; they take a proven one and adjust it.</div></div>
-              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Context-window control</div><div class="deck-card-text">The trader decides exactly what the model sees: which instruments, which timeframes, how deep the history goes, which positions and risk limits enter the window. Context can be pinned, cleared, split per task and carried between sessions. That single control governs answer quality, request cost and privacy at once &mdash; nothing enters the window that the trader did not put there.</div></div>
-              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Agents under the assistant</div><div class="deck-card-text">The assistant is not one model but an orchestrator of specialised agents: a market analyst, a strategy builder, a risk controller, a backtest agent. Each runs with its own tools and its own context window; the assistant routes the task and assembles the result.</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Pre-trained for the trader&rsquo;s tasks</div><div class="deck-card-text">It already speaks the domain: order types, TA markers, position and risk arithmetic, exchange mechanics. Nobody has to teach it what a stop is on every session. On top of that sits a prompt library &mdash; ready scenarios for the everyday cases, versioned, editable and publishable, filled by the community. The trader never starts from a blank prompt.</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Context builder &mdash; flexible by design</div><div class="deck-card-text">The trader assembles the window like an instrument panel: which instruments, which timeframes, how deep the history, which positions and risk limits go in. Context can be pinned, cleared, split per task and carried between sessions. One control governs answer quality, request cost and privacy at once &mdash; nothing enters the window that the trader did not put there.</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.8rem">Integrated into the interface</div><div class="deck-card-text">The assistant works from the live screen: the selected span on the chart, the open order book, the highlighted position, the order being drafted. That makes it useful across the whole range of tasks &mdash; explain what is happening, mark up the chart, assemble and backtest a strategy, size an order, review a trade already made. It proposes and executes; the decision stays with the trader.</div></div>
             </div>
-            <div class="deck-card" style="margin-top:0.55rem">
-              <div class="deck-card-text" style="text-align:center"><strong>No server of ours in the loop.</strong> The trading circuit is always local: API keys never leave the machine, the cloud model &mdash; if chosen &mdash; is called by the user directly from their own machine, and every action is confirmed by the trader.</div>
+            <div class="deck-card" style="margin-top:0.55rem;border-color:#c0392b">
+              <div class="deck-card-text" style="text-align:center"><strong>The trader decides &mdash; the assistant executes.</strong> The trading circuit is always local: our servers are not in the loop, API keys never leave the machine, and the cloud model &mdash; if chosen &mdash; is called by the user directly from their own machine.</div>
             </div>
           </section>
 
