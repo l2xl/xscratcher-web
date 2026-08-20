@@ -378,34 +378,30 @@
               <h2 class="slide-title">Трейдер принимает решение, ассистент его исполняет. Ассистент предобучен под задачи трейдера и интегрирован в UI для ассистирования в самом широком круге задач.</h2>
             </div>
             <div class="deck-chart">
-              <svg viewBox="0 0 900 392" role="img" aria-label="Trader Assistant inside the product: the trader decides, the Trader HUD screen is what the assistant sees, the assistant is pre-trained for trading tasks and builds its context, specialised agents work under it, execution runs through MCP tools, and the user picks the model; safety rails run alongside">
+              <svg viewBox="0 0 900 324" role="img" aria-label="Trader Assistant inside the product: the trader decides, the Trader HUD screen is what the assistant sees, the assistant is pre-trained for trading tasks and builds its context, specialised agents work under it, execution runs through MCP tools, and the user picks the model; safety rails run alongside">
                 <defs><marker id="ta-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7a6058"/></marker></defs>
                 <rect x="10" y="8"   width="880" height="42" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
-                <rect x="10" y="60"  width="880" height="58" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
-                <rect x="10" y="128" width="880" height="68" rx="10" fill="#fff3e8" stroke="var(--inv-accent)" stroke-width="2.5"/>
+                <rect x="10" y="60" width="880" height="68" rx="10" fill="#fff3e8" stroke="var(--inv-accent)" stroke-width="2.5"/>
+                <rect x="10" y="138" width="880" height="58" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
                 <rect x="10" y="206" width="880" height="58" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
-                <rect x="10" y="274" width="880" height="58" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
-                <rect x="10" y="342" width="880" height="42" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
+                <rect x="10" y="274" width="880" height="42" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
 
                 <g stroke="#7a6058" stroke-width="2" marker-start="url(#ta-arrow)" marker-end="url(#ta-arrow)">
                   <line x1="450" y1="50"  x2="450" y2="60"/>
-                  <line x1="450" y1="118" x2="450" y2="128"/>
+                  <line x1="450" y1="128" x2="450" y2="138"/>
                   <line x1="450" y1="196" x2="450" y2="206"/>
                   <line x1="450" y1="264" x2="450" y2="274"/>
-                  <line x1="450" y1="332" x2="450" y2="342"/>
                 </g>
 
                 <text x="450" y="35"  text-anchor="middle" class="chart-val" style="font-size:13px">ТРЕЙДЕР &mdash; принимает решение</text>
-                <text x="450" y="84"  text-anchor="middle" class="chart-val" style="font-size:13px">TRADER HUD &mdash; экран трейдера</text>
-                <text x="450" y="104" text-anchor="middle" class="chart-lbl" style="font-size:11px">График, стакан, позиции, ордера &mdash; ассистент видит ровно то же, что и трейдер</text>
-                <text x="450" y="155" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:14px">TRADER ASSISTANT</text>
-                <text x="450" y="178" text-anchor="middle" class="chart-lbl" style="font-size:11px">Предобучен под задачи трейдера &middot; конструктор контекста &middot; библиотека промптов &middot; память сессии</text>
-                <text x="450" y="230" text-anchor="middle" class="chart-val" style="font-size:13px">AI-АГЕНТЫ ПОД АССИСТЕНТОМ</text>
-                <text x="450" y="250" text-anchor="middle" class="chart-lbl" style="font-size:11px">Аналитик рынка &middot; Конструктор стратегий &middot; Риск-контролёр &middot; Бэктест-агент</text>
-                <text x="450" y="298" text-anchor="middle" class="chart-val" style="font-size:13px">ИСПОЛНЕНИЕ ЧЕРЕЗ ИНСТРУМЕНТЫ MCP</text>
-                <text x="450" y="318" text-anchor="middle" class="chart-lbl" style="font-size:11px">Ордера, позиции, Trader Strateg, Trader Sandbox, история</text>
-                <text x="450" y="362" text-anchor="middle" class="chart-val" style="font-size:12px">БАЗОВАЯ ЯЗЫКОВАЯ МОДЕЛЬ (LLM) &mdash; выбирает пользователь</text>
-                <text x="450" y="378" text-anchor="middle" class="chart-lbl" style="font-size:10px">Локальная: Ollama, Llama, Mistral &nbsp;&middot;&nbsp; Облачная: Claude, GPT, Gemini</text>
+                <text x="450" y="87" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:14px">TRADER ASSISTANT</text>
+                <text x="450" y="110" text-anchor="middle" class="chart-lbl" style="font-size:11px">Видит UI Trader HUD &middot; конструктор контекста &middot; библиотека промптов &middot; память сессии</text>
+                <text x="450" y="162" text-anchor="middle" class="chart-val" style="font-size:13px">AI-АГЕНТЫ ПОД АССИСТЕНТОМ</text>
+                <text x="450" y="182" text-anchor="middle" class="chart-lbl" style="font-size:11px">Аналитик рынка &middot; Конструктор стратегий &middot; Риск-контролёр &middot; Бэктест-агент</text>
+                <text x="450" y="230" text-anchor="middle" class="chart-val" style="font-size:13px">ИСПОЛНЕНИЕ ЧЕРЕЗ ИНСТРУМЕНТЫ MCP</text>
+                <text x="450" y="250" text-anchor="middle" class="chart-lbl" style="font-size:11px">Ордера, позиции, Trader Strateg, Trader Sandbox, история</text>
+                <text x="450" y="294" text-anchor="middle" class="chart-val" style="font-size:12px">БАЗОВАЯ ЯЗЫКОВАЯ МОДЕЛЬ (LLM) &mdash; выбирает пользователь</text>
+                <text x="450" y="310" text-anchor="middle" class="chart-lbl" style="font-size:10px">Локальная: Ollama, Llama, Mistral &nbsp;&middot;&nbsp; Облачная: Claude, GPT, Gemini</text>
               </svg>
             </div>
             <div class="deck-card" style="margin-top:0.55rem;border-color:#c0392b">
