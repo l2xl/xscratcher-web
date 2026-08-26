@@ -412,28 +412,39 @@
           <section class="slide" id="slide-6" data-nav="Market">
             <div class="slide-head">
               <div class="slide-kicker">Market</div>
-              <h2 class="slide-title">A $10.86B market growing to $17.42B</h2>
+              <h2 class="slide-title">We do not sell software &mdash; we take a share of exchange fees. Our market is the fee pool.</h2>
               <p class="slide-lead">Our SAM: <strong>technically-minded users</strong> &mdash; both those already trading and looking for a better tool, and those who won't start without a clear, convenient one. A second wave follows as the product gains traction.</p>
             </div>
             <div class="deck-row">
-              <div class="deck-col" style="flex:0 0 280px;max-width:280px">
-                <div class="deck-chart-title">TAM &rarr; SAM &rarr; SOM</div>
+              <div class="deck-col" style="flex:0 0 300px;max-width:300px">
+                <div class="deck-chart-title">From exchange volume to our revenue</div>
                 <div class="deck-chart">
-                  <svg viewBox="0 0 300 232" role="img" aria-label="TAM SAM SOM funnel">
-                    <polygon points="20,25 280,25 245,95 55,95" class="cs-7"/>
-                    <polygon points="55,100 245,100 205,160 95,160" class="cs-2"/>
-                    <polygon points="95,165 205,165 170,222 130,222" class="cs-1"/>
-                    <text x="150" y="55" text-anchor="middle" class="chart-val">TAM &middot; 583M</text>
-                    <text x="150" y="72" text-anchor="middle" class="chart-lbl">Exchange users + open-source developers</text>
-                    <text x="150" y="128" text-anchor="middle" class="chart-val" style="fill:#fff">SAM &middot; 43.5M</text>
-                    <text x="150" y="143" text-anchor="middle" class="chart-lbl" style="fill:#fff">7.5% of TAM</text>
-                    <text x="150" y="196" text-anchor="middle" class="chart-val" style="fill:#fff;font-size:11px">SOM ~40K</text>
-                    <text x="150" y="210" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:8px">open-source</text>
+                  <svg viewBox="0 0 300 276" role="img" aria-label="Cascade from exchange volume to the fee pool and our share of it">
+                    <rect x="0" y="8" width="300" height="52" rx="6" class="cs-7"/>
+                    <text x="150" y="28" text-anchor="middle" class="chart-val" style="font-size:15px">$45.7T</text>
+                    <text x="150" y="41" text-anchor="middle" class="chart-lbl" style="font-size:9px">Exchange volume / yr</text>
+                    <text x="150" y="52" text-anchor="middle" class="chart-lbl" style="font-size:8px;opacity:0.85">8 exchanges, measured</text>
+                    <polyline points="138,62 150,68 162,62" fill="none" stroke="var(--cs-1)" stroke-width="2"/>
+                    <rect x="22" y="70" width="256" height="52" rx="6" class="cs-6"/>
+                    <text x="150" y="90" text-anchor="middle" class="chart-val" style="font-size:15px">~$20T</text>
+                    <text x="150" y="103" text-anchor="middle" class="chart-lbl" style="font-size:9px">Retail-addressable</text>
+                    <text x="150" y="114" text-anchor="middle" class="chart-lbl" style="font-size:8px;opacity:0.85">~71% of spot, ~40% of perp</text>
+                    <polyline points="138,124 150,130 162,124" fill="none" stroke="var(--cs-1)" stroke-width="2"/>
+                    <rect x="44" y="132" width="212" height="52" rx="6" class="cs-2"/>
+                    <text x="150" y="152" text-anchor="middle" class="chart-val" style="fill:#fff;font-size:15px">$12.7B</text>
+                    <text x="150" y="165" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:9px">Exchange fee pool</text>
+                    <text x="150" y="176" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:8px;opacity:0.85">0.10% spot &middot; 0.055% perp</text>
+                    <polyline points="138,186 150,192 162,186" fill="none" stroke="var(--cs-1)" stroke-width="2"/>
+                    <rect x="66" y="194" width="168" height="52" rx="6" class="cs-1"/>
+                    <text x="150" y="214" text-anchor="middle" class="chart-val" style="fill:#fff;font-size:15px">$2.5&ndash;6.3B</text>
+                    <text x="150" y="227" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:9px">Our share, 20&ndash;50%</text>
+                    <text x="150" y="238" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:8px;opacity:0.85">the market we monetise</text>
+                    <text x="150" y="272" text-anchor="middle" class="chart-lbl" style="font-size:8px;fill:var(--inv-faint)">SOM at month 36 &mdash; $13.4M ARR &middot; 0.2&ndash;0.5% of our share of the pool</text>
                   </svg>
                 </div>
               </div>
               <div class="deck-col">
-                <div class="deck-chart-title">Market value, $B (2024 &rarr; 2033)</div>
+                <div class="deck-chart-title">Trading-platform market, $B &middot; <span style="color:var(--inv-faint);font-weight:400">demand proxy</span></div>
                 <div class="deck-chart">
                   <svg viewBox="0 0 660 280" role="img" aria-label="Market growth chart">
                     <line x1="60" y1="250" x2="640" y2="250" class="chart-axis"/>
@@ -463,13 +474,13 @@
                   </svg>
                 </div>
                 <ul class="deck-legend row" style="margin-top:0.3rem">
-                  <li><span class="dot bg-1"></span> Online-trading market &middot; $10.86B&rarr;$17.42B &middot; CAGR 5.4%</li>
+                  <li><span class="dot bg-1"></span> Trading platforms, all asset classes &middot; $10.86B&rarr;$17.42B &middot; CAGR 5.4%</li>
                   <li><span class="dot bg-2"></span> Crypto-bot niche &middot; $1.63B&rarr;$5.4B &middot; CAGR 16.2%</li>
                 </ul>
               </div>
             </div>
             <div class="deck-stats" style="margin-top:0.6rem">
-              <div class="deck-stat"><div class="deck-stat-value">583M</div><div class="deck-stat-label">TAM users</div><div class="deck-stat-sub">$10.86B &rarr; $17.42B</div></div>
+              <div class="deck-stat"><div class="deck-stat-value">583M</div><div class="deck-stat-label">TAM users</div><div class="deck-stat-sub">CEX users + OSS devs</div></div>
               <div class="deck-stat"><div class="deck-stat-value">43.5M</div><div class="deck-stat-label">SAM</div><div class="deck-stat-sub">7.5% of TAM</div></div>
               <div class="deck-stat"><div class="deck-stat-value">7.5M</div><div class="deck-stat-label">OSS devs &middot; beachhead</div><div class="deck-stat-sub">fintech/trading &middot; of 150M+ on GitHub</div></div>
               <div class="deck-stat"><div class="deck-stat-value">~40K</div><div class="deck-stat-label">SOM &middot; open-source</div><div class="deck-stat-sub">~16K active &middot; 3yr &middot; $13.4M ARR</div></div>
@@ -574,6 +585,8 @@
             <div class="slide-head">
               <div class="slide-kicker">Business Model</div>
               <h2 class="slide-title">Revenue from the trader's first trade</h2>
+              <p class="slide-lead"><strong>The user is the trader &mdash; they pay us nothing. The client is the exchange:</strong> it keeps charging its usual fee and shares it with us for the volume we bring.</p>
+              <p class="slide-lead" style="font-size:0.82rem;color:var(--inv-faint)">The same shape as Booking (the hotel pays), Credit Karma (the bank pays) and Hummingbot (the exchange pays) &mdash; free for the user, the bill goes to the large counterparty.</p>
               <p class="slide-lead"><strong>Fee share</strong> <em>(revenue)</em> &middot; <strong>Open Source</strong> <em>(distribution)</em>.</p>
             </div>
             <div class="deck-grid deck-grid--2" style="margin-top:0.2rem">
