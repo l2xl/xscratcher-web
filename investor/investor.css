@@ -1140,7 +1140,7 @@ a:hover { color: var(--inv-rose); }
   gap: 0.3rem;
   background: var(--inv-surface);
   border: 1px solid var(--inv-border);
-  border-radius: 999px;
+  border-radius: var(--inv-radius);
   padding: 0.32rem 0.7rem;
   white-space: nowrap;
 }
