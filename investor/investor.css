@@ -1131,6 +1131,32 @@ a:hover { color: var(--inv-rose); }
 }
 .deck-stat-sub { font-size: 0.62rem; color: var(--inv-muted); margin-top: 0.15rem; }
 
+/* Business-model postulates, shown as key=value pill badges instead of prose. */
+.deck-equations { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 0.6rem; }
+.deck-equation {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  background: var(--inv-surface);
+  border: 1px solid var(--inv-border);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+}
+.deck-equation .eq-key {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--inv-muted);
+}
+.deck-equation .eq-op { color: var(--inv-faint); font-size: 0.78rem; }
+.deck-equation .eq-val {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--inv-accent);
+}
+
 /* charts */
 .deck-chart { width: 100%; }
 .deck-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
