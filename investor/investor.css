@@ -1131,6 +1131,39 @@ a:hover { color: var(--inv-rose); }
 }
 .deck-stat-sub { font-size: 0.62rem; color: var(--inv-muted); margin-top: 0.15rem; }
 
+/* Business-model postulates, shown as key=value pill badges instead of prose.
+   Sized to fit all four on one line on desktop; wraps only on narrow screens. */
+.deck-equations { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+.deck-equation {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  background: var(--inv-surface);
+  border: 1px solid var(--inv-border);
+  border-radius: var(--inv-radius);
+  padding: 0.32rem 0.7rem;
+  white-space: nowrap;
+}
+.deck-equation .eq-key {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--inv-muted);
+}
+.deck-equation .eq-op { color: var(--inv-faint); font-size: 0.72rem; }
+.deck-equation .eq-val {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.76rem;
+  color: var(--inv-accent);
+}
+@media (max-width: 900px) {
+  .deck-equations { gap: 0.35rem; }
+  .deck-equation { padding: 0.28rem 0.55rem; }
+  .deck-equation .eq-val { font-size: 0.7rem; }
+}
+
 /* charts */
 .deck-chart { width: 100%; }
 .deck-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
@@ -1221,13 +1254,13 @@ a:hover { color: var(--inv-rose); }
 /* Unit Economics cohort table: fixed layout with equal-width numeric
    columns, so the number columns sit on an even rhythm instead of each
    being sized to its own content. Headers may wrap to two lines. */
-#slide-8 .deck-table { table-layout: fixed; }
-#slide-8 .deck-table th,
-#slide-8 .deck-table td { width: 18.5%; }
-#slide-8 .deck-table th:first-child,
-#slide-8 .deck-table td:first-child { width: 26%; }
-#slide-8 .deck-table th { vertical-align: bottom; white-space: normal; }
-#slide-8 .deck-table td.num { white-space: nowrap; }
+#slide-10 .deck-table { table-layout: fixed; }
+#slide-10 .deck-table th,
+#slide-10 .deck-table td { width: 18.5%; }
+#slide-10 .deck-table th:first-child,
+#slide-10 .deck-table td:first-child { width: 26%; }
+#slide-10 .deck-table th { vertical-align: bottom; white-space: normal; }
+#slide-10 .deck-table td.num { white-space: nowrap; }
 
 /* On phones, tighten the cohort/economics tables so they fit the slide
    width without a sideways scroll. Placed after the base rules above so it
@@ -1395,8 +1428,8 @@ a:hover { color: var(--inv-rose); }
      are a desktop-only shape. On phones, override the inline sizing so both
      stat groups span the full width and lay the cards out 2-up — no lopsided
      narrow column with empty space beside it. */
-  #slide-8 .deck-row > .deck-col { flex: 1 1 100% !important; max-width: none !important; }
-  #slide-8 .deck-stats { flex-direction: row !important; }
+  #slide-10 .deck-row > .deck-col { flex: 1 1 100% !important; max-width: none !important; }
+  #slide-10 .deck-stats { flex-direction: row !important; }
 }
 @media (max-width: 40em) {
   .deck-grid--2, .deck-grid--3, .deck-grid--4 { grid-template-columns: 1fr; }

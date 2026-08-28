@@ -55,7 +55,7 @@
 
         <div class="brief-hero-row">
           <div class="inv-title-block">
-            <p class="inv-subtitle">Open Trader is a free, open-source AI-powered terminal and platform for an exchange trading. No paywall to start — we monetise through an exchange fee share.</p>
+            <p class="inv-subtitle">Open Trader is a free, open-source, multi-exchange AI-powered terminal and platform for an exchange trading. No paywall to start — we monetise through an exchange fee share.</p>
           </div>
 
           <div class="brief-metrics">
@@ -189,7 +189,7 @@
             </div>
             <div class="brief-kv">
               <span class="brief-kv-key">Anna Tikhvinskaya</span>
-              <span class="brief-kv-val">Co-founder &middot; Investor Relations</span>
+              <span class="brief-kv-val">CPO &middot; BizDev</span>
               <span class="brief-kv-val">&middot; BizDev, outreach, due-diligence support</span>
               <span class="brief-kv-val">&middot; Background: professional musician &amp; project founder</span>
               <span class="brief-kv-val">&middot; Transferable patron outreach &amp; end-to-end project ownership</span>
@@ -293,6 +293,7 @@
             <div class="slide-head">
               <div class="slide-kicker">Product</div>
               <h2 class="slide-title">Open Trader solves the trader&rsquo;s full task set</h2>
+              <p class="slide-lead"><strong>One multi-exchange terminal</strong> &mdash; Bybit, Binance, OKX and more connected at once: unified market data, one order flow, a cumulative position and balance view across every connected exchange.</p>
               <p class="slide-lead"><em>MVP in active development.</em></p>
               <p class="slide-lead"><a href="https://github.com/l2xl/open-trader" target="_blank" rel="noopener">OpenTrader GitHub repo</a></p>
             </div>
@@ -371,32 +372,75 @@
 
 
 
-          <!-- ============ SLIDE 5 — MARKET (target audience + market size) ============ -->
-          <section class="slide" id="slide-5" data-nav="Market">
+          <!-- ============ SLIDE 5 — TRADER ASSISTANT ============ -->
+          <section class="slide" id="slide-5" data-nav="Assistant">
+            <div class="slide-head">
+              <div class="slide-kicker">Trader Assistant</div>
+              <h2 class="slide-title">The trader decides, the assistant executes. The assistant is pre-trained on the trader&rsquo;s task set and integrated into the UI to assist across the widest range of tasks.</h2>
+            </div>
+            <div class="deck-chart">
+              <svg viewBox="0 0 900 342" role="img" aria-label="Trader Assistant inside the product: the trader decides, the Trader HUD screen is what the assistant sees, the assistant is pre-trained for trading tasks and builds its context, specialised agents work under it, execution runs through MCP tools, and the user picks the model; safety rails run alongside">
+                <defs><marker id="ta-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7a6058"/></marker></defs>
+                <rect x="10" y="8"   width="880" height="42" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="60" width="880" height="86" rx="10" fill="#fff3e8" stroke="var(--inv-accent)" stroke-width="2.5"/>
+                <rect x="10" y="156" width="880" height="58" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="224" width="880" height="58" rx="10" fill="#fff3e8" stroke="#e8d4c4" stroke-width="2"/>
+                <rect x="10" y="292" width="880" height="42" rx="10" fill="#fffaf5" stroke="#e8d4c4" stroke-width="2" stroke-dasharray="5 4"/>
+
+                <g stroke="#7a6058" stroke-width="2" marker-start="url(#ta-arrow)" marker-end="url(#ta-arrow)">
+                  <line x1="450" y1="50"  x2="450" y2="60"/>
+                  <line x1="450" y1="146" x2="450" y2="156"/>
+                  <line x1="450" y1="214" x2="450" y2="224"/>
+                  <line x1="450" y1="282" x2="450" y2="292"/>
+                </g>
+
+                <text x="450" y="35"  text-anchor="middle" class="chart-val" style="font-size:13px">TRADER &mdash; makes the decision</text>
+                <text x="450" y="85" text-anchor="middle" class="chart-val chart-val-hi" style="font-size:14px">TRADER ASSISTANT</text>
+                <text x="450" y="107" text-anchor="middle" class="chart-lbl" style="font-size:11px">Sees the Trader HUD UI &middot; context builder &middot; prompt library</text>
+                <text x="450" y="130" text-anchor="middle" class="chart-lbl" style="font-size:11px">Onboarding a newcomer: picking and registering on an exchange &middot; KYC &middot; getting the API keys &middot; a built-in training course</text>
+                <text x="450" y="180" text-anchor="middle" class="chart-val" style="font-size:13px">AI AGENTS UNDER THE ASSISTANT</text>
+                <text x="450" y="200" text-anchor="middle" class="chart-lbl" style="font-size:11px">Market analyst &middot; Strategy builder &middot; Risk controller &middot; Backtest agent</text>
+                <text x="450" y="248" text-anchor="middle" class="chart-val" style="font-size:13px">EXECUTION VIA MCP TOOLS</text>
+                <text x="450" y="268" text-anchor="middle" class="chart-lbl" style="font-size:11px">Orders, positions, Trader Strateg, Trader Sandbox, history</text>
+                <text x="450" y="312" text-anchor="middle" class="chart-val" style="font-size:12px">UNDERLYING LANGUAGE MODEL (LLM) &mdash; selected by the user</text>
+                <text x="450" y="328" text-anchor="middle" class="chart-lbl" style="font-size:10px">Local: Ollama, Llama, Mistral &nbsp;&middot;&nbsp; Cloud: Claude, GPT, Gemini</text>
+              </svg>
+            </div>
+          </section>
+
+          <!-- ============ SLIDE 6 — MARKET (target audience + market size) ============ -->
+          <section class="slide" id="slide-6" data-nav="Market">
             <div class="slide-head">
               <div class="slide-kicker">Market</div>
-              <h2 class="slide-title">A $10.86B market growing to $17.42B</h2>
-              <p class="slide-lead">Our SAM: <strong>technically-minded users</strong> &mdash; both those already trading and looking for a better tool, and those who won't start without a clear, convenient one. A second wave follows as the product gains traction.</p>
+              <h2 class="slide-title">A share of the exchange fee pool</h2>
             </div>
             <div class="deck-row">
-              <div class="deck-col" style="flex:0 0 280px;max-width:280px">
-                <div class="deck-chart-title">TAM &rarr; SAM &rarr; SOM</div>
+              <div class="deck-col" style="flex:0 0 300px;max-width:300px">
+                <div class="deck-chart-title">From exchange volume to our revenue</div>
                 <div class="deck-chart">
-                  <svg viewBox="0 0 300 232" role="img" aria-label="TAM SAM SOM funnel">
-                    <polygon points="20,25 280,25 245,95 55,95" class="cs-7"/>
-                    <polygon points="55,100 245,100 205,160 95,160" class="cs-2"/>
-                    <polygon points="95,165 205,165 170,222 130,222" class="cs-1"/>
-                    <text x="150" y="55" text-anchor="middle" class="chart-val">TAM &middot; 583M</text>
-                    <text x="150" y="72" text-anchor="middle" class="chart-lbl">Exchange users + open-source developers</text>
-                    <text x="150" y="128" text-anchor="middle" class="chart-val" style="fill:#fff">SAM &middot; 43.5M</text>
-                    <text x="150" y="143" text-anchor="middle" class="chart-lbl" style="fill:#fff">7.5% of TAM</text>
-                    <text x="150" y="196" text-anchor="middle" class="chart-val" style="fill:#fff;font-size:11px">SOM ~40K</text>
-                    <text x="150" y="210" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:8px">open-source</text>
+                  <svg viewBox="0 0 300 276" role="img" aria-label="Funnel narrowing from exchange volume down to our share of the fee pool">
+                    <polygon points="0,8 300,8 282,60 18,60" class="cs-7"/>
+                    <text x="150" y="28" text-anchor="middle" class="chart-val" style="font-size:15px">&gt;$79T</text>
+                    <text x="150" y="41" text-anchor="middle" class="chart-lbl" style="font-size:9px">Exchange volume / yr</text>
+                    <text x="150" y="52" text-anchor="middle" class="chart-lbl" style="font-size:8px;opacity:0.85">all CEX, spot + derivatives, 2025</text>
+                    <polygon points="18,70 282,70 264,122 36,122" class="cs-6"/>
+                    <text x="150" y="90" text-anchor="middle" class="chart-val" style="font-size:15px">~$34.5T</text>
+                    <text x="150" y="103" text-anchor="middle" class="chart-lbl" style="font-size:9px">Retail-addressable</text>
+                    <text x="150" y="114" text-anchor="middle" class="chart-lbl" style="font-size:8px;opacity:0.85">~71% of spot, ~40% of perp</text>
+                    <polygon points="36,132 264,132 246,184 54,184" class="cs-2"/>
+                    <text x="150" y="152" text-anchor="middle" class="chart-val" style="fill:#fff;font-size:15px">$22.0B</text>
+                    <text x="150" y="165" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:9px">Exchange fee pool</text>
+                    <text x="150" y="176" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:8px;opacity:0.85">0.10% spot &middot; 0.055% perp</text>
+                    <polygon points="54,194 246,194 228,246 72,246" class="cs-1"/>
+                    <text x="150" y="214" text-anchor="middle" class="chart-val" style="fill:#fff;font-size:15px">$4.4&ndash;11.0B</text>
+                    <text x="150" y="227" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:9px">Our share, 20&ndash;50%</text>
+                    <text x="150" y="238" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:8px;opacity:0.85">the market we monetise</text>
+                    <text x="150" y="272" text-anchor="middle" class="chart-lbl" style="font-size:8px;fill:var(--inv-faint)">SOM at month 36 &mdash; $13.4M ARR &middot; ~0.1&ndash;0.3% of our share of the pool</text>
                   </svg>
                 </div>
               </div>
               <div class="deck-col">
-                <div class="deck-chart-title">Market value, $B (2024 &rarr; 2033)</div>
+                <div class="deck-chart-title">Trading-platform market, $B &middot; <span style="color:var(--inv-faint);font-weight:400">demand proxy</span></div>
                 <div class="deck-chart">
                   <svg viewBox="0 0 660 280" role="img" aria-label="Market growth chart">
                     <line x1="60" y1="250" x2="640" y2="250" class="chart-axis"/>
@@ -426,23 +470,24 @@
                   </svg>
                 </div>
                 <ul class="deck-legend row" style="margin-top:0.3rem">
-                  <li><span class="dot bg-1"></span> Online-trading market &middot; $10.86B&rarr;$17.42B &middot; CAGR 5.4%</li>
+                  <li><span class="dot bg-1"></span> Trading platforms, all asset classes &middot; $10.86B&rarr;$17.42B &middot; CAGR 5.4%</li>
                   <li><span class="dot bg-2"></span> Crypto-bot niche &middot; $1.63B&rarr;$5.4B &middot; CAGR 16.2%</li>
                 </ul>
               </div>
             </div>
             <div class="deck-stats" style="margin-top:0.6rem">
-              <div class="deck-stat"><div class="deck-stat-value">583M</div><div class="deck-stat-label">TAM users</div><div class="deck-stat-sub">$10.86B &rarr; $17.42B</div></div>
+              <div class="deck-stat"><div class="deck-stat-value">583M</div><div class="deck-stat-label">TAM users</div><div class="deck-stat-sub">CEX users + OSS devs</div></div>
               <div class="deck-stat"><div class="deck-stat-value">43.5M</div><div class="deck-stat-label">SAM</div><div class="deck-stat-sub">7.5% of TAM</div></div>
               <div class="deck-stat"><div class="deck-stat-value">7.5M</div><div class="deck-stat-label">OSS devs &middot; beachhead</div><div class="deck-stat-sub">fintech/trading &middot; of 150M+ on GitHub</div></div>
               <div class="deck-stat"><div class="deck-stat-value">~40K</div><div class="deck-stat-label">SOM &middot; open-source</div><div class="deck-stat-sub">~16K active &middot; 3yr &middot; $13.4M ARR</div></div>
               <div class="deck-stat"><div class="deck-stat-value">+12.4%</div><div class="deck-stat-label">Crypto users YoY</div><div class="deck-stat-sub">659 &rarr; 741M</div></div>
             </div>
+            <p class="slide-lead" style="margin-top:0.6rem">Our SAM: <strong>technically-minded users</strong> &mdash; both those already trading and looking for a better tool, and those who won't start without a clear, convenient one.</p>
             <div class="deck-row" style="margin-top:0.6rem">
               <div class="deck-col">
                 <div class="brief-section">
                   <div class="brief-section-title">Growth drivers</div>
-                  <div class="brief-section-body" style="font-size:0.8rem">Rising crypto adoption &middot; regulatory clarity (MiCA, VARA) &middot; MENA as a crypto hub &middot; AI lowers the entry barrier &middot; <strong>fast-growing OSS developer base (150M &rarr; 180M+ on GitHub)</strong>.</div>
+                  <div class="brief-section-body" style="font-size:0.8rem">Rising crypto adoption &middot; institutional demand for algo-trading &middot; regulatory clarity (MiCA in the EU, VARA in the UAE, Kyrgyzstan's 2025 virtual-asset law, the US Strategic Bitcoin Reserve) &middot; MENA as a crypto hub &middot; AI lowers the entry barrier &middot; <strong>fast-growing OSS developer base (150M &rarr; 180M+ on GitHub)</strong>.</div>
                 </div>
               </div>
               <div class="deck-col">
@@ -454,8 +499,9 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 6 — COMPETITION ============ -->
-          <section class="slide" id="slide-6" data-nav="Competition">
+
+          <!-- ============ SLIDE 7 — COMPETITION ============ -->
+          <section class="slide" id="slide-7" data-nav="Competition">
             <div class="slide-head">
               <div class="slide-kicker">Competition</div>
               <h2 class="slide-title">The only trader UI with an AI assistant, earning primarily from exchange fee share</h2>
@@ -495,37 +541,69 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 7 — BUSINESS MODEL ============ -->
-          <section class="slide" id="slide-7" data-nav="Business Model">
+          <!-- ============ SLIDE 8 — BUSINESS MODEL ============ -->
+          <section class="slide" id="slide-8" data-nav="Business Model">
             <div class="slide-head">
               <div class="slide-kicker">Business Model</div>
               <h2 class="slide-title">Revenue from the trader's first trade</h2>
-              <p class="slide-lead"><strong>Fee share</strong> <em>(revenue)</em> &middot; <strong>Open Source</strong> <em>(distribution)</em>.</p>
+              <div class="deck-equations">
+                <span class="deck-equation"><span class="eq-key">User</span><span class="eq-op">=</span><span class="eq-val">Trader</span></span>
+                <span class="deck-equation"><span class="eq-key">Client</span><span class="eq-op">=</span><span class="eq-val">Exchange</span></span>
+                <span class="deck-equation"><span class="eq-key">Revenue</span><span class="eq-op">=</span><span class="eq-val">Fee share</span></span>
+                <span class="deck-equation"><span class="eq-key">Distribution</span><span class="eq-op">=</span><span class="eq-val">Open Source</span></span>
+              </div>
             </div>
             <div class="deck-grid deck-grid--2" style="margin-top:0.2rem">
-              <div class="deck-card"><div class="deck-card-text">&middot; Exchange fee share &middot; from the first trade <br>&middot; <span style="white-space:nowrap">20-30%</span>, up to <span style="white-space:nowrap">45-50%</span> from exchange fee<br>&middot; no subscription, no min volume</div></div>
-              <div class="deck-card"><div class="deck-card-text"><strong>Open Source</strong> <em>(distribution)</em> &middot; open, auditable code &middot; <strong>free entry, user trust</strong> &middot; viral funnel, more volume, more fee share</div></div>
+              <div class="deck-card"><div class="deck-card-text"><strong>Exchange fee share</strong> via <strong>Broker ID</strong> &middot; from the first trade, no volume threshold &middot; <span style="white-space:nowrap">20-30%</span> on Broker ID, up to <span style="white-space:nowrap">45-50%</span> once upgraded to Broker Master</div></div>
+              <div class="deck-card"><div class="deck-card-text"><strong>Referral stream</strong> &middot; users registered through the AI assistant, <strong><span style="white-space:nowrap">30&ndash;33%</span></strong> of the exchange fee from day one, no volume threshold</div></div>
             </div>
             <div class="deck-card" style="margin-top:0.5rem">
-              <div class="deck-card-text"><strong>Referral stream</strong> &middot; users from the exchange's referral programme carry <strong><span style="white-space:nowrap">30&ndash;33%</span> of fees regardless of trading volume</strong></div>
+              <div class="deck-card-text"><strong>Open Source</strong> <em>(distribution)</em> &middot; open, auditable code &middot; <strong>free entry, user trust</strong> &middot; viral funnel</div>
+                <div class="deck-chart" style="max-width:75%;margin:0 auto">
+                <svg viewBox="0 0 900 372" role="img" aria-label="User pyramid: OSS engineers at the apex as the entry point, widening down through algo traders and retail traders to all exchange users">
+                  <polygon points="350,44 590,44 620,108 320,108" class="cs-1"/>
+                  <polygon points="310,114 630,114 660,178 280,178" class="cs-2"/>
+                  <polygon points="270,184 670,184 700,248 240,248" class="cs-4"/>
+                  <polygon points="230,254 710,254 750,324 190,324" class="cs-7"/>
+
+
+                  <line x1="60" y1="76" x2="318" y2="76" stroke="var(--inv-accent)" stroke-width="3"/>
+                  <path d="M334 76 l-16 -8 v16 z" fill="var(--inv-accent)"/>
+                  <text x="60" y="62" class="chart-val chart-val-hi" style="font-size:13px">ENTRY POINT</text>
+                  <text x="60" y="96" class="chart-lbl" style="font-size:11px">GitHub &middot; Hacker News &middot; Reddit</text>
+                  <text x="60" y="112" class="chart-lbl" style="font-size:11px">free distribution, no ad budget</text>
+
+                  <text x="470" y="72"  text-anchor="middle" class="chart-val" style="fill:#fff;font-size:13px">OSS engineers &middot; 7.5M</text>
+                  <text x="470" y="92"  text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:10px">They read the code, trust open source and vouch for it</text>
+                  <text x="470" y="142" text-anchor="middle" class="chart-val" style="fill:#fff;font-size:13px">Algo &amp; bot traders</text>
+                  <text x="470" y="162" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:10px">Forks, shared strategies and Trader Strateg presets &middot; Telegram, Discord</text>
+                  <text x="470" y="212" text-anchor="middle" class="chart-val" style="fill:#fff;font-size:13px">Active retail traders &middot; 41M</text>
+                  <text x="470" y="232" text-anchor="middle" class="chart-lbl" style="fill:#fff;font-size:10px">YouTube, X, crypto media &middot; screenshots of the Trader HUD</text>
+                  <text x="470" y="286" text-anchor="middle" class="chart-val" style="font-size:13px">All CEX users &middot; 500M</text>
+                  <text x="470" y="306" text-anchor="middle" class="chart-lbl" style="font-size:10px">App stores, SEO, exchange partner listings &middot; zero entry, no paywall</text>
+
+                  <text x="840" y="200" text-anchor="middle" class="chart-lbl" style="font-size:10px;fill:var(--inv-faint)" transform="rotate(90 840 200)">each layer hears it from the layer above</text>
+                </svg>
+              </div>
             </div>
-            <div class="deck-card" style="margin-top:0.6rem;border-color:#c0392b;padding:0.85rem 1.25rem">
-              <div class="deck-card-title" style="font-size:0.95rem"><span style="color:var(--inv-accent)">All revenue</span> &mdash; a 20&ndash;50% share of the exchange's commission</div>
-              <div class="deck-card-text" style="margin-top:0.25rem">from the first trade &middot; no subscription, no min volume</div>
+            <div class="brief-section-title" style="margin-top:0.7rem">Key risks &amp; mitigation</div>
+            <div class="deck-grid deck-grid--3">
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.74rem">Fee-share dependence</div><div class="deck-card-text">3 exchanges in parallel &middot; Fee share</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.74rem">Crypto winter</div><div class="deck-card-text">Fee share follows volatility, not direction; shorts + grid</div></div>
+              <div class="deck-card"><div class="deck-card-title" style="font-size:0.74rem">Regulatory</div><div class="deck-card-text">Non-custodial; KYC on the exchange; HTP &rarr; Cayman/SG</div></div>
             </div>
           </section>
 
-          <!-- ============ SLIDE 8 — UNIT ECONOMICS ============ -->
-          <section class="slide" id="slide-8" data-nav="Unit Economics">
+          <!-- ============ SLIDE 9 — UNIT ECONOMICS ============ -->
+          <section class="slide" id="slide-9" data-nav="Unit Economics">
             <div class="slide-head">
               <div class="slide-kicker">Unit Economics</div>
               <h2 class="slide-title">Our unit is the trade &mdash; we earn a share of the exchange fee on every trade</h2>
             </div>
 
             <!-- ===== ROW 1: trade cohorts (ARPAU) | rationale ===== -->
-            <div class="deck-row" style="align-items:flex-start;margin-bottom:0.7rem">
+            <div class="deck-row" style="align-items:stretch;margin-bottom:0.7rem">
               <div class="deck-col" style="flex:1.4 1 360px">
-                <div class="brief-section-title">Three trade cohorts &mdash; unit = the trade &middot; full-fee retail $50&ndash;$50K</div>
                 <div class="deck-table-wrap">
                   <table class="deck-table">
                     <thead><tr><th>Cohort</th><th>Avg trade</th><th>Rev / trade</th><th>% of ICP trades</th><th>% fees</th></tr></thead>
@@ -539,14 +617,10 @@
                 </div>
                 <p class="slide-lead" style="margin:0.35rem 0 0;font-size:0.7rem;color:var(--inv-faint)">ARPAU = trades/mo &times; average ICP trade &times; <strong>0.017%</strong> full take. Base case &mdash; <strong>153 trades/mo</strong> (7.3 per trading day). A <strong>5%</strong> haircut is applied to the top cohort for possible institutional flow &rarr; average trade $2&#8239;666, <strong>ARPAU ~$69/mo</strong>. The size mix is measured on 14 days of tick data (14.5M orders), cross-checked on Binance. Above $50K = institutional, excluded.</p>
               </div>
-              <div class="deck-col" style="flex:1 1 240px">
-                <div class="brief-section-title">Unit = the trade, not the deposit</div>
-                <div class="brief-section">
-                  <div class="brief-section-body" style="font-size:0.79rem">Revenue = <strong>trade size &times; frequency &times; full fee (0.017%)</strong>. We monetize the <strong>$50&ndash;$50K full-fee retail ticket (base fee tier)</strong>. The top cohort <strong>$5K&ndash;$50K is 13.8% of trades but 70% of fees</strong> &mdash; on perp, leverage lifts a retail deposit's notional there, still at full fee. Above $50K = institutional, off-ICP.</div>
-                </div>
-                <div class="deck-stats" style="margin-top:0.5rem;flex-wrap:wrap;gap:0.3rem">
-                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">~88%</div><div class="deck-stat-label">volume is perp</div><div class="deck-stat-sub">measured, 8 exchanges</div></div>
-                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">$29&rarr;$119</div><div class="deck-stat-label">ARPAU spot&rarr;perp, 5&times; leverage</div><div class="deck-stat-sub">same retail trader</div></div>
+              <div class="deck-col" style="flex:1 1 240px;display:flex">
+                <div class="deck-stats" style="flex:1;flex-direction:column;justify-content:center;gap:0.6rem">
+                  <div class="deck-stat" style="flex:0 0 auto;padding:0.8rem 0.9rem"><div class="deck-stat-value" style="font-size:1.35rem">~88%</div><div class="deck-stat-label">volume is perp</div><div class="deck-stat-sub">measured, 8 exchanges</div></div>
+                  <div class="deck-stat" style="flex:0 0 auto;padding:0.8rem 0.9rem"><div class="deck-stat-value" style="font-size:1.35rem">$29&rarr;$119</div><div class="deck-stat-label">ARPAU spot&rarr;perp, 5&times; leverage</div><div class="deck-stat-sub">same retail trader</div></div>
                 </div>
               </div>
             </div>
@@ -589,8 +663,8 @@
               </div>
             </div>
           </section>
-          <!-- ============ SLIDE 9 — INSIGHT ============ -->
-          <section class="slide" id="slide-9" data-nav="Insight">
+          <!-- ============ SLIDE 10 — INSIGHT ============ -->
+          <section class="slide" id="slide-10" data-nav="Insight">
             <div class="slide-head">
               <div class="slide-kicker">Insight</div>
               <h2 class="slide-title">The limit is attention, not deposit amount</h2>
@@ -665,8 +739,8 @@
             <p class="slide-lead" style="margin:0.45rem 0 0;font-size:0.72rem;color:var(--inv-faint)">Trade-size distribution &mdash; volume &amp; fees based on <a href="https://github.com/l2xl/papers/blob/main/exchange-liquidity-research.md" target="_blank" rel="noopener">our research</a>.</p>
           </section>
 
-          <!-- ============ SLIDE 10 — ROADMAP (+ GTM) ============ -->
-          <section class="slide" id="slide-10" data-nav="Roadmap">
+          <!-- ============ SLIDE 11 — ROADMAP (+ GTM) ============ -->
+          <section class="slide" id="slide-11" data-nav="Roadmap">
             <div class="slide-head">
               <div class="slide-kicker">Roadmap &amp; Go-to-Market</div>
             </div>
@@ -724,8 +798,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 11 — TEAM ============ -->
-          <section class="slide" id="slide-11" data-nav="Team">
+          <!-- ============ SLIDE 12 — TEAM ============ -->
+          <section class="slide" id="slide-12" data-nav="Team">
             <div class="slide-head">
               <div class="slide-kicker">Team</div>
               <h2 class="slide-title">AI-centric operating model</h2>
@@ -759,8 +833,8 @@
             </div>
           </section>
 
-          <!-- ============ SLIDE 12 — THE ASK (+ terms + risks) ============ -->
-          <section class="slide" id="slide-12" data-nav="The Ask">
+          <!-- ============ SLIDE 13 — THE ASK (+ terms + risks) ============ -->
+          <section class="slide" id="slide-13" data-nav="The Ask">
             <div class="slide-head">
               <div class="slide-kicker">The Ask</div>
               <h2 class="slide-title">Pre-seed $110,000 &mdash; Seed target month 12</h2>
@@ -796,11 +870,6 @@
                 <div class="brief-section" style="margin-top:0.7rem">
                   <div class="brief-section-title">Path &amp; break-even</div>
                   <div class="brief-section-body" style="font-size:0.8rem"><strong>Operational break-even &mdash; mo 22 &middot; cash-flow positive &mdash; mo 24.</strong> Seed closes by mo 12 (0 funding gap). Jurisdiction: Kyrgyzstan HTP &rarr; Cayman/Singapore before Seed.</div>
-                </div>
-                <div class="deck-grid deck-grid--3" style="margin-top:0.7rem">
-                  <div class="deck-card"><div class="deck-card-title" style="font-size:0.74rem">Fee-share dependence</div><div class="deck-card-text">3 exchanges in parallel &middot; Fee share</div></div>
-                  <div class="deck-card"><div class="deck-card-title" style="font-size:0.74rem">Crypto winter</div><div class="deck-card-text">Fee share follows volatility, not direction; shorts + grid</div></div>
-                  <div class="deck-card"><div class="deck-card-title" style="font-size:0.74rem">Regulatory</div><div class="deck-card-text">Non-custodial; KYC on the exchange; HTP &rarr; Cayman/SG</div></div>
                 </div>
               </div>
             </div>
