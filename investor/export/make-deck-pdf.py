@@ -156,6 +156,12 @@ html, body {
 .print-fit .deck-compare-wrap > table,
 .print-fit .deck-table-wrap > table { min-width: 0 !important; }
 .print-fit .deck-compare tbody th { white-space: normal !important; }
+/* The round-terms table is one row of short values: let it size to its
+   content and never break a value across lines — the fit backs the zoom off
+   until it fits its column (see clipsX). */
+.print-fit .brief-terms-table { table-layout: auto !important; }
+.print-fit .brief-terms-table th,
+.print-fit .brief-terms-table td { white-space: nowrap !important; }
 /* The opening page's one-pager sheet: a same-origin frame, laid out at its
    wide design width and zoomed onto the sheet. */
 .print-sheet {
@@ -211,14 +217,19 @@ BUILD_PAGES = """
     };
     /* A wide table lives in a horizontally scrollable wrapper on screen;
        on paper there is nothing to scroll, so a zoom that would cut its
-       columns off does not count as a fit. */
+       columns off does not count as a fit — nor does one that pushes a
+       table past the column it sits in. */
     const clipsX = el => Array.prototype.some.call(
       el.querySelectorAll('*'),
       n => {
         const ox = getComputedStyle(n).overflowX;
         return (ox === 'auto' || ox === 'scroll') &&
           n.scrollWidth > n.clientWidth + 1;
-      });
+      }) || Array.prototype.some.call(
+      el.querySelectorAll('table'),
+      t => t.parentElement &&
+        t.getBoundingClientRect().width >
+          t.parentElement.getBoundingClientRect().width + 1);
     const fits = (el, z, room) => {
       apply(el, z);
       return el.getBoundingClientRect().height <= room && !clipsX(el);
