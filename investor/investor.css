@@ -1014,7 +1014,9 @@ a:hover { color: var(--inv-rose); }
   overflow-wrap: break-word;
 }
 .slide-lead {
-  font-size: 0.85rem;
+  /* Set below the body copy on purpose: the lead is muted brown, and at the
+     same size as the main text it competes with it. */
+  font-size: 0.78rem;
   color: var(--inv-muted);
   line-height: 1.5;
   max-width: 46rem;
@@ -1251,16 +1253,27 @@ a:hover { color: var(--inv-rose); }
 .deck-table .row-hi td { background: rgba(212, 84, 122, 0.08); font-weight: 700; color: var(--inv-text); }
 .deck-table .num { font-variant-numeric: tabular-nums; }
 
+/* Risks table (Business Model slide): a two-column "risk -> mitigation"
+   read, so both columns are left-aligned prose and the risk column is the
+   one that carries weight. The mitigation column takes the rest of the row
+   whatever the layout width. */
+.deck-risk-table { table-layout: fixed; }
+.deck-risk-table th,
+.deck-risk-table td { text-align: left; vertical-align: top; }
+.deck-risk-table th:first-child,
+.deck-risk-table td:first-child { width: 34%; }
+.deck-risk-table td:first-child { font-weight: 600; color: var(--inv-text); }
+
 /* Unit Economics cohort table: fixed layout with equal-width numeric
    columns, so the number columns sit on an even rhythm instead of each
    being sized to its own content. Headers may wrap to two lines. */
-#slide-10 .deck-table { table-layout: fixed; }
-#slide-10 .deck-table th,
-#slide-10 .deck-table td { width: 18.5%; }
-#slide-10 .deck-table th:first-child,
-#slide-10 .deck-table td:first-child { width: 26%; }
-#slide-10 .deck-table th { vertical-align: bottom; white-space: normal; }
-#slide-10 .deck-table td.num { white-space: nowrap; }
+#slide-9 .deck-table { table-layout: fixed; }
+#slide-9 .deck-table th,
+#slide-9 .deck-table td { width: 18.5%; }
+#slide-9 .deck-table th:first-child,
+#slide-9 .deck-table td:first-child { width: 26%; }
+#slide-9 .deck-table th { vertical-align: bottom; white-space: normal; }
+#slide-9 .deck-table td.num { white-space: nowrap; }
 
 /* On phones, tighten the cohort/economics tables so they fit the slide
    width without a sideways scroll. Placed after the base rules above so it
@@ -1428,8 +1441,8 @@ a:hover { color: var(--inv-rose); }
      are a desktop-only shape. On phones, override the inline sizing so both
      stat groups span the full width and lay the cards out 2-up — no lopsided
      narrow column with empty space beside it. */
-  #slide-10 .deck-row > .deck-col { flex: 1 1 100% !important; max-width: none !important; }
-  #slide-10 .deck-stats { flex-direction: row !important; }
+  #slide-9 .deck-row > .deck-col { flex: 1 1 100% !important; max-width: none !important; }
+  #slide-9 .deck-stats { flex-direction: row !important; }
 }
 @media (max-width: 40em) {
   .deck-grid--2, .deck-grid--3, .deck-grid--4 { grid-template-columns: 1fr; }
