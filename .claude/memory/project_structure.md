@@ -32,6 +32,9 @@ The market diagram's labels are stated in viewBox units, not `rem` — inside a 
 
 Export by screenshotting the `.op-sheet` element: ~1600 px viewport at DPR 2 for the wide sheet, 430×932 at DPR 3 for the phone sheet. Both languages export from the same CSS — the RU sheet is taller because the copy is longer.
 
+### Deck PDF export (`investor/export/make-deck-pdf.py`)
+`python3 investor/export/make-deck-pdf.py ru` (or `en`) writes `investor/export/open-trader-deck-<lang>.pdf`. It serves the repo over a throwaway HTTP server, loads the deck in headless Chromium with `reduced_motion` (so deck.js never starts the transition engine), switches to print media and lets the deck's own print CSS paginate one slide per A4 page. The starship, dropped by the deck's print rules, is put back once per slide: only on slides that still fit a single page with it, and pushed to the very bottom of that page by restoring the slide's column flexbox, stretching it to one printable page height and giving the ship `margin-top: auto` — no page-break geometry is guessed, so the export never gains a page. `--no-flyer` prints without ships. Needs `pip install playwright`; it uses the Chromium already under `PLAYWRIGHT_BROWSERS_PATH` when the Playwright-pinned build is absent. The `@page` constants at the top of the script mirror the `@page` rule in `investor.css` — change both together.
+
 The current exports are committed under `investor/export/` (`open-trader-one-pager-{en,ru}[-phone].pdf`) so the sheet that was actually sent to an investor is recoverable. They are build output, not a source: re-export and overwrite them whenever the brief copy or the sheet layout changes. Note the deploy rsyncs the whole repo, so these files are reachable by URL on the live site (unlinked, like the deck itself) — add an `--exclude` in `.github/workflows/deploy.yml` if that is not wanted.
 
 ### Deck engine (`investor/deck.js` + `investor/vendor/`)
