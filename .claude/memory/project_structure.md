@@ -17,7 +17,7 @@ Self-contained subdirectory for investor relations. Uses its own stylesheet (`in
 
 | Page | File | Description |
 |---|---|---|
-| Investor Deck | `investor/index.html` | Single-page deck: investor brief (slide 1) + pitch-deck slides 2–12. Russian mirror: `investor/ru/index.html`. |
+| Investor Deck | `investor/index.html` | Single-page deck: investor brief (slide 1) + pitch-deck slides 2–11. Russian mirror: `investor/ru/index.html`. |
 | Investor One-Pager | `investor/one-pager.html` | Export-only single sheet of the brief (noindex, not linked from the site). Same copy as deck slide 1, laid out for a one-page PDF/PNG. Russian mirror: `investor/ru/one-pager.html`, sharing `../one-pager.css`. |
 
 There is deliberately NO separate brief *deck* page and NO `pitch-deck.html` — the brief exists once as slide 1 of the deck (it used to be duplicated across two files and drifted). `one-pager.html` is the one exception: it is not a site page but the print/export sheet, and its copy must be re-synced from slide 1 whenever the brief changes.
