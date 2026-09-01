@@ -1,29 +1,57 @@
 /* =========================================================
-   Investor one-pager — print/export layout
+   Investor one-pager — responsive export sheet
    =========================================================
-   A fixed-width single sheet built from the deck's brief
-   components (investor.css). The sheet is a plain block of a
-   known pixel width so an export renders identically anywhere;
-   1 sheet centimetre = var(--op-cm).
+   The sheet is built from the deck's brief components
+   (investor.css) but sized in sheet-relative units, not
+   device pixels: --op-cm is one sheet centimetre and it is
+   derived from the viewport, so the sheet always fills the
+   screen edge to edge — a phone, a laptop or a 3x export
+   render all get the same drawing at their own scale.
+
+   --op-type is the type scale RELATIVE to the sheet. Scaling
+   --op-cm alone would change nothing visually (the whole
+   drawing would just grow); --op-type is what actually makes
+   the copy read larger against the same sheet width.
    ========================================================= */
 
-html { font-size: 16px; }
+:root {
+  /* wide sheet: 21 cm plus a little slack so a desktop
+     scrollbar can never push the sheet into overflow */
+  --op-cm: calc(100vw / 21.4);
+  --op-type: 1.3;
+  --op-title-cm: 1.55;      /* project name, 1.5x the deck header */
+  --op-ship-cm: 2.1;
+}
+
+html {
+  font-size: calc(var(--op-cm) * 0.271 * var(--op-type));
+  -webkit-text-size-adjust: 100%;   /* iOS must not re-size our type */
+  text-size-adjust: 100%;
+}
 
 body {
   display: block;
-  min-height: 0;
-  background: #6b6b6b;
-  padding: 2rem 0;
+  min-height: 100vh;      /* iOS < 15.4 has no svh — keep a plain fallback */
+  min-height: 100svh;
+  background: var(--inv-bg);
+  padding: 0;
+  overflow-x: hidden;
 }
 
 .op-sheet {
-  --op-cm: 59px;            /* sheet is 21 cm wide */
-  width: calc(var(--op-cm) * 21);
+  width: 100%;
+  max-width: calc(var(--op-cm) * 21);
+  min-height: 100vh;
+  min-height: 100svh;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
   background: var(--inv-bg);
-  padding: calc(var(--op-cm) * 0.8) calc(var(--op-cm) * 0.9) calc(var(--op-cm) * 0.5);
+  padding:
+    calc(var(--op-cm) * 0.8 + env(safe-area-inset-top))
+    calc(var(--op-cm) * 0.9 + env(safe-area-inset-right))
+    calc(var(--op-cm) * 0.5 + env(safe-area-inset-bottom))
+    calc(var(--op-cm) * 0.9 + env(safe-area-inset-left));
 }
 
 /* Planet backdrop, anchored to the sheet (not the viewport) so an
@@ -43,7 +71,8 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: calc(var(--op-cm) * 0.4);
+  flex-wrap: wrap;
   padding-bottom: calc(var(--op-cm) * 0.35);
   border-bottom: 1px solid var(--inv-border);
 }
@@ -55,16 +84,15 @@ body {
 }
 
 .op-ship {
-  width: calc(var(--op-cm) * 2.1);
+  width: calc(var(--op-cm) * var(--op-ship-cm));
   height: auto;
   flex-shrink: 0;
   mix-blend-mode: multiply;
 }
 
-/* 1.5x the deck header's name size */
 .op-title {
   font-family: var(--font-heading);
-  font-size: calc(var(--op-cm) * 1.55);
+  font-size: calc(var(--op-cm) * var(--op-title-cm));
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.05;
@@ -77,7 +105,22 @@ body {
   letter-spacing: 0.02em;
 }
 
-.op-header .brief-status { margin-top: 0; padding-bottom: 0.2rem; }
+/* Pills are chrome, not copy: size them off the sheet so the type
+   scale can grow without pushing them onto a second line. */
+.op-header .brief-status { margin-top: 0; padding-bottom: 0.2rem; flex-wrap: nowrap; }
+.op-header .brief-status span {
+  font-size: calc(var(--op-cm) * 0.185);
+  white-space: nowrap;
+}
+
+/* The market diagram is scaled by its own width, so its labels are
+   stated in viewBox units — otherwise the type scale would grow them
+   inside a fixed coordinate system and the groups would collide. */
+.op-sheet .brief-market-hero      { font-size: 56px; }
+.op-sheet .brief-market-num       { font-size: 40px; }
+.op-sheet .brief-market-bullet    { font-size: 26px; }
+.op-sheet .brief-market-dash      { font-size: 26px; }
+.op-sheet .brief-market-roadtitle { font-size: 56px; }
 
 /* --- body: market on the left, figures and team on the right ---
    The right column starts one sheet-centimetre below the status
@@ -114,4 +157,74 @@ body {
   margin-top: calc(var(--op-cm) * 0.55);
   padding-inline: 0;
   padding-bottom: 0;
+}
+
+/* =========================================================
+   Phone sheet — one narrow column, edge to edge
+   =========================================================
+   Below 820 px the sheet is re-declared as ~7.9 cm wide: the
+   same drawing, but every element is now sized against a
+   phone-width sheet, so the copy lands at normal reading size
+   instead of being a shrunk-down A4.
+   ========================================================= */
+@media (max-width: 820px) {
+  :root {
+    /* one phone-width sheet, capped so a small tablet gets a centred
+       sheet rather than billboard-sized copy */
+    --op-cm: min(calc(100vw / 7.9), 68px);
+    --op-type: 1.12;
+    --op-title-cm: 0.82;
+    --op-ship-cm: 1.15;
+  }
+
+  .op-sheet {
+    max-width: calc(var(--op-cm) * 7.9);
+    padding:
+      calc(var(--op-cm) * 0.4 + env(safe-area-inset-top))
+      calc(var(--op-cm) * 0.4 + env(safe-area-inset-right))
+      calc(var(--op-cm) * 0.35 + env(safe-area-inset-bottom))
+      calc(var(--op-cm) * 0.4 + env(safe-area-inset-left));
+  }
+
+  .op-sheet .brief-planet {
+    top: calc(var(--op-cm) * -2.6);
+    right: calc(var(--op-cm) * -2);
+    width: calc(var(--op-cm) * 8);
+  }
+
+  .op-header {
+    align-items: flex-start;
+    gap: calc(var(--op-cm) * 0.25);
+  }
+  .op-header .brief-status { padding-bottom: 0; }
+
+  /* One column, re-ordered for reading on a phone: intro, the
+     headline figures, the market diagram, then the team. */
+  .op-body { grid-template-columns: 1fr; gap: calc(var(--op-cm) * 0.35); }
+  .op-body > .op-col { display: contents; }
+  .op-intro { padding-right: 0; order: 1; }
+  .op-sheet .brief-metrics { order: 2; }
+  .op-sheet .brief-market-stack { order: 3; }
+  .op-team { order: 4; }
+
+  /* The diagram is the one wide-format element here: let it bleed to
+     the sheet edges and push its labels up as far as the fixed viewBox
+     geometry allows before the three groups start to collide. */
+  .op-sheet .brief-market-stack {
+    margin-left: calc(var(--op-cm) * -0.4);
+    margin-right: calc(var(--op-cm) * -0.4);
+  }
+  .op-sheet .brief-market-hero      { font-size: 62px; }
+  .op-sheet .brief-market-num       { font-size: 44px; }
+  .op-sheet .brief-market-bullet    { font-size: 31px; }
+  .op-sheet .brief-market-dash      { font-size: 31px; }
+  .op-sheet .brief-market-roadtitle { font-size: 62px; }
+
+  /* the vertical timeline hangs its dots outside its own left edge */
+  .op-strip .deck-roadmap { padding-inline: 0; margin-left: calc(var(--op-cm) * 0.45); }
+
+  /* Five money columns on a phone-width sheet: shrink the heads, keep
+     every figure on one line. */
+  .op-sheet .brief-terms-table thead th { font-size: 0.5rem; padding: 0.4rem 0.15rem; }
+  .op-sheet .brief-terms-table tbody td { font-size: 0.78rem; padding: 0.55rem 0.15rem; white-space: nowrap; }
 }
