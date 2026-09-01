@@ -1,0 +1,117 @@
+/* =========================================================
+   Investor one-pager — print/export layout
+   =========================================================
+   A fixed-width single sheet built from the deck's brief
+   components (investor.css). The sheet is a plain block of a
+   known pixel width so an export renders identically anywhere;
+   1 sheet centimetre = var(--op-cm).
+   ========================================================= */
+
+html { font-size: 16px; }
+
+body {
+  display: block;
+  min-height: 0;
+  background: #6b6b6b;
+  padding: 2rem 0;
+}
+
+.op-sheet {
+  --op-cm: 59px;            /* sheet is 21 cm wide */
+  width: calc(var(--op-cm) * 21);
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: var(--inv-bg);
+  padding: calc(var(--op-cm) * 0.8) calc(var(--op-cm) * 0.9) calc(var(--op-cm) * 0.5);
+}
+
+/* Planet backdrop, anchored to the sheet (not the viewport) so an
+   element export carries it. */
+.op-sheet .brief-planet {
+  position: absolute;
+  top: calc(var(--op-cm) * -4.6);
+  right: calc(var(--op-cm) * -3.2);
+  width: calc(var(--op-cm) * 14);
+  transform: none;
+}
+
+.op-sheet > *:not(.brief-planet) { position: relative; z-index: 1; }
+
+/* --- header: starship + name, status pills opposite --- */
+.op-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: calc(var(--op-cm) * 0.35);
+  border-bottom: 1px solid var(--inv-border);
+}
+
+.op-brand {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--op-cm) * 0.3);
+}
+
+.op-ship {
+  width: calc(var(--op-cm) * 2.1);
+  height: auto;
+  flex-shrink: 0;
+  mix-blend-mode: multiply;
+}
+
+/* 1.5x the deck header's name size */
+.op-title {
+  font-family: var(--font-heading);
+  font-size: calc(var(--op-cm) * 1.55);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--inv-text);
+}
+
+.op-tagline {
+  font-size: 0.95rem;
+  color: var(--inv-muted);
+  letter-spacing: 0.02em;
+}
+
+.op-header .brief-status { margin-top: 0; padding-bottom: 0.2rem; }
+
+/* --- body: market on the left, figures and team on the right ---
+   The right column starts one sheet-centimetre below the status
+   pills, so nothing sags away from the header. */
+.op-body {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: calc(var(--op-cm) * 0.55);
+  align-items: start;
+  margin-top: calc(var(--op-cm) * 0.65);
+}
+
+.op-col { display: flex; flex-direction: column; gap: calc(var(--op-cm) * 0.4); }
+
+.op-intro {
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--inv-muted);
+  padding-right: 1rem;
+}
+
+.op-sheet .brief-metrics { margin-bottom: 0; grid-template-columns: repeat(2, 1fr); }
+
+.op-team .brief-kv { margin-bottom: 0; }
+.op-team .brief-kv-key { font-size: 0.95rem; margin-bottom: 0.15rem; }
+.op-team .brief-kv-val { font-size: 0.82rem; line-height: 1.45; }
+
+/* --- full-width strips below the two columns --- */
+.op-strip { margin-top: calc(var(--op-cm) * 0.45); }
+.op-strip .deck-roadmap { padding-inline: calc(var(--op-cm) * 0.4); }
+.op-strip .brief-terms-table { margin-bottom: 0; }
+
+.op-sheet .inv-doc-footer {
+  margin-top: calc(var(--op-cm) * 0.55);
+  padding-inline: 0;
+  padding-bottom: 0;
+}
