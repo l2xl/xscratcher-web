@@ -1014,7 +1014,9 @@ a:hover { color: var(--inv-rose); }
   overflow-wrap: break-word;
 }
 .slide-lead {
-  font-size: 0.85rem;
+  /* Set below the body copy on purpose: the lead is muted brown, and at the
+     same size as the main text it competes with it. */
+  font-size: 0.78rem;
   color: var(--inv-muted);
   line-height: 1.5;
   max-width: 46rem;

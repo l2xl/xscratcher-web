@@ -65,8 +65,9 @@ PAD = round(0.75 * CM / PDF_SCALE)
 # sheet is bigger, so the zooms the script actually applies are these divided
 # by PDF_SCALE). The floor keeps a very dense slide readable rather than
 # shrinking it to nothing; the ceiling stops a sparse slide from turning into
-# a poster.
-MIN_SCALE, MAX_SCALE = 0.5 / PDF_SCALE, 2.8 / PDF_SCALE
+# a poster — a sparse slide stops growing its type and keeps the air instead
+# (its charts are page-width already, so they only gain from the contrast).
+MIN_SCALE, MAX_SCALE = 0.5 / PDF_SCALE, 2.0 / PDF_SCALE
 
 # Bottom starship: share of the page width, the clear band kept above it,
 # and the scale below which the slide needs the page more than the ship.
@@ -118,6 +119,11 @@ html, body {
 .print-page {
   position: relative;
   box-sizing: border-box;
+  /* A slide that stops at the zoom ceiling leaves air: centre it in the
+     page (above the ship's band) instead of hanging it from the top. */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: %(pw)dpx;
   height: %(ph)dpx;
   padding: %(pad)dpx;
@@ -295,7 +301,10 @@ BUILD_PAGES = """
       let scale = shipH ? fit(fitBox, withShip) : fit(fitBox, full);
       const ship = shipH > 0 && scale >= cfg.flyerMinScale;
       if (shipH && !ship) { scale = fit(fitBox, full); }
-      if (ship) { addShip(page); }
+      if (ship) {
+        addShip(page);
+        page.style.paddingBottom = (cfg.pad + shipH + cfg.gap) + 'px';
+      }
       report.push({ id: slide.id, scale: Math.round(scale * 100) / 100, ship: ship });
     });
 
