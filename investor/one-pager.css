@@ -214,11 +214,11 @@ body {
     margin-left: calc(var(--op-cm) * -0.4);
     margin-right: calc(var(--op-cm) * -0.4);
   }
-  .op-sheet .brief-market-hero      { font-size: 62px; }
-  .op-sheet .brief-market-num       { font-size: 44px; }
-  .op-sheet .brief-market-bullet    { font-size: 31px; }
-  .op-sheet .brief-market-dash      { font-size: 31px; }
-  .op-sheet .brief-market-roadtitle { font-size: 62px; }
+  .op-sheet .brief-market-hero      { font-size: 58px; }
+  .op-sheet .brief-market-num       { font-size: 40px; }
+  .op-sheet .brief-market-bullet    { font-size: 29px; }
+  .op-sheet .brief-market-dash      { font-size: 29px; }
+  .op-sheet .brief-market-roadtitle { font-size: 58px; }
 
   /* the vertical timeline hangs its dots outside its own left edge */
   .op-strip .deck-roadmap { padding-inline: 0; margin-left: calc(var(--op-cm) * 0.45); }
