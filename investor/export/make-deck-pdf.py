@@ -15,6 +15,13 @@ pipeline and comes out clipped) applied to a slide laid out at
 `page width / zoom`, so scaling up narrows the layout and the type grows
 against the sheet, exactly like the one-pager's `--op-type`.
 
+The opening page is the one-pager sheet (`investor/[<lang>/]one-pager.html`),
+not the deck's brief slide: it is the same copy, but laid out to own a whole
+sheet, which is how the printed deck opened. It is embedded as a same-origin
+iframe sized to the wide (non-phone) sheet and zoomed to the page — the sheet
+sizes itself from its own viewport width, so the iframe width IS its design
+width. `--brief slide` prints the deck's brief slide instead.
+
 The starship, dropped by the deck's print rules, is put back at the very
 bottom of the page — but only where reserving its band still leaves the slide
 a comfortable scale, so a dense slide keeps the full page for its content.
@@ -23,6 +30,7 @@ Usage:
     python3 investor/export/make-deck-pdf.py ru
     python3 investor/export/make-deck-pdf.py en -o /tmp/deck-en.pdf
     python3 investor/export/make-deck-pdf.py ru --no-flyer
+    python3 investor/export/make-deck-pdf.py ru --brief slide
 
 Requires: pip install playwright  (Chromium from PLAYWRIGHT_BROWSERS_PATH).
 """
@@ -40,16 +48,25 @@ REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 
 CM = 96 / 2.54  # CSS px per cm
 A4_W, A4_H = 21.0, 29.7  # cm
-PAGE_W, PAGE_H = round(A4_W * CM), round(A4_H * CM)
+
+# The pages are laid out on a wide "design sheet" and the whole print is
+# scaled down to A4 at the end. Laying out at paper width (794 px) would put
+# every responsive layout on the site — the deck's grids and, above all, the
+# one-pager sheet, whose phone layout starts at 820 px — into its phone form.
+PAGE_W = 1600
+PAGE_H = round(PAGE_W * A4_H / A4_W)
+PDF_SCALE = A4_W * CM / PAGE_W
 
 # The sheet bleeds: the @page margin is zero and this is the only breathing
 # room the slide keeps against the paper edge.
-PAD = round(0.75 * CM)
+PAD = round(0.75 * CM / PDF_SCALE)
 
-# Scale bounds for the fit. The floor keeps a very dense slide readable
-# rather than shrinking it to nothing; the ceiling stops a sparse slide from
-# turning into a poster.
-MIN_SCALE, MAX_SCALE = 0.5, 2.8
+# Scale bounds for the fit, stated against the finished A4 sheet (the design
+# sheet is bigger, so the zooms the script actually applies are these divided
+# by PDF_SCALE). The floor keeps a very dense slide readable rather than
+# shrinking it to nothing; the ceiling stops a sparse slide from turning into
+# a poster.
+MIN_SCALE, MAX_SCALE = 0.5 / PDF_SCALE, 2.8 / PDF_SCALE
 
 # Bottom starship: share of the page width, the clear band kept above it,
 # and the scale below which the slide needs the page more than the ship.
@@ -133,6 +150,14 @@ html, body {
 .print-fit .deck-compare-wrap > table,
 .print-fit .deck-table-wrap > table { min-width: 0 !important; }
 .print-fit .deck-compare tbody th { white-space: normal !important; }
+/* The opening page's one-pager sheet: a same-origin frame, laid out at its
+   wide design width and zoomed onto the sheet. */
+.print-sheet {
+  display: block;
+  border: 0;
+  margin: 0 auto;
+  zoom: 1;
+}
 .print-flyer {
   position: absolute;
   left: 50%%;
@@ -204,48 +229,88 @@ BUILD_PAGES = """
       return lo;
     };
 
-    slides.forEach((slide, i) => {
+    const addShip = page => {
+      const wrap = document.createElement('div');
+      wrap.className = 'print-flyer';
+      wrap.style.width = shipW + 'px';
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = '';
+      wrap.appendChild(img);
+      page.appendChild(wrap);
+    };
+
+    const full = cfg.pageH - cfg.pad * 2;
+    const withShip = shipH ? full - shipH - cfg.gap : full;
+
+    /* The opening page is the one-pager sheet, embedded from its own file:
+       the sheet derives its every dimension from its viewport width, so the
+       frame is laid out at the wide design width and the whole frame is
+       then zoomed onto the page. Its own brief slide in the deck would be
+       the same copy in a scrolling-page layout, so it is dropped. */
+    const deckSlides = cfg.sheetUrl ? slides.slice(1) : slides;
+    if (cfg.sheetUrl) { slides[0].remove(); }
+    const sheetPage = () => new Promise(resolve => {
+      const page = document.createElement('div');
+      page.className = 'print-page';
+      const frame = document.createElement('iframe');
+      frame.className = 'print-sheet';
+      frame.src = cfg.sheetUrl;
+      frame.style.width = cfg.sheetW + 'px';
+      frame.style.height = Math.round(cfg.sheetW * 1.6) + 'px';
+      frame.setAttribute('scrolling', 'no');
+      page.appendChild(frame);
+      stage.parentNode.insertBefore(page, stage);
+      frame.addEventListener('load', () => {
+        /* The sheet is built to fill its viewport (its `--op-cm` comes from
+           100vw and it carries `min-height: 100svh`), so the frame is given
+           the page's shape at the design width and the sheet lays itself out
+           into it — no fitting, no reflow guessing. */
+        const z = availW / cfg.sheetW;
+        /* No bottom ship here: the sheet flies its own in the header, and
+           it is built to own the whole page. */
+        frame.style.height = Math.round(full / z) + 'px';
+        frame.style.zoom = z;
+        resolve({ id: 'one-pager', scale: z, ship: false });
+      });
+    });
+
+    deckSlides.forEach((slide, i) => {
       const page = document.createElement('div');
       page.className = 'print-page';
       const fitBox = document.createElement('div');
       fitBox.className = 'print-fit';
       slide.parentNode.insertBefore(page, slide);
       page.appendChild(fitBox);
-      /* The document header (project name + status pills) belongs to the
-         opening page, the way it did in the printed deck. */
-      if (i === 0 && docHeader) { fitBox.appendChild(docHeader); }
+      /* Without the sheet the deck's own document header (project name +
+         status pills) opens the first page, the way it does on the site. */
+      if (i === 0 && docHeader) {
+        if (cfg.sheetUrl) { docHeader.style.display = 'none'; }
+        else { fitBox.appendChild(docHeader); }
+      }
       fitBox.appendChild(slide);
 
-      const full = cfg.pageH - cfg.pad * 2;
-      const withShip = shipH ? full - shipH - cfg.gap : full;
       /* Reserve the ship's band first; if paying for it would squeeze the
          slide too hard, the content takes the whole page instead. */
       let scale = shipH ? fit(fitBox, withShip) : fit(fitBox, full);
       const ship = shipH > 0 && scale >= cfg.flyerMinScale;
       if (shipH && !ship) { scale = fit(fitBox, full); }
-
-      if (ship) {
-        const wrap = document.createElement('div');
-        wrap.className = 'print-flyer';
-        wrap.style.width = shipW + 'px';
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = '';
-        wrap.appendChild(img);
-        page.appendChild(wrap);
-      }
+      if (ship) { addShip(page); }
       report.push({ id: slide.id, scale: Math.round(scale * 100) / 100, ship: ship });
     });
-    return report;
+
+    if (!cfg.sheetUrl) { return report; }
+    return sheetPage().then(row => [row].concat(report));
   });
 }
 """
 
 
-def export(lang, out, with_flyer=True):
+def export(lang, out, with_flyer=True, brief="sheet"):
     httpd, port = serve(REPO)
-    path = "investor/index.html" if lang == "en" else "investor/%s/index.html" % lang
-    url = "http://127.0.0.1:%d/%s" % (port, path)
+    sub = "" if lang == "en" else "%s/" % lang
+    url = "http://127.0.0.1:%d/investor/%sindex.html" % (port, sub)
+    sheet_url = "/investor/%sone-pager.html" % sub if brief == "sheet" else None
     try:
         with sync_playwright() as p:
             exe = chromium_path()
@@ -266,11 +331,13 @@ def export(lang, out, with_flyer=True):
                 "minScale": MIN_SCALE, "maxScale": MAX_SCALE,
                 "flyer": with_flyer, "flyerW": FLYER_W_RATIO,
                 "flyerMinScale": FLYER_MIN_SCALE, "shipRatio": 1,
+                "sheetUrl": sheet_url, "sheetW": PAGE_W,
             })
             page.pdf(
                 path=out,
                 width="%gcm" % A4_W,
                 height="%gcm" % A4_H,
+                scale=PDF_SCALE,  # design sheet -> A4
                 print_background=True,
                 margin={"top": "0", "right": "0", "bottom": "0", "left": "0"},
             )
@@ -286,15 +353,20 @@ def main():
     ap.add_argument("-o", "--output", help="output PDF path")
     ap.add_argument("--no-flyer", action="store_true",
                     help="print without the bottom starship")
+    ap.add_argument("--brief", choices=("sheet", "slide"), default="sheet",
+                    help="opening page: the one-pager sheet (default) or the "
+                         "deck's own brief slide")
     args = ap.parse_args()
 
     out = args.output or os.path.join(
         REPO, "investor", "export", "open-trader-deck-%s.pdf" % args.lang
     )
-    report = export(args.lang, out, with_flyer=not args.no_flyer)
+    report = export(args.lang, out, with_flyer=not args.no_flyer,
+                    brief=args.brief)
     for row in report:
-        print("  %-9s scale %.2f%s" % (
-            row["id"], row["scale"], "  + starship" if row["ship"] else ""))
+        print("  %-10s scale %.2f%s" % (
+            row["id"], row["scale"] * PDF_SCALE,
+            "  + starship" if row["ship"] else ""))
     print("%s (%d pages)" % (out, len(report)))
 
 
