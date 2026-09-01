@@ -1253,6 +1253,17 @@ a:hover { color: var(--inv-rose); }
 .deck-table .row-hi td { background: rgba(212, 84, 122, 0.08); font-weight: 700; color: var(--inv-text); }
 .deck-table .num { font-variant-numeric: tabular-nums; }
 
+/* Risks table (Business Model slide): a two-column "risk -> mitigation"
+   read, so both columns are left-aligned prose and the risk column is the
+   one that carries weight. The mitigation column takes the rest of the row
+   whatever the layout width. */
+.deck-risk-table { table-layout: fixed; }
+.deck-risk-table th,
+.deck-risk-table td { text-align: left; vertical-align: top; }
+.deck-risk-table th:first-child,
+.deck-risk-table td:first-child { width: 34%; }
+.deck-risk-table td:first-child { font-weight: 600; color: var(--inv-text); }
+
 /* Unit Economics cohort table: fixed layout with equal-width numeric
    columns, so the number columns sit on an even rhythm instead of each
    being sized to its own content. Headers may wrap to two lines. */
