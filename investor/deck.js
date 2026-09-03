@@ -102,16 +102,30 @@
 
   function zoneH() { return Math.max(1, svH() - headerH()); }
 
-  /* Flow geometry (pinSpacing:false keeps it constant; during a refresh
-     ScrollTrigger reverts pins before these are re-evaluated).
+  /* Flow geometry (pinSpacing:false keeps it constant).
      Pages are as tall as their content, so the next page sits in flow
      right after this page's content end (plus the slide's own bottom
      padding) — that is exactly where it appears from. A page taller than
      the view zone scrolls internally first and pins when its bottom edge
      reaches the window bottom; a shorter one pins as soon as it is the
      current page, so any further scroll starts its transition. */
+  /* A pinned slide is position:fixed, so its own rect no longer reports
+     where it sits in the document — it is short by however much of the
+     slide has already scrolled past the window edge, which on a page
+     taller than the window is most of the page. ScrollTrigger leaves a
+     .pin-spacer wrapper in flow in its place (with pinSpacing:false, of
+     the same height), and that wrapper is the honest flow box. It matters
+     because refreshInit — where every measurement below is taken again —
+     is dispatched BEFORE ScrollTrigger reverts the pins, so a refresh
+     that lands while a page is pinned (a resize, an orientation change, a
+     reload that restores the scroll position) would otherwise re-place
+     every ship using that shortfall, dropping them onto their pages. */
+  function flowBox(el) {
+    var p = el.parentNode;
+    return (p && p.classList && p.classList.contains('pin-spacer')) ? p : el;
+  }
   function docTop(el) {
-    return el.getBoundingClientRect().top +
+    return flowBox(el).getBoundingClientRect().top +
       (window.pageYOffset || document.documentElement.scrollTop || 0);
   }
   function alignYOf(el) { return docTop(el) - headerH(); }
@@ -136,8 +150,9 @@
        transition zone does — there is nothing left to scroll, so the last
        page would hang at the window bottom stuck mid-fade. This spacer
        extends the document exactly enough for the maximum scroll offset
-       to reach the last page's aligned position. Sized on refreshInit so
-       every refresh measures against the corrected geometry. */
+       to reach the last page's aligned position. Re-sized on every refresh
+       (see measureGeometry) so ScrollTrigger measures the corrected
+       geometry. */
     var endSpacer = document.createElement('div');
     endSpacer.className = 'deck-end-spacer print-hide';
     endSpacer.setAttribute('aria-hidden', 'true');
@@ -264,14 +279,24 @@
       });
     }
 
-    ScrollTrigger.addEventListener('refreshInit', function () {
+    function measureGeometry() {
       sizeSlideGaps();
       placeFlyers();
       sizeEndSpacer();
-    });
-    sizeSlideGaps();
-    placeFlyers();
-    sizeEndSpacer();
+    }
+    /* On "revert", not "refreshInit": refreshInit is dispatched while the
+       pins are still applied, and a pinned slide's pin-spacer keeps the
+       pixel height it was given before this refresh — so the gap this
+       function publishes changes the slide's real height without moving
+       the spacer, and every page below is measured against a stale flow.
+       "revert" fires immediately after ScrollTrigger has unpinned
+       everything and before it re-measures, which is exactly the clean
+       flow state these three want. refreshInit is kept as the belt to
+       that suspender for any refresh path that skips the revert; both
+       runs are idempotent and the later one wins. */
+    ScrollTrigger.addEventListener('refreshInit', measureGeometry);
+    ScrollTrigger.addEventListener('revert', measureGeometry);
+    measureGeometry();
 
     /* Every page's opacity is written by this one function, combining the
        progress of the transition INTO the page and the one OUT of it:
