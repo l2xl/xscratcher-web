@@ -157,13 +157,15 @@
       }
     }
     /* Page starship (the stage's data-flyer attribute): every page IS
-       "starship, then content" — the ship rides a fixed distance above
-       its own page's top border and moves only by native scroll, always
-       synchronous with its page. The distance includes the header height,
-       so with the page aligned under the header the ship has fully left
-       through the top window border. Hidden by default, it fades in with
-       its rising page during the transition (sharing the page's opacity,
-       see applyFades), leading it over the pinned, fading one. */
+       "starship, then content" — the ship belongs to the page below it and
+       moves only by native scroll, always synchronous with that page, but
+       it is POSITIONED from the previous page: a fixed clearance under
+       that page's content end (see placeFlyers). The clearance includes
+       the header height, so with its own page aligned under the header the
+       ship has fully left through the top window border. Hidden by
+       default, it fades in with its rising page during the transition
+       (sharing the page's opacity, see applyFades), leading it over the
+       pinned, fading one. */
     var flyerSrc = stage.getAttribute('data-flyer');
     var flyers = [];
     if (flyerSrc) {
@@ -220,29 +222,44 @@
        the stylesheet keeps only a JS-free fallback gap. */
     function sizeSlideGaps() {
       if (!flyers.length) { return; }
-      var gap = 2 * (headerH() + shipLead()) + shipH();
+      /* Also carries the JS-free floors (2.5rem / 10svh), so the published
+         value IS the padding the CSS applies — on browsers without svh the
+         stylesheet can fall back to this single number. */
+      var gap = Math.max(2 * (headerH() + shipLead()) + shipH(),
+        0.10 * svH(), 40);
       stage.style.setProperty('--deck-flyer-gap', Math.round(gap) + 'px');
     }
 
     /* Stage-relative via document rects: ScrollTrigger wraps pinned
-       slides in pin-spacer divs, so slide offsetTop is useless here. */
+       slides in pin-spacer divs, so slide offsetTop is useless here.
+
+       Every ship is anchored to the END OF THE PREVIOUS PAGE'S CONTENT,
+       never to its own page's top: the ship belongs to the page that is
+       still to come, but the space it occupies is the previous page's
+       breathing gap. Anchoring downwards from content that is already
+       laid out means the ship is below that content by a fixed clearance
+       whatever padding the gap actually resolves to — an unsupported CSS
+       unit, a stale custom property or a late reflow can no longer pull
+       the ship up over the page the reader is looking at. The clearance
+       includes the header height, so once the ship's page lands aligned
+       under the header the ship has fully left through the top border. */
+    function contentEndOf(el) {
+      return docTop(el) + el.offsetHeight -
+        (parseFloat(getComputedStyle(el).paddingBottom) || 0);
+    }
     function placeFlyers() {
       if (!flyers.length) { return; }
       var lead = shipLead();
       var h = shipH();
       var stageTop = docTop(stage);
       flyers.forEach(function (el, i) {
-        var y;
-        if (i < total) {
-          y = docTop(slides[i]) - stageTop - h - headerH() - lead;
-        } else {
-          /* Trailing ship: below the last page's content, at the same
-             content-to-ship distance every other gap uses. */
-          var last = slides[total - 1];
-          var pad = parseFloat(getComputedStyle(last).paddingBottom) || 0;
-          y = docTop(last) - stageTop + last.offsetHeight - pad +
-            headerH() + lead;
-        }
+        /* flyers[i] leads slides[i]; flyers[total] is the trailing ship of
+           the fake empty page after the last one — same rule, the page
+           before it is simply the last real one. flyers[0] has no previous
+           page: park it above the stage (it is never shown). */
+        var y = i === 0 ?
+          docTop(slides[0]) - stageTop - h - headerH() - lead :
+          contentEndOf(slides[i - 1]) - stageTop + headerH() + lead;
         el.style.top = Math.round(y) + 'px';
       });
     }
@@ -341,6 +358,12 @@
     applyFades();
 
     window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+    /* Web fonts swap in AFTER the load event, re-flowing every page — all
+       measured geometry above must be taken again or the ships keep the
+       positions of the fallback-font layout. */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+    }
 
     /* Print must see every page: undo pins and scrubbed opacities. */
     window.addEventListener('beforeprint', function () {
