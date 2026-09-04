@@ -136,27 +136,41 @@
     document.documentElement.style.scrollBehavior = 'auto';
     document.documentElement.classList.add('deck-engine');
 
-    /* Starship dividers: one flow block between each pair of pages. */
+    /* Starship dividers: one flow block between each pair of pages, plus
+       one more INSIDE the last page's own content (appended as its last
+       child, not between pages) so the deck still closes on a ship. That
+       one is not a divider — it never gets its own fade — it is simply
+       part of the last page, so it slides and fades exactly as the rest
+       of that page's content does, for free, via the parent's opacity. */
     var flyerSrc = stage.getAttribute('data-flyer');
     var flyers = [];
+    function makeFlyer(className) {
+      var wrap = document.createElement('div');
+      wrap.className = className;
+      wrap.setAttribute('aria-hidden', 'true');
+      var img = document.createElement('img');
+      img.src = flyerSrc;
+      img.alt = '';
+      wrap.appendChild(img);
+      return wrap;
+    }
     if (flyerSrc) {
       slides.forEach(function (slide, i) {
-        if (i === total - 1) { return; }
-        var wrap = document.createElement('div');
-        wrap.className = 'deck-flyer print-hide';
-        wrap.setAttribute('aria-hidden', 'true');
-        var img = document.createElement('img');
-        img.src = flyerSrc;
-        img.alt = '';
-        wrap.appendChild(img);
+        if (i === total - 1) {
+          slide.appendChild(makeFlyer('deck-flyer deck-flyer--closing print-hide'));
+          return;
+        }
+        var wrap = makeFlyer('deck-flyer print-hide');
         slide.parentNode.insertBefore(wrap, slide.nextSibling);
         flyers.push(wrap);
       });
-      /* The image's box is 0 high until it loads, which moves every page
-         below it — re-measure once. A cached image may never fire `load`
-         after this listener attaches, hence the `complete` check. */
-      var img0 = flyers[0].firstChild;
-      if (!img0.complete) {
+      /* Every ship's box is 0 high until its image loads, which moves
+         everything laid out after it — re-measure once they do. A cached
+         image may never fire `load` after this listener attaches, hence
+         the `complete` check. One listener is enough: all ships share the
+         same image, so they load together. */
+      var img0 = stage.querySelector('.deck-flyer img');
+      if (img0 && !img0.complete) {
         img0.addEventListener('load', function () { ScrollTrigger.refresh(); });
       }
     }

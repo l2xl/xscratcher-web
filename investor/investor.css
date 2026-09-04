@@ -942,6 +942,12 @@ html.deck-engine body::-webkit-scrollbar { display: none; width: 0; height: 0; }
 @media (max-width: 40em) {
   .deck-flyer { width: 75%; }
 }
+/* The closing ship lives INSIDE the last page (appended as its last
+   child), not between two pages, so it never needs to clear a header for
+   a page landing under it — a plain breathing margin instead of
+   --deck-flyer-lead. Being a child of the slide, it slides and fades
+   with it automatically; nothing here handles its visibility. */
+.deck-flyer--closing { margin: 2.5rem auto 0; }
 /* "Waggle in space" idle: a slow multi-phase drift (bob + sway + slight
    roll), transform-only so it stays off the layout/paint path. It runs on
    the inner image while deck.js fades the wrapper, so the two transforms
