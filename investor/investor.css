@@ -927,8 +927,8 @@ html.deck-engine::-webkit-scrollbar,
 html.deck-engine body::-webkit-scrollbar { display: none; width: 0; height: 0; }
 /* Starship divider, created by deck.js between each pair of pages: a
    block of the normal flow taking its own vertical space. Its clearance
-   above and below is measured by deck.js (header height plus a little
-   air) and published as --deck-flyer-lead. Paints above a page that has
+   above and below is measured by deck.js as half the ship's own rendered
+   height and published as --deck-flyer-lead. Paints above a page that has
    stopped to fade, below the header/sidebar chrome. */
 .deck-flyer {
   position: relative;

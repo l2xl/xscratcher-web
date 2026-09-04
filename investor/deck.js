@@ -188,12 +188,16 @@
       endSpacer.style.height = Math.max(0, Math.ceil(lack)) + 'px';
     }
 
-    /* The divider's clearance above and below the ship: the header
-       height, so a divider is fully out of view once the page after it
-       is aligned under the header, plus a little air that scales with
-       the view zone. Published for the divider's CSS margins. */
+    /* The divider's clearance above and below the ship: half the ship's
+       own rendered height, so the gap it sits in reads as proportioned to
+       the ship rather than to the header. Published for the divider's
+       CSS margins. 0 until the ship image has loaded; the load listener
+       below re-measures once it has. */
+    function shipH() {
+      return flyers.length ? flyers[0].offsetHeight : 0;
+    }
     function sizeDividers() {
-      var lead = headerH() + zoneH() * 0.03;
+      var lead = shipH() / 2;
       stage.style.setProperty('--deck-flyer-lead', Math.round(lead) + 'px');
     }
 
