@@ -1,26 +1,33 @@
 /* =========================================================
-   Investor deck engine — pinned cross-fade page transitions.
+   Investor deck engine — page swiping with a starship divider.
 
-   Content-agnostic: it discovers `.deck-stage .slide` sections at
-   runtime — any number, any content, any language. Per page:
+   The deck is ONE continuous document: every page is a block of the
+   normal flow at its own content height, and between any two pages sits
+   a starship divider — a flow block too, taking its own vertical space.
+   Nothing is positioned by hand; the layout is the browser's.
 
-     1. the page sits aligned under the sticky header and scrolls
-        natively until its own bottom edge is on screen;
-     2. then the page pins in place and, as scrolling continues,
-        dissolves (fade-out) while
-     3. the next page rises from below the viewport, fading in,
-        until it lands aligned under the header.
+   Scrolling is native. What the engine adds, scrubbed by the real
+   scroll position (GSAP ScrollTrigger), is:
 
-   The motion is scrubbed by the real scroll position (GSAP
-   ScrollTrigger), so wheel, trackpad and touch all keep native
-   physics and every transition is reversible mid-gesture.
+     - a page slides up until it has been fully shown — its top under the
+       header, or, for a page taller than the window, its bottom at the
+       window bottom — then it stops in place and FADES OUT over a fixed
+       scroll distance instead of moving (the divider below it keeps
+       sliding up and out through the top window edge);
+     - the next page and its divider are invisible until the page is
+       about to land under the header, and fade in over that same
+       distance;
+     - the distance is one number for the whole deck: the height of the
+       smallest page block, computed here (never assumed), capped at the
+       view zone so it always fits on screen.
 
-   Also generates the slide nav (desktop sidebar) from each
-   section's data-nav attribute.
+   Every state is a pure function of the scroll offset, so scrolling
+   back plays every transition in reverse. The scrollbar is hidden
+   while the engine runs.
 
-   Fallbacks: without GSAP, or under prefers-reduced-motion, the
-   deck is a plain vertically stacked document — everything stays
-   readable and the nav still works.
+   Also generates the slide nav (desktop sidebar) from each section's
+   data-nav attribute. Without GSAP, or under prefers-reduced-motion,
+   the deck is the plain stacked document with no dividers.
    ========================================================= */
 (function () {
   'use strict';
@@ -61,7 +68,8 @@
     });
   }
 
-  /* Later slides overlap earlier ones while they rise in. */
+  /* A page that has stopped to fade may be overlapped by the one sliding
+     up under it; the later page paints on top. */
   slides.forEach(function (s, i) { s.style.zIndex = String(i + 1); });
 
   Array.prototype.forEach.call(document.querySelectorAll('.year-ref'), function (el) {
@@ -73,18 +81,15 @@
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var engineOn = !reduceMotion &&
     typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
-  var pins = [];
 
-  /* Stable viewport heights, measured (not hardcoded) from the CSS
-     small/large viewport units via hidden probe elements. On phones
-     window.innerHeight swings with the browser chrome (URL bar) in the
-     middle of a scroll, which silently invalidates any geometry derived
-     from it — the historical cause of ships appearing over content or
-     not at all. The probes give fixed, screen-derived values: svh for
-     the view zone (chrome visible — nothing ever hides behind the URL
-     bar), lvh for the end spacer (the document must stay reachable at
-     maximum scroll). Falls back to innerHeight where the units are
-     unsupported (those browsers have static chrome). */
+  /* The fade distance: 0 until the engine measures it. */
+  var fadeLen = 0;
+
+  /* Stable viewport heights from the CSS small/large viewport units via
+     hidden probes: on phones window.innerHeight swings with the browser
+     chrome mid-scroll. svh sizes the view zone (nothing hides behind the
+     URL bar), lvh the end spacer (the document stays reachable at maximum
+     scroll). innerHeight where the units are unsupported. */
   var vhProbes = null;
   if (window.CSS && CSS.supports && CSS.supports('height', '100svh')) {
     vhProbes = {};
@@ -99,27 +104,11 @@
   }
   function svH() { return vhProbes ? vhProbes.svh.offsetHeight : window.innerHeight; }
   function lvH() { return vhProbes ? vhProbes.lvh.offsetHeight : window.innerHeight; }
-
   function zoneH() { return Math.max(1, svH() - headerH()); }
 
-  /* Flow geometry (pinSpacing:false keeps it constant).
-     Pages are as tall as their content, so the next page sits in flow
-     right after this page's content end (plus the slide's own bottom
-     padding) — that is exactly where it appears from. A page taller than
-     the view zone scrolls internally first and pins when its bottom edge
-     reaches the window bottom; a shorter one pins as soon as it is the
-     current page, so any further scroll starts its transition. */
-  /* A pinned slide is position:fixed, so its own rect no longer reports
-     where it sits in the document — it is short by however much of the
-     slide has already scrolled past the window edge, which on a page
-     taller than the window is most of the page. ScrollTrigger leaves a
-     .pin-spacer wrapper in flow in its place (with pinSpacing:false, of
-     the same height), and that wrapper is the honest flow box. It matters
-     because refreshInit — where every measurement below is taken again —
-     is dispatched BEFORE ScrollTrigger reverts the pins, so a refresh
-     that lands while a page is pinned (a resize, an orientation change, a
-     reload that restores the scroll position) would otherwise re-place
-     every ship using that shortfall, dropping them onto their pages. */
+  /* Flow geometry. A pinned page is position:fixed, so its own rect no
+     longer says where it sits in the document; ScrollTrigger leaves a
+     .pin-spacer of the same height in flow in its place — read that. */
   function flowBox(el) {
     var p = el.parentNode;
     return (p && p.classList && p.classList.contains('pin-spacer')) ? p : el;
@@ -128,65 +117,31 @@
     return flowBox(el).getBoundingClientRect().top +
       (window.pageYOffset || document.documentElement.scrollTop || 0);
   }
+  /* Scroll offset with the page's top aligned under the header. */
   function alignYOf(el) { return docTop(el) - headerH(); }
-  function pinStartOf(el) {
+  /* Scroll offset at which the page has been fully shown and stops to
+     fade: aligned, or — taller than the zone — with its bottom edge at
+     the window bottom. */
+  function stopYOf(el) {
     return alignYOf(el) + Math.max(0, el.offsetHeight - zoneH());
   }
-  function transLenOf(el) { return Math.min(zoneH(), el.offsetHeight); }
 
   if (engineOn) {
     gsap.registerPlugin(ScrollTrigger);
-    /* Mobile URL-bar show/hide fires resize events mid-scroll; refreshing
-       on them would visibly re-anchor the page under the user's finger.
-       Safe to ignore: no geometry here depends on window.innerHeight —
-       everything derives from the svh/lvh probes, which those resizes
-       don't change. */
+    /* Mobile URL-bar show/hide fires resize events mid-scroll; nothing
+       here depends on innerHeight, so they are safe to ignore. */
     ScrollTrigger.config({ ignoreMobileResize: true });
     /* CSS smooth scrolling would animate ScrollTrigger's own measurement
        scrolls during refresh; navigation smooth-scrolls per call instead. */
     document.documentElement.style.scrollBehavior = 'auto';
+    document.documentElement.classList.add('deck-engine');
 
-    /* On a tall window the document can end before the last page's
-       transition zone does — there is nothing left to scroll, so the last
-       page would hang at the window bottom stuck mid-fade. This spacer
-       extends the document exactly enough for the maximum scroll offset
-       to reach the last page's aligned position. Re-sized on every refresh
-       (see measureGeometry) so ScrollTrigger measures the corrected
-       geometry. */
-    var endSpacer = document.createElement('div');
-    endSpacer.className = 'deck-end-spacer print-hide';
-    endSpacer.setAttribute('aria-hidden', 'true');
-    stage.appendChild(endSpacer);
-    function sizeEndSpacer() {
-      endSpacer.style.height = '0px';
-      var need = alignYOf(slides[total - 1]) + lvH();
-      var lack = need - document.documentElement.scrollHeight;
-      endSpacer.style.height = Math.max(0, Math.ceil(lack)) + 'px';
-      /* Absolutely-positioned ships can stick out past the flow bottom;
-         where the spacer and that overhang overlap, the first pass
-         under-counts — top up against a fresh measurement. */
-      lack = need - document.documentElement.scrollHeight;
-      if (lack > 0) {
-        endSpacer.style.height =
-          (parseFloat(endSpacer.style.height) + Math.ceil(lack)) + 'px';
-      }
-    }
-    /* Page starship (the stage's data-flyer attribute): every page IS
-       "starship, then content" — the ship belongs to the page below it and
-       moves only by native scroll, always synchronous with that page, but
-       it is POSITIONED from the previous page: a fixed clearance under
-       that page's content end (see placeFlyers). The clearance includes
-       the header height, so with its own page aligned under the header the
-       ship has fully left through the top window border. Hidden by
-       default, it fades in with its rising page during the transition
-       (sharing the page's opacity, see applyFades), leading it over the
-       pinned, fading one. */
+    /* Starship dividers: one flow block between each pair of pages. */
     var flyerSrc = stage.getAttribute('data-flyer');
     var flyers = [];
     if (flyerSrc) {
-      slides.forEach(function () {
-        /* Wrapper carries flow position + fade (GSAP); the inner image
-           carries the CSS waggle loop — transforms stay un-conflicted. */
+      slides.forEach(function (slide, i) {
+        if (i === total - 1) { return; }
         var wrap = document.createElement('div');
         wrap.className = 'deck-flyer print-hide';
         wrap.setAttribute('aria-hidden', 'true');
@@ -194,198 +149,116 @@
         img.src = flyerSrc;
         img.alt = '';
         wrap.appendChild(img);
-        stage.appendChild(wrap);
-        gsap.set(wrap, { autoAlpha: 0 });
+        slide.parentNode.insertBefore(wrap, slide.nextSibling);
         flyers.push(wrap);
       });
-      /* One extra ship after the last page — the "fake empty next page"
-         with nothing but its starship, so the last real page also gets a
-         ship idling below. The active-page rule shows it (flyers[total])
-         exactly while the last page is active. */
-      var tail = flyers[0].cloneNode(true);
-      stage.appendChild(tail);
-      gsap.set(tail, { autoAlpha: 0 });
-      flyers.push(tail);
-      /* Until the image loads its box is 0 high and every measurement
-         below is wrong — remeasure once real dimensions exist. Checking
-         `complete` first: a cached image may never fire `load` after
-         this listener attaches. */
+      /* The image's box is 0 high until it loads, which moves every page
+         below it — re-measure once. A cached image may never fire `load`
+         after this listener attaches, hence the `complete` check. */
       var img0 = flyers[0].firstChild;
       if (!img0.complete) {
         img0.addEventListener('load', function () { ScrollTrigger.refresh(); });
       }
     }
 
-    /* All flyer geometry is measured, never assumed: the ship's height
-       comes from its CSS-resolved width times the image's natural aspect
-       ratio (correct even before first paint), and the clearance around
-       it scales with the actual view zone. */
-    function shipH() {
-      if (!flyers.length) { return 0; }
-      var img = flyers[0].firstChild;
-      if (img.naturalWidth > 0) {
-        return flyers[0].offsetWidth * img.naturalHeight / img.naturalWidth;
-      }
-      return flyers[0].offsetHeight;
-    }
-    function shipLead() { return zoneH() * 0.03; }
-
-    /* The breathing gap below each page hosts the NEXT page's ship plus
-       symmetric clearance (header + lead on both sides of the ship, see
-       placeFlyers). Published as a custom property so the CSS padding
-       and the JS ship placement share one measured source of truth —
-       the stylesheet keeps only a JS-free fallback gap. */
-    function sizeSlideGaps() {
-      if (!flyers.length) { return; }
-      /* Also carries the JS-free floors (2.5rem / 10svh), so the published
-         value IS the padding the CSS applies — on browsers without svh the
-         stylesheet can fall back to this single number. */
-      var gap = Math.max(2 * (headerH() + shipLead()) + shipH(),
-        0.10 * svH(), 40);
-      stage.style.setProperty('--deck-flyer-gap', Math.round(gap) + 'px');
+    /* The document must reach the last page's aligned position even on a
+       tall window: extend it by exactly what is missing. */
+    var endSpacer = document.createElement('div');
+    endSpacer.className = 'deck-end-spacer print-hide';
+    endSpacer.setAttribute('aria-hidden', 'true');
+    stage.appendChild(endSpacer);
+    function sizeEndSpacer() {
+      endSpacer.style.height = '0px';
+      var lack = alignYOf(slides[total - 1]) + lvH() -
+        document.documentElement.scrollHeight;
+      endSpacer.style.height = Math.max(0, Math.ceil(lack)) + 'px';
     }
 
-    /* Stage-relative via document rects: ScrollTrigger wraps pinned
-       slides in pin-spacer divs, so slide offsetTop is useless here.
-
-       Every ship is anchored to the END OF THE PREVIOUS PAGE'S CONTENT,
-       never to its own page's top: the ship belongs to the page that is
-       still to come, but the space it occupies is the previous page's
-       breathing gap. Anchoring downwards from content that is already
-       laid out means the ship is below that content by a fixed clearance
-       whatever padding the gap actually resolves to — an unsupported CSS
-       unit, a stale custom property or a late reflow can no longer pull
-       the ship up over the page the reader is looking at. The clearance
-       includes the header height, so once the ship's page lands aligned
-       under the header the ship has fully left through the top border. */
-    function contentEndOf(el) {
-      return docTop(el) + el.offsetHeight -
-        (parseFloat(getComputedStyle(el).paddingBottom) || 0);
-    }
-    function placeFlyers() {
-      if (!flyers.length) { return; }
-      var lead = shipLead();
-      var h = shipH();
-      var stageTop = docTop(stage);
-      flyers.forEach(function (el, i) {
-        /* flyers[i] leads slides[i]; flyers[total] is the trailing ship of
-           the fake empty page after the last one — same rule, the page
-           before it is simply the last real one. flyers[0] has no previous
-           page: park it above the stage (it is never shown). */
-        var y = i === 0 ?
-          docTop(slides[0]) - stageTop - h - headerH() - lead :
-          contentEndOf(slides[i - 1]) - stageTop + headerH() + lead;
-        el.style.top = Math.round(y) + 'px';
-      });
+    /* The divider's clearance above and below the ship: the header
+       height, so a divider is fully out of view once the page after it
+       is aligned under the header, plus a little air that scales with
+       the view zone. Published for the divider's CSS margins. */
+    function sizeDividers() {
+      var lead = headerH() + zoneH() * 0.03;
+      stage.style.setProperty('--deck-flyer-lead', Math.round(lead) + 'px');
     }
 
+    /* The fade distance, one number for every page. */
+    function sizeFade() {
+      var min = Infinity;
+      slides.forEach(function (s) { min = Math.min(min, s.offsetHeight); });
+      fadeLen = Math.max(1, Math.min(min, zoneH()));
+    }
+
+    /* Measured in the clean flow: ScrollTrigger's "revert" fires after it
+       has unpinned everything and before it re-measures. refreshInit is
+       dispatched with the pins still applied — a pinned page's spacer
+       then still has the old height — so it is only kept as the belt for
+       a refresh path that skips the revert; the later run wins. */
     function measureGeometry() {
-      sizeSlideGaps();
-      placeFlyers();
+      sizeDividers();
+      sizeFade();
       sizeEndSpacer();
     }
-    /* On "revert", not "refreshInit": refreshInit is dispatched while the
-       pins are still applied, and a pinned slide's pin-spacer keeps the
-       pixel height it was given before this refresh — so the gap this
-       function publishes changes the slide's real height without moving
-       the spacer, and every page below is measured against a stale flow.
-       "revert" fires immediately after ScrollTrigger has unpinned
-       everything and before it re-measures, which is exactly the clean
-       flow state these three want. refreshInit is kept as the belt to
-       that suspender for any refresh path that skips the revert; both
-       runs are idempotent and the later one wins. */
     ScrollTrigger.addEventListener('refreshInit', measureGeometry);
     ScrollTrigger.addEventListener('revert', measureGeometry);
     measureGeometry();
 
-    /* Every page's opacity is written by this one function, combining the
-       progress of the transition INTO the page and the one OUT of it:
-       fade-in over the middle 90% of the incoming zone, fade-out over the
-       first 70% of the outgoing zone, invisible before it arrives. Being
-       the single writer (driven by pin onUpdate + refresh) makes the state
-       correct for any scroll position — deep links, reverse swipes,
-       resizes — with no tween-ownership conflicts. */
-    /* One rule: the active page is the one whose arrival transition is
-       complete and whose departure is not, and only the NEXT page's ship
-       is shown. It fades in (then idles with the CSS waggle loop) the
-       moment the active page reaches its default position, stays shown
-       through its whole flight — it is still the not-yet-arrived next
-       page — and once it lands it is above the top window border and
-       the rule moves on to the following ship. Every other ship is
-       hidden, so no two ships are ever on screen. */
-    var shipShown = [];
-    function updateShips() {
-      /* "Arrived" tolerates the 2px goTo undershoot (see goTo): anything
-         past 99% of a transition counts as landed. */
-      var active = total - 1;
-      for (var p = 0; p < pins.length; p++) {
-        if (pins[p] && pins[p].progress < 0.99) { active = p; break; }
-      }
-      flyers.forEach(function (el, i) {
-        var show = (i === active + 1);
-        if (show === !!shipShown[i]) { return; }
-        shipShown[i] = show;
-        gsap.killTweensOf(el);
-        gsap.to(el, show ?
-          { autoAlpha: 1, duration: 1.2, ease: 'power2.out' } :
-          { autoAlpha: 0, duration: 0.35, ease: 'power1.out' });
-      });
-    }
-
     function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+    /* Every opacity in the deck, from the scroll offset alone. A page
+       fades in over the fade distance before it is aligned and fades out
+       over the fade distance after it has stopped; the first page is
+       simply there and the last never leaves. A divider shares the fade
+       in of the page above it and then just scrolls away. */
     function applyFades() {
-      var alphas = slides.map(function (slide, i) {
-        var aIn = (i > 0 && pins[i - 1]) ?
-          clamp01((pins[i - 1].progress - 0.05) / 0.90) : 1;
-        var aOut = (i < total - 1 && pins[i]) ?
-          1 - clamp01(pins[i].progress / 0.70) : 1;
-        return Math.min(aIn, aOut);
-      });
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
       slides.forEach(function (slide, i) {
-        gsap.set(slide, { autoAlpha: alphas[i] });
+        var aIn = i === 0 ? 1 :
+          clamp01((y - alignYOf(slide) + fadeLen) / fadeLen);
+        var aOut = i === total - 1 ? 1 :
+          1 - clamp01((y - stopYOf(slide)) / fadeLen);
+        gsap.set(slide, { autoAlpha: Math.min(aIn, aOut) });
+        if (flyers[i]) { gsap.set(flyers[i], { autoAlpha: aIn }); }
       });
-      updateShips();
     }
 
+    /* A page stops in place for the fade distance; with pinSpacing:false
+       the document keeps its geometry, the page just does not move. */
     slides.forEach(function (slide, i) {
       if (i === total - 1) { return; }
-      pins[i] = ScrollTrigger.create({
+      ScrollTrigger.create({
         trigger: slide,
-        start: function () { return pinStartOf(slide); },
-        end: function () { return pinStartOf(slide) + transLenOf(slide); },
+        start: function () { return stopYOf(slide); },
+        end: function () { return stopYOf(slide) + fadeLen; },
         pin: true,
         pinSpacing: false,
         anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onUpdate: applyFades
+        invalidateOnRefresh: true
       });
     });
+    /* Runs in the same update pass as the pins, for every scroll. */
+    ScrollTrigger.create({ start: 0, end: 'max', onUpdate: applyFades });
 
-    /* Every pin's start/end depends on the view-zone height, so a vertical
-       resize moves all of them while the scroll offset stays put — the same
-       offset suddenly lands mid-transition elsewhere and pages appear to
-       flip on their own. Re-anchor after each refresh: keep the current
-       page aligned, preserving any in-page scroll it had (clamped to the
-       page's own scrollable extent under the new geometry). Both snapshot
-       and restore use targetY(), so each side is consistent with its own
-       generation of pin positions. */
+    /* Stop positions depend on the view-zone height, so a vertical resize
+       moves all of them while the scroll offset stays put. Re-anchor after
+       each refresh: keep the current page aligned, preserving any in-page
+       scroll it had. */
     var keepN = current, keepDy = 0;
     ScrollTrigger.addEventListener('refreshInit', function () {
       keepN = current;
       keepDy = (window.pageYOffset || 0) - targetY(keepN - 1);
     });
     ScrollTrigger.addEventListener('refresh', function () {
-      applyFades();
       var inPage = Math.max(0, slides[keepN - 1].offsetHeight - zoneH());
       window.scrollTo(0, targetY(keepN - 1) +
         Math.max(0, Math.min(keepDy, inPage)));
+      applyFades();
     });
     applyFades();
 
     window.addEventListener('load', function () { ScrollTrigger.refresh(); });
-    /* Web fonts swap in AFTER the load event, re-flowing every page — all
-       measured geometry above must be taken again or the ships keep the
-       positions of the fallback-font layout. */
+    /* Web fonts swap in after the load event and re-flow every page. */
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
     }
@@ -403,15 +276,7 @@
 
   /* ---- navigation ---- */
 
-  /* Scroll offset at which slide i sits aligned under the header. With
-     pinSpacing:false the pins never change document geometry, so the pin-end
-     of the transition INTO a slide is exactly that alignment point. */
-  function targetY(i) {
-    if (i <= 0) { return 0; }
-    if (pins[i - 1]) { return pins[i - 1].end; }
-    var el = slides[i];
-    return el.getBoundingClientRect().top + window.pageYOffset - headerH();
-  }
+  function targetY(i) { return i <= 0 ? 0 : alignYOf(slides[i]); }
 
   /* Older Safari (< 15.4) ignores the options form of scrollTo entirely —
      fall back to an instant jump so navigation always works. */
@@ -419,11 +284,10 @@
 
   function goTo(n, instant) {
     n = Math.max(1, Math.min(total, n));
-    /* Land 2px short of the alignment point: for short pages that exact
-       pixel is also where their own departure pin starts, and settling
-       on the shared boundary lets sub-pixel scroll flutter (fractional
-       DPI scaling) toggle the pin on/off — a visible shake instead of a
-       clean stop. */
+    /* Land 2px short of the alignment point: for a page shorter than the
+       zone that exact pixel is also where its own stop begins, and
+       settling on the shared boundary lets sub-pixel scroll flutter
+       toggle the pin on/off — a visible shake instead of a clean stop. */
     var y = Math.max(0, targetY(n - 1) - 2);
     if (smoothOk) {
       window.scrollTo({ top: y, behavior: instant ? 'auto' : 'smooth' });
@@ -442,12 +306,12 @@
     slides.forEach(function (s, i) { s.classList.toggle('active', (i + 1) === n); });
   }
 
+  /* The page more than half faded in is the current one. */
   function currentFromScroll() {
     var y = window.pageYOffset;
+    var half = (fadeLen || zoneH()) / 2;
     var n = 1;
     for (var i = 1; i < total; i++) {
-      var half = pins[i - 1] ?
-        (pins[i - 1].end - pins[i - 1].start) / 2 : zoneH() / 2;
       if (y + half >= targetY(i)) { n = i + 1; }
     }
     return n;
@@ -484,7 +348,7 @@
     if (e.key === 'End') { e.preventDefault(); goTo(total); }
   });
 
-  /* Deep links: land on #slide-N after layout (and pin geometry) settles. */
+  /* Deep links: land on #slide-N after layout settles. */
   function jumpToHash() {
     if (!location.hash) { return; }
     for (var i = 0; i < total; i++) {
