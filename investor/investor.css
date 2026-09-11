@@ -1156,6 +1156,23 @@ html.deck-engine body::-webkit-scrollbar { display: none; width: 0; height: 0; }
   .deck-equation .eq-val { font-size: 0.7rem; }
 }
 
+/* figures */
+.deck-figure { margin: 1.1rem 0 0; }
+.deck-figure img {
+  display: block;
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  border-radius: var(--inv-radius);
+  border: 1px solid var(--inv-border);
+}
+.deck-figure figcaption {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--inv-muted);
+}
+
 /* charts */
 .deck-chart { width: 100%; }
 .deck-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
