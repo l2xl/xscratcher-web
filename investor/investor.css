@@ -304,6 +304,11 @@ a:hover { color: var(--inv-rose); }
   max-width: min(31.25rem, 100%);
 }
 
+.inv-subtitle-link {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
 .inv-confidential {
   display: inline-flex;
   align-items: center;
