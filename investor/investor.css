@@ -1186,7 +1186,7 @@ html.deck-engine body::-webkit-scrollbar { display: none; width: 0; height: 0; }
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--inv-faint);
+  color: var(--inv-muted);
   margin-bottom: 0.5rem;
   text-align: center;
 }
@@ -1210,6 +1210,8 @@ html.deck-engine body::-webkit-scrollbar { display: none; width: 0; height: 0; }
 .chart-lbl { font-family: var(--font-heading); font-size: 11px; fill: var(--inv-muted); }
 .chart-val { font-family: var(--font-serif); font-size: 13px; font-weight: 600; fill: var(--inv-text); }
 .chart-val-hi { fill: var(--inv-accent); }
+/* market funnel: the top segments are pale, so their labels need full contrast */
+#slide-5 .chart-lbl { fill: var(--inv-text); }
 
 /* comparison matrix */
 .deck-compare-wrap { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y; }
