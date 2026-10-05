@@ -1292,6 +1292,21 @@ html.deck-engine body::-webkit-scrollbar { display: none; width: 0; height: 0; }
 #slide-9 .deck-table th { vertical-align: bottom; white-space: normal; }
 #slide-9 .deck-table td.num { white-space: nowrap; }
 
+/* Unit Economics (slide 8): the cohort table is split by market, so spot and
+   perp each own a pair of columns under a grouped header. Widths come from the
+   colgroup (the second header row has fewer cells than the first, so nth-child
+   widths would not line up), and the group headers are centred over their pair
+   with a hairline rule so the pairing reads at a glance. */
+.deck-table-split { table-layout: fixed; }
+.deck-table-split th { vertical-align: bottom; white-space: normal; }
+.deck-table-split thead tr:first-child th[colspan] {
+  text-align: center;
+  border-bottom: 1px solid var(--inv-border);
+  color: var(--inv-text);
+}
+.deck-table-split thead tr:first-child th[rowspan] { border-bottom: none; }
+.deck-table-split td.num { white-space: nowrap; }
+
 /* On phones, tighten the cohort/economics tables so they fit the slide
    width without a sideways scroll. Placed after the base rules above so it
    wins on equal specificity. */

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Open Trader &mdash; Презентация для инвестора &middot; The Scratcher Project</title>
-  <link rel="stylesheet" href="../investor.css?v=30" />
+  <link rel="stylesheet" href="../investor.css?v=32" />
 </head>
 <body>
 
@@ -71,9 +71,9 @@
               <div class="brief-metric-sub">&rarr; $17.42B к 2033 году</div>
             </div>
             <div class="brief-metric">
-              <div class="brief-metric-value">$13.4M</div>
+              <div class="brief-metric-value">$2.00M</div>
               <div class="brief-metric-label">ARR, мес.&nbsp;36</div>
-              <div class="brief-metric-sub">SOM за 3 года &middot; базовый сценарий 40%</div>
+              <div class="brief-metric-sub">0.049% комиссионного пула бирж</div>
             </div>
             <div class="brief-metric">
               <div class="brief-metric-value">$110K</div>
@@ -445,7 +445,7 @@
               <div class="deck-stat"><div class="deck-stat-value">583M</div><div class="deck-stat-label">Пользователи TAM</div><div class="deck-stat-sub">пользователи CEX + OSS-разработчики</div></div>
               <div class="deck-stat"><div class="deck-stat-value">43.5M</div><div class="deck-stat-label">SAM</div><div class="deck-stat-sub">7.5% от TAM</div></div>
               <div class="deck-stat"><div class="deck-stat-value">7.5M</div><div class="deck-stat-label">OSS-разработчики &middot; плацдарм</div><div class="deck-stat-sub">fintech/trading &middot; из 150M+ на GitHub</div></div>
-              <div class="deck-stat"><div class="deck-stat-value">~40K</div><div class="deck-stat-label">SOM &middot; open-source</div><div class="deck-stat-sub">~16K активных &middot; 3 года &middot; $13.4M ARR</div></div>
+              <div class="deck-stat"><div class="deck-stat-value">~40K</div><div class="deck-stat-label">SOM &middot; open-source</div><div class="deck-stat-sub">~7.9K активных &middot; 3 года &middot; $2.00M ARR</div></div>
               <div class="deck-stat"><div class="deck-stat-value">+12.4%</div><div class="deck-stat-label">Пользователи крипты, год к году</div><div class="deck-stat-sub">659 &rarr; 741M</div></div>
             </div>
             <p class="slide-lead" style="margin-top:0.6rem">Наш SAM: <strong>технически мыслящие пользователи</strong> &mdash; как те, кто уже торгует и ищет инструмент лучше, так и те, кто не начнёт без понятного, удобного инструмента.</p>
@@ -557,29 +557,43 @@
           <section class="slide" id="slide-8" data-nav="Юнит-экономика">
             <div class="slide-head">
               <div class="slide-kicker">Юнит-экономика</div>
-              <h2 class="slide-title">Наш юнит &mdash; сделка: мы получаем часть комиссии с каждой проведённой сделки</h2>
+              <h2 class="slide-title">Наш юнит &mdash; сделка, а спот и перп &mdash; два разных бизнеса</h2>
             </div>
 
-            <!-- ===== ROW 1: trade cohorts (ARPAU) | rationale ===== -->
+            <!-- ===== ROW 1: trade cohorts, spot vs perp | commission pool ===== -->
             <div class="deck-row" style="align-items:stretch;margin-bottom:0.7rem">
-              <div class="deck-col" style="flex:1.4 1 360px">
+              <div class="deck-col" style="flex:1.5 1 380px">
                 <div class="deck-table-wrap">
-                  <table class="deck-table">
-                    <thead><tr><th>Когорта</th><th>Средняя сделка</th><th>Доход / сделка</th><th>% сделок ICP</th><th>% комиссий</th></tr></thead>
+                  <table class="deck-table deck-table-split">
+                    <colgroup><col style="width:22%"><col style="width:15%"><col style="width:16%"><col style="width:15%"><col style="width:16%"><col style="width:16%"></colgroup>
+                    <thead>
+                      <tr><th rowspan="2">Когорта</th><th colspan="2">Спот &middot; 3.88 б.п.</th><th colspan="2">Перп &middot; 1.49 б.п.</th><th rowspan="2">% пула</th></tr>
+                      <tr><th>Ср. сделка</th><th>Доход / сделка</th><th>Ср. сделка</th><th>Доход / сделка</th></tr>
+                    </thead>
                     <tbody>
-                      <tr><td><span class="coh-chip bg-6"></span>$50&ndash;$500</td><td class="num">$214</td><td class="num">$0.04</td><td class="num">43.7%</td><td class="num">3.4%</td></tr>
-                      <tr><td><span class="coh-chip bg-4"></span>$500&ndash;$5K</td><td class="num">$1&#8239;728</td><td class="num">$0.29</td><td class="num">42.5%</td><td class="num">26.6%</td></tr>
-                      <tr class="row-hi"><td><span class="coh-chip bg-2"></span>$5K&ndash;$50K &#9733;</td><td class="num">$14&#8239;032</td><td class="num">$2.39</td><td class="num">13.8%</td><td class="num">70.0%</td></tr>
-                      <tr><td><strong>Средневзвешенное</strong></td><td class="num"><strong>$2&#8239;763</strong></td><td class="num">$0.47</td><td class="num">100%</td><td class="num">100%</td></tr>
+                      <tr><td><span class="coh-chip bg-6"></span>$50&ndash;$500</td><td class="num">$174</td><td class="num">$0.068</td><td class="num">$213</td><td class="num">$0.032</td><td class="num">4.0%</td></tr>
+                      <tr><td><span class="coh-chip bg-4"></span>$500&ndash;$5K</td><td class="num">$1&#8239;558</td><td class="num">$0.605</td><td class="num">$1&#8239;729</td><td class="num">$0.258</td><td class="num">29.3%</td></tr>
+                      <tr class="row-hi"><td><span class="coh-chip bg-2"></span>$5K&ndash;$50K &#9733;</td><td class="num">$14&#8239;011</td><td class="num">$5.44</td><td class="num">$14&#8239;022</td><td class="num">$2.09</td><td class="num">66.7%</td></tr>
+                      <tr><td><strong>ICP целиком</strong></td><td class="num">$1&#8239;779</td><td class="num">$0.69</td><td class="num">$2&#8239;762</td><td class="num">$0.41</td><td class="num">100%</td></tr>
                     </tbody>
                   </table>
                 </div>
-                <p class="slide-lead" style="margin:0.35rem 0 0;font-size:0.7rem;color:var(--inv-faint)">ARPAU = сделок/мес &times; средняя ICP-сделка &times; <strong>0.017%</strong> полной комиссии. Базовый сценарий &mdash; <strong>153 сделки/мес</strong> (7.3 в торговый день). Из верхней когорты вычтено <strong>5%</strong> на возможный институциональный поток &rarr; средняя сделка $2&#8239;666, <strong>ARPAU ~$69/мес</strong>. Размерный микс измерен на 14 днях тиковых данных (14.5 млн ордеров), сверен на Binance. Свыше $50K &mdash; институциональный сегмент, исключён.</p>
+                <p class="slide-lead" style="margin:0.35rem 0 0;font-size:0.7rem;color:var(--inv-faint)">Сделка того же размера на споте стоит нам <strong>в 2.6 раза дороже</strong>, поэтому рынки считаются раздельно: одна блендованная ставка на перповых размерах завышает доход со сделки на <strong>14%</strong>. <strong>12.3% сделок несут 66.7% пула.</strong> Размеры измерены на 14 днях тиковых данных (14.5 млн ордеров-агрессоров, 6 пар), сверены на споте Binance. Свыше $50K &mdash; институциональный сегмент, исключён.</p>
               </div>
-              <div class="deck-col" style="flex:1 1 240px;display:flex">
-                <div class="deck-stats" style="flex:1;flex-direction:column;justify-content:center;gap:0.6rem">
-                  <div class="deck-stat" style="flex:0 0 auto;padding:0.8rem 0.9rem"><div class="deck-stat-value" style="font-size:1.35rem">~88%</div><div class="deck-stat-label">объёма приходится на perp</div><div class="deck-stat-sub">измерено, 8 бирж</div></div>
-                  <div class="deck-stat" style="flex:0 0 auto;padding:0.8rem 0.9rem"><div class="deck-stat-value" style="font-size:1.35rem">$29&rarr;$119</div><div class="deck-stat-label">ARPAU spot&rarr;perp, плечо 5&times;</div><div class="deck-stat-sub">тот же розничный трейдер</div></div>
+              <div class="deck-col" style="flex:1 1 260px;display:flex;flex-direction:column;gap:0.5rem">
+                <div class="deck-table-wrap">
+                  <table class="deck-table">
+                    <thead><tr><th>Рынок</th><th>Наша ставка</th><th>% объёма</th><th>Пул / год</th></tr></thead>
+                    <tbody>
+                      <tr><td>Спот</td><td class="num">3.88 б.п.</td><td class="num">12%</td><td class="num">$1.48B <span style="color:var(--inv-faint)">(36%)</span></td></tr>
+                      <tr><td>Перп</td><td class="num">1.49 б.п.</td><td class="num">88%</td><td class="num">$2.60B <span style="color:var(--inv-faint)">(64%)</span></td></tr>
+                      <tr class="row-hi"><td><strong>ICP итого</strong></td><td class="num"><strong>1.92 б.п.</strong></td><td class="num">100%</td><td class="num"><strong>$4.08B</strong></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="deck-stats" style="flex-direction:column;gap:0.4rem">
+                  <div class="deck-stat" style="flex:0 0 auto;padding:0.6rem 0.9rem"><div class="deck-stat-value" style="font-size:1.2rem">36%</div><div class="deck-stat-label">пула даёт спот</div><div class="deck-stat-sub">всего на 12% объёма рынка</div></div>
+                  <div class="deck-stat" style="flex:0 0 auto;padding:0.6rem 0.9rem"><div class="deck-stat-value" style="font-size:1.2rem">0.049%</div><div class="deck-stat-label">пула к 36-му месяцу</div><div class="deck-stat-sub">0.1% приходится на 46-й</div></div>
                 </div>
               </div>
             </div>
@@ -588,35 +602,35 @@
             <div class="deck-row" style="align-items:flex-start">
               <div class="deck-col" style="flex:0 0 20%;max-width:22%">
                 <div class="deck-stats" style="flex-direction:column;gap:0.3rem">
-                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">$69</div><div class="deck-stat-label">средневзвешенный ARPAU/мес</div><div class="deck-stat-sub">только доля комиссии</div></div>
-                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">~9&times;</div><div class="deck-stat-label">LTV / CAC</div><div class="deck-stat-sub">органическое привлечение &middot; 75% GM</div></div>
-                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">~$6.6B</div><div class="deck-stat-label">Объём платформы/мес</div><div class="deck-stat-sub">~$79B/год &middot; комиссия 0.017%</div></div>
+                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">12%</div><div class="deck-stat-label">установка &rarr; активный трейдер</div><div class="deck-stat-sub">3Commas 9.8% &middot; Coinbase ~7.6%</div></div>
+                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">~2.7&times;</div><div class="deck-stat-label">LTV / CAC</div><div class="deck-stat-sub">только органика &middot; потолок $8.9 за установку</div></div>
+                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">~$869M</div><div class="deck-stat-label">Объём платформы/мес</div><div class="deck-stat-sub">~$10.4B/год &middot; ставка 1.92 б.п.</div></div>
                 </div>
               </div>
               <div class="deck-col" style="flex:1 1 340px">
-                <div class="deck-chart-title">ARR на 36-й мес., $M (16K активных трейдеров)</div>
+                <div class="deck-chart-title">ARR на 36-й мес., $M &mdash; сценарии воронки при 44 сделках/мес</div>
                 <div class="deck-chart">
-                  <svg viewBox="0 0 640 172" role="img" aria-label="ARR на 36-й месяц по сценариям">
+                  <svg viewBox="0 0 640 172" role="img" aria-label="ARR на 36-й месяц по доле комиссионного пула бирж">
                     <line x1="55" y1="132"   x2="620" y2="132"   class="chart-axis"/>
                     <line x1="55" y1="104.5" x2="620" y2="104.5" class="chart-grid"/>
                     <line x1="55" y1="77"    x2="620" y2="77"    class="chart-grid"/>
                     <line x1="55" y1="49.5"  x2="620" y2="49.5"  class="chart-grid"/>
                     <line x1="55" y1="22"    x2="620" y2="22"    class="chart-grid"/>
                     <text x="48" y="135" text-anchor="end" class="chart-lbl">$0</text>
-                    <text x="48" y="108" text-anchor="end" class="chart-lbl">$5M</text>
-                    <text x="48" y="80"  text-anchor="end" class="chart-lbl">$10M</text>
-                    <text x="48" y="52"  text-anchor="end" class="chart-lbl">$15M</text>
-                    <text x="48" y="26"  text-anchor="end" class="chart-lbl">$20M</text>
-                    <rect x="130" y="79.6" width="80" height="52.4" rx="4" class="cs-6"/>
-                    <rect x="290" y="58.2" width="80" height="73.8" rx="4" class="cs-1"/>
-                    <rect x="450" y="42.8" width="80" height="89.2" rx="4" class="cs-4"/>
-                    <text x="170" y="74.5" text-anchor="middle" class="chart-lbl">$9.5M</text>
-                    <text x="330" y="53.1" text-anchor="middle" class="chart-val chart-val-hi">$13.4M</text>
-                    <text x="490" y="37.7" text-anchor="middle" class="chart-lbl">$16.2M</text>
+                    <text x="48" y="108" text-anchor="end" class="chart-lbl">$1M</text>
+                    <text x="48" y="80"  text-anchor="end" class="chart-lbl">$2M</text>
+                    <text x="48" y="52"  text-anchor="end" class="chart-lbl">$3M</text>
+                    <text x="48" y="26"  text-anchor="end" class="chart-lbl">$4M</text>
+                    <rect x="130" y="98.2" width="80" height="33.8" rx="4" class="cs-6"/>
+                    <rect x="290" y="77.0" width="80" height="55.0" rx="4" class="cs-1"/>
+                    <rect x="450" y="40.1" width="80" height="91.9" rx="4" class="cs-4"/>
+                    <text x="170" y="93.1" text-anchor="middle" class="chart-lbl">$1.23M</text>
+                    <text x="330" y="71.9" text-anchor="middle" class="chart-val chart-val-hi">$2.00M</text>
+                    <text x="490" y="35.0" text-anchor="middle" class="chart-lbl">$3.34M</text>
                     <text x="170" y="148" text-anchor="middle" class="chart-lbl">Консервативный</text>
                     <text x="330" y="148" text-anchor="middle" class="chart-lbl" style="font-weight:700">Базовый &#9679;</text>
                     <text x="490" y="148" text-anchor="middle" class="chart-lbl">Оптимистичный</text>
-                    <text x="330" y="165" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint)">чувствительность к частоте и миксу когорт</text>
+                    <text x="330" y="165" text-anchor="middle" class="chart-lbl" style="fill:var(--inv-faint)">диффузия медленнее &middot; активация 12% &middot; активация 20%</text>
                   </svg>
                 </div>
               </div>
