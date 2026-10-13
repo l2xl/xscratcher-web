@@ -405,6 +405,17 @@ code {
   border: 1px solid rgba(240, 160, 64, 0.25);
 }
 
+.badge-done {
+  background: var(--color-green);
+  color: var(--color-bg);
+  border: 1px solid var(--color-green);
+}
+
+.roadmap-component-text .phase-badge {
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
 .roadmap-body {
   padding-top: 0.3rem;
   padding-bottom: 0.5rem;
@@ -715,6 +726,14 @@ blockquote {
   margin-bottom: 1rem;
   font-size: 0.95rem;
 }
+
+.content-prose ul,
+.content-prose ol {
+  color: var(--color-muted);
+  margin: 0 0 1rem 1.25rem;
+  font-size: 0.95rem;
+}
+.content-prose li { margin-bottom: 0.5rem; }
 
 .content-prose a {
   text-decoration: underline;

@@ -5,7 +5,7 @@
 |---|---|---|
 | Landing | `index.html` | Hero, "Why we are building this" (4 problem cards), Roadmap, Philosophy strip |
 | Open Trader | `open-trader.html` | Open Trader - standalone exchange trading application details |
-| The Scratcher Assistant | `scratcher-assistant.html` | The Scratcher Assistant - AI assistant details |
+| AI-Asassin | `scratcher-assistant.html` | AI-Asassin - general-purpose AI assistant (Synergy Context Gate) details; file keeps its legacy name from the former "The Scratcher Assistant" |
 | IPRL | `iprl.html` | Intellectual Property Reserve License page |
 | DataHub | `datahub.html` | DataHub library description |
 | Mission | `mission.html` | Open Trader Mission |

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="The Intellectual Property Reserve License (IPRL) — publish open-source code today and retain your intellectual property as founder's capital for tomorrow." />
+  <meta name="description" content="The Intellectual Property Reserve License (IPRL) — publish your source openly today and keep the intellectual property in it as a defined, verifiable asset: founder's capital for tomorrow." />
   <title>IP Reserve License — The Scratcher Project</title>
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/i18n.js"></script>
@@ -21,7 +21,7 @@
       </button>
       <ul class="nav-links">
         <li><a href="open-trader.html">Open Trader</a></li>
-        <li><a href="scratcher-assistant.html">The Scratcher Assistant</a></li>
+        <li><a href="scratcher-assistant.html">AI-Asassin</a></li>
         <li><a href="datahub.html">DataHub</a></li>
         <li><a href="iprl.html" class="active">IPRL</a></li>
         <li><a href="mission.html">Mission</a></li>
@@ -40,13 +40,16 @@
       <div class="container content-prose">
         <!-- TL;DR box -->
         <div class="callout callout-accent">
-          <strong>The short version:</strong> The IPRL lets you publish source code while
-          explicitly reserving intellectual property ownership — keeping it available as founder's
-          capital if a company is ever formed around the project. The source is freely readable
-          and usable, but <strong>IPRL is not an Open Source license</strong> in the OSI sense:
-          it deliberately withholds certain freedoms to protect pre-incorporation IP. These
-          restrictions are intentionally temporary — projects published under the IPRL plan to
-          transition to a genuine open-source license once the IP situation is formalised.
+          <strong>The short version:</strong> The IPRL is a short, source-available license.
+          Anyone may read, study, run, and share your work unchanged, while every economic right
+          in it stays with its Rightsholders — so the work remains a defined, attributable,
+          verifiable asset, suitable for IP registration, business valuation, or a founder's
+          capital contribution when a company is formed around the project.
+          <strong>IPRL is not an Open Source license</strong> in the OSI sense: it withholds the
+          right to publish modified versions by design. The reservation is meant to be temporary —
+          the Rightsholders can at any time, acting together, carry the work over into a true
+          open-source license, and projects published under the IPRL plan to do so once the IP
+          situation is formalised.
         </div>
         <h2>The problem it solves</h2>
         <p>Founders at the pre-incorporation stage face a genuine dilemma. Open source is the right
@@ -58,41 +61,89 @@
           intellectual property in that early open-source code becomes important and often
           complicated. The IPRL addresses this before it becomes a problem.</p>
         <h2>What the IPRL does</h2>
-        <p>The license does two things simultaneously:</p>
+        <p>The license faces two ways at once:</p>
         <div class="feature-list">
           <div class="feature-item">
             <div class="feature-icon">&#10003;</div>
             <div>
-              <strong>Allows to publish source code</strong>
+              <strong>Keeps open publication open</strong>
               <p>
-                The source is publicly available: anyone can read, build, and use the software.
-                This transparency is deliberate and important. However, IPRL is not an Open Source
-                license. The Open Source Definition requires that licences permit derived works and
-                impose no restriction on use in any field — conditions IPRL explicitly does not
-                meet, because the IP reservation limits what others can do with modifications and
-                derivative works.
+                The source is public: anyone may read, study, run, and use the work for any purpose,
+                commercial or not, and redistribute verbatim copies with the license, signatures and
+                notices intact. Outside contributions are welcome. Still, IPRL is not an Open Source
+                license: the Open Source Definition requires that modified and derived works may be
+                distributed, and publishing them is exactly what the IPRL withholds — adaptation is
+                allowed only privately, to study the work or to prepare an offer back to the
+                Rightsholders.
               </p>
             </div>
           </div>
           <div class="feature-item">
             <div class="feature-icon">&#128273;</div>
             <div>
-              <strong>Reserves IP ownership — for now</strong>
-              <p>The license states that intellectual property rights — patents, trademarks, trade
-                secrets, and the rights to commercialise the work — are reserved by the named
-                author or authors. Using or redistributing the software does not transfer or
-                implicitly license these rights. This reservation is a deliberate but temporary
-                measure: as the project matures and the pre-incorporation phase ends, the authors
-                intend to transition to a true open-source license.
+              <strong>Reserves the economic rights — and proves who holds them</strong>
+              <p>The Reserved Rights — to reproduce, distribute, adapt and build upon the work, and
+                to authorise or withhold any of these — are held by the work's Rightsholders: the
+                author at first, a successor after a transfer. Using or sharing the software neither
+                transfers nor implicitly licenses them; no patent or trademark rights are licensed
+                either. Authorship, by contrast, always stays with whoever made the work and is never
+                a Reserved Right. The reservation is a deliberate but temporary measure: as the
+                pre-incorporation phase ends, the authors intend to transition to a true open-source
+                license.
               </p></div></div></div>
+        <h2>Built on signatures, not registries</h2>
+        <p>IPRL v2 is written around a few generic terms — <strong>Publication</strong>,
+          <strong>Signed Publication</strong>, <strong>Contributor</strong>, and
+          <strong>Rightsholder</strong>. It never names a technology, yet it maps directly onto
+          modern publication practice: version control histories, signed commits and tags,
+          detached signatures, package releases.</p>
+        <ul>
+          <li>A work comes under the license when its maker <strong>signs</strong> it. The signature
+            is the single act that proves authorship and applies the terms; what is not signed, the
+            license does not protect. The chain of signatures travelling with the work is the entire
+            ownership record — no separate registry is needed.</li>
+          <li>A <strong>Contributor</strong> is an author whose signed work has been accepted into
+            the project; a <strong>Rightsholder</strong> is whoever currently holds the Reserved
+            Rights. Being a Contributor is recognition of authorship — it does not by itself make
+            one a Rightsholder.</li>
+          <li>A new contributor joins only when an existing Contributor <strong>explicitly
+            accepts</strong> their signed contribution with a signature of their own — for example a
+            signed merge commit. The Reserved Rights in the contribution vest in the work's
+            Rightsholders, so no competing ownership claim can ever arise implicitly.</li>
+          <li>An <strong>unsigned</strong> addition simply becomes part of the work as published;
+            its maker remains its author but grants the Rightsholders an exclusive license to the
+            Reserved Rights in it.</li>
+          <li>A <strong>patent license</strong> travels with every Signed Publication, and bringing
+            patent litigation over the work ends it.</li>
+        </ul>
+        <h2>Transfer and relicensing</h2>
+        <p>A Rightsholder may transfer their rights — for example, to a company as a founder's
+          contribution in kind. The company then takes their place as Rightsholder; the transfer
+          moves the Reserved Rights, not authorship, so the record of who made what stands. All
+          Rightsholders acting together may also relicense the work — e.g. transition to MIT or
+          Apache-2.0 later. Either step is recorded the way the work itself is published: as a
+          signed declaration.</p>
         <h2>Using the IPRL</h2>
-        <p>The license text is freely available. To apply it to a project, include it as
-          <code>LICENSE</code> in the repository, with the author name or names and date filled in.
-          Add the standard header comment to source files.</p>
-        <p>The Scratcher Project uses the IPRL for all its projects during the pre-incorporation phase.</p>
+        <p>The license mandates no tooling, file names, or formats. With common tools:</p>
+        <ol>
+          <li>Copy <code>IPRL_LICENSE.md</code> into the repository as <code>LICENSE.md</code>.</li>
+          <li>Make your signing credential public — a GPG key on a key server, an SSH key on your
+            hosting profile, a key fingerprint on your website.</li>
+          <li>Sign every publication: with git, <code>git config commit.gpgsign true</code> makes
+            every commit a Signed Publication; signed tags or a detached signature on a release
+            archive serve equally.</li>
+          <li>Accept outside contributions explicitly — a signed merge commit whose message
+            identifies the contribution and states its acceptance.</li>
+        </ol>
+        <p>A per-file header notice is helpful but optional.
+          The Scratcher Project uses the IPRL for all its projects during the pre-incorporation phase.</p>
         <div class="callout">
-          <strong>The IPRV v1 is available.</strong> IPRL v2 currently in progress targeting modern version control based publication.<br>
-          Follow progress and contribute at
+          <strong>IPRL v2.0 is released.</strong> Compared with v1, signing moved from a one-time
+          signature on the license file to the publications themselves, so authorship of every part
+          of the work is provable from the public record; multiple authors are supported; and
+          commercial use of unchanged copies is permitted. The license text itself is released
+          under CC0.<br>
+          Read the text, follow progress and contribute at
           <a href="https://github.com/l2xl/IPRL" target="_blank" rel="noopener">github.com/l2xl/IPRL</a>,
           or get in touch at&nbsp;<a href="mailto:l2xl@protonmail.com">l2xl@protonmail.com</a></div></div></section></main>
   <footer class="site-footer">

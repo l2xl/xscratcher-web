@@ -10,8 +10,10 @@ The next word sequences are project's trade marks. It must be always and strictl
 
 - The Scratcher Project
 - The Exchange Scrathpad
-- The Scratcher Assistant
+- AI-Asassin
 - DataHub
+
+`AI-Asassin` is always written exactly so, in Latin script, in every language version — never transliterated into Cyrillic, translated or respelled. The former name "The Scratcher Assistant" is retired.
 
 ## Dev stack
 - Plain HTML5 + CSS3 + vanilla JS (ES5 compatible)

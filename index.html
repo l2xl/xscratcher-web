@@ -21,7 +21,7 @@
       </button>
       <ul class="nav-links">
         <li><a href="open-trader.html">Open Trader</a></li>
-        <li><a href="scratcher-assistant.html">The Scratcher Assistant</a></li>
+        <li><a href="scratcher-assistant.html">AI-Asassin</a></li>
         <li><a href="datahub.html">DataHub</a></li>
         <li><a href="iprl.html">IPRL</a></li>
         <li><a href="mission.html">Mission</a></li>
@@ -100,7 +100,7 @@
           <li class="roadmap-item">
             <div class="roadmap-phase">
               <span class="phase-number">01</span>
-              <span class="phase-badge badge-active">In development</span>
+              <span class="phase-badge badge-active">Prototype ready &middot; MVP in progress</span>
             </div>
             <div class="roadmap-body">
               <h3 class="roadmap-title">Open Trader</h3>
@@ -114,14 +114,14 @@
                 <li class="roadmap-component-item">
                   <span class="roadmap-component-icon">&#9992;</span>
                   <div class="roadmap-component-text">
-                    <strong>Trading terminal</strong>
+                    <strong>Trading terminal <span class="phase-badge badge-active">Prototype ready &middot; MVP in progress</span></strong>
                     <span>Chart, order book, positions, and orders on one screen. TA markers calculated automatically; orders linked to indicators and updated in real time.</span>
                   </div>
                 </li>
                 <li class="roadmap-component-item">
                   <span class="roadmap-component-icon">&#128218;</span>
                   <div class="roadmap-component-text">
-                    <strong>DataHub library</strong>
+                    <strong>DataHub library <span class="phase-badge badge-done">Completed</span></strong>
                     <span>Unified data layer for market data aggregation, normalisation, and distribution across exchange connections.</span>
                   </div>
                 </li>
@@ -138,27 +138,29 @@
             </div>
           </li>
 
-          <!-- Phase 2 — The Scratcher Assistant -->
+          <!-- Phase 2 — AI-Asassin -->
           <li class="roadmap-item">
             <div class="roadmap-phase">
               <span class="phase-number">02</span>
-              <span class="phase-badge badge-planning">Planning</span>
+              <span class="phase-badge badge-active">Prototype ready &middot; MVP in progress</span>
             </div>
             <div class="roadmap-body">
-              <h3 class="roadmap-title">The Scratcher Assistant</h3>
+              <h3 class="roadmap-title">AI-Asassin</h3>
               <p class="roadmap-desc">
-                An AI assistant for trading strategy development. Writes, debugs, and optimises
-                strategy code. Runs locally via Ollama, Llama, or Mistral for complete privacy,
-                or connects to cloud LLMs when capability matters more than isolation.
-                You choose the trust boundary.
+                A general-purpose AI assistant built around the Synergy Context Gate: the dialog
+                is condensed into a graph of statements, and that graph constructs the exact
+                context for every reply. With its review and test gates on, it is how Open Trader
+                itself is being built. AI models are reached through connectors &mdash; local or
+                cloud, you choose the trust boundary.
               </p>
               <ul class="roadmap-tags">
+                <li>Synergy Context Gate</li>
                 <li>Local LLM</li>
                 <li>Cloud AI</li>
-                <li>Strategy development</li>
                 <li>Open source</li>
               </ul>
               <a href="scratcher-assistant.html" class="roadmap-gh-link">Learn more &rarr;</a>
+              <a href="https://github.com/l2xl/ai-scratcher" class="roadmap-gh-link" target="_blank" rel="noopener" style="margin-left:1.25rem;">View on GitHub &rarr;</a>
             </div>
           </li>
 
