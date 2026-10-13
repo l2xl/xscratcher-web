@@ -17,6 +17,11 @@
   --color-green:     #3ecf8e;
   --color-blue:      #5ba3f5;
   --color-orange:    #f0a040;
+  /* header stripe: kept light in the dark theme so the black X-fighter logo reads */
+  --color-header:        #a8a8a8;
+  --color-header-text:   #0f0f0f;
+  --color-header-muted:  #353535;
+  --color-header-border: #8c8c8c;
   --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-mono: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
   --max-w: 860px;
@@ -24,6 +29,24 @@
   --radius-lg: 10px;
   --roadmap-dot: 2.75rem;   /* roadmap step circle; sets the gutter and the line */
   --transition: 0.18s ease;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg:        #f6f6f3;
+    --color-surface:   #ffffff;
+    --color-surface2:  #ededea;
+    --color-border:    #d9d9d4;
+    --color-text:      #1a1a1a;
+    --color-muted:     #666;
+    --color-faint:     #9a9a9a;
+    --color-header:        var(--color-surface);
+    --color-header-text:   var(--color-text);
+    --color-header-muted:  var(--color-muted);
+    --color-header-border: var(--color-border);
+    color-scheme: light;
+  }
 }
 
 /* ----- Reset ----- */
@@ -79,26 +102,32 @@ code {
 
 /* ----- Header / Nav ----- */
 .site-header {
-  background-color: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-header);
+  border-bottom: 1px solid var(--color-header-border);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
 .nav {
-  display: flex;
+  /* logo flush to the window edge; the menu starts at the content column's left edge */
+  max-width: none;
+  padding-inline: 0.5rem;
+  display: grid;
+  grid-template-columns: minmax(max-content, 1fr) minmax(0, calc(var(--max-w) - 2.5rem)) 1fr;
   align-items: center;
-  justify-content: space-between;
   padding-block: 1rem;
   gap: 1rem;
 }
+.nav-logo   { grid-column: 1; justify-self: start; white-space: nowrap; }
+.nav-links  { grid-column: 2; justify-self: start; }
+.nav-toggle { grid-column: 3; justify-self: end; }
 
 .nav-logo {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  color: var(--color-text);
+  color: var(--color-header-text);
   font-weight: 600;
   font-size: 1rem;
   letter-spacing: -0.01em;
@@ -115,27 +144,27 @@ code {
 }
 
 .nav-links a {
-  color: var(--color-muted);
+  color: var(--color-header-muted);
   font-size: 0.88rem;
   font-weight: 500;
   transition: color var(--transition);
 }
 .nav-links a:hover,
-.nav-links a.active { color: var(--color-text); }
+.nav-links a.active { color: var(--color-header-text); }
 
 /* Language switcher (Russian pages only) */
 .lang-switch {
   font-size: 0.78rem;
   font-weight: 600;
-  color: var(--color-faint);
-  border: 1px solid var(--color-border);
+  color: var(--color-header-muted);
+  border: 1px solid var(--color-header-border);
   border-radius: 4px;
   padding: 0.15em 0.55em;
   transition: color var(--transition), border-color var(--transition);
 }
 .lang-switch:hover {
-  color: var(--color-text);
-  border-color: var(--color-faint);
+  color: var(--color-header-text);
+  border-color: var(--color-header-muted);
 }
 
 /* Hamburger toggle button (hidden on desktop) */
@@ -149,7 +178,7 @@ code {
   cursor: pointer;
   padding: 0.5rem;
   flex-shrink: 0;
-  color: var(--color-text);
+  color: var(--color-header-text);
 }
 
 .nav-toggle span {
@@ -966,8 +995,8 @@ blockquote {
     right: 0;
     flex-direction: column;
     gap: 0;
-    background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
+    background: var(--color-header);
+    border-bottom: 1px solid var(--color-header-border);
     padding: 0.5rem 1.25rem 1rem;
     z-index: 99;
   }
@@ -977,7 +1006,7 @@ blockquote {
   }
 
   .nav-links li {
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-header-border);
   }
 
   .nav-links li:first-child {
