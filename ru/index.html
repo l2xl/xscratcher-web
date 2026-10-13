@@ -90,128 +90,140 @@
         <div class="section-header">
           <h2 class="section-title">Дорожная карта</h2>
           <p class="section-sub">
-            Два продукта в MVP. Каждый — фундамент для следующего.
+            Три шага. Каждый — фундамент для следующего.
           </p>
         </div>
 
         <ol class="roadmap-list">
 
-          <!-- Phase 1 — Open Trader -->
+          <!-- 01 — Готово -->
           <li class="roadmap-item">
             <div class="roadmap-phase">
               <span class="phase-number">01</span>
-              <span class="phase-badge badge-active">Прототип готов &middot; MVP в работе</span>
+              <span class="phase-badge badge-done">Готово</span>
             </div>
             <div class="roadmap-body">
-              <h3 class="roadmap-title">Open Trader</h3>
+              <h3 class="roadmap-title">Фундамент</h3>
               <p class="roadmap-desc">
-                Open-source торговый терминал, подключаемый к криптобиржам через API.
-                Автоматический технический анализ, динамические ордера
-                и полная изоляция от биржи — всё на одном экране. Без подписок, без чёрных ящиков.
+                Уже построено и работает: слой данных, интерфейс-кабина терминала
+                и AI-ассистент, на котором теперь ведётся разработка самого проекта.
               </p>
 
               <ul class="roadmap-components">
                 <li class="roadmap-component-item">
-                  <span class="roadmap-component-icon">&#9992;</span>
-                  <div class="roadmap-component-text">
-                    <strong>Торговый терминал <span class="phase-badge badge-active">Прототип готов &middot; MVP в работе</span></strong>
-                    <span>График, ордербук, позиции и ордера на одном экране. Маркеры ТА рассчитываются автоматически; ордера привязаны к индикаторам и обновляются в реальном времени.</span>
-                  </div>
-                </li>
-                <li class="roadmap-component-item">
                   <span class="roadmap-component-icon">&#128218;</span>
                   <div class="roadmap-component-text">
-                    <strong>DataHub <span class="phase-badge badge-done">Готово</span></strong>
+                    <strong>Библиотека DataHub</strong>
                     <span>Унифицированный слой данных для агрегации, нормализации и распределения рыночных данных между биржевыми подключениями.</span>
                   </div>
                 </li>
+                <li class="roadmap-component-item">
+                  <span class="roadmap-component-icon">&#9992;</span>
+                  <div class="roadmap-component-text">
+                    <strong>Прототип Trading HUD UI</strong>
+                    <span>Интерфейс как кабина пилота: график, ордербук, позиции и ордера на одном экране. Маркеры ТА рассчитываются автоматически.</span>
+                  </div>
+                </li>
+                <li class="roadmap-component-item">
+                  <span class="roadmap-component-icon">&#129302;</span>
+                  <div class="roadmap-component-text">
+                    <strong>Прототип AI-Asassin</strong>
+                    <span>Synergy Context Gate: диалог сворачивается в граф утверждений, который формирует контекст для каждого ответа, с гейтом ревью и тестов. На нём строится Open Trader.</span>
+                  </div>
+                </li>
               </ul>
 
-              <ul class="roadmap-tags">
-                <li>Торговый терминал</li>
-                <li>DataHub</li>
-                <li>Multi-exchange API</li>
-                <li>Open source</li>
-              </ul>
-              <a href="open-trader.html" class="roadmap-gh-link">Подробнее о продукте &rarr;</a>
-              <a href="https://github.com/l2xl/extools" class="roadmap-gh-link" target="_blank" rel="noopener" style="margin-left:1.25rem;">GitHub &rarr;</a>
+              <a href="datahub.html" class="roadmap-gh-link">DataHub &rarr;</a>
+              <a href="open-trader.html" class="roadmap-gh-link" style="margin-left:1.25rem;">Open Trader &rarr;</a>
+              <a href="scratcher-assistant.html" class="roadmap-gh-link" style="margin-left:1.25rem;">AI-Asassin &rarr;</a>
             </div>
           </li>
 
-          <!-- Phase 2 — AI-Asassin -->
+          <!-- 02 — В разработке -->
           <li class="roadmap-item">
             <div class="roadmap-phase">
               <span class="phase-number">02</span>
-              <span class="phase-badge badge-active">Прототип готов &middot; MVP в работе</span>
+              <span class="phase-badge badge-active">В разработке</span>
             </div>
             <div class="roadmap-body">
-              <h3 class="roadmap-title">AI-Asassin</h3>
+              <h3 class="roadmap-title">Автоматическая торговля</h3>
               <p class="roadmap-desc">
-                Универсальный AI-ассистент, построенный вокруг Synergy Context Gate: диалог
-                сворачивается в граф утверждений, и этот граф формирует точный контекст для
-                каждого ответа. С включёнными гейтами ревью и тестов именно так строится сам
-                Open Trader. AI-модели подключаются через коннекторы &mdash; локальные или
-                облачные, уровень доверия выбираете вы.
+                Превращаем прототип в продукт, который торгует: ордера, следующие за рынком,
+                стратегии, работающие от начала до конца, и безопасное место, где их можно
+                сначала проверить.
               </p>
-              <ul class="roadmap-tags">
-                <li>Synergy Context Gate</li>
-                <li>Локальная LLM</li>
-                <li>Облачный AI</li>
-                <li>Open source</li>
+
+              <ul class="roadmap-components">
+                <li class="roadmap-component-item">
+                  <span class="roadmap-component-icon">&#9889;</span>
+                  <div class="roadmap-component-text">
+                    <strong>Динамические ордера</strong>
+                    <span>Ордера, привязанные к индикаторам и обновляемые в реальном времени вслед за рынком.</span>
+                  </div>
+                </li>
+                <li class="roadmap-component-item">
+                  <span class="roadmap-component-icon">&#9881;</span>
+                  <div class="roadmap-component-text">
+                    <strong>Полный стек автоматической торговли</strong>
+                    <span>Стратегии исполняются от начала до конца на вашей машине &mdash; от рыночных данных до ордеров на бирже; AI-Asassin создаёт их и следит за исполнением.</span>
+                  </div>
+                </li>
+                <li class="roadmap-component-item">
+                  <span class="roadmap-component-icon">&#129514;</span>
+                  <div class="roadmap-component-text">
+                    <strong>Полигон торговых стратегий</strong>
+                    <span>Стратегии проверяются на исторических данных и в песочнице до выхода на рынок; с оптимизацией параметров.</span>
+                  </div>
+                </li>
               </ul>
-              <a href="scratcher-assistant.html" class="roadmap-gh-link">Подробнее &rarr;</a>
-              <a href="https://github.com/l2xl/ai-scratcher" class="roadmap-gh-link" target="_blank" rel="noopener" style="margin-left:1.25rem;">GitHub &rarr;</a>
+
+              <a href="open-trader.html" class="roadmap-gh-link">Подробнее о продукте &rarr;</a>
             </div>
           </li>
 
-        </ol>
-
-        <!-- ── Evolution ────────────────────────────────── -->
-        <div class="roadmap-divider">
-          <span>Эволюция &mdash; за пределами MVP</span>
-        </div>
-
-        <ol class="roadmap-list">
-
-          <!-- The Scratcher Wallet -->
+          <!-- 03 — На горизонте -->
           <li class="roadmap-item">
             <div class="roadmap-phase">
               <span class="phase-number">03</span>
               <span class="phase-badge badge-horizon">На горизонте</span>
             </div>
             <div class="roadmap-body">
-              <h3 class="roadmap-title">The Scratcher Wallet</h3>
+              <h3 class="roadmap-title">Децентрализованный стек</h3>
               <p class="roadmap-desc">
-                Web3-кошелёк с самостоятельным хранением, интегрированный с Open Trader
-                и децентрализованными биржами. Те же принципы Zero Trust — ключи локально,
-                транзакции прозрачны, код открыт.
+                Логическое завершение стека: самостоятельное хранение и децентрализованные
+                расчёты на тех же принципах Zero Trust &mdash; ключи локально, транзакции
+                прозрачны, код открыт.
               </p>
-              <ul class="roadmap-tags">
-                <li>Web3 кошелёк</li>
-                <li>Интеграция с DEX</li>
-                <li>Self-custody</li>
-              </ul>
-            </div>
-          </li>
 
-          <!-- Blockchain / StableCoin / DEX -->
-          <li class="roadmap-item">
-            <div class="roadmap-phase">
-              <span class="phase-number">04</span>
-              <span class="phase-badge badge-horizon">На горизонте</span>
-            </div>
-            <div class="roadmap-body">
-              <h3 class="roadmap-title">The Scratcher BlockChain &middot; StableCoin &middot; DEX</h3>
-              <p class="roadmap-desc">
-                Логическое завершение стека: полностью децентрализованная биржа со своим блокчейном
-                и стейблкоином. Peer-to-peer расчёты, ончейн-ордербук, без кастодиана —
-                open source и независимый аудит.
-              </p>
-              <ul class="roadmap-tags">
-                <li>Блокчейн</li>
-                <li>StableCoin</li>
-                <li>DEX</li>
-                <li>Non-custodial</li>
+              <ul class="roadmap-components">
+                <li class="roadmap-component-item">
+                  <span class="roadmap-component-icon">&#128091;</span>
+                  <div class="roadmap-component-text">
+                    <strong>The Scratcher Web3 Wallet</strong>
+                    <span>Web3-кошелёк с самостоятельным хранением ключей, интегрированный с Open Trader и децентрализованными биржами.</span>
+                  </div>
+                </li>
+                <li class="roadmap-component-item">
+                  <span class="roadmap-component-icon">&#9939;</span>
+                  <div class="roadmap-component-text">
+                    <strong>The Scratcher BlockChain</strong>
+                    <span>Собственный блокчейн для расчётов peer-to-peer &mdash; без кастодиана, с открытым кодом и независимым аудитом.</span>
+                  </div>
+                </li>
+                <li class="roadmap-component-item">
+                  <span class="roadmap-component-icon">&#129689;</span>
+                  <div class="roadmap-component-text">
+                    <strong>StableCoin</strong>
+                    <span>Собственный стейблкоин стека для расчётов в сети.</span>
+                  </div>
+                </li>
+                <li class="roadmap-component-item">
+                  <span class="roadmap-component-icon">&#8644;</span>
+                  <div class="roadmap-component-text">
+                    <strong>DEX</strong>
+                    <span>Полностью децентрализованная биржа с ончейн-книгой ордеров.</span>
+                  </div>
+                </li>
               </ul>
             </div>
           </li>

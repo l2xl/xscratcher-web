@@ -411,11 +411,6 @@ code {
   border: 1px solid var(--color-green);
 }
 
-.roadmap-component-text .phase-badge {
-  margin-left: 0.5rem;
-  vertical-align: middle;
-}
-
 .roadmap-body {
   padding-top: 0.3rem;
   padding-bottom: 0.5rem;
