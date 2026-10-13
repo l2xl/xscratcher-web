@@ -18,10 +18,10 @@
   --color-blue:      #5ba3f5;
   --color-orange:    #f0a040;
   /* header stripe: kept light in the dark theme so the black X-fighter logo reads */
-  --color-header:        #d6d6d6;
+  --color-header:        #a8a8a8;
   --color-header-text:   #0f0f0f;
-  --color-header-muted:  #4a4a4a;
-  --color-header-border: #bdbdbd;
+  --color-header-muted:  #353535;
+  --color-header-border: #8c8c8c;
   --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-mono: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
   --max-w: 860px;
@@ -114,7 +114,7 @@ code {
   max-width: none;
   padding-inline: 0.5rem;
   display: grid;
-  grid-template-columns: 1fr minmax(auto, calc(var(--max-w) - 2.5rem)) 1fr;
+  grid-template-columns: minmax(max-content, 1fr) minmax(0, calc(var(--max-w) - 2.5rem)) 1fr;
   align-items: center;
   padding-block: 1rem;
   gap: 1rem;
