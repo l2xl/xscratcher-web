@@ -110,12 +110,18 @@ code {
 }
 
 .nav {
-  display: flex;
+  /* logo flush to the window edge; the menu starts at the content column's left edge */
+  max-width: none;
+  padding-inline: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, calc(var(--max-w) - 2.5rem)) 1fr;
   align-items: center;
-  justify-content: space-between;
   padding-block: 1rem;
   gap: 1rem;
 }
+.nav-logo   { grid-column: 1; justify-self: start; white-space: nowrap; }
+.nav-links  { grid-column: 2; justify-self: start; }
+.nav-toggle { grid-column: 3; justify-self: end; }
 
 .nav-logo {
   display: flex;
