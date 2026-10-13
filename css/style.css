@@ -671,6 +671,8 @@ code {
   align-items: flex-start;
 }
 
+blockquote .nowrap { white-space: nowrap; }
+
 blockquote {
   font-size: clamp(1.1rem, 3vw, 1.35rem);
   font-weight: 500;
