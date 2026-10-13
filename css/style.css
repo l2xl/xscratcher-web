@@ -22,6 +22,7 @@
   --max-w: 860px;
   --radius: 6px;
   --radius-lg: 10px;
+  --roadmap-dot: 2.75rem;   /* roadmap step circle; sets the gutter and the line */
   --transition: 0.18s ease;
 }
 
@@ -328,7 +329,7 @@ code {
 .roadmap-list::before {
   content: '';
   position: absolute;
-  left: 1.35rem;
+  left: calc(var(--roadmap-dot) / 2 - 1px);
   top: 2.8rem;
   bottom: 2.8rem;
   width: 2px;
@@ -336,9 +337,10 @@ code {
 }
 
 .roadmap-item {
-  display: flex;
-  gap: 1.75rem;
-  padding-block: 0;
+  display: grid;
+  grid-template-columns: var(--roadmap-dot) 1fr;
+  grid-template-rows: auto 1fr;
+  column-gap: 1.75rem;
   position: relative;
 }
 
@@ -346,18 +348,15 @@ code {
   margin-top: 2.5rem;
 }
 
-.roadmap-phase {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 0;
-  padding-top: 0.15rem;
-}
+/* the circle and the badge are placed on the item's grid directly */
+.roadmap-phase { display: contents; }
 
 .phase-number {
-  width: 2.75rem;
-  height: 2.75rem;
+  grid-column: 1;
+  grid-row: 1;
+  margin-top: 0.15rem;
+  width: var(--roadmap-dot);
+  height: var(--roadmap-dot);
   border-radius: 50%;
   background: var(--color-surface);
   border: 2px solid var(--color-border);
@@ -377,7 +376,15 @@ code {
   color: var(--color-green);
 }
 
+/* right edge on the circle's right edge; a long label runs left across the line */
 .phase-badge {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: end;
+  align-self: start;
+  margin-top: 0.5rem;
+  position: relative;
+  z-index: 1;
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -412,6 +419,8 @@ code {
 }
 
 .roadmap-body {
+  grid-column: 2;
+  grid-row: 1 / span 2;
   padding-top: 0.3rem;
   padding-bottom: 0.5rem;
 }
@@ -990,8 +999,11 @@ blockquote {
   .problem-grid { grid-template-columns: 1fr; }
   .side-grid { grid-template-columns: 1fr; }
 
-  /* Roadmap */
+  /* Roadmap: no line; badge beside the circle, body full width below */
   .roadmap-list::before { display: none; }
+  .roadmap-item { row-gap: 0.75rem; }
+  .phase-badge { grid-column: 2; grid-row: 1; justify-self: start; align-self: center; margin-top: 0; }
+  .roadmap-body { grid-column: 1 / -1; grid-row: 2; padding-top: 0; }
   .roadmap-divider { padding-left: 0; }
 }
 
