@@ -1,12 +1,15 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="The Scratcher Assistant — an AI assistant for building, debugging, and optimizing automated trading strategies. Local or cloud LLMs, your choice." />
-  <title>The Scratcher Assistant — The Scratcher Project</title>
+  <meta name="description" content="AI-Asassin — a general-purpose AI assistant built around the Synergy Context Gate: the dialog is condensed into a graph of statements, and that graph constructs the exact context for every reply." />
+  <title>AI-Asassin — The Scratcher Project</title>
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/i18n.js"></script>
 </head>
-<body> <header class="site-header">
+<body>
+  <header class="site-header">
     <nav class="nav container">
       <a href="index.html" class="nav-logo">
         <img src="assets/logo.svg" alt="The Scratcher Project" width="32" height="32" />
@@ -17,7 +20,7 @@
       </button>
       <ul class="nav-links">
         <li><a href="open-trader.html">Open Trader</a></li>
-        <li><a href="scratcher-assistant.html" class="active">The Scratcher Assistant</a></li>
+        <li><a href="scratcher-assistant.html" class="active">AI-Asassin</a></li>
         <li><a href="datahub.html">DataHub</a></li>
         <li><a href="iprl.html">IPRL</a></li>
         <li><a href="mission.html">Mission</a></li>
@@ -27,10 +30,10 @@
   <main>
     <section class="page-hero">
       <div class="container">
-        <h1>The Scratcher Assistant</h1>
+        <h1>AI-Asassin</h1>
         <p class="page-hero-sub">
-          An AI assistant orchestrating you trades
-          Writes, debugs, and optimises your strategies — and it never sleeps.
+          A general-purpose AI assistant that condenses your dialog into a graph of statements
+          and answers every reply from that graph — never from a transcript.
         </p>
       </div>
     </section>
@@ -47,61 +50,83 @@
           LLMs are sweeping pieces off the board. AI will allow people to truly become creators.
           We use AI to assist our work; we build AI to assist our users in becoming creators.
         </div>
-        <h2>What The Scratcher Assistant does</h2>
+        <h2>What AI-Asassin does</h2>
         <p>
-          The Scratcher Assistant helps you write and optimise automated trading strategies,
-          gives advice, simplifies automation, and — unlike you — does not sleep.
+          A conversation with AI-Asassin starts as an ordinary AI chat. Iteratively, the dialog is
+          transformed into a directed acyclic graph (DAG) of statements — the Synergy Context Gate
+          (syngate): a sentence that survived the exchange becomes a node, a short statement with
+          the items it follows from as its parents, and the chat goes on anchored at items rather
+          than at the tail of a transcript. The graph is then the context engine: a reply anchored
+          at an item is answered from exactly the reasoning that leads to the point under
+          discussion and what details it — not the whole history, and not a lossy summary of it.
+          Each reply either continues the dialog or condenses it back into the graph, and you keep
+          the last word by reviewing what the graph asserts.
         </p>
         <div class="feature-list">
           <div class="feature-item">
+            <div class="feature-icon">&#128172;</div>
+            <div>
+              <strong>Dialog &rarr; graph: analysis</strong>
+              <p>
+                Items are plain text files in your repository — a YAML front matter over a markdown
+                statement — shaped only by their parents. The AI agent restructures the graph through
+                tree calls — add, remove, move — never by editing files, so every change is explicit
+                and attributable.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#127919;</div>
+            <div>
+              <strong>Graph &rarr; context: synthesis</strong>
+              <p>
+                The seed context of an item is the chain of its ancestors' statements, root first,
+                then its own, then those of all its descendants — every item once, in order. That
+                selection, and only that selection, is what a reply anchored at the item is answered
+                from, so the model receives neither too little nor too much.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">&#128274;</div>
+            <div>
+              <strong>The gate: review and test</strong>
+              <p>
+                Two optional disciplines turn the graph into a gate. Review stamps an item as approved
+                by you, so the graph cannot drift from what was agreed. Test binds an item to
+                executable routines, frozen by hash on approval — test-first, while still red — so the
+                graph cannot drift from what the code does.
+              </p>
+            </div>
+          </div>
+          <div class="feature-item">
             <div class="feature-icon">&#128187;</div>
             <div>
-              <strong>Strategy development</strong>
+              <strong>Local editor and CLI</strong>
               <p>
-                Write strategy code from a natural-language description. The assistant generates,
-                explains, and iterates on the implementation until it matches your intent.
-              </p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">&#128295;</div>
-            <div>
-              <strong>Parameter optimisation</strong>
-              <p>
-                Tune strategy parameters against historical data. The assistant interprets backtest
-                results and suggests adjustments with clear reasoning.
-              </p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">&#128269;</div>
-            <div>
-              <strong>Result analysis</strong>
-              <p>
-                Every recommendation is logged and explainable. No opaque decisions,
-                no black-box outputs — you always understand why.
-              </p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">&#127769;</div>
-            <div>
-              <strong>Continuous monitoring</strong>
-              <p>
-                The market runs 24/7. While Open Trader is running on your machine,
-                The Scratcher Assistant monitors your positions, advises, and alerts
-                you in real time.
+                The local editor shows the graph as an outline and as one structured document, with
+                the AI chat inside every item's panel; the CLI is the same tree calls from the
+                terminal. AI models are reached through connectors — the model, effort and call
+                modes are chosen per exchange.
               </p>
             </div>
           </div>
         </div>
-        <h2>Integration with Open Trader</h2>
+        <h2>How Open Trader is built with it</h2>
         <p>
-          The Scratcher Assistant integrates directly with Open Trader through
-          an open MCP (Model Context Protocol) interface, giving it access to live market data,
-          backtest results, and your strategy configuration. The assistant sees what you see —
-          and helps you act on it.
+          Product architecture definition through dialog analysis and synthesis is one use case
+          of this loop. With test and review on, the graph of a software project is its
+          architecture and contract tree: every leaf definition is bound to a test frozen on
+          approval, and an item's seed context is the context an AI coding session is seeded from.
+          Open Trader is such a project — its CI runs the gate on every push — and so is
+          AI-Asassin itself.
         </p>
+        <div class="callout">
+          <strong>AI-Asassin is published</strong> under the IPRL at
+          <a href="https://github.com/l2xl/ai-scratcher" target="_blank" rel="noopener">github.com/l2xl/ai-scratcher</a>.
+          Install with <code>pipx install git+https://github.com/l2xl/ai-scratcher.git</code>,
+          then run <code>syngate ui</code> inside a managed project.
+        </div>
       </div>
     </section>
   </main>
