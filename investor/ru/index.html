@@ -559,68 +559,52 @@
               <h2 class="slide-title">Юнит &mdash; сделка: $0.41 дохода при 100% маржи</h2>
             </div>
 
-            <!-- ===== ROW 1: revenue per trade | margin ===== -->
-            <div class="deck-row" style="align-items:stretch;margin-bottom:0.7rem">
-              <div class="deck-col" style="flex:1.5 1 380px">
-                <div class="deck-table-wrap">
-                  <table class="deck-table">
-                    <thead><tr><th>Доход с сделки</th><th>Спот</th><th>Перп</th></tr></thead>
-                    <tbody>
-                      <tr><td>Средняя сделка</td><td class="num">$1&#8239;779</td><td class="num">$2&#8239;762</td></tr>
-                      <tr><td>Комиссия биржи</td><td class="num">0.10% &rarr; $1.78</td><td class="num">0.035% &rarr; $0.97</td></tr>
-                      <tr><td>Наша доля (~36%)</td><td class="num">$0.64</td><td class="num">$0.35</td></tr>
-                      <tr><td>Доля сделок</td><td class="num">19%</td><td class="num">81%</td></tr>
-                      <tr class="row-hi"><td><strong>Доход с сделки</strong></td><td class="num" colspan="2"><strong>$0.41</strong> <span style="color:var(--inv-faint)">($0.30&ndash;0.52)</span></td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="deck-col" style="flex:1 1 260px">
-                <div class="deck-stats" style="flex-direction:column;gap:0.4rem">
-                  <div class="deck-stat" style="flex:0 0 auto;padding:0.6rem 0.9rem"><div class="deck-stat-value" style="font-size:1.2rem">100%</div><div class="deck-stat-label">маржа на сделку</div><div class="deck-stat-sub">non-custodial &middot; без серверных затрат</div></div>
-                  <div class="deck-stat" style="flex:0 0 auto;padding:0.6rem 0.9rem"><div class="deck-stat-value" style="font-size:1.2rem">1.6 б.п.</div><div class="deck-stat-label">take rate от оборота</div><div class="deck-stat-sub">$0.41 / средняя сделка $2&#8239;570</div></div>
-                </div>
-              </div>
+            <!-- ===== ROW 1: revenue per trade | margin | trades per month ===== -->
+            <div class="deck-stats" style="margin-bottom:0.35rem">
+              <div class="deck-stat" style="padding:0.6rem 0.9rem"><div class="deck-stat-value" style="font-size:1.2rem">$0.41</div><div class="deck-stat-label">доход со сделки</div><div class="deck-stat-sub">спот $0.64 &middot; перп $0.35 &middot; 19% / 81% сделок</div></div>
+              <div class="deck-stat" style="padding:0.6rem 0.9rem"><div class="deck-stat-value" style="font-size:1.2rem">100%</div><div class="deck-stat-label">маржа на сделку</div><div class="deck-stat-sub">non-custodial &middot; без серверных затрат</div></div>
+              <div class="deck-stat" style="padding:0.6rem 0.9rem"><div class="deck-stat-value" style="font-size:1.2rem">35</div><div class="deck-stat-label">сделок в месяц</div><div class="deck-stat-sub">30% с ботами &times; 100 + 70% вручную &times; 8 &middot; ручная частота = eToro, 7.8/мес</div></div>
             </div>
+            <p class="slide-lead" style="margin:0 0 0.7rem;font-size:0.7rem;color:var(--inv-faint)">Расчёт по когортам, отдельно спот и перп, и источники &mdash; документ &laquo;Доход со сделки: доказательная база&raquo;, по запросу.</p>
 
             <!-- ===== ROW 2: LTV / CAC | ARR forecast ===== -->
             <div class="deck-row" style="align-items:flex-start">
               <div class="deck-col" style="flex:0 0 20%;max-width:22%">
                 <div class="deck-stats" style="flex-direction:column;gap:0.3rem">
-                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">$179</div><div class="deck-stat-label">LTV</div><div class="deck-stat-sub">жизнь трейдера 12.5 мес.</div></div>
-                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">&le; $60</div><div class="deck-stat-label">допустимый CAC</div><div class="deck-stat-sub">LTV / CAC &ge; 3</div></div>
-                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">~4 мес.</div><div class="deck-stat-label">окупаемость CAC</div><div class="deck-stat-sub">$14.35 маржи/мес</div></div>
+                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">$179</div><div class="deck-stat-label">LTV</div><div class="deck-stat-sub">$14.35/мес &times; 12.5 мес.</div></div>
+                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">12.5 мес.</div><div class="deck-stat-label">жизнь трейдера</div><div class="deck-stat-sub">1 / отток 8% в месяц &middot; eToro: 16 мес.</div></div>
+                  <div class="deck-stat" style="padding:0.35rem 0.5rem"><div class="deck-stat-value" style="font-size:1rem">&le; $60</div><div class="deck-stat-label">допустимый CAC</div><div class="deck-stat-sub">LTV / CAC &ge; 3 &middot; окупаемость ~4 мес.</div></div>
                 </div>
               </div>
               <div class="deck-col" style="flex:1 1 340px">
                 <div class="deck-chart-title">ARR run-rate, $M &mdash; органический рост от 100 трейдеров</div>
                 <div class="deck-chart">
                   <svg viewBox="0 0 640 172" role="img" aria-label="ARR run-rate на 12, 24 и 36 месяц, реалистичный и оптимистичный сценарии">
-                    <line x1="55" y1="132"   x2="620" y2="132"   class="chart-axis"/>
+                    <line x1="55" y1="132" x2="620" y2="132" class="chart-axis"/>
                     <line x1="55" y1="104.5" x2="620" y2="104.5" class="chart-grid"/>
-                    <line x1="55" y1="77"    x2="620" y2="77"    class="chart-grid"/>
-                    <line x1="55" y1="49.5"  x2="620" y2="49.5"  class="chart-grid"/>
-                    <line x1="55" y1="22"    x2="620" y2="22"    class="chart-grid"/>
-                    <text x="48" y="135" text-anchor="end" class="chart-lbl">$0</text>
-                    <text x="48" y="108" text-anchor="end" class="chart-lbl">$1M</text>
-                    <text x="48" y="80"  text-anchor="end" class="chart-lbl">$2M</text>
-                    <text x="48" y="52"  text-anchor="end" class="chart-lbl">$3M</text>
-                    <text x="48" y="26"  text-anchor="end" class="chart-lbl">$4M</text>
-                    <rect x="116" y="128.4" width="50" height="3.6"   rx="3" class="cs-1"/>
-                    <rect x="174" y="123.5" width="50" height="8.5"   rx="3" class="cs-4"/>
-                    <rect x="276" y="121.0" width="50" height="11.0"  rx="3" class="cs-1"/>
-                    <rect x="334" y="86.6"  width="50" height="45.4"  rx="3" class="cs-4"/>
-                    <rect x="436" y="112.2" width="50" height="19.8"  rx="3" class="cs-1"/>
-                    <rect x="494" y="17.6"  width="50" height="114.4" rx="3" class="cs-4"/>
+                    <line x1="55" y1="77" x2="620" y2="77" class="chart-grid"/>
+                    <line x1="55" y1="49.5" x2="620" y2="49.5" class="chart-grid"/>
+                    <line x1="55" y1="22" x2="620" y2="22" class="chart-grid"/>
+                    <text x="48" y="136" text-anchor="end" class="chart-lbl">$0</text>
+                    <text x="48" y="108.5" text-anchor="end" class="chart-lbl">$1M</text>
+                    <text x="48" y="81" text-anchor="end" class="chart-lbl">$2M</text>
+                    <text x="48" y="53.5" text-anchor="end" class="chart-lbl">$3M</text>
+                    <text x="48" y="26" text-anchor="end" class="chart-lbl">$4M</text>
+                    <rect x="116" y="128.4" width="50" height="3.6" rx="2" class="cs-1"/>
+                    <rect x="174" y="123.5" width="50" height="8.5" rx="2" class="cs-4"/>
+                    <rect x="276" y="121.0" width="50" height="11.0" rx="2" class="cs-1"/>
+                    <rect x="334" y="86.6" width="50" height="45.4" rx="2" class="cs-4"/>
+                    <rect x="436" y="112.2" width="50" height="19.8" rx="2" class="cs-1"/>
+                    <rect x="494" y="17.6" width="50" height="114.4" rx="2" class="cs-4"/>
                     <text x="141" y="123.4" text-anchor="middle" class="chart-lbl">$0.13M</text>
                     <text x="199" y="118.5" text-anchor="middle" class="chart-lbl">$0.31M</text>
                     <text x="301" y="116.0" text-anchor="middle" class="chart-lbl">$0.40M</text>
-                    <text x="359" y="81.6"  text-anchor="middle" class="chart-lbl">$1.65M</text>
-                    <text x="461" y="107.2" text-anchor="middle" class="chart-val chart-val-hi">$0.72M</text>
-                    <text x="519" y="12.6"  text-anchor="middle" class="chart-val">$4.16M</text>
+                    <text x="359" y="81.6" text-anchor="middle" class="chart-lbl">$1.65M</text>
+                    <text x="461" y="107.2" text-anchor="middle" class="chart-lbl">$0.72M</text>
+                    <text x="519" y="12.6" text-anchor="middle" class="chart-lbl">$4.16M</text>
                     <text x="170" y="148" text-anchor="middle" class="chart-lbl">12-й мес.</text>
                     <text x="330" y="148" text-anchor="middle" class="chart-lbl">24-й мес.</text>
-                    <text x="490" y="148" text-anchor="middle" class="chart-lbl" style="font-weight:700">36-й мес.</text>
+                    <text x="490" y="148" text-anchor="middle" class="chart-lbl">36-й мес.</text>
                     <rect x="210" y="158" width="10" height="10" rx="2" class="cs-1"/>
                     <text x="226" y="167" class="chart-lbl">Реалистичный</text>
                     <rect x="350" y="158" width="10" height="10" rx="2" class="cs-4"/>
