@@ -530,13 +530,12 @@
           <section class="slide" id="slide-8" data-nav="Юнит-экономика">
             <div class="slide-head">
               <div class="slide-kicker">Юнит-экономика</div>
-              <h2 class="slide-title">Юнит &mdash; сделка: $0.41 дохода при 100% маржи</h2>
+              <h2 class="slide-title">Юнит &mdash; сделка: $0.41 дохода</h2>
             </div>
 
-            <!-- ===== ROW 1: revenue per trade | margin | trades per month ===== -->
+            <!-- ===== ROW 1: revenue per trade | trades per month ===== -->
             <div class="deck-stats" style="margin-bottom:0.7rem">
               <div class="deck-stat" style="padding:0.6rem 0.9rem"><div class="deck-stat-value" style="font-size:1.2rem">$0.41</div><div class="deck-stat-label">доход со сделки</div><div class="deck-stat-sub">спот $0.64 &middot; перп $0.35 &middot; 19% / 81% сделок</div></div>
-              <div class="deck-stat" style="padding:0.6rem 0.9rem"><div class="deck-stat-value" style="font-size:1.2rem">100%</div><div class="deck-stat-label">маржа на сделку</div><div class="deck-stat-sub">non-custodial &middot; без серверных затрат</div></div>
               <div class="deck-stat" style="padding:0.6rem 0.9rem"><div class="deck-stat-value" style="font-size:1.2rem">470 тыс.</div><div class="deck-stat-label">сделок в месяц на 36-й мес.</div><div class="deck-stat-sub">реалистичный: 13&#8239;443 трейдера &times; 35 &middot; ARR&nbsp;=&nbsp;сделки&nbsp;&times;&nbsp;$0.41&nbsp;&times;&nbsp;12</div></div>
             </div>
 
@@ -552,7 +551,7 @@
               <div class="deck-col" style="flex:1 1 340px">
                 <div class="deck-chart-title">ARR run-rate, $M &mdash; органика + маркетинг Seed</div>
                 <div class="deck-chart">
-                  <svg viewBox="0 0 640 172" role="img" aria-label="ARR run-rate на 12, 24 и 36 месяц, реалистичный и оптимистичный сценарии">
+                  <svg class="ue-chart--desktop" viewBox="0 0 640 172" role="img" aria-label="ARR run-rate на 12, 24 и 36 месяц, реалистичный и оптимистичный сценарии">
                     <line x1="55" y1="132.0" x2="620" y2="132.0" class="chart-axis"/>
                     <line x1="55" y1="113.7" x2="620" y2="113.7" class="chart-grid"/>
                     <line x1="55" y1="95.3" x2="620" y2="95.3" class="chart-grid"/>
@@ -587,10 +586,45 @@
                     <rect x="350" y="158" width="10" height="10" rx="2" class="cs-4"/>
                     <text x="366" y="167" class="chart-lbl">Оптимистичный</text>
                   </svg>
+                  <svg class="ue-chart--mobile" viewBox="0 0 360 252" role="img" aria-label="ARR run-rate на 12, 24 и 36 месяц, реалистичный и оптимистичный сценарии">
+                    <line x1="40" y1="200" x2="352" y2="200" class="chart-axis"/>
+                    <line x1="40" y1="172" x2="352" y2="172" class="chart-grid"/>
+                    <line x1="40" y1="144" x2="352" y2="144" class="chart-grid"/>
+                    <line x1="40" y1="116" x2="352" y2="116" class="chart-grid"/>
+                    <line x1="40" y1="88" x2="352" y2="88" class="chart-grid"/>
+                    <line x1="40" y1="60" x2="352" y2="60" class="chart-grid"/>
+                    <line x1="40" y1="32" x2="352" y2="32" class="chart-grid"/>
+                    <text x="34" y="204" text-anchor="end" class="chart-lbl">$0</text>
+                    <text x="34" y="176" text-anchor="end" class="chart-lbl">$1M</text>
+                    <text x="34" y="148" text-anchor="end" class="chart-lbl">$2M</text>
+                    <text x="34" y="120" text-anchor="end" class="chart-lbl">$3M</text>
+                    <text x="34" y="92" text-anchor="end" class="chart-lbl">$4M</text>
+                    <text x="34" y="64" text-anchor="end" class="chart-lbl">$5M</text>
+                    <text x="34" y="36" text-anchor="end" class="chart-lbl">$6M</text>
+                    <rect x="56" y="196.4" width="38" height="3.6" rx="2" class="cs-1"/>
+                    <rect x="98" y="191.3" width="38" height="8.7" rx="2" class="cs-4"/>
+                    <rect x="156" y="155.2" width="38" height="44.8" rx="2" class="cs-1"/>
+                    <rect x="198" y="120.2" width="38" height="79.8" rx="2" class="cs-4"/>
+                    <rect x="256" y="135.3" width="38" height="64.7" rx="2" class="cs-1"/>
+                    <rect x="298" y="39.0" width="38" height="161.0" rx="2" class="cs-4"/>
+                    <text x="75" y="191.4" text-anchor="middle" class="chart-lbl">$0.13M</text>
+                    <text x="117" y="186.3" text-anchor="middle" class="chart-lbl">$0.31M</text>
+                    <text x="175" y="150.2" text-anchor="middle" class="chart-lbl">$1.60M</text>
+                    <text x="217" y="115.2" text-anchor="middle" class="chart-lbl">$2.85M</text>
+                    <text x="275" y="130.3" text-anchor="middle" class="chart-lbl">$2.31M</text>
+                    <text x="317" y="34.0" text-anchor="middle" class="chart-lbl">$5.75M</text>
+                    <text x="96" y="218" text-anchor="middle" class="chart-lbl">12-й мес.</text>
+                    <text x="196" y="218" text-anchor="middle" class="chart-lbl">24-й мес.</text>
+                    <text x="296" y="218" text-anchor="middle" class="chart-lbl">36-й мес.</text>
+                    <rect x="70" y="234" width="10" height="10" rx="2" class="cs-1"/>
+                    <text x="86" y="243" class="chart-lbl">Реалистичный</text>
+                    <rect x="200" y="234" width="10" height="10" rx="2" class="cs-4"/>
+                    <text x="216" y="243" class="chart-lbl">Оптимистичный</text>
+                  </svg>
                 </div>
               </div>
             </div>
-            <p class="slide-lead" style="margin:0.7rem 0 0;font-size:0.7rem">Прирост сделок от инструмента в базу не заложен: измеряется в пилоте по истории сделок трейдера до и после подключения. При росте на ~30% LTV&nbsp;/&nbsp;CAC&nbsp;3.5.</p>
+            <p class="slide-lead" style="margin:0.7rem 0 0;font-size:0.7rem">Прирост сделок от инструмента в базу не заложен. При росте на ~30% LTV&nbsp;/&nbsp;CAC&nbsp;3.5.</p>
             <p class="slide-lead" style="margin:0.35rem 0 0;font-size:0.7rem;color:var(--inv-faint)">Расчёт по когортам, отдельно спот и перп, с источниками &mdash; документ &laquo;Доход со сделки: доказательная база&raquo; предоставляется по запросу.</p>
           </section>
           <!-- ============ SLIDE 9 — INSIGHT ============ -->
@@ -708,7 +742,6 @@
                 <ul class="deck-rm-points">
                   <li>Найм команды</li>
                   <li>Масштабирование маркетинга</li>
-                  <li>Выход на рынки ЮВА</li>
                   <li>Операционная безубыточность &mdash; мес. 22 &middot; вложения окупаются &mdash; мес. 33</li>
                   <li>Приложения во всех сторах</li>
                   <li><strong>Привлечение раунда Series A</strong></li>
@@ -716,12 +749,13 @@
               </div>
             </div>
             <div class="brief-section" style="margin-top:0.8rem">
-              <div class="brief-section-title">Вывод на рынок &mdash; органический, без платной розничной рекламы</div>
+              <div class="brief-section-title">Вывод на рынок &mdash; органика + маркетинг Seed: платная реклама и комьюнити поровну</div>
               <ul class="deck-bullets">
                 <li><strong>Открытый код</strong> &mdash; GitHub, HN, Reddit &rarr; вирусный, органический охват</li>
                 <li><strong>SEO / контент</strong> &mdash; накопительный органический трафик</li>
                 <li><strong>Партнёрства с биржами</strong></li>
                 <li><strong>Конференции</strong> &mdash; iFX Dubai, IBW Istanbul</li>
+                <li><strong>Платная реклама</strong> &mdash; половина маркетингового бюджета Seed, CAC $150</li>
                 <li><strong>Крипто-медиа</strong> &mdash; Decrypt, CoinDesk, Forklog</li>
                 <li><strong>Удержание</strong> &mdash; <span style="white-space:nowrap">M3 (90 дней)</span> <span style="white-space:nowrap">40&ndash;50%</span></li>
               </ul>
